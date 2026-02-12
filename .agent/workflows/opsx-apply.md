@@ -8,37 +8,48 @@ Implement tasks from an OpenSpec change.
 
 **Steps**
 
-1. **Select the change**
+1. **Select change and verify current branch**
 
-   If a name is provided, use it. Otherwise:
-   - Infer from conversation context if the user mentioned a change
-   - Auto-select if only one active change exists
-   - If ambiguous, run `openspec list --json` to get available changes and use the **AskUserQuestion tool** to let the user select
-
-   Always announce: "Using change: <name>" and how to override (e.g., `/opsx:apply <other>`).
-
-2. **Check status to understand the schema**
    ```bash
-   openspec status --change "<name>" --json
-   ```
-   Parse the JSON to understand:
-   - `schemaName`: The workflow being used (e.g., "spec-driven")
-   - Which artifact contains the tasks (typically "tasks" for spec-driven, check status for others)
+   # Check which branch we're on
+   git branch --show-current
+   
+   # If on master or develop, create feature branch first (git workflow requirement)
+   if [[ $(git branch --show-current) == *"master"* ]] || [[ $(git branch --show-current) == *"develop"* ]]; then
+      git checkout -b "<change-name>"
+    ```
+   
+   **WHY**: Master and develop are protected, work happens on feature branches.
+
+    Always announce: "Using change: <name>" and how to override (e.g., `/opsx-apply <other>`).
+
+2. **Verify current branch and follow git workflow**
+    ```bash
+    # Check current branch
+    git branch --show-current
+    
+    # If on master or develop, create feature branch first
+    if [[ $(git branch --show-current) == *"master"* ]] || [[ $(git branch --show-current) == *"develop"* ]]; then
+      git checkout -b "<change-name>"
+    ```
+    Parse the JSON to understand:
+    - `schemaName`: The workflow being used (e.g., "spec-driven")
+    - Which artifact contains the tasks (typically "tasks" for spec-driven, check status for others)
 
 3. **Get apply instructions**
 
-   ```bash
-   openspec instructions apply --change "<name>" --json
-   ```
-
+    ```bash
+    openspec instructions apply --change "<name>" --json
+    ```
+   
    This returns:
-   - Context file paths (varies by schema)
+   - Context file paths (varies by schema - could be proposal/specs/design/tasks or spec/tests/implementation/docs)
    - Progress (total, complete, remaining)
    - Task list with status
    - Dynamic instruction based on current state
 
    **Handle states:**
-   - If `state: "blocked"` (missing artifacts): show message, suggest using `/opsx:continue`
+   - If `state: "blocked"` (missing artifacts): show message, suggest using `/opsx-continue`
    - If `state: "all_done"`: congratulate, suggest archive
    - Otherwise: proceed to implementation
 
@@ -63,7 +74,7 @@ Implement tasks from an OpenSpec change.
    - Show which task is being worked on
    - Make the code changes required
    - Keep changes minimal and focused
-   - Mark task complete in the tasks file: `- [ ]` → `- [x]`
+   - Mark task complete in tasks file: `- [ ]` → `- [x]`
    - Continue to next task
 
    **Pause if:**
@@ -79,6 +90,27 @@ Implement tasks from an OpenSpec change.
    - Overall progress: "N/M tasks complete"
    - If all done: suggest archive
    - If paused: explain why and wait for guidance
+
+   **When complete: Merge to develop, test, then merge to master**
+   
+   ```bash
+   # Merge feature branch to develop for testing
+   git checkout develop
+   git merge "<change-name>"
+   git push origin develop
+   
+   # Test on develop branch
+   # Option A: Switch GitHub Pages to develop branch (Settings → Pages)
+   # Option B: Test locally: bundle exec jekyll serve
+   # Verify all pages work correctly
+   
+   # Merge develop to master for production
+   git checkout master
+   git merge develop
+   git push origin master  # Deploys to production
+   ```
+   
+   **WHY**: Follows git workflow (feature → develop → master) for stability.
 
 **Output During Implementation**
 
@@ -108,7 +140,7 @@ Working on task 4/7: <task description>
 - [x] Task 2
 ...
 
-All tasks complete! You can archive this change with `/opsx:archive`.
+All tasks complete! Follow git workflow to merge to master.
 ```
 
 **Output On Pause (Issue Encountered)**
@@ -121,7 +153,7 @@ All tasks complete! You can archive this change with `/opsx:archive`.
 **Progress:** 4/7 tasks complete
 
 ### Issue Encountered
-<description of the issue>
+<description of issue>
 
 **Options:**
 1. <option 1>
@@ -140,6 +172,8 @@ What would you like to do?
 - Update task checkbox immediately after completing each task
 - Pause on errors, blockers, or unclear requirements - don't guess
 - Use contextFiles from CLI output, don't assume specific file names
+- Follow git workflow: feature branch → develop (test) → master (production)
+- NEVER commit directly to master or develop branches
 
 **Fluid Workflow Integration**
 

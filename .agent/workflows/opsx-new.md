@@ -1,16 +1,16 @@
 ---
-description: Start a new change using the experimental artifact workflow (OPSX)
+description: Start a new change using the artifact workflow (OPSX)
 ---
 
 Start a new change using the experimental artifact-driven approach.
 
-**Input**: The argument after `/opsx:new` is the change name (kebab-case), OR a description of what the user wants to build.
+**Input**: The argument after `/opsx-new` is the change name (kebab-case), OR a description of what you want to build.
 
 **Steps**
 
-1. **If no input provided, ask what they want to build**
+1. **If no clear input provided, ask what they want to build**
 
-   Use the **AskUserQuestion tool** (open-ended, no preset options) to ask:
+   Use **AskUserQuestion tool** (open-ended, no preset options) to ask:
    > "What change do you want to work on? Describe what you want to build or fix."
 
    From their description, derive a kebab-case name (e.g., "add user authentication" → `add-user-auth`).
@@ -19,7 +19,7 @@ Start a new change using the experimental artifact-driven approach.
 
 2. **Determine the workflow schema**
 
-   Use the default schema (omit `--schema`) unless the user explicitly requests a different workflow.
+   Use default schema (omit `--schema`) unless the user explicitly requests a different workflow.
 
    **Use a different schema only if the user mentions:**
    - A specific schema name → use `--schema <name>`
@@ -27,25 +27,45 @@ Start a new change using the experimental artifact-driven approach.
 
    **Otherwise**: Omit `--schema` to use the default.
 
-3. **Create the change directory**
+3. **Create feature branch and change directory**
+
+   Follow git workflow requirements:
    ```bash
+   # Ensure on develop branch first (git workflow requirement)
+   git checkout develop
+   git pull origin develop
+
+   # Create feature branch for this change
+   git checkout -b "<name>"
+
+   # Create change directory
    openspec new change "<name>"
    ```
+   
    Add `--schema <name>` only if the user requested a specific workflow.
+   
    This creates a scaffolded change at `openspec/changes/<name>/` with the selected schema.
+   
+   **WHY**: Feature branches isolate work from develop (staging) and master (production).
 
 4. **Show the artifact status**
+
    ```bash
    openspec status --change "<name>"
    ```
+   
    This shows which artifacts need to be created and which are ready (dependencies satisfied).
 
 5. **Get instructions for the first artifact**
+
    The first artifact depends on the schema. Check the status output to find the first artifact with status "ready".
+   
    ```bash
    openspec instructions <first-artifact-id> --change "<name>"
    ```
-   This outputs the template and context for creating the first artifact.
+   
+   This outputs:
+   - Template and context for creating the first artifact
 
 6. **STOP and wait for user direction**
 
@@ -56,11 +76,11 @@ After completing the steps, summarize:
 - Schema/workflow being used and its artifact sequence
 - Current status (0/N artifacts complete)
 - The template for the first artifact
-- Prompt: "Ready to create the first artifact? Run `/opsx:continue` or just describe what this change is about and I'll draft it."
+- Prompt: "Ready to create the first artifact? Run `/opsx-continue` or just describe what this change is about and I'll draft it."
 
 **Guardrails**
-- Do NOT create any artifacts yet - just show the instructions
+- Do NOT create any artifacts yet - just show instructions
 - Do NOT advance beyond showing the first artifact template
 - If the name is invalid (not kebab-case), ask for a valid name
-- If a change with that name already exists, suggest using `/opsx:continue` instead
-- Pass --schema if using a non-default workflow
+- If a change with that name already exists, suggest using `/opsx-continue` instead
+- Pass `--schema` if using a non-default workflow
