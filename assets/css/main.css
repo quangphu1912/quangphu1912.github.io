@@ -338,17 +338,26 @@ pre code {
   top: 0;
 }
 
-/* ============================================
-   RESPONSIVE BREAKPOINTS
-   ============================================ */
+  /* ============================================
+   PAGE-SPECIFIC COMPONENTS
+    ============================================ */
 /* Mobile: < 640px (default) */
 /* Tablet: 640px - 1024px */
 /* Desktop: > 1024px */
 
-@media (min-width: 640px) {
-  html {
-    font-size: 17px;
+  @media (min-width: 640px) {
+    html {
+      font-size: 17px;
+   }
   }
+
+  /* ============================================
+   PAGE-SPECIFIC COMPONENTS
+    ============================================ */
+
+  /* ============================================
+   PAGE-SPECIFIC COMPONENTS
+    ============================================ */
   
   .container {
     padding: 0 var(--space-4);
@@ -361,6 +370,38 @@ pre code {
   }
   
   .section {
-    padding: var(--space-12) 0;
+     padding: var(--space-12) 0;
   }
+
+  /* ============================================
+   PAGE-SPECIFIC COMPONENTS
+    ============================================ */
+
+/* Hero Section */
+.hero-section {
+  padding: var(--space-12) 0;
+  text-align: center;
 }
+
+/* Skills Section */
+.skills-grid {
+  max-width: 900px;
+}
+
+/* Experience Section */
+.experience-timeline {
+  max-width: 800px;
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+}
+
+.contact-links {
+  gap: var(--space-4);
+}
+
+  /* ============================================
+   RESPONSIVE BREAKPOINTS
+    ============================================ */

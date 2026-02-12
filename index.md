@@ -21,9 +21,10 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
       <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">
         View Projects
       </a>
-      <a href="{{ '/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary" download>
-        Download Resume
-      </a>
+       <a href="{{ '/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary">
+         <!-- TODO: Add resume.pdf to /pdf/ directory -->
+         Download Resume
+       </a>
     </div>
   </div>
 </div>
