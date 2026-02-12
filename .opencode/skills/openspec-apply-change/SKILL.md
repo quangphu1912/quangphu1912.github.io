@@ -71,15 +71,52 @@ Implement tasks from an OpenSpec change.
    - Make the code changes required
    - Keep changes minimal and focused
    - Mark task complete in the tasks file: `- [ ]` → `- [x]`
-   - Continue to next task
-
-   **Pause if:**
-   - Task is unclear → ask for clarification
-   - Implementation reveals a design issue → suggest updating artifacts
-   - Error or blocker encountered → report and wait for guidance
-   - User interrupts
-
-7. **On completion or pause, show status**
+    - Continue to next task
+ 
+    **Pause if:**
+    - Task is unclear → ask for clarification
+    - Implementation reveals a design issue → suggest updating artifacts
+    - Error or blocker encountered → report and wait for guidance
+    - User interrupts
+ 
+7. **Merge to develop for testing**
+    
+    When all tasks complete or pausing for testing:
+    
+    ```bash
+    # Checkout develop branch
+    git checkout develop
+    
+    # Merge feature branch
+    git merge <change-name>
+    
+    # Push to remote
+    git push origin develop
+    ```
+    
+    **Test on develop branch:**
+    - Option A: Switch GitHub Pages to develop branch temporarily (Settings → Pages)
+    - Option B: Test locally: `bundle exec jekyll serve`
+    - Verify all pages, dark mode, and responsiveness work correctly
+ 
+8. **On completion, merge develop to master**
+    
+    When all tasks are complete and tested on develop:
+    
+    ```bash
+    # Checkout master branch
+    git checkout master
+    
+    # Merge develop branch
+    git merge develop
+    
+    # Push to remote (triggers production deployment)
+    git push origin master
+    ```
+    
+    **WHY**: Master auto-deploys to production via GitHub Pages.
+ 
+9. **On completion or pause, show status**
 
    Display:
    - Tasks completed this session

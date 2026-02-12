@@ -3,11 +3,26 @@ schema: spec-driven
 # Project context (optional)
 # This is shown to AI when creating artifacts.
 # Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Git Workflow Requirements:
+    - Use feature branches for all changes: git checkout develop && git checkout -b <change-name>
+    - Work on feature branch, never directly on master or develop
+    - Merge feature → develop for testing
+    - Test develop branch (switch GitHub Pages temporarily or use local jekyll serve)
+    - Merge develop → master only when tested and ready
+    - Master auto-deploys to production via GitHub Pages
+    - Reference: openspec/specs/git-workflow/spec.md
+
+  Tech Stack: Jekyll 4.4, Custom CSS, GitHub Pages
+  Current Changes: 5 active (fix-code-quality, add-github-repos, create-technical-blog, add-case-studies, add-llm-rag-project)
+  Branch Structure:
+    - master (production)
+    - develop (staging/integration)
+      ├── fix-code-quality
+      ├── add-github-repos
+      ├── create-technical-blog
+      ├── add-case-studies
+      └── add-llm-rag-project
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.

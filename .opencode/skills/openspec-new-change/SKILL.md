@@ -34,12 +34,21 @@ Start a new change using the experimental artifact-driven approach.
 
    **Otherwise**: Omit `--schema` to use the default.
 
-3. **Create the change directory**
+3. **Create feature branch and change directory**
    ```bash
+   # Ensure on develop branch first (git workflow requirement)
+   git checkout develop
+   
+   # Create feature branch for this change
+   git checkout -b "<name>"
+   
+   # Create change directory
    openspec new change "<name>"
    ```
    Add `--schema <name>` only if the user requested a specific workflow.
    This creates a scaffolded change at `openspec/changes/<name>/` with the selected schema.
+
+   **WHY**: Feature branches isolate work from develop (staging) and master (production).
 
 4. **Show the artifact status**
    ```bash
