@@ -80,3 +80,11 @@ print(f"Sentiment: {predict_sentiment(article)}")
 - Expand to multi-lingual financial news
 - Incorporate social media sentiment (Twitter, Reddit)
 - Real-time sentiment dashboard for traders
+
+## GitHub Repository
+
+[![View on GitHub](https://img.shields.io/badge/Github-sentiment--analysis--ml-blue?logo=github)](https://github.com/quangphu1912/sentiment-analysis-ml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/quangphu1912/sentiment-analysis-ml/lint.yml?branch=main)](https://github.com/quangphu1912/sentiment-analysis-ml/actions)
+[![Test](https://img.shields.io/github/actions/workflow/status/quangphu1912/sentiment-analysis-ml/test.yml?branch=main)](https://github.com/quangphu1912/sentiment-analysis-ml/actions)
+
+View the complete source code, model training, and documentation on **[GitHub](https://github.com/quangphu1912/sentiment-analysis-ml)**.
