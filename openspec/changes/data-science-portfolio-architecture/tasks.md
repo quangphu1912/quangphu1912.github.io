@@ -38,31 +38,31 @@
 
 ## 4. Professional Profile (Homepage)
 
-- [ ] 4.1 Create index.md with professional introduction section
-- [ ] 4.2 Add name, professional title, and 2-3 sentence bio
-- [ ] 4.3 Create skills section with categorized skill lists
-- [ ] 4.4 Create experience section with work history (company, title, dates, achievements)
-- [ ] 4.5 Create education section with degrees and institutions
-- [ ] 4.6 Add contact information section (email, LinkedIn, GitHub links with icons)
-- [ ] 4.7 Add primary CTA button (e.g., "View Projects" or "Download Resume")
+- [x] 4.1 Create index.md with professional introduction section
+- [x] 4.2 Add name, professional title, and 2-3 sentence bio
+- [x] 4.3 Create skills section with categorized skill lists
+- [x] 4.4 Create experience section with work history (company, title, dates, achievements)
+- [x] 4.5 Create education section with degrees and institutions
+- [x] 4.6 Add contact information section (email, LinkedIn, GitHub links with icons)
+- [x] 4.7 Add primary CTA button (e.g., "View Projects" or "Download Resume")
 - [ ] 4.8 Create downloadable PDF resume and link from homepage
-- [ ] 4.9 Optimize homepage for recruiter scanning (clear headings, bullet points, whitespace)
-- [ ] 4.10 Verify name, title, and CTA are above the fold on mobile and desktop
+- [x] 4.9 Optimize homepage for recruiter scanning (clear headings, bullet points, whitespace)
+- [x] 4.10 Verify name, title, and CTA are above the fold on mobile and desktop
 
 ## 5. Project Showcase System
 
-- [ ] 5.1 Configure _projects collection in _config.yml
-- [ ] 5.2 Create projects.md page with project listing layout
-- [ ] 5.3 Implement responsive project grid (1 column mobile, 2-3 columns desktop)
-- [ ] 5.4 Add project sorting by date (newest first)
-- [ ] 5.5 Implement featured projects display at top of list
-- [ ] 5.6 Create project card component with thumbnail, title, description, tags
+- [x] 5.1 Configure _projects collection in _config.yml
+- [x] 5.2 Create projects.md page with project listing layout
+- [x] 5.3 Implement responsive project grid (1 column mobile, 2-3 columns desktop)
+- [x] 5.4 Add project sorting by date (newest first)
+- [x] 5.5 Implement featured projects display at top of list
+- [x] 5.6 Create project card component with thumbnail, title, description, tags
 - [ ] 5.7 Implement tag-based filtering functionality
-- [ ] 5.8 Create project detail page layout with full content and metadata
-- [ ] 5.9 Add previous/next project navigation links
-- [ ] 5.10 Add "Back to Projects" link on detail pages
-- [ ] 5.11 Create 2-3 sample projects in _projects directory with YAML front matter
-- [ ] 5.12 Test project listing and detail pages on mobile and desktop
+- [x] 5.8 Create project detail page layout with full content and metadata
+- [x] 5.9 Add previous/next project navigation links
+- [x] 5.10 Add "Back to Projects" link on detail pages
+- [x] 5.11 Create 2-3 sample projects in _projects directory with YAML front matter
+- [x] 5.12 Test project listing and detail pages on mobile and desktop
 
 ## 6. Jupyter Notebook Rendering Pipeline
 
