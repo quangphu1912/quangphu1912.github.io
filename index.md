@@ -4,40 +4,40 @@ title: Home
 description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
 ---
 
-<div class="hero-section" style="padding: var(--space-12) 0; text-align: center;">
+<div class="hero-section">
   <div class="container">
-    <h1 style="font-size: var(--text-5xl); margin-bottom: var(--space-3);">
+    <h1 class="hero-title">
       Phu Le
     </h1>
-    <p style="font-size: var(--text-2xl); color: var(--color-text-secondary); margin-bottom: var(--space-2);">
+    <p class="hero-subtitle">
       Data Scientist & ML Engineer
     </p>
-    <p style="font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 600px; margin: 0 auto var(--space-6);">
+    <p class="hero-description">
       Senior Analyst at BMO Financial Group with 7+ years of experience in analytics, strategy, and financial analysis. 
       CFA charterholder and MBA graduate specializing in machine learning and cloud-based solutions.
     </p>
     
-    <div class="cta-buttons flex gap-4" style="justify-content: center; flex-wrap: wrap;">
+    <div class="cta-buttons flex gap-4">
       <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">
         View Projects
       </a>
-       <a href="{{ '/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary">
-         <!-- TODO: Add resume.pdf to /pdf/ directory -->
-         Download Resume
-       </a>
+      <!-- TODO: Add resume.pdf to /pdf/ directory -->
+      <!-- <a href="{{ '/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary" download>
+        Download Resume
+      </a> -->
     </div>
   </div>
 </div>
 
-<!-- Skills Section -->
+ <!-- Skills Section -->
 <section class="skills-section section-sm" style="background-color: var(--color-surface);">
   <div class="container">
-    <h2 style="text-align: center; margin-bottom: var(--space-6);">Skills & Expertise</h2>
+    <h2 class="section-title">Skills & Expertise</h2>
     
-    <div class="grid grid-cols-1" style="max-width: 900px; margin: 0 auto;">
+    <div class="skills-grid grid grid-cols-1">
       <div class="skill-category card">
         <h3 class="card-title">Machine Learning & AI</h3>
-        <div class="flex gap-2" style="flex-wrap: wrap;">
+        <div class="flex gap-2 skills-tags">
           <span class="tag">Python</span>
           <span class="tag">TensorFlow</span>
           <span class="tag">PyTorch</span>
@@ -49,7 +49,7 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
       
       <div class="skill-category card">
         <h3 class="card-title">Data Engineering & Analytics</h3>
-        <div class="flex gap-2" style="flex-wrap: wrap;">
+        <div class="flex gap-2 skills-tags">
           <span class="tag">SQL</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">Pandas</span>
@@ -61,7 +61,7 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
       
       <div class="skill-category card">
         <h3 class="card-title">Cloud & DevOps</h3>
-        <div class="flex gap-2" style="flex-wrap: wrap;">
+        <div class="flex gap-2 skills-tags">
           <span class="tag">AWS</span>
           <span class="tag">GCP</span>
           <span class="tag">Docker</span>
@@ -72,7 +72,7 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
       
       <div class="skill-category card">
         <h3 class="card-title">Finance & Business</h3>
-        <div class="flex gap-2" style="flex-wrap: wrap;">
+        <div class="flex gap-2 skills-tags">
           <span class="tag">CFA</span>
           <span class="tag">Financial Analysis</span>
           <span class="tag">Strategy</span>
@@ -83,32 +83,32 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
   </div>
 </section>
 
-<!-- Experience Section -->
+ <!-- Experience Section -->
 <section class="experience-section section">
   <div class="container">
-    <h2 style="text-align: center; margin-bottom: var(--space-6);">Experience</h2>
+    <h2 class="section-title">Experience</h2>
     
-    <div class="experience-timeline" style="max-width: 800px; margin: 0 auto;">
-      <div class="experience-item" style="margin-bottom: var(--space-6);">
-        <div class="flex justify-between" style="flex-wrap: wrap; margin-bottom: var(--space-2);">
+    <div class="experience-timeline">
+      <div class="experience-item">
+        <div class="flex justify-between experience-item-header">
           <h3 style="margin: 0;">Senior Analyst</h3>
-          <span style="color: var(--color-text-secondary);">2020 - Present</span>
+          <span class="experience-date">2020 - Present</span>
         </div>
-        <p style="color: var(--color-primary); margin-bottom: var(--space-2);">BMO Financial Group</p>
-        <ul style="color: var(--color-text-secondary); margin-left: var(--space-3);">
+        <p class="experience-company">BMO Financial Group</p>
+        <ul class="experience-description">
           <li>Led analytics initiatives driving strategic decision-making</li>
           <li>Developed ML models for risk assessment and forecasting</li>
           <li>Collaborated with cross-functional teams on data-driven projects</li>
         </ul>
       </div>
       
-      <div class="experience-item" style="margin-bottom: var(--space-6);">
-        <div class="flex justify-between" style="flex-wrap: wrap; margin-bottom: var(--space-2);">
+      <div class="experience-item">
+        <div class="flex justify-between experience-item-header">
           <h3 style="margin: 0;">Consultant</h3>
-          <span style="color: var(--color-text-secondary);">2018 - 2020</span>
+          <span class="experience-date">2018 - 2020</span>
         </div>
-        <p style="color: var(--color-primary); margin-bottom: var(--space-2);">Deloitte & PwC</p>
-        <ul style="color: var(--color-text-secondary); margin-left: var(--space-3);">
+        <p class="experience-company">Deloitte & PwC</p>
+        <ul class="experience-description">
           <li>Provided strategic advisory services to Fortune 500 clients</li>
           <li>Conducted financial analysis and business intelligence</li>
           <li>Delivered data-driven insights for operational improvements</li>
@@ -116,12 +116,12 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
       </div>
       
       <div class="experience-item">
-        <div class="flex justify-between" style="flex-wrap: wrap; margin-bottom: var(--space-2);">
+        <div class="flex justify-between experience-item-header">
           <h3 style="margin: 0;">Analyst</h3>
-          <span style="color: var(--color-text-secondary);">2016 - 2018</span>
+          <span class="experience-date">2016 - 2018</span>
         </div>
-        <p style="color: var(--color-primary); margin-bottom: var(--space-2);">Tiki Corporation</p>
-        <ul style="color: var(--color-text-secondary); margin-left: var(--space-3);">
+        <p class="experience-company">Tiki Corporation</p>
+        <ul class="experience-description">
           <li>Performed market research and competitive analysis</li>
           <li>Built dashboards and reporting systems</li>
           <li>Supported business strategy development</li>

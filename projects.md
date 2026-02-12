@@ -8,30 +8,25 @@ description: Explore my data science and machine learning projects
   {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
   {% assign featured_projects = sorted_projects | where: 'featured', true %}
   
-
+  {% if featured_projects.size > 0 %}
+  <section class="featured-projects">
+    <h2 class="project-section-title">Featured Projects</h2>
+    <div class="grid grid-cols-1">
+      {% for project in featured_projects %}
+        {% include project-card.html project=project featured=true %}
+      {% endfor %}
+    </div>
+  </section>
   {% endif %}
   
-       <section class="all-projects">
-     <h2 style="text-align: center;">All Projects</h2>
-     <div class="grid grid-cols-1">
-       {% for project in sorted_projects %}
-         {% include project-card.html %}
-       </article>
-       {% endfor %}
-     </div>
-   </section>
+  <section class="all-projects">
+    <h2 class="project-section-title">All Projects</h2>
+    <div class="grid grid-cols-1">
+      {% for project in sorted_projects %}
+        {% unless project.featured %}
+          {% include project-card.html project=project featured=false %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </section>
 </div>
-
-<style>
-@media (min-width: 640px) {
-  .projects-grid .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .projects-grid .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-</style>
