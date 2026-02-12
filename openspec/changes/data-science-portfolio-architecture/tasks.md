@@ -157,7 +157,7 @@
 - [ ] 12.4 Document GitHub Actions workflow for notebook conversion
 - [ ] 12.5 Document custom domain setup process
 - [ ] 12.6 Create CONTRIBUTING.md if planning to accept contributions
-- [ ] 12.7 Add LICENSE file (MIT or appropriate license)
+- [x] 12.7 Add LICENSE file (MIT or appropriate license)
 - [ ] 12.8 Final review of all content for typos and accuracy
 - [ ] 12.9 Share portfolio URL with professional network (LinkedIn, Twitter)
 - [ ] 12.10 Set calendar reminder for annual domain renewal
@@ -171,6 +171,6 @@
 - [ ] 13.5 Add reading time estimates for projects
 - [ ] 13.6 Implement RSS feed for projects
 - [ ] 13.7 Add project categories in addition to tags
-- [ ] 13.8 Create custom 404 page
+- [x] 13.8 Create custom 404 page
 - [ ] 13.9 Add schema.org structured data for better SEO
 - [ ] 13.10 Consider migrating to privacy-first analytics (Plausible/Fathom) if budget allows

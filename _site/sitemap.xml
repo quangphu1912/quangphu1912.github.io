@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/pdf/sample_presentation.pdf</loc>
+<loc>https://quangphu1912.github.io/projects/aws-pipeline/</loc>
+<lastmod>2023-09-10T00:00:00-04:00</lastmod>
+</url>
+<url>
+<loc>https://quangphu1912.github.io/projects/sentiment-analysis/</loc>
+<lastmod>2023-11-20T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://quangphu1912.github.io/projects/churn-prediction/</loc>
+<lastmod>2024-01-15T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://quangphu1912.github.io/about/</loc>
+</url>
+<url>
+<loc>https://quangphu1912.github.io/</loc>
+</url>
+<url>
+<loc>https://quangphu1912.github.io/privacy/</loc>
+</url>
+<url>
+<loc>https://quangphu1912.github.io/projects/</loc>
+</url>
+<url>
+<loc>https://quangphu1912.github.io/pdf/sample_presentation.pdf</loc>
 <lastmod>2023-04-02T23:18:21-04:00</lastmod>
 </url>
 </urlset>
