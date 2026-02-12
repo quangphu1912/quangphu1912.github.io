@@ -1,0 +1,95 @@
+---
+layout: default
+---
+
+<article class="notebook-detail">
+    <div class="container">
+        <div class="section-sm">
+            <!-- Notebook Header -->
+            <header class="notebook-header" style="margin-bottom: var(--space-6);">
+                <div style="margin-bottom: var(--space-2);">
+                    <a href="{{ '/projects/' | relative_url }}"
+                        style="color: var(--color-text-secondary); font-size: var(--text-sm);">
+                        ← Back to Projects
+                    </a>
+                </div>
+
+                <h1>{{ page.title }}</h1>
+
+                {% if page.description %}
+                <p class="notebook-description"
+                    style="font-size: var(--text-xl); color: var(--color-text-secondary); margin: var(--space-2) 0;">
+                    {{ page.description }}
+                </p>
+                {% endif %}
+
+                <!-- Notebook Meta -->
+                <div class="notebook-meta flex gap-4" style="margin-top: var(--space-3); flex-wrap: wrap;">
+                    {% if page.date %}
+                    <span style="color: var(--color-text-secondary); font-size: var(--text-sm);">
+                        {{ page.date | date: "%B %Y" }}
+                    </span>
+                    {% endif %}
+
+                    {% if page.tags %}
+                    <div class="notebook-tags flex gap-2" style="flex-wrap: wrap;">
+                        {% for tag in page.tags %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </header>
+
+            <!-- Notebook Content -->
+            <div class="notebook-content" style="max-width: 1000px; margin: 0 auto;">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+</article>
+
+<style>
+    /* Notebook-specific styles */
+    .notebook-content {
+        font-family: var(--font-system);
+    }
+
+    .notebook-content pre {
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius-sm);
+        padding: var(--space-2);
+        overflow-x: auto;
+    }
+
+    .notebook-content code {
+        font-family: var(--font-mono);
+        font-size: 0.9em;
+    }
+
+    .notebook-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--border-radius-sm);
+        margin: var(--space-4) 0;
+    }
+
+    .notebook-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: var(--space-4) 0;
+    }
+
+    .notebook-content th,
+    .notebook-content td {
+        padding: var(--space-2);
+        border: 1px solid var(--color-border);
+        text-align: left;
+    }
+
+    .notebook-content th {
+        background-color: var(--color-surface);
+        font-weight: 600;
+    }
+</style>

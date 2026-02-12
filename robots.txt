@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://quangphu1912.github.io/sitemap.xml
