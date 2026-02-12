@@ -1,0 +1,28 @@
+{% assign project = include.project %}
+{% assign is_featured = include.featured | default: false %}
+
+<article class="project-card card {% if is_featured %}featured{% endif %}">
+  {% if project.image %}
+  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-image">
+  {% endif %}
+  
+  <h3 class="card-title">
+    <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+  </h3>
+  
+  <p class="card-description">{{ project.description }}</p>
+  
+  {% if project.tags %}
+  <div class="project-tags flex gap-2">
+    {% for tag in project.tags %}
+    <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  <div class="project-link">
+    <a href="{{ project.url | relative_url }}" class="btn {% if is_featured %}btn-primary{% else %}btn-secondary{% endif %}">
+      View Project →
+    </a>
+  </div>
+</article>
