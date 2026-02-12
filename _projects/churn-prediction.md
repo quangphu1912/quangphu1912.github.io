@@ -85,3 +85,11 @@ print(classification_report(y_test, predictions))
 - Implement SHAP values for better model interpretability
 - A/B test retention strategies based on model predictions
 - Explore deep learning approaches for further accuracy improvements
+
+## GitHub Repository
+
+[![View on GitHub](https://img.shields.io/badge/Github-churn--predition--ml-blue?logo=github)](https://github.com/quangphu1912/churn-prediction-ml)
+[![Lint](https://img.shields.io/github/actions/workflow/status/quangphu1912/churn-prediction-ml/lint.yml?branch=main)](https://github.com/quangphu1912/churn-prediction-ml/actions)
+[![Test](https://img.shields.io/github/actions/workflow/status/quangphu1912/churn-prediction-ml/test.yml?branch=main)](https://github.com/quangphu1912/churn-prediction-ml/actions)
+
+View the complete source code, model training, and documentation on **[GitHub](https://github.com/quangphu1912/churn-prediction-ml)**.

@@ -36,3 +36,11 @@ Designed and implemented a serverless data pipeline on AWS to process real-time 
 - Reduced data processing costs by 60%
 - Enabled real-time business intelligence
 - Improved data reliability to 99.9% uptime
+
+## GitHub Repository
+
+[![View on GitHub](https://img.shields.io/badge/Github-aws--ml--pipeline-blue?logo=github)](https://github.com/quangphu1912/aws-ml-pipeline)
+[![Lint](https://img.shields.io/github/actions/workflow/status/quangphu1912/aws-ml-pipeline/lint.yml?branch=main)](https://github.com/quangphu1912/aws-ml-pipeline/actions)
+[![Test](https://img.shields.io/github/actions/workflow/status/quangphu1912/aws-ml-pipeline/test.yml?branch=main)](https://github.com/quangphu1912/aws-ml-pipeline/actions)
+
+View the complete source code, infrastructure, and documentation on **[GitHub](https://github.com/quangphu1912/aws-ml-pipeline)**.
