@@ -355,6 +355,94 @@ pre code {
    PAGE-SPECIFIC COMPONENTS
     ============================================ */
 
+/* Hero Section */
+.hero-section {
+  padding: var(--space-12) 0;
+  text-align: center;
+}
+
+/* Skills Section */
+.skills-grid {
+  max-width: 900px;
+}
+
+/* Experience Section */
+.experience-timeline {
+  max-width: 800px;
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+}
+
+.contact-links {
+  gap: var(--space-4);
+}
+
+  /* Navigation */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) 0;
+}
+
+.nav-menu {
+  padding: var(--space-2) 0;
+}
+
+.nav-link {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.site-logo {
+  margin-top: var(--space-1);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Footer */
+.footer-content {
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-4);
+}
+
+.footer-section {
+  margin-top: var(--space-4);
+}
+
+.footer-links-section {
+  margin-bottom: var(--space-2);
+}
+
+.social-links {
+  gap: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  transition: color var(--transition-fast);
+}
+
+  /* ============================================
+   RESPONSIVE BREAKPOINTS
+    ============================================ */
+
   /* ============================================
    PAGE-SPECIFIC COMPONENTS
     ============================================ */
