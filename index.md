@@ -2,7 +2,7 @@
 layout: default
 title: Home
 description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
-image: /assets/images/hero/home.webp
+image: /assets/images/hero/hero.webp
 image_alt: "Modern office workspace with professional blue tones"
 ---
 

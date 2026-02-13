@@ -2,7 +2,7 @@
 layout: page
 title: Projects
 description: Explore my data science and machine learning projects
-image: /assets/images/hero/projects-index.webp
+image: /assets/images/hero/projects_index.webp
 image_alt: "Data visualization abstract blue analytics dashboard"
 image_credit: "Photo by Clément Hélardot on Unsplash"
 image_url: "https://unsplash.com/@clemhlrdt"

@@ -2,7 +2,7 @@
 layout: page
 title: "Case Studies"
 description: "In-depth analyses of data science and machine learning projects, showcasing business impact, technical approach, and lessons learned."
-image: /assets/images/hero/case-studies-index.webp
+image: /assets/images/hero/case_studies_index.webp
 image_alt: "Business consulting professional strategy meeting presentation"
 image_credit: "Photo by Scott Graham on Unsplash"
 image_url: "https://unsplash.com/@scottgraham"
