@@ -1,97 +1,97 @@
 ## 1. Week 1: Image Sourcing & Optimization (Days 1-6)
 
 ### 1.1 Hero Images (Days 1-2)
-- [ ] 1.1.1 Setup Poetry environment
+- [x] 1.1.1 Setup Poetry environment
   - Verify `pyproject.toml` at repository root
   - Verify `.venv/` at repository root (NOT in subdirectories)
   - Install dependencies: `poetry install`
   - Verify: `poetry run python -c "import requests; import PIL; print('OK')"`
-- [ ] 1.1.2 Search Unsplash for Home hero image
+- [x] 1.1.2 Search Unsplash for Home hero image
   - Keywords: "modern office workspace professional blue", "consulting office clean", "startup workspace"
   - Filter: Orientation → Landscape, Color → Blue-gray, Size → Large (≥1920×1280)
   - Download: Regular quality (1920×1280)
-- [ ] 1.1.3 Search Unsplash for About hero image
+- [x] 1.1.3 Search Unsplash for About hero image
   - Keywords: "professional portrait approachable", "team collaboration whiteboard", "data scientist professional"
   - Filter: Orientation → Landscape, Color → Blue-gray, Size → Large
   - Download: Regular quality
-- [ ] 1.1.4 Search Unsplash for Projects Index hero image
+- [x] 1.1.4 Search Unsplash for Projects Index hero image
   - Keywords: "data visualization abstract blue", "analytics dashboard professional", "network data flow"
   - Filter: Orientation → Landscape, Color → Blue, Size → Large
   - Download: Regular quality
-- [ ] 1.1.5 Search Unsplash for Case Studies Index hero image
+- [x] 1.1.5 Search Unsplash for Case Studies Index hero image
   - Keywords: "business consulting professional", "strategy meeting", "presentation analytics"
   - Filter: Orientation → Landscape, Color → Blue-gray, Size → Large
   - Download: Regular quality
-- [ ] 1.1.6 Optimize hero images
+- [x] 1.1.6 Optimize hero images
   - Convert to WebP (target: 70% size reduction)
   - Generate JPEG fallbacks
   - Generate responsive sizes: 800w, 1200w, 1920w
   - Verify WebP < 500KB, JPEG < 1.5MB
-- [ ] 1.1.7 Place hero images in `/assets/images/hero/`
+- [x] 1.1.7 Place hero images in `/assets/images/hero/`
   - Rename: `home.webp`, `about.webp`, `projects-index.webp`, `case-studies-index.webp`
   - Copy JPEG fallbacks: `home.jpg`, `about.jpg`, etc.
-- [ ] 1.1.8 Test hero image download automation
+- [x] 1.1.8 Test hero image download automation
   - Run: `poetry run python images/unsplash_automation.py --heroes`
   - Verify 4 images downloaded to `/assets/images/hero/`
   - Verify `.json` metadata files created
 
 ### 1.2 Project Thumbnails (Days 3-4)
-- [ ] 1.2.1 AWS ML Pipeline thumbnail
+- [x] 1.2.1 AWS ML Pipeline thumbnail
   - Keywords: "blue data infrastructure server network", "cloud computing abstract", "server room blue"
   - Filter: Orientation → Landscape, Color → Blue, Size → Regular (1920×1280)
   - Download, optimize, place as `/assets/images/projects/aws-ml-pipeline.webp`
-- [ ] 1.2.2 Sentiment Analysis thumbnail
+- [x] 1.2.2 Sentiment Analysis thumbnail
   - Keywords: "purple neural network AI abstract", "machine learning brain network", "AI abstract purple"
   - Filter: Orientation → Landscape, Color → Purple, Size → Regular
   - Download, optimize, place as `/assets/images/projects/sentiment-analysis.webp`
-- [ ] 1.2.3 Churn Prediction thumbnail
+- [x] 1.2.3 Churn Prediction thumbnail
   - Keywords: "orange analytics dashboard team", "business analytics collaboration", "customer journey data"
   - Filter: Orientation → Landscape, Color → Orange, Size → Regular
   - Download, optimize, place as `/assets/images/projects/churn-prediction.webp`
-- [ ] 1.2.4 Future project thumbnails (placeholders for future work)
+- [x] 1.2.4 Future project thumbnails (placeholders for future work)
   - Download 3 placeholder images for future projects
   - Optimize, place in `/assets/images/projects/`
-- [ ] 1.2.5 Optimize all project thumbnails
+- [x] 1.2.5 Optimize all project thumbnails
   - Verify WebP < 150KB, JPEG < 450KB
   - Test responsive sizing (800w, 1200w, 1920w)
-- [ ] 1.2.6 Test project thumbnail download automation
+- [x] 1.2.6 Test project thumbnail download automation
   - Run: `poetry run python images/unsplash_automation.py --thumbnails`
   - Verify 3 images downloaded to `/assets/images/projects/`
   - Verify `.json` metadata files created
 
 ### 1.3 Case Study Features (Day 5)
-- [ ] 1.3.1 AWS Pipeline case study feature image
+- [x] 1.3.1 AWS Pipeline case study feature image
   - Keywords: "real-time data flow visualization", "data stream abstract blue", "pipeline architecture"
   - Download, optimize, place as `/assets/images/case-studies/aws-ml-pipeline-feature.webp`
-- [ ] 1.3.2 Sentiment Analysis case study feature image
+- [x] 1.3.2 Sentiment Analysis case study feature image
   - Keywords: "financial news trading screens", "stock market trading floor", "bloomberg terminal"
   - Download, optimize, place as `/assets/images/case-studies/sentiment-analysis-feature.webp`
-- [ ] 1.3.3 Churn Prediction case study feature image
+- [x] 1.3.3 Churn Prediction case study feature image
   - Keywords: "customer journey analytics", "churn funnel visualization", "retention analytics dashboard"
   - Download, optimize, place as `/assets/images/case-studies/churn-prediction-feature.webp`
-- [ ] 1.3.4 Optimize case study features
+- [x] 1.3.4 Optimize case study features
   - Verify WebP < 250KB, JPEG < 750KB
-- [ ] 1.3.5 Test case study feature download automation
+- [x] 1.3.5 Test case study feature download automation
   - Run: `poetry run python images/unsplash_automation.py --features`
   - Verify 3 images downloaded to `/assets/images/case-studies/`
   - Verify `.json` metadata files created
 
 ### 1.4 Context Illustrations (Day 6)
-- [ ] 1.4.1 Data flow illustration
+- [x] 1.4.1 Data flow illustration
   - Keywords: "abstract data flow", "network diagram", "data stream"
   - Download, optimize, place as `/assets/images/context/data-flow.webp`
-- [ ] 1.4.2 Team collaboration illustration
+- [x] 1.4.2 Team collaboration illustration
   - Keywords: "team collaboration whiteboard", "meeting analytics", "pair programming"
   - Download, optimize, place as `/assets/images/context/collaboration.webp`
-- [ ] 1.4.3 Verify all images downloaded and optimized
+- [x] 1.4.3 Verify all images downloaded and optimized
   - Total images: 15-20
   - All WebP < size budgets
   - All JPEG fallbacks present
-- [ ] 1.4.4 Test context illustration download automation
+- [x] 1.4.4 Test context illustration download automation
   - Run: `poetry run python images/unsplash_automation.py --context`
   - Verify 2 images downloaded to `/assets/images/context/`
   - Verify `.json` metadata files created
-- [ ] 1.4.5 Test full automation pipeline
+- [x] 1.4.5 Test full automation pipeline
   - Run: `poetry run python images/unsplash_automation.py --all`
   - Verify 15-20 images downloaded across all directories
   - Verify all `.json` metadata files created
@@ -101,21 +101,27 @@
 ## 2. Week 2: Infrastructure & Integration (Days 1-5)
 
 ### 2.1 Directory Structure & Components (Day 1)
-- [ ] 2.1.1 Create `/assets/images/` directory structure
+- [x] 2.1.1 Create `/assets/images/` directory structure
   - Create subdirectories: `projects/`, `case-studies/`, `hero/`, `context/`
 - [ ] 2.1.2 Build `_includes/image-hero.html` component
-  - Full-width container with overlay gradient
-  - Support preload link for above-fold images
+  - Full-width background image with overlay gradient (30-50% black at bottom)
+  - Support for text overlay (title, subtitle)
   - Light/dark mode compatible
-- [ ] 2.1.3 Build `_includes/image-project-card.html` component
+  - Use `<picture>` markup with WebP/JPEG fallback
+- [ ] 2.1.3 Build `_includes/profile-avatar.html` component
+  - Circular avatar (border-radius: 50%)
+  - For About page "About Me" section
+  - Use profile picture: `/assets/images/hero/profile.jpg`
+- [ ] 2.1.4 Build `_includes/image-project-card.html` component
   - Rounded corners (12px border-radius)
   - Subtle hover effect (105% zoom + shadow)
   - `loading="lazy"` attribute
-- [ ] 2.1.4 Build `_includes/attribution.html` component
+- [ ] 2.1.5 Build `_includes/attribution.html` component
   - Small font (var(--text-xs)): 12px
   - Gray color (var(--color-text-secondary))
-  - Optional link to Unsplash photo page
-- [ ] 2.1.5 Create `/assets/images/README.md`
+  - Link to Unsplash photo page
+  - Display at bottom of page (footer)
+- [ ] 2.1.6 Create `/assets/images/README.md`
   - Document directory structure
   - Document naming conventions
   - Add optimization guidelines
@@ -140,26 +146,28 @@
 ### 2.3 Jekyll Integration (Day 3)
 - [ ] 2.3.1 Update home page (`index.md`) with hero image
   - Add front matter: `image`, `image_credit`, `image_alt`, `image_url`
-  - Include `_includes/image-hero.html`
-  - Add `<picture>` markup with WebP/PNG fallback
-- [ ] 2.3.2 Update About page with hero image
-  - Add front matter
-  - Include hero component
-  - Add picture markup
+  - Include `_includes/image-hero.html` as background with text overlay
+  - Use: `/assets/images/hero/home.webp`
+- [ ] 2.3.2 Update About page
+  - Add front matter: `image: /assets/images/hero/profile.jpg` (for avatar)
+  - Include `_includes/profile-avatar.html` in "About Me" section (circular)
+  - Add hero background with overlay (optional)
 - [ ] 2.3.3 Update Projects Index page with hero image
-  - Add front matter
-  - Include hero component
+  - Add front matter: `image`, `image_credit`, `image_alt`, `image_url`
+  - Include `_includes/image-hero.html` as background
+  - Use: `/assets/images/hero/projects-index.webp`
 - [ ] 2.3.4 Update Case Studies Index page with hero image
-  - Add front matter
-  - Include hero component
-- [ ] 2.3.5 Update all 6+ project pages with thumbnails
+  - Add front matter: `image`, `image_credit`, `image_alt`, `image_url`
+  - Include `_includes/image-hero.html` as background
+  - Use: `/assets/images/hero/case-studies-index.webp`
+- [ ] 2.3.5 Update all 3 project pages with thumbnails
   - Add `image`, `image_alt` to front matter
   - Update project card markup to use `_includes/image-project-card.html`
-  - Add `<picture>` markup
+  - Add `<picture>` markup with WebP/JPEG fallback
 - [ ] 2.3.6 Update all 3 case study pages with feature images
   - Add `image`, `image_credit`, `image_alt`, `image_url` to front matter
-  - Include `_includes/attribution.html`
-  - Add `<picture>` markup
+  - Include `_includes/attribution.html` at bottom of page
+  - Add `<picture>` markup with WebP/JPEG fallback
 - [ ] 2.3.7 Add `srcset` attributes to all images
   - Responsive sizes: 800w, 1200w, 1920w
   - `sizes` attribute for responsive selection
@@ -168,7 +176,8 @@
   - Case study features
   - Context illustrations
 - [ ] 2.3.9 Add `loading="eager"` to above-fold images
-  - Home, About, Projects Index, Case Studies Index heroes
+  - Home, Projects Index, Case Studies Index heroes
+  - Profile avatar on About page
 
 ### 2.4 Testing & QA (Day 4)
 - [ ] 2.4.1 Run `bundle exec jekyll build`
