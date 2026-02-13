@@ -62,9 +62,9 @@ COLOR_THEMES = {
     },
     "about": {
         "keywords": [
-            "professional data scientist",
-            "tech workspace modern",
-            "data science clean",
+            "data scientist",
+            "data engineer",
+            "data analyst",
         ],
         "color": "#007AFF",
         "accent": "#409CFF",
