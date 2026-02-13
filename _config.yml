@@ -68,6 +68,7 @@ exclude:
   - pyproject.toml
   - poetry.lock
   - scripts/
+  - docs/
 
 # Theme (none - custom theme)
 theme: null
