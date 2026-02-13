@@ -39,6 +39,26 @@
   <!-- TODO: Add favicon.png to /assets/images/ directory -->
   <!-- <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}"> -->
   
+  <!-- Mermaid.js for Diagrams -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      themeVariables: {
+        primaryColor: '#007AFF',
+        primaryTextColor: '#1D1D1F',
+        primaryBorderColor: '#007AFF',
+        lineColor: '#6E6E73',
+        secondaryColor: '#F5F5F7',
+        tertiaryColor: '#FFFFFF'
+      }
+    });
+    
+    // Make mermaid recognize mermaid code blocks
+    mermaid.init(undefined, document.querySelectorAll('.language-mermaid, .mermaid'));
+  </script>
+  
   <!-- Jekyll SEO Tag -->
   {% seo %}
   

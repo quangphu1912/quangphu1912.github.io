@@ -44,3 +44,7 @@ Designed and implemented a serverless data pipeline on AWS to process real-time 
 [![Test](https://img.shields.io/github/actions/workflow/status/quangphu1912/aws-ml-pipeline/test.yml?branch=main)](https://github.com/quangphu1912/aws-ml-pipeline/actions)
 
 View the complete source code, infrastructure, and documentation on **[GitHub](https://github.com/quangphu1912/aws-ml-pipeline)**.
+
+## Case Study
+
+[📖 Read the detailed case study →](/case-studies/aws-ml-pipeline/)

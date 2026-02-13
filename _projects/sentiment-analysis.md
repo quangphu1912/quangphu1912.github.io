@@ -88,3 +88,7 @@ print(f"Sentiment: {predict_sentiment(article)}")
 [![Test](https://img.shields.io/github/actions/workflow/status/quangphu1912/sentiment-analysis-ml/test.yml?branch=main)](https://github.com/quangphu1912/sentiment-analysis-ml/actions)
 
 View the complete source code, model training, and documentation on **[GitHub](https://github.com/quangphu1912/sentiment-analysis-ml)**.
+
+## Case Study
+
+[📖 Read the detailed case study →](/case-studies/sentiment-analysis/)
