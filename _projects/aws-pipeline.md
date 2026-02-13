@@ -4,7 +4,8 @@ description: "Scalable ETL pipeline on AWS processing 10M+ events daily using La
 date: 2023-09-10
 tags: [AWS, Data Engineering, Python, Lambda, Kinesis, Redshift]
 featured: false
-image: /assets/images/projects/aws-pipeline.jpg
+image: /assets/images/projects/aws-ml-pipeline.webp
+image_alt: "Blue data infrastructure server network abstract"
 ---
 
 ## Overview

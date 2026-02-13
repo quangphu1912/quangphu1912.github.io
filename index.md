@@ -2,18 +2,16 @@
 layout: default
 title: Home
 description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
+image: /assets/images/hero/hero.webp
+image_alt: "Modern office workspace with professional blue tones"
 ---
 
-<div class="hero-section">
-  <div class="container">
-    <h1 class="hero-title">
-      Phu Le
-    </h1>
-    <p class="hero-subtitle">
-      Data Scientist & ML Engineer
-    </p>
+{% include image-hero.html image=page.image alt=page.image_alt title="Phu Le" subtitle="Data Scientist & ML Engineer" %}
+
+<div class="container">
+  <div class="hero-section">
     <p class="hero-description">
-      Senior Analyst at BMO Financial Group with 7+ years of experience in analytics, strategy, and financial analysis. 
+      Senior Analyst at BMO Financial Group with 7+ years of experience in analytics, strategy, and financial analysis.
       CFA charterholder and MBA graduate specializing in machine learning and cloud-based solutions.
     </p>
     
@@ -23,7 +21,7 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
       </a>
       <!-- TODO: Add resume.pdf to /pdf/ directory -->
       <!-- <a href="{{ '/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary" download>
-        Download Resume
+         Download Resume
       </a> -->
     </div>
   </div>
@@ -131,7 +129,7 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
   </div>
 </section>
 
-<!-- Education Section -->
+ <!-- Education Section -->
 <section class="education-section section-sm" style="background-color: var(--color-surface);">
   <div class="container">
     <h2 style="text-align: center; margin-bottom: var(--space-6);">Education & Certifications</h2>
@@ -159,7 +157,7 @@ description: Data Scientist & ML Engineer | Python, TensorFlow, Cloud ML
   </div>
 </section>
 
-<!-- Contact Section -->
+ <!-- Contact Section -->
 <section class="contact-section section">
   <div class="container" style="text-align: center;">
     <h2 style="margin-bottom: var(--space-4);">Let's Connect</h2>

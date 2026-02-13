@@ -9,3 +9,6 @@ vendor/
 Gemfile.lock
 node_modules/
 .ruby-lsp/
+.venv/
+poetry.lock
+logs/

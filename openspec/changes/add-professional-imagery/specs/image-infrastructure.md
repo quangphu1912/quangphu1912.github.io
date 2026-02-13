@@ -21,6 +21,44 @@ All images MUST follow hierarchical directory structure.
 
 ---
 
+### Requirement: Python Automation Environment
+
+Python automation scripts MUST use Poetry for dependency management.
+
+#### Scenario: Poetry Setup
+- **WHEN** setting up Python automation environment
+- **THEN** MUST:
+  - Create `pyproject.toml` at repository root (`/Users/WangFu/GitHub/quangphu1912.github.io/`)
+  - Create `.venv/` virtual environment at repository root (NOT in subdirectories)
+  - Set `package-mode = false` in `pyproject.toml` (dependency management only, not packaging)
+  - Include dependencies: `requests>=2.31.0`, `Pillow>=10.0.0`
+- **AND** MUST NOT:
+  - Create `.venv/` in subdirectories (e.g., `/images/.venv/`)
+  - Use duplicate `pyproject.new.toml` files
+  - Expose API keys in source code
+
+#### Scenario: Running Python Scripts
+- **WHEN** executing Python automation scripts
+- **THEN** MUST use Poetry environment:
+  ```bash
+  poetry run python images/unsplash_automation.py --heroes
+  ```
+- **AND** MUST NOT use system Python:
+  ```bash
+  python images/unsplash_automation.py  # WRONG
+  ```
+
+#### Scenario: Dependency Verification
+- **WHEN** verifying Poetry installation
+- **THEN** MUST run:
+  ```bash
+  poetry show                    # List installed packages
+  poetry run python --version    # Verify Python 3.13.11
+  poetry run python -c "import requests; import PIL; print('OK')"
+  ```
+
+---
+
 ### Requirement: Image Components
 
 Reusable image components MUST be created for consistency.

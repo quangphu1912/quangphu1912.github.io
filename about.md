@@ -2,7 +2,11 @@
 layout: page
 title: About
 description: Learn more about my background and expertise
+image: /assets/images/hero/profile.jpg
+image_alt: "Phu Le - Data Scientist and ML Engineer"
 ---
+
+{% include profile-avatar.html image=page.image alt=page.image_alt loading="eager" %}
 
 ## About Me
 
@@ -10,7 +14,7 @@ I'm a data scientist and machine learning engineer with a passion for turning co
 
 ### Background
 
-Currently serving as a Senior Analyst at BMO Financial Group, I lead analytics initiatives that drive strategic decision-making across the organization. My work combines technical expertise in machine learning with deep domain knowledge in finance and business strategy.
+Currently serving as a Senior Analyst at BMO Financial Group, I lead analytics initiatives that drive strategic decision-making across organization. My work combines technical expertise in machine learning with deep domain knowledge in finance and business strategy.
 
 ### Education
 
