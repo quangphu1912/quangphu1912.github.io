@@ -65,6 +65,9 @@ exclude:
   - .agent/
   - openspec/
   - README.md
+  - pyproject.toml
+  - poetry.lock
+  - scripts/
 
 # Theme (none - custom theme)
 theme: null
