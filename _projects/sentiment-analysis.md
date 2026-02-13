@@ -1,10 +1,11 @@
 ---
-title: "Sentiment Analysis of Financial News"
-description: "NLP project using BERT to analyze sentiment in financial news articles and predict stock market movements."
-date: 2023-11-20
-tags: [NLP, BERT, Python, TensorFlow, Finance]
-featured: true
-image: /assets/images/projects/sentiment-analysis.jpg
+title: "Financial Sentiment Analysis with BERT"
+description: "Fine-tuned BERT model achieving 89% accuracy for financial news sentiment analysis"
+date: 2023-08-15
+tags: [NLP, Machine Learning, BERT, TensorFlow, Finance]
+featured: false
+image: /assets/images/projects/sentiment-analysis.webp
+image_alt: "Purple neural network AI abstract"
 ---
 
 ## Overview

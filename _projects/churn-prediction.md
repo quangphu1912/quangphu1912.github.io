@@ -4,7 +4,8 @@ description: "Built a machine learning model to predict customer churn using Ran
 date: 2024-01-15
 tags: [Machine Learning, Python, Scikit-learn, XGBoost, Classification]
 featured: true
-image: /assets/images/projects/churn-prediction.jpg
+image: /assets/images/projects/churn-prediction.webp
+image_alt: "Orange analytics dashboard team collaboration"
 ---
 
 ## Overview

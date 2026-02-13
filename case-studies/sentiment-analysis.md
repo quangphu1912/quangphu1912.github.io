@@ -5,6 +5,10 @@ description: "Fine-tuned BERT model for financial text sentiment analysis, achie
 date: 2023-07-15
 tags: [NLP, BERT, Fine-Tuning, Financial Machine Learning, TensorFlow]
 project: /projects/sentiment-analysis/
+image: /assets/images/case-studies/sentiment-analysis-feature.webp
+image_alt: "Financial news trading screens Bloomberg terminal"
+image_credit: "Photo by Michael Dziedzic on Unsplash"
+image_url: "https://unsplash.com/@michaldziedzic"
 ---
 
 ## Executive Summary

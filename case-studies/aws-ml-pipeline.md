@@ -5,6 +5,10 @@ description: "Reduced data latency from 6 hours to 45 seconds, saving $40K/year 
 date: 2023-09-10
 tags: [AWS, Data Engineering, Real-Time Analytics, Lambda, Kinesis, Redshift]
 project: /projects/aws-pipeline/
+image: /assets/images/case-studies/aws-ml-pipeline-feature.webp
+image_alt: "Real-time data flow visualization abstract blue"
+image_credit: "Photo by Markus Spiske on Unsplash"
+image_url: "https://unsplash.com/@markusspiske"
 ---
 
 ## Executive Summary

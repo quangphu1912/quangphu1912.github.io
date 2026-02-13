@@ -1,10 +1,14 @@
 ---
 layout: case-study
 title: "Customer Churn Prediction with XGBoost"
-description: "Built XGBoost model predicting customer churn with 0.89 AUC, enabling proactive retention campaigns that increased retention by 8% and saved $200K/year in revenue."
+description: "XGBoost model predicting churn with 0.89 AUC, enabling proactive retention campaigns that increased customer retention by 8% and saved $200K/year in revenue."
 date: 2023-05-20
-tags: [Machine Learning, XGBoost, Churn Prediction, Feature Engineering, CRM]
+tags: [Machine Learning, XGBoost, Churn Prediction, Feature Engineering, CRM Integration]
 project: /projects/churn-prediction/
+image: /assets/images/case-studies/churn-prediction-feature.webp
+image_alt: "Customer journey analytics churn funnel visualization"
+image_credit: "Photo by Scott Graham on Unsplash"
+image_url: "https://unsplash.com/@scottgraham"
 ---
 
 ## Executive Summary
