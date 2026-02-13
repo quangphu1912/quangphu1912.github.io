@@ -9,6 +9,7 @@ import os
 import sys
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
+from urllib.parse import quote
 
 # Configuration
 UNSPLASH_API_BASE = "https://api.unsplash.com/search/photos"
@@ -27,8 +28,8 @@ def search_images(keywords, per_page=10, orientation="landscape"):
 
     for keyword in keywords:
         try:
-            # Build search URL with proper protocol
-            search_url = f"{UNSPLASH_API_BASE}?query={keyword}&per_page={per_page}&orientation={orientation}"
+            # Build search URL with proper protocol and URL encoding
+            search_url = f"{UNSPLASH_API_BASE}?query={quote(keyword)}&per_page={per_page}&orientation={orientation}"
 
             # Add authorization header for free tier
             req = Request(search_url)

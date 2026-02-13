@@ -11,10 +11,13 @@ import sys
 from pathlib import Path
 from urllib.request import urlopen, Request, URLError, HTTPError
 from urllib.error import HTTPError
+from urllib.parse import quote
 
 # Configuration
 BASE_DIR = Path("/Users/WangFu/GitHub/quangphu1912.github.io/assets/images")
-UNSPLASH_ACCESS_KEY = ""  # Free tier: 50 requests/hour
+UNSPLASH_ACCESS_KEY = (
+    "t2bOfXbqtJW9FTZFRlWxulw5RulRg8cYJ_oQWYxIpoU"  # Free tier: 50 requests/hour
+)
 UNSPLASH_API_BASE = "https://api.unsplash.com/search/photos"
 
 # Color Temperature Map
@@ -111,8 +114,8 @@ def search_unsplash_images(keywords, per_page=10, orientation="landscape"):
 
     for keyword in keywords:
         try:
-            # Build search URL
-            search_url = f"{UNSPLASH_API_BASE}?query={keyword}&per_page={per_page}&orientation={orientation}"
+            # Build search URL with URL encoding
+            search_url = f"{UNSPLASH_API_BASE}?query={quote(keyword)}&per_page={per_page}&orientation={orientation}"
 
             # Add authorization header
             req = Request(search_url)
