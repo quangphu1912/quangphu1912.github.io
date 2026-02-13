@@ -103,42 +103,42 @@
 ### 2.1 Directory Structure & Components (Day 1)
 - [x] 2.1.1 Create `/assets/images/` directory structure
   - Create subdirectories: `projects/`, `case-studies/`, `hero/`, `context/`
-- [ ] 2.1.2 Build `_includes/image-hero.html` component
+- [x] 2.1.2 Build `_includes/image-hero.html` component
   - Full-width background image with overlay gradient (30-50% black at bottom)
   - Support for text overlay (title, subtitle)
   - Light/dark mode compatible
   - Use `<picture>` markup with WebP/JPEG fallback
-- [ ] 2.1.3 Build `_includes/profile-avatar.html` component
+- [x] 2.1.3 Build `_includes/profile-avatar.html` component
   - Circular avatar (border-radius: 50%)
   - For About page "About Me" section
   - Use profile picture: `/assets/images/hero/profile.jpg`
-- [ ] 2.1.4 Build `_includes/image-project-card.html` component
+- [x] 2.1.4 Build `_includes/image-project-card.html` component
   - Rounded corners (12px border-radius)
   - Subtle hover effect (105% zoom + shadow)
   - `loading="lazy"` attribute
-- [ ] 2.1.5 Build `_includes/attribution.html` component
+- [x] 2.1.5 Build `_includes/attribution.html` component
   - Small font (var(--text-xs)): 12px
   - Gray color (var(--color-text-secondary))
   - Link to Unsplash photo page
   - Display at bottom of page (footer)
-- [ ] 2.1.6 Create `/assets/images/README.md`
+- [x] 2.1.6 Create `/assets/images/README.md`
   - Document directory structure
   - Document naming conventions
   - Add optimization guidelines
 
 ### 2.2 Image Utilities (CSS) (Day 2)
-- [ ] 2.2.1 Add `.image-hero` class to `main.css`
+- [x] 2.2.1 Add `.image-hero` class to `main.css`
   - Full-width display
   - Overlay gradient (30-50% black at bottom)
   - Text readability enhancement
-- [ ] 2.2.2 Add `.image-thumbnail` class to `main.css`
+- [x] 2.2.2 Add `.image-thumbnail` class to `main.css`
   - Rounded corners
   - Hover zoom effect (105%)
   - Shadow on hover
-- [ ] 2.2.3 Add `.attribution` class to `main.css`
+- [x] 2.2.3 Add `.attribution` class to `main.css`
   - Small, gray, legal-compliant
   - Proper spacing (margin-top)
-- [ ] 2.2.4 Test light/dark mode compatibility
+- [x] 2.2.4 Test light/dark mode compatibility
   - Verify overlay opacity works in both modes
   - Check text contrast (WCAG 2.1 AA: 4.5:1 or 7:1)
   - Adjust if needed
