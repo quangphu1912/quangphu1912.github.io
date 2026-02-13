@@ -1,15 +1,17 @@
 {% if include.image %}
 <figure class="image-thumbnail">
   <picture>
-    <source srcset="{{ include.image | replace: '.jpg', '.webp' | relative_url }}" type="image/webp">
-    <source srcset="{{ include.image | relative_url }}" type="image/jpeg">
+    <source srcset="{{ include.image | replace: '.jpg', '-800w.webp' | relative_url }} 800w,
+                    {{ include.image | replace: '.jpg', '.webp' | relative_url }}" type="image/webp"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
+    <source srcset="{{ include.image | replace: '.webp', '-800w.jpg' | relative_url }} 800w,
+                    {{ include.image | replace: '.webp', '.jpg' | relative_url }}" type="image/jpeg"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
     <img src="{{ include.image | relative_url }}"
+         width="800"
+         height="600"
          alt="{{ include.alt | default: 'Project thumbnail' }}"
-         loading="lazy"
-         srcset="{{ include.image | replace: '.jpg', '.webp' | relative_url }} 800w,
-                 {{ include.image | replace: '.jpg', '.webp' | relative_url }} 1200w,
-                 {{ include.image | replace: '.jpg', '.webp' | relative_url }} 1920w"
-         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
+         loading="lazy">
   </picture>
 </figure>
 {% endif %}

@@ -2,11 +2,11 @@
 layout: page
 title: About
 description: Learn more about my background and expertise
+image: /assets/images/hero/profile.jpg
+image_alt: "Phu Le - Data Scientist and ML Engineer"
 ---
 
-<div class="profile-avatar">
-  <img src="/assets/images/hero/profile.jpg" alt="Phu Le - Data Scientist and ML Engineer" class="avatar-image">
-</div>
+{% include profile-avatar.html image=page.image alt=page.image_alt loading="eager" %}
 
 ## About Me
 
