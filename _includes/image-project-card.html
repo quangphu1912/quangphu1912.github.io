@@ -1,0 +1,15 @@
+{% if include.image %}
+<figure class="image-thumbnail">
+  <picture>
+    <source srcset="{{ include.image | replace: '.jpg', '.webp' | relative_url }}" type="image/webp">
+    <source srcset="{{ include.image | relative_url }}" type="image/jpeg">
+    <img src="{{ include.image | relative_url }}"
+         alt="{{ include.alt | default: 'Project thumbnail' }}"
+         loading="lazy"
+         srcset="{{ include.image | replace: '.jpg', '.webp' | relative_url }} 800w,
+                 {{ include.image | replace: '.jpg', '.webp' | relative_url }} 1200w,
+                 {{ include.image | replace: '.jpg', '.webp' | relative_url }} 1920w"
+         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
+  </picture>
+</figure>
+{% endif %}

@@ -1,0 +1,11 @@
+{% if include.image %}
+<div class="hero-image-wrapper">
+  <div class="hero-image" style="background-image: url('{{ include.image | replace: '.jpg', '.webp' | relative_url }}');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      {% if include.title %}<h1 class="hero-title">{{ include.title }}</h1>{% endif %}
+      {% if include.subtitle %}<p class="hero-subtitle">{{ include.subtitle }}</p>{% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
