@@ -27,6 +27,25 @@ image_alt: "Modern office workspace with professional blue tones"
   </div>
 </div>
 
+<div class="container">
+  <div class="hero-section">
+    <p class="hero-description">
+      Senior Analyst at BMO Financial Group with 7+ years of experience in analytics, strategy, and financial analysis.
+      CFA charterholder and MBA graduate specializing in machine learning and cloud-based solutions.
+    </p>
+
+    <div class="cta-buttons flex gap-4">
+      <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">
+        View Projects
+      </a>
+      <!-- TODO: Add resume.pdf to /pdf/ directory -->
+      <!-- <a href="{{ '/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary" download>
+         Download Resume
+      </a> -->
+    </div>
+  </div>
+</div>
+
  <!-- Skills Section -->
 <section class="skills-section section-sm" style="background-color: var(--color-surface);">
   <div class="container">
