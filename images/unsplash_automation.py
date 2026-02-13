@@ -53,35 +53,36 @@ COLOR_THEMES = {
     },
     "hero": {
         "keywords": [
-            "modern office workspace professional",
-            "consulting office clean",
-            "startup office",
+            "modern minimalist workspace",
+            "futuristic technology office",
+            "clean desk setup",
         ],
         "color": "#007AFF",  # Professional blue-gray
         "accent": "#6E7180",
     },
     "about": {
         "keywords": [
-            "professional portrait approachable",
-            "team collaboration whiteboard",
+            "professional data scientist",
+            "tech workspace modern",
+            "data science clean",
         ],
         "color": "#007AFF",
         "accent": "#409CFF",
     },
     "projects-index": {
         "keywords": [
-            "data visualization abstract",
-            "analytics dashboard professional",
-            "network data",
+            "futuristic data visualization",
+            "tech innovation abstract",
+            "digital network",
         ],
         "color": "#007AFF",
         "accent": "#409CFF",
     },
     "case-studies-index": {
         "keywords": [
-            "business consulting professional",
-            "strategy meeting",
-            "presentation analytics",
+            "business analytics",
+            "strategy consulting",
+            "data insights",
         ],
         "color": "#007AFF",
         "accent": "#6E7180",
@@ -146,9 +147,7 @@ def get_image_info(image_data):
         "id": image_data.get("id"),
         "url": image_data.get("urls", {}).get("regular"),  # 1920×1280
         "full_url": image_data.get("links", {}).get("html", ""),
-        "description": image_data.get("description")
-        or image_data.get("alt_description")
-        or "",
+        "description": image_data.get("description") or image_data.get("alt_description") or "",
         "photographer": {
             "name": f"{image_data.get('user', {}).get('name', 'Unknown')}",
             "username": image_data.get("user", {}).get("username", "unknown"),
@@ -302,9 +301,7 @@ def source_project_thumbnails():
         # Use first image
         image_info = get_image_info(images[0])
 
-        result = download_and_optimize(
-            image_info, BASE_DIR / "projects", project_slug, theme_key
-        )
+        result = download_and_optimize(image_info, BASE_DIR / "projects", project_slug, theme_key)
 
         if result["webp"]:
             print(f"   ✅ Saved: {result['webp']}")
@@ -333,9 +330,7 @@ def source_case_study_features():
         # Use first image
         image_info = get_image_info(images[0])
 
-        result = download_and_optimize(
-            image_info, BASE_DIR / "case-studies", study_slug, theme_key
-        )
+        result = download_and_optimize(image_info, BASE_DIR / "case-studies", study_slug, theme_key)
 
         if result["webp"]:
             print(f"   ✅ Saved: {result['webp']}")
@@ -360,9 +355,7 @@ def source_context_images():
         # Use first image
         image_info = get_image_info(images[0])
 
-        result = download_and_optimize(
-            image_info, BASE_DIR / "context", img_slug, theme_key
-        )
+        result = download_and_optimize(image_info, BASE_DIR / "context", img_slug, theme_key)
 
         if result["webp"]:
             print(f"   ✅ Saved: {result['webp']}")
@@ -371,19 +364,11 @@ def source_context_images():
 def main():
     import argparse
 
-    parser = argparse.ArgumentParser(
-        description="Automate Unsplash image sourcing for portfolio"
-    )
+    parser = argparse.ArgumentParser(description="Automate Unsplash image sourcing for portfolio")
     parser.add_argument("--heroes", action="store_true", help="Download hero images")
-    parser.add_argument(
-        "--thumbnails", action="store_true", help="Download project thumbnails"
-    )
-    parser.add_argument(
-        "--features", action="store_true", help="Download case study features"
-    )
-    parser.add_argument(
-        "--context", action="store_true", help="Download context illustrations"
-    )
+    parser.add_argument("--thumbnails", action="store_true", help="Download project thumbnails")
+    parser.add_argument("--features", action="store_true", help="Download case study features")
+    parser.add_argument("--context", action="store_true", help="Download context illustrations")
     parser.add_argument("--all", action="store_true", help="Download all images")
 
     args = parser.parse_args()
