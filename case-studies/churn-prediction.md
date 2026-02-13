@@ -11,6 +11,8 @@ image_credit: "Photo by Scott Graham on Unsplash"
 image_url: "https://unsplash.com/@scottgraham"
 ---
 
+{% include attribution.html credit=page.image_credit url=page.image_url %}
+
 ## Executive Summary
 
 <div class="executive-summary">

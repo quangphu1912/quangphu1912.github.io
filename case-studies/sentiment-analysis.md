@@ -11,6 +11,8 @@ image_credit: "Photo by Michael Dziedzic on Unsplash"
 image_url: "https://unsplash.com/@michaldziedzic"
 ---
 
+{% include attribution.html credit=page.image_credit url=page.image_url %}
+
 ## Executive Summary
 
 <div class="executive-summary">
