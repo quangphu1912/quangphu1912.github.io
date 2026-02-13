@@ -1,0 +1,10 @@
+{% if include.image %}
+<div class="profile-avatar">
+  <img src="{{ include.image | relative_url }}"
+       width="200"
+       height="200"
+       alt="{{ include.alt | default: 'Profile photo' }}"
+       class="avatar-image"
+       loading="{{ include.loading | default: 'eager' }}">
+</div>
+{% endif %}

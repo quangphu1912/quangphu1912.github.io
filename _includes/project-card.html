@@ -3,7 +3,7 @@
 
 <article class="project-card card {% if is_featured %}featured{% endif %}">
   {% if project.image %}
-  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-image">
+    {% include image-project-card.html image=project.image alt=project.title %}
   {% endif %}
   
   <h3 class="card-title">

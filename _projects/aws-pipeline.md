@@ -4,7 +4,8 @@ description: "Scalable ETL pipeline on AWS processing 10M+ events daily using La
 date: 2023-09-10
 tags: [AWS, Data Engineering, Python, Lambda, Kinesis, Redshift]
 featured: false
-image: /assets/images/projects/aws-pipeline.jpg
+image: /assets/images/projects/aws-ml-pipeline.webp
+image_alt: "Blue data infrastructure server network abstract"
 ---
 
 ## Overview
@@ -44,3 +45,7 @@ Designed and implemented a serverless data pipeline on AWS to process real-time 
 [![Test](https://img.shields.io/github/actions/workflow/status/quangphu1912/aws-ml-pipeline/test.yml?branch=main)](https://github.com/quangphu1912/aws-ml-pipeline/actions)
 
 View the complete source code, infrastructure, and documentation on **[GitHub](https://github.com/quangphu1912/aws-ml-pipeline)**.
+
+## Case Study
+
+[📖 Read the detailed case study →](/case-studies/aws-ml-pipeline/)

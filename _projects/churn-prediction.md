@@ -4,7 +4,8 @@ description: "Built a machine learning model to predict customer churn using Ran
 date: 2024-01-15
 tags: [Machine Learning, Python, Scikit-learn, XGBoost, Classification]
 featured: true
-image: /assets/images/projects/churn-prediction.jpg
+image: /assets/images/projects/churn-prediction.webp
+image_alt: "Orange analytics dashboard team collaboration"
 ---
 
 ## Overview
@@ -88,8 +89,12 @@ print(classification_report(y_test, predictions))
 
 ## GitHub Repository
 
-[![View on GitHub](https://img.shields.io/badge/Github-churn--predition--ml-blue?logo=github)](https://github.com/quangphu1912/churn-prediction-ml)
+[![View on GitHub](https://img.shields.io/badge/Github-churn--prediction--ml-blue?logo=github)](https://github.com/quangphu1912/churn-prediction-ml)
 [![Lint](https://img.shields.io/github/actions/workflow/status/quangphu1912/churn-prediction-ml/lint.yml?branch=main)](https://github.com/quangphu1912/churn-prediction-ml/actions)
 [![Test](https://img.shields.io/github/actions/workflow/status/quangphu1912/churn-prediction-ml/test.yml?branch=main)](https://github.com/quangphu1912/churn-prediction-ml/actions)
 
 View the complete source code, model training, and documentation on **[GitHub](https://github.com/quangphu1912/churn-prediction-ml)**.
+
+## Case Study
+
+[📖 Read the detailed case study →](/case-studies/churn-prediction/)

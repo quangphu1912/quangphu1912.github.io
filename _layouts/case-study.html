@@ -1,0 +1,76 @@
+---
+layout: default
+---
+
+<article class="case-study">
+    <div class="container">
+        <div class="section-sm">
+            <!-- Case Study Header -->
+            <header class="case-study-header" style="margin-bottom: var(--space-6);">
+                <div style="margin-bottom: var(--space-2);">
+                    <a href="{{ '/case-studies/' | relative_url }}"
+                        style="color: var(--color-text-secondary); font-size: var(--text-sm);">
+                        ← Back to Case Studies
+                    </a>
+                </div>
+
+                <h1>{{ page.title }}</h1>
+
+                {% if page.description %}
+                <p class="case-study-description"
+                    style="font-size: var(--text-xl); color: var(--color-text-secondary); margin: var(--space-2) 0;">
+                    {{ page.description }}
+                </p>
+                {% endif %}
+
+                <!-- Case Study Meta -->
+                <div class="case-study-meta flex gap-4" style="margin-top: var(--space-3); flex-wrap: wrap;">
+                    {% if page.project %}
+                    <span style="color: var(--color-text-secondary); font-size: var(--text-sm);">
+                        Project: <a href="{{ page.project }}" style="color: var(--color-primary);">View Project</a>
+                    </span>
+                    {% endif %}
+
+                    {% if page.date %}
+                    <span style="color: var(--color-text-secondary); font-size: var(--text-sm);">
+                        {{ page.date | date: "%B %Y" }}
+                    </span>
+                    {%endif %}
+
+                    {% if page.tags %}
+                    <div class="case-study-tags flex gap-2" style="flex-wrap: wrap;">
+                        {% for tag in page.tags %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </header>
+
+            <!-- Case Study Content -->
+            <div class="case-study-content" style="max-width: 800px; margin: 0 auto;">
+                {{ content }}
+            </div>
+
+            <!-- Case Study Navigation -->
+            <nav class="case-study-nav"
+                style="margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-border);">
+                <div class="flex justify-between" style="flex-wrap: wrap; gap: var(--space-2);">
+                    {% if page.previous %}
+                    <a href="{{ page.previous.url | relative_url }}" class="btn btn-secondary">
+                        ← {{ page.previous.title }}
+                    </a>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+
+                    {% if page.next %}
+                    <a href="{{ page.next.url | relative_url }}" class="btn btn-secondary">
+                        {{ page.next.title }} →
+                    </a>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+</article>
