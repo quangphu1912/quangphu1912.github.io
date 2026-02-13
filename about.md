@@ -2,24 +2,19 @@
 layout: page
 title: About
 description: Learn more about my background and expertise
-image: /assets/images/hero/profile.jpg
-image_alt: "Phu Le - Data Scientist and ML Engineer"
 ---
 
-<div class="container">
-  <div class="profile-avatar">
-    <img src="/assets/images/hero/profile.jpg" alt="Phu Le - Data Scientist and ML Engineer" class="avatar-image">
-  </div>
+<div class="profile-avatar">
+  <img src="/assets/images/hero/profile.jpg" alt="Phu Le - Data Scientist and ML Engineer" class="avatar-image">
+</div>
 
-  <h2 style="text-align: center; margin-bottom: var(--space-4);">About Me</h2>
+## About Me
 
-  <p style="text-align: center; max-width: 700px; margin: 0 auto var(--space-6);">
-    I'm a data scientist and machine learning engineer with a passion for turning complex data into actionable insights. With over 7 years of experience in analytics, strategy, and financial analysis, I specialize in building scalable ML solutions and data-driven products.
-  </p>
+I'm a data scientist and machine learning engineer with a passion for turning complex data into actionable insights. With over 7 years of experience in analytics, strategy, and financial analysis, I specialize in building scalable ML solutions and data-driven products.
 
 ### Background
 
-Currently serving as a Senior Analyst at BMO Financial Group, I lead analytics initiatives that drive strategic decision-making across the organization. My work combines technical expertise in machine learning with deep domain knowledge in finance and business strategy.
+Currently serving as a Senior Analyst at BMO Financial Group, I lead analytics initiatives that drive strategic decision-making across organization. My work combines technical expertise in machine learning with deep domain knowledge in finance and business strategy.
 
 ### Education
 
