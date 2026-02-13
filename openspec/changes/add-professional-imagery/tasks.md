@@ -144,38 +144,38 @@
   - Adjust if needed
 
 ### 2.3 Jekyll Integration (Day 3)
-- [ ] 2.3.1 Update home page (`index.md`) with hero image
+- [x] 2.3.1 Update home page (`index.md`) with hero image
   - Add front matter: `image`, `image_credit`, `image_alt`, `image_url`
   - Include `_includes/image-hero.html` as background with text overlay
   - Use: `/assets/images/hero/home.webp`
-- [ ] 2.3.2 Update About page
+- [x] 2.3.2 Update About page
   - Add front matter: `image: /assets/images/hero/profile.jpg` (for avatar)
   - Include `_includes/profile-avatar.html` in "About Me" section (circular)
   - Add hero background with overlay (optional)
-- [ ] 2.3.3 Update Projects Index page with hero image
+- [x] 2.3.3 Update Projects Index page with hero image
   - Add front matter: `image`, `image_credit`, `image_alt`, `image_url`
   - Include `_includes/image-hero.html` as background
   - Use: `/assets/images/hero/projects-index.webp`
-- [ ] 2.3.4 Update Case Studies Index page with hero image
+- [x] 2.3.4 Update Case Studies Index page with hero image
   - Add front matter: `image`, `image_credit`, `image_alt`, `image_url`
   - Include `_includes/image-hero.html` as background
   - Use: `/assets/images/hero/case-studies-index.webp`
-- [ ] 2.3.5 Update all 3 project pages with thumbnails
+- [x] 2.3.5 Update all 3 project pages with thumbnails
   - Add `image`, `image_alt` to front matter
   - Update project card markup to use `_includes/image-project-card.html`
   - Add `<picture>` markup with WebP/JPEG fallback
-- [ ] 2.3.6 Update all 3 case study pages with feature images
+- [x] 2.3.6 Update all 3 case study pages with feature images
   - Add `image`, `image_credit`, `image_alt`, `image_url` to front matter
   - Include `_includes/attribution.html` at bottom of page
   - Add `<picture>` markup with WebP/JPEG fallback
-- [ ] 2.3.7 Add `srcset` attributes to all images
+- [x] 2.3.7 Add `srcset` attributes to all images
   - Responsive sizes: 800w, 1200w, 1920w
   - `sizes` attribute for responsive selection
-- [ ] 2.3.8 Add `loading="lazy"` to below-fold images
+- [x] 2.3.8 Add `loading="lazy"` to below-fold images
   - Project thumbnails
   - Case study features
   - Context illustrations
-- [ ] 2.3.9 Add `loading="eager"` to above-fold images
+- [x] 2.3.9 Add `loading="eager"` to above-fold images
   - Home, Projects Index, Case Studies Index heroes
   - Profile avatar on About page
 
