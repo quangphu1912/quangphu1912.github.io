@@ -10,14 +10,13 @@ import subprocess
 import sys
 from pathlib import Path
 from urllib.request import urlopen, Request, URLError, HTTPError
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from urllib.parse import quote
+from image_optimizer import optimize_with_pillow
 
 # Configuration
 BASE_DIR = Path("/Users/WangFu/GitHub/quangphu1912.github.io/assets/images")
-UNSPLASH_ACCESS_KEY = (
-    "t2bOfXbqtJW9FTZFRlWxulw5RulRg8cYJ_oQWYxIpoU"  # Free tier: 50 requests/hour
-)
+UNSPLASH_ACCESS_KEY = ""  # Free tier: 50 requests/hour
 UNSPLASH_API_BASE = "https://api.unsplash.com/search/photos"
 
 # Color Temperature Map
@@ -219,7 +218,7 @@ def download_and_optimize(image_info, dest_dir, image_name, theme_key):
     # Convert to WebP
     webp_path = dest_dir / f"{image_name}.webp"
 
-    if not optimize_with_squoosh(str(original_jpg), str(webp_path)):
+    if not optimize_with_pillow(original_jpg, webp_path):
         # Fallback: keep JPEG
         webp_path = None
 
