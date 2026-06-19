@@ -1,8 +1,10 @@
-- category: "Data Engineering & Pipelines"
-  items: ["Python", "SQL", "PostgreSQL", "ETL/ELT Pipelines", "Data Modeling"]
-- category: "Cloud & Infrastructure"
-  items: ["AWS (Lambda, Kinesis, S3, Redshift, SageMaker)", "GCP", "Docker", "Git", "CI/CD"]
-- category: "Machine Learning & AI"
-  items: ["TensorFlow", "PyTorch", "Scikit-learn", "NLP", "MLOps"]
-- category: "Analytics & Business"
-  items: ["CFA", "Financial Analysis", "Strategy", "Data Visualization", "Risk Management"]
+- category: "Languages"
+  items: ["Python", "SQL", "Bash"]
+- category: "AWS"
+  items: ["S3", "RDS", "Redshift", "SageMaker", "Lambda", "Glue", "MWAA", "Bedrock"]
+- category: "Google Cloud"
+  items: ["BigQuery", "Vertex AI", "Looker", "LookML", "Google Data Studio"]
+- category: "Data Engineering & Analytics"
+  items: ["Airflow", "ETL/ELT Pipelines", "Data Warehousing", "Data Modeling", "Power BI", "DAX"]
+- category: "Developer Tools"
+  items: ["Git", "Linux", "Neovim", "tmux", "CLI AI Assist (Claude Code, OpenCode)"]
