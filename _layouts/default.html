@@ -29,7 +29,7 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 
-  <!-- Structured Data -->
+  <!-- Structured Data — Person schema (jekyll-seo-tag handles WebSite) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,14 +41,6 @@
       "https://linkedin.com/in/{{ site.linkedin_username }}",
       "https://github.com/{{ site.github_username }}"
     ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ site.title }}",
-    "url": "{{ site.url }}"
   }
   </script>
 
