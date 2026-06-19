@@ -95,6 +95,6 @@ print(classification_report(y_test, predictions))
 
 View the complete source code, model training, and documentation on **[GitHub](https://github.com/quangphu1912/churn-prediction-ml)**.
 
-## Case Study
+## Deep Dive
 
-[📖 Read the detailed case study →](/portfolio/churn-prediction/)
+[📖 Read the full project breakdown →](/portfolio/churn-prediction/)
