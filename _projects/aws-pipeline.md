@@ -48,4 +48,4 @@ View the complete source code, infrastructure, and documentation on **[GitHub](h
 
 ## Case Study
 
-[📖 Read the detailed case study →](/case-studies/aws-ml-pipeline/)
+[📖 Read the detailed case study →](/portfolio/aws-ml-pipeline/)
