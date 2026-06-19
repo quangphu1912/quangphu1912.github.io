@@ -17,50 +17,16 @@ image_alt: "Hero background"
     <h2 class="section-title">Skills & Expertise</h2>
     
     <div class="skills-grid grid grid-cols-1">
+      {% for skill in site.data.skills %}
       <div class="skill-category card">
-        <h3 class="card-title">Machine Learning & AI</h3>
+        <h3 class="card-title">{{ skill.category }}</h3>
         <div class="flex gap-2 skills-tags">
-          <span class="tag">Python</span>
-          <span class="tag">TensorFlow</span>
-          <span class="tag">PyTorch</span>
-          <span class="tag">Scikit-learn</span>
-          <span class="tag">NLP</span>
-          <span class="tag">Computer Vision</span>
+          {% for item in skill.items %}
+          <span class="tag">{{ item }}</span>
+          {% endfor %}
         </div>
       </div>
-      
-      <div class="skill-category card">
-        <h3 class="card-title">Data Engineering & Analytics</h3>
-        <div class="flex gap-2 skills-tags">
-          <span class="tag">SQL</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">Data Visualization</span>
-          <span class="tag">ETL Pipelines</span>
-        </div>
-      </div>
-      
-      <div class="skill-category card">
-        <h3 class="card-title">Cloud & DevOps</h3>
-        <div class="flex gap-2 skills-tags">
-          <span class="tag">AWS</span>
-          <span class="tag">GCP</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Git</span>
-          <span class="tag">CI/CD</span>
-        </div>
-      </div>
-      
-      <div class="skill-category card">
-        <h3 class="card-title">Finance & Business</h3>
-        <div class="flex gap-2 skills-tags">
-          <span class="tag">CFA</span>
-          <span class="tag">Financial Analysis</span>
-          <span class="tag">Strategy</span>
-          <span class="tag">Risk Management</span>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
