@@ -1,14 +1,13 @@
 # Site Settings
-title: "Phu Le - Data Science Portfolio"
+title: "Phu Le — AI & Data Engineering Portfolio"
 name: "Phu Le"
 email: quangphu1912@gmail.com
-description: >-
-  Data Scientist & ML Engineer showcasing machine learning projects, 
-  data analysis, and technical portfolio. Specializing in Python, 
-  TensorFlow, and cloud-based ML solutions.
+description: "Data Engineer & ML Specialist building production data pipelines and AI systems. GCP Professional Data Engineer, AWS Solutions Architect. Python, SQL, cloud-native ETL, MLOps."
 baseurl: "" # subpath of site, e.g. /blog
 url: "https://quangphu1912.github.io" # base hostname & protocol
 author: "Phu Le"
+job_title: "Data Engineer & ML Specialist"
+footer_tagline: "AI & Data Engineer building production pipelines, ML systems, and cloud-native ETL. GCP & AWS certified."
 
 # Social Links
 linkedin_username: quangphu1912
@@ -28,6 +27,9 @@ collections:
   notebooks:
     output: true
     permalink: /notebooks/:name/
+  portfolio:
+    output: true
+    permalink: /portfolio/:name/
 
 # Defaults
 defaults:
@@ -46,6 +48,11 @@ defaults:
       type: "pages"
     values:
       layout: "page"
+  - scope:
+      path: ""
+      type: "portfolio"
+    values:
+      layout: "portfolio-item"
 
 # Plugins
 plugins:

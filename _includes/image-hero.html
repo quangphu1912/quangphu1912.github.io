@@ -12,6 +12,15 @@
     <div class="hero-content">
       {% if include.title %}<h1 class="hero-title">{{ include.title }}</h1>{% endif %}
       {% if include.subtitle %}<p class="hero-subtitle">{{ include.subtitle }}</p>{% endif %}
+      {% if include.lead %}<p class="hero-lead">{{ include.lead }}</p>{% endif %}
+      {% if include.creds %}<p class="hero-creds">{{ include.creds }}</p>{% endif %}
+      {% if include.show_cta %}
+      <div class="cta-buttons flex gap-4">
+        <a href="{{ '/portfolio/' | relative_url }}" class="btn btn-primary">View Projects</a>
+        <a href="{{ '/assets/Phu-Le-Resume.pdf' | relative_url }}" class="btn btn-secondary" download
+           aria-label="Download Phu Le's resume (PDF)">Download Resume</a>
+      </div>
+      {% endif %}
     </div>
   </div>
 </div>

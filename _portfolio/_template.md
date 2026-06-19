@@ -1,5 +1,4 @@
 ---
-layout: case-study
 title: "[Project Name] Case Study"
 description: "[One-sentence summary of business impact and key results]"
 date: YYYY-MM-DD

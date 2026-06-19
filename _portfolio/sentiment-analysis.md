@@ -1,5 +1,4 @@
 ---
-layout: case-study
 title: "Financial Sentiment Analysis with BERT"
 description: "Fine-tuned BERT model for financial text sentiment analysis, achieving 89% accuracy and reducing manual news analysis time by 70% for trading team."
 date: 2023-07-15
@@ -17,7 +16,7 @@ image_url: "https://unsplash.com/@michaldziedzic"
 
 <div class="executive-summary">
 <p>
-Developed a BERT-based financial sentiment analysis system that processes news articles, tweets, and earnings transcripts to generate real-time sentiment signals for trading decisions. The model achieved <strong>89% accuracy</strong> (vs 72% baseline) and <strong>0.62 correlation</strong> with market movements, enabling 5 traders to incorporate sentiment signals into their workflow. Reduced manual news analysis time by <strong>70%</strong> (2+ hours/day to 30 minutes/day) while covering 10x more sources than manual review could handle. Deployed as Flask API with GCP Cloud Run, processing 500+ articles daily with sub-second inference latency.
+Developed a BERT-based financial sentiment analysis system that processes news articles, tweets, and earnings transcripts to generate real-time sentiment signals for trading decisions. The model achieved <strong class="metric">89% accuracy</strong> (vs 72% baseline) and <strong class="metric">0.62 correlation</strong> with market movements, enabling 5 traders to incorporate sentiment signals into their workflow. Reduced manual news analysis time by <strong class="metric">70%</strong> (2+ hours/day to 30 minutes/day) while covering 10x more sources than manual review could handle. Deployed as Flask API with GCP Cloud Run, processing 500+ articles daily with sub-second inference latency.
 </p>
 </div>
 

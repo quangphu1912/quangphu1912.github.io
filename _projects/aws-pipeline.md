@@ -46,6 +46,6 @@ Designed and implemented a serverless data pipeline on AWS to process real-time 
 
 View the complete source code, infrastructure, and documentation on **[GitHub](https://github.com/quangphu1912/aws-ml-pipeline)**.
 
-## Case Study
+## Deep Dive
 
-[📖 Read the detailed case study →](/case-studies/aws-ml-pipeline/)
+[📖 Read the full project breakdown →](/portfolio/aws-ml-pipeline/)

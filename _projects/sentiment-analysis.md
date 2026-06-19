@@ -90,6 +90,6 @@ print(f"Sentiment: {predict_sentiment(article)}")
 
 View the complete source code, model training, and documentation on **[GitHub](https://github.com/quangphu1912/sentiment-analysis-ml)**.
 
-## Case Study
+## Deep Dive
 
-[📖 Read the detailed case study →](/case-studies/sentiment-analysis/)
+[📖 Read the full project breakdown →](/portfolio/sentiment-analysis/)
