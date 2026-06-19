@@ -37,7 +37,7 @@ Content collections:
 
 | Collection | Directory | URL | Layout | Purpose |
 |---|---|---|---|---|
-| `projects` | `_projects/` | `/projects/:name/` | `project.html` | Full project pages (single source of truth — home cards + detail) |
+| `projects` | `_projects/` | `/projects/:name/` | `project.html` | Full project pages (single source of truth — home cards + detail). Supports an optional `featured: true` flag that floats a project to the top of the listing and home teaser. |
 | `notebooks` | `_notebooks/` | `/notebooks/:name/` | `notebook.html` | Jupyter notebooks (reserved, empty) |
 
 Each `_projects/` file is the single document for a project (home page renders cards from the same collection). There is no separate deep-dive collection.

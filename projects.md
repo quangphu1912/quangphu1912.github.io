@@ -11,7 +11,9 @@ image_url: "https://unsplash.com/@clemhlrdt"
 {% include image-hero.html image=page.image alt=page.image_alt title=page.title %}
 
 <div class="container section">
-  {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
+  {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
+  {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
+  {% assign sorted_projects = featured | concat: rest %}
   <div class="grid grid-cols-1 gap-8">
     {% for project in sorted_projects %}
       {% include project-card.html project=project %}
