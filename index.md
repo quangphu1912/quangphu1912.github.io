@@ -143,7 +143,7 @@ image_alt: "Hero background"
     <span class="eyebrow">Contact</span>
     <h2 class="contact-heading">Let's Connect</h2>
     <p class="lede contact-lede">
-      Interested in collaborating or discussing AI & Data Engineering roles? Reach out through LinkedIn or explore my projects on GitHub.
+      Interested in collaborating on AI & Data Engineering projects? Reach out on LinkedIn or explore my work on GitHub.
     </p>
 
     <div class="contact-links flex gap-4 flex-center">
