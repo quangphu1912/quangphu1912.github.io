@@ -9,7 +9,8 @@ image_alt: "Hero background"
 {% include image-hero.html image=page.image alt=page.image_alt
    title="Phu Le" subtitle="AI & Data Engineer"
    lead="Production data pipelines & AI systems."
-   creds="GCP Professional Data Engineer · AWS Solutions Architect" %}
+   creds="GCP Professional Data Engineer · AWS Solutions Architect"
+   show_cta=true %}
 
  <!-- Metrics Strip -->
 <section class="metrics-strip section-sm" data-reveal>

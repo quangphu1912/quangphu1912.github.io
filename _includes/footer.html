@@ -6,7 +6,7 @@
                 <div class="footer-section">
                     <h3>{{ site.name }}</h3>
                     <p>
-                        {{ site.description | truncate: 150 }}
+                        {{ site.footer_tagline | default: site.description }}
                     </p>
                 </div>
 
