@@ -10,7 +10,7 @@ image_alt: "Phu Le - Data Scientist and ML Engineer"
 
 ## About Me
 
-I'm a data scientist and machine learning engineer with a passion for turning complex data into actionable insights. With over 7 years of experience in analytics, strategy, and financial analysis, I specialize in building scalable ML solutions and data-driven products.
+I'm a data engineer and ML specialist who builds production data pipelines and AI systems. My path started in finance and analytics — 7+ years across BMO, Deloitte/PwC and Tiki — and I now focus on cloud-native data platforms and MLOps, backed by my Google Cloud Professional Data Engineer and AWS Solutions Architect certifications.
 
 ### Background
 
