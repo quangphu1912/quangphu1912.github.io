@@ -233,6 +233,7 @@ pre code {
    HELPERS (token-based utilities)
    ============================================ */
 .text-center { text-align: center; }
+.text-primary { color: var(--color-primary); }
 .prose { max-width: var(--max-width-prose, 760px); margin-inline: auto; }
 .lede { font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 60ch; }
 .meta-text { color: var(--color-text-secondary); font-size: var(--text-sm); }
