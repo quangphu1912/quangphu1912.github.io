@@ -14,6 +14,7 @@ image_alt: "Hero background"
  <!-- Skills Section -->
 <section class="skills-section section-sm section-tinted">
   <div class="container">
+    <span class="eyebrow">Skills</span>
     <h2 class="section-title">Skills & Expertise</h2>
     
     <div class="skills-grid grid grid-cols-1">
@@ -34,6 +35,7 @@ image_alt: "Hero background"
  <!-- Experience Section -->
 <section class="experience-section section">
   <div class="container">
+    <span class="eyebrow">Experience</span>
     <h2 class="section-title">Experience</h2>
     
     <div class="experience-timeline">
@@ -110,6 +112,7 @@ image_alt: "Hero background"
  <!-- Contact Section -->
 <section class="contact-section section">
   <div class="container text-center">
+    <span class="eyebrow">Contact</span>
     <h2 class="contact-heading">Let's Connect</h2>
     <p class="lede contact-lede">
       Interested in collaborating or discussing AI & Data Engineering roles? Reach out through LinkedIn or explore my projects on GitHub.
