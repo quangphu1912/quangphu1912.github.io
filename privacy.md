@@ -43,9 +43,9 @@ We use cookies only for analytics purposes. These cookies:
 
 You can opt out of analytics tracking at any time.
 
-<div style="margin: var(--space-4) 0; padding: var(--space-4); background-color: var(--color-surface); border-radius: var(--border-radius);">
+<div class="opt-out-box">
   <h4>Analytics Opt-Out</h4>
-  <p id="opt-out-status" style="margin: var(--space-2) 0;"></p>
+  <p id="opt-out-status" class="opt-out-status"></p>
   <button id="opt-out-btn" class="btn btn-primary" onclick="toggleOptOut()">
     Loading...
   </button>

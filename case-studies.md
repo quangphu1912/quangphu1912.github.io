@@ -11,7 +11,7 @@ image_url: "https://unsplash.com/@scottgraham"
 {% include image-hero.html image=page.image alt=page.image_alt title=page.title %}
 
 <div class="container">
-  <p style="text-align: center; max-width: 700px; margin: 0 auto var(--space-6);">
+  <p class="case-studies-intro">
     Detailed case studies showcasing end-to-end project execution, from business challenge through technical solution to measurable impact.
   </p>
 </div>

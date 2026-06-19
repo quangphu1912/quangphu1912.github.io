@@ -28,7 +28,7 @@ image_alt: "Modern office workspace with professional blue tones"
 </div>
 
  <!-- Skills Section -->
-<section class="skills-section section-sm" style="background-color: var(--color-surface);">
+<section class="skills-section section-sm section-tinted">
   <div class="container">
     <h2 class="section-title">Skills & Expertise</h2>
     
@@ -89,7 +89,7 @@ image_alt: "Modern office workspace with professional blue tones"
     <div class="experience-timeline">
       <div class="experience-item">
         <div class="flex justify-between experience-item-header">
-          <h3 style="margin: 0;">Senior Analyst</h3>
+          <h3>Senior Analyst</h3>
           <span class="experience-date">2020 - Present</span>
         </div>
         <p class="experience-company">BMO Financial Group</p>
@@ -102,7 +102,7 @@ image_alt: "Modern office workspace with professional blue tones"
       
       <div class="experience-item">
         <div class="flex justify-between experience-item-header">
-          <h3 style="margin: 0;">Consultant</h3>
+          <h3>Consultant</h3>
           <span class="experience-date">2018 - 2020</span>
         </div>
         <p class="experience-company">Deloitte & PwC</p>
@@ -115,7 +115,7 @@ image_alt: "Modern office workspace with professional blue tones"
       
       <div class="experience-item">
         <div class="flex justify-between experience-item-header">
-          <h3 style="margin: 0;">Analyst</h3>
+          <h3>Analyst</h3>
           <span class="experience-date">2016 - 2018</span>
         </div>
         <p class="experience-company">Tiki Corporation</p>
@@ -130,24 +130,24 @@ image_alt: "Modern office workspace with professional blue tones"
 </section>
 
  <!-- Education Section -->
-<section class="education-section section-sm" style="background-color: var(--color-surface);">
+<section class="education-section section-sm section-tinted">
   <div class="container">
-    <h2 style="text-align: center; margin-bottom: var(--space-6);">Education & Certifications</h2>
-    
-    <div class="grid grid-cols-1" style="max-width: 800px; margin: 0 auto;">
+    <h2 class="section-heading-centered">Education & Certifications</h2>
+
+    <div class="grid grid-cols-1 prose">
       <div class="card">
         <h3 class="card-title">MBA</h3>
-        <p style="color: var(--color-text-secondary);">Business Administration</p>
+        <p class="text-secondary">Business Administration</p>
       </div>
-      
+
       <div class="card">
         <h3 class="card-title">CFA Charterholder</h3>
-        <p style="color: var(--color-text-secondary);">Chartered Financial Analyst</p>
+        <p class="text-secondary">Chartered Financial Analyst</p>
       </div>
-      
+
       <div class="card">
         <h3 class="card-title">Google Cloud Certified</h3>
-        <p style="color: var(--color-text-secondary);">
+        <p class="text-secondary">
           <a href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer">
             View Profile →
           </a>
@@ -159,13 +159,13 @@ image_alt: "Modern office workspace with professional blue tones"
 
  <!-- Contact Section -->
 <section class="contact-section section">
-  <div class="container" style="text-align: center;">
-    <h2 style="margin-bottom: var(--space-4);">Let's Connect</h2>
-    <p style="font-size: var(--text-lg); color: var(--color-text-secondary); margin-bottom: var(--space-6); max-width: 600px; margin-left: auto; margin-right: auto;">
+  <div class="container text-center">
+    <h2 class="contact-heading">Let's Connect</h2>
+    <p class="lede contact-lede">
       Interested in collaborating or discussing data science opportunities? Reach out through LinkedIn or explore my projects on GitHub.
     </p>
-    
-    <div class="contact-links flex gap-4" style="justify-content: center; flex-wrap: wrap;">
+
+    <div class="contact-links flex gap-4 flex-center">
       <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
         LinkedIn
       </a>
