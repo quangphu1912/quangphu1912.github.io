@@ -5,65 +5,42 @@ layout: default
 <article class="project-detail">
     <div class="container">
         <div class="section-sm">
-            <!-- Project Header -->
             <header class="project-header detail-header--spaced">
                 <div class="detail-back-row">
-                    <a href="{{ '/projects/' | relative_url }}" class="back-link">
-                        ← Back to Projects
-                    </a>
+                    <a href="{{ '/projects/' | relative_url }}" class="back-link">← Back to Projects</a>
                 </div>
 
                 <h1>{{ page.title }}</h1>
 
                 {% if page.description %}
-                <p class="project-description detail-description">
-                    {{ page.description }}
-                </p>
+                <p class="project-description detail-description">{{ page.description }}</p>
                 {% endif %}
 
-                <!-- Project Meta -->
-                <div class="project-meta detail-meta-row flex gap-4">
-                    {% if page.date %}
-                    <span class="meta-text">
-                        {{ page.date | date: "%B %Y" }}
-                    </span>
-                    {% endif %}
+                {% if page.image %}
+                <figure class="project-hero">
+                    <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" loading="eager">
+                </figure>
+                {% endif %}
 
+                <div class="project-meta detail-meta-row flex gap-4">
+                    {% if page.date %}<span class="meta-text">{{ page.date | date: "%B %Y" }}</span>{% endif %}
                     {% if page.tags %}
                     <div class="project-tags flex gap-2">
-                        {% for tag in page.tags %}
-                        <span class="tag">{{ tag }}</span>
-                        {% endfor %}
+                        {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
                     </div>
                     {% endif %}
                 </div>
             </header>
 
-            <!-- Project Content -->
-            <div class="project-content prose">
-                {{ content }}
-            </div>
+            <div class="project-content prose">{{ content }}</div>
 
-            <!-- Project Navigation -->
             <nav class="project-nav detail-nav">
                 <div class="flex justify-between detail-nav-row">
-                    {% if page.previous %}
-                    <a href="{{ page.previous.url | relative_url }}" class="btn btn-secondary">
-                        ← {{ page.previous.title }}
-                    </a>
-                    {% else %}
-                    <span></span>
-                    {% endif %}
-
-                    {% if page.next %}
-                    <a href="{{ page.next.url | relative_url }}" class="btn btn-secondary">
-                        {{ page.next.title }} →
-                    </a>
-                    {% endif %}
+                    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}" class="btn btn-secondary">← {{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+                    {% if page.next %}<a href="{{ page.next.url | relative_url }}" class="btn btn-secondary">{{ page.next.title }} →</a>{% endif %}
                 </div>
             </nav>
         </div>
     </div>
-
     {% include mermaid.html %}
 </article>
