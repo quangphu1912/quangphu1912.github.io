@@ -152,7 +152,8 @@ image_alt: "Hero background"
       <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
         GitHub
       </a>
-      <a href="mailto:{{ site.email }}" class="btn btn-secondary">
+      <a href="#contact" data-user="{{ site.email | split: '@' | first }}"
+         data-domain="{{ site.email | split: '@' | last }}" class="btn btn-secondary">
         Email
       </a>
     </div>
