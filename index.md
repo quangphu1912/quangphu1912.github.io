@@ -11,6 +11,19 @@ image_alt: "Hero background"
    lead="Production data pipelines & AI systems."
    creds="GCP Professional Data Engineer · AWS Solutions Architect" %}
 
+ <!-- Testimonials Section -->
+<section class="testimonials-section section-sm" data-reveal>
+  <div class="container">
+    <span class="eyebrow">Proof</span>
+    <h2 class="section-title">What collaborators say</h2>
+    <div class="testimonials-grid">
+      {% for t in site.data.testimonials %}
+      {% include testimonial-card.html quote=t.quote author=t.author context=t.context source=t.source %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
  <!-- Skills Section -->
 <section class="skills-section section-sm section-tinted" data-reveal>
   <div class="container">
