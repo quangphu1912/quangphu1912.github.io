@@ -28,7 +28,22 @@
 
   <!-- Canonical URL -->
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-  
+
+  <!-- Structured Data — Person schema (jekyll-seo-tag handles WebSite) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.name }}",
+    "jobTitle": "{{ site.job_title }}",
+    "url": "{{ site.url }}",
+    "sameAs": [
+      "https://www.linkedin.com/in/{{ site.linkedin_username }}",
+      "https://github.com/{{ site.github_username }}"
+    ]
+  }
+  </script>
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   

@@ -97,4 +97,4 @@ View the complete source code, model training, and documentation on **[GitHub](h
 
 ## Case Study
 
-[📖 Read the detailed case study →](/case-studies/churn-prediction/)
+[📖 Read the detailed case study →](/portfolio/churn-prediction/)

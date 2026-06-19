@@ -9,7 +9,8 @@ image_alt: "Hero background"
 {% include image-hero.html image=page.image alt=page.image_alt
    title="Phu Le" subtitle="AI & Data Engineer"
    lead="Production data pipelines & AI systems."
-   creds="GCP Professional Data Engineer · AWS Solutions Architect" %}
+   creds="GCP Professional Data Engineer · AWS Solutions Architect"
+   show_cta=true %}
 
  <!-- Metrics Strip -->
 <section class="metrics-strip section-sm" data-reveal>
@@ -142,7 +143,7 @@ image_alt: "Hero background"
     <span class="eyebrow">Contact</span>
     <h2 class="contact-heading">Let's Connect</h2>
     <p class="lede contact-lede">
-      Interested in collaborating or discussing AI & Data Engineering roles? Reach out through LinkedIn or explore my projects on GitHub.
+      Interested in collaborating on AI & Data Engineering projects? Reach out on LinkedIn or explore my work on GitHub.
     </p>
 
     <div class="contact-links flex gap-4 flex-center">

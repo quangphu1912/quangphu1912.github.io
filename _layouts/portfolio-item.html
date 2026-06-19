@@ -8,8 +8,8 @@ layout: default
             <!-- Case Study Header -->
             <header class="case-study-header detail-header--spaced">
                 <div class="detail-back-row">
-                    <a href="{{ '/case-studies/' | relative_url }}" class="back-link">
-                        ← Back to Case Studies
+                    <a href="{{ '/portfolio/' | relative_url }}" class="back-link">
+                        ← Back to Projects
                     </a>
                 </div>
 
@@ -33,7 +33,7 @@ layout: default
                     <span class="meta-text">
                         {{ page.date | date: "%B %Y" }}
                     </span>
-                    {%endif %}
+                    {% endif %}
 
                     {% if page.tags %}
                     <div class="case-study-tags flex gap-2">
@@ -47,6 +47,17 @@ layout: default
 
             <!-- Case Study Content -->
             <div class="case-study-content prose">
+                <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Article",
+                  "headline": {{ page.title | jsonify }},
+                  "description": {{ page.description | jsonify }},
+                  "datePublished": "{{ page.date | date_to_xmlschema }}",
+                  "author": {"@type": "Person", "name": "{{ site.author }}"},
+                  "url": "{{ site.url }}{{ page.url }}"
+                }
+                </script>
                 {{ content }}
             </div>
 

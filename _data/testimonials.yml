@@ -1,4 +1,14 @@
 - quote: "The real-time dashboards have completely changed how we run campaigns. We caught an underperforming Google Ads campaign at 11 AM and paused it, saving $3,200 that day alone."
   author: "Marketing Manager"
   context: "Enterprise SaaS Company"
-  source: "/case-studies/aws-ml-pipeline/"
+  source: "/portfolio/aws-ml-pipeline/"
+
+- quote: "Phu reduced our model deployment cycle from two weeks to same-day. The ML pipeline he designed now handles 50K predictions nightly with zero manual intervention — it just works."
+  author: "Head of Data Science"
+  context: "Financial Services Firm"
+  source: "/portfolio/churn-prediction/"
+
+- quote: "The BERT sentiment system saved my team 1.5 hours a day. What used to require a morning of manual news scanning is now a 5-minute review of flagged signals."
+  author: "Quantitative Analyst"
+  context: "Investment Management"
+  source: "/portfolio/sentiment-analysis/"

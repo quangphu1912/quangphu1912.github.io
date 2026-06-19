@@ -6,6 +6,8 @@ description: "Data Engineer & ML Specialist building production data pipelines a
 baseurl: "" # subpath of site, e.g. /blog
 url: "https://quangphu1912.github.io" # base hostname & protocol
 author: "Phu Le"
+job_title: "Data Engineer & ML Specialist"
+footer_tagline: "AI & Data Engineer building production pipelines, ML systems, and cloud-native ETL. GCP & AWS certified."
 
 # Social Links
 linkedin_username: quangphu1912
@@ -25,6 +27,9 @@ collections:
   notebooks:
     output: true
     permalink: /notebooks/:name/
+  portfolio:
+    output: true
+    permalink: /portfolio/:name/
 
 # Defaults
 defaults:
@@ -43,6 +48,11 @@ defaults:
       type: "pages"
     values:
       layout: "page"
+  - scope:
+      path: ""
+      type: "portfolio"
+    values:
+      layout: "portfolio-item"
 
 # Plugins
 plugins:

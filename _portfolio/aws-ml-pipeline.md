@@ -1,5 +1,4 @@
 ---
-layout: case-study
 title: "AWS ML Pipeline: Real-Time Data Processing Infrastructure"
 description: "Reduced data latency from 6 hours to 45 seconds, saving $40K/year in manual costs while enabling real-time business intelligence."
 date: 2023-09-10

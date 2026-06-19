@@ -3,7 +3,7 @@
         <nav class="site-nav flex items-center justify-between" aria-label="Primary">
             <a href="{{ '/' | relative_url }}" class="site-logo">
                 <h1>{{ site.name }}</h1>
-                <span class="status-indicator"><span class="status-dot" aria-hidden="true"></span>Open to AI & Data Engineering roles</span>
+                <span class="site-tagline">AI & Data Engineer · AWS</span>
             </a>
 
             <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
@@ -15,8 +15,7 @@
             <ul id="nav-menu" class="nav-menu flex gap-4">
                 {% assign url = page.url %}
                 <li><a href="{{ '/' | relative_url }}" class="nav-link{% if url == '/' %} active{% endif %}">Home</a></li>
-                <li><a href="{{ '/projects/' | relative_url }}" class="nav-link{% if url contains '/projects' %} active{% endif %}">Projects</a></li>
-                <li><a href="{{ '/case-studies/' | relative_url }}" class="nav-link{% if url contains '/case-studies' %} active{% endif %}">Case Studies</a></li>
+                <li><a href="{{ '/portfolio/' | relative_url }}" class="nav-link{% if url contains '/portfolio' %} active{% endif %}">Projects</a></li>
                 <li><a href="{{ '/about/' | relative_url }}" class="nav-link{% if url contains '/about' %} active{% endif %}">About</a></li>
             </ul>
         </nav>
