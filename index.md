@@ -12,14 +12,14 @@ image_alt: "Hero background"
    creds="GCP Professional Data Engineer · AWS Solutions Architect" %}
 
  <!-- Skills Section -->
-<section class="skills-section section-sm section-tinted">
+<section class="skills-section section-sm section-tinted" data-reveal>
   <div class="container">
     <span class="eyebrow">Skills</span>
     <h2 class="section-title">Skills & Expertise</h2>
     
     <div class="skills-grid grid grid-cols-1">
       {% for skill in site.data.skills %}
-      <div class="skill-category card">
+      <div class="skill-category card" data-reveal>
         <h3 class="card-title">{{ skill.category }}</h3>
         <div class="flex gap-2 skills-tags">
           {% for item in skill.items %}
@@ -33,13 +33,13 @@ image_alt: "Hero background"
 </section>
 
  <!-- Experience Section -->
-<section class="experience-section section">
+<section class="experience-section section" data-reveal>
   <div class="container">
     <span class="eyebrow">Experience</span>
     <h2 class="section-title">Experience</h2>
     
     <div class="experience-timeline">
-      <div class="experience-item">
+      <div class="experience-item" data-reveal>
         <div class="flex justify-between experience-item-header">
           <h3>Senior Analyst</h3>
           <span class="experience-date">2020 - Present</span>
@@ -52,7 +52,7 @@ image_alt: "Hero background"
         </ul>
       </div>
       
-      <div class="experience-item">
+      <div class="experience-item" data-reveal>
         <div class="flex justify-between experience-item-header">
           <h3>Consultant</h3>
           <span class="experience-date">2018 - 2020</span>
@@ -65,7 +65,7 @@ image_alt: "Hero background"
         </ul>
       </div>
       
-      <div class="experience-item">
+      <div class="experience-item" data-reveal>
         <div class="flex justify-between experience-item-header">
           <h3>Analyst</h3>
           <span class="experience-date">2016 - 2018</span>
@@ -82,7 +82,7 @@ image_alt: "Hero background"
 </section>
 
  <!-- Education Section -->
-<section class="education-section section-sm section-tinted">
+<section class="education-section section-sm section-tinted" data-reveal>
   <div class="container">
     <span class="eyebrow">Credentials</span>
     <h2 class="section-title">Education & Certifications</h2>
@@ -110,7 +110,7 @@ image_alt: "Hero background"
 </section>
 
  <!-- Contact Section -->
-<section class="contact-section section-lg">
+<section class="contact-section section-lg" data-reveal>
   <div class="container text-center">
     <span class="eyebrow">Contact</span>
     <h2 class="contact-heading">Let's Connect</h2>
