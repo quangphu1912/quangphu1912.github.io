@@ -138,7 +138,7 @@ google_analytics: G-XXXXXXXXXX
 
 ## 🚀 Deployment
 
-The site automatically deploys to GitHub Pages when you push to the `master` branch.
+The site automatically deploys to GitHub Pages when you push to the `main` branch.
 
 ### Custom Domain (Optional)
 
