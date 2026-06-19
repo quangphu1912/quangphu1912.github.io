@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Portfolio"
+title: "Projects"
 description: "In-depth technical breakdowns of AI & Data Engineering projects — architecture decisions, business impact, and lessons learned."
 image: /assets/images/hero/case_studies_index.webp
 image_alt: "Data engineering architecture portfolio overview"
