@@ -41,6 +41,17 @@ layout: default
 
             <!-- Project Content -->
             <div class="project-content prose">
+                <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Article",
+                  "headline": "{{ page.title | escape }}",
+                  "description": "{{ page.description | escape }}",
+                  "datePublished": "{{ page.date | date_to_xmlschema }}",
+                  "author": {"@type": "Person", "name": "{{ site.author }}"},
+                  "url": "{{ site.url }}{{ page.url }}"
+                }
+                </script>
                 {{ content }}
             </div>
 
