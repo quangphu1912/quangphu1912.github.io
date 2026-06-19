@@ -16,19 +16,16 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
   <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  {% if page.image %}
-  <meta property="og:image" content="{{ site.url }}{{ page.image }}">
-  {% endif %}
-  
+  {% assign og_image = page.image | default: '/assets/images/hero/hero.jpg' %}
+  <meta property="og:image" content="{{ site.url }}{{ og_image }}">
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
   <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  {% if page.image %}
-  <meta name="twitter:image" content="{{ site.url }}{{ page.image }}">
-  {% endif %}
-  
+  <meta name="twitter:image" content="{{ site.url }}{{ og_image }}">
+
   <!-- Canonical URL -->
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   
@@ -36,29 +33,11 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   
   <!-- Favicon -->
-  <!-- TODO: Add favicon.png to /assets/images/ directory -->
-  <!-- <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}"> -->
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
   
-  <!-- Mermaid.js for Diagrams -->
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'default',
-      themeVariables: {
-        primaryColor: '#007AFF',
-        primaryTextColor: '#1D1D1F',
-        primaryBorderColor: '#007AFF',
-        lineColor: '#6E6E73',
-        secondaryColor: '#F5F5F7',
-        tertiaryColor: '#FFFFFF'
-      }
-    });
-    
-    // Make mermaid recognize mermaid code blocks
-    mermaid.init(undefined, document.querySelectorAll('.language-mermaid, .mermaid'));
-  </script>
-  
+  <!-- Mermaid is conditionally included by content layouts (case-study, project, notebook) -->
+  <!-- See: _includes/mermaid.html -->
+
   <!-- Jekyll SEO Tag -->
   {% seo %}
   
@@ -80,5 +59,8 @@
   {% if jekyll.environment == 'production' %}
     {% include analytics.html %}
   {% endif %}
+
+  <script src="{{ '/assets/js/nav.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/reveal.js' | relative_url }}" defer></script>
 </body>
 </html>

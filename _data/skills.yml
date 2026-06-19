@@ -1,0 +1,8 @@
+- category: "Data Engineering & Pipelines"
+  items: ["Python", "SQL", "PostgreSQL", "ETL/ELT Pipelines", "Data Modeling"]
+- category: "Cloud & Infrastructure"
+  items: ["AWS", "GCP", "Docker", "Git", "CI/CD"]
+- category: "Machine Learning & AI"
+  items: ["TensorFlow", "PyTorch", "Scikit-learn", "NLP", "MLOps"]
+- category: "Analytics & Business"
+  items: ["CFA", "Financial Analysis", "Strategy", "Data Visualization", "Risk Management"]
