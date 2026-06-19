@@ -1,11 +1,8 @@
 # Site Settings
-title: "Phu Le - Data Science Portfolio"
+title: "Phu Le — AI & Data Engineering Portfolio"
 name: "Phu Le"
 email: quangphu1912@gmail.com
-description: >-
-  Data Scientist & ML Engineer showcasing machine learning projects, 
-  data analysis, and technical portfolio. Specializing in Python, 
-  TensorFlow, and cloud-based ML solutions.
+description: "Data Engineer & ML Specialist building production data pipelines and AI systems. GCP Professional Data Engineer, AWS Solutions Architect. Python, SQL, cloud-native ETL, MLOps."
 baseurl: "" # subpath of site, e.g. /blog
 url: "https://quangphu1912.github.io" # base hostname & protocol
 author: "Phu Le"
