@@ -9,7 +9,7 @@ image_alt: "Hero background"
 {% include image-hero.html image=page.image alt=page.image_alt
    title="Phu Le" subtitle="AI & Data Engineer"
    lead="Production data pipelines & AI systems."
-   creds="AWS Solutions Architect · GCP Professional Data Engineer"
+   creds="AWS Certified Data Engineer · Solutions Architect · CFA"
    show_cta=true %}
 
  <!-- Metrics Strip -->
@@ -18,10 +18,10 @@ image_alt: "Hero background"
     <span class="eyebrow">Impact</span>
     <h2 class="section-title">At a Glance</h2>
     <div class="metrics-grid">
-      <div class="metric-cell"><span class="metric metric-figure">7+</span><span class="metric-label">EXPERIENCE</span></div>
-      <div class="metric-cell"><span class="metric metric-figure">10M+</span><span class="metric-label">EVENTS / DAY</span></div>
-      <div class="metric-cell"><span class="metric metric-figure">98%</span><span class="metric-label">LATENCY REDUCTION</span></div>
-      <div class="metric-cell"><span class="metric metric-figure">$240K+</span><span class="metric-label">ANNUAL IMPACT</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">7+</span><span class="metric-label">YEARS EXPERIENCE</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">~3M</span><span class="metric-label">RECORDS / DAY</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">~80%</span><span class="metric-label">ANALYSIS TIME CUT</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">$150M</span><span class="metric-label">REVENUE INFLUENCED</span></div>
     </div>
   </div>
 </section>
@@ -47,80 +47,33 @@ image_alt: "Hero background"
   </div>
 </section>
 
- <!-- Experience Section -->
-<section class="experience-section section" data-reveal>
+ <!-- Trajectory -->
+<section class="section-sm" data-reveal>
   <div class="container">
     <span class="eyebrow">Experience</span>
-    <h2 class="section-title">Experience</h2>
-    
-    <div class="experience-timeline">
-      <div class="experience-item" data-reveal>
-        <div class="flex justify-between experience-item-header">
-          <h3>Senior Analyst</h3>
-          <span class="experience-date">2020 - Present</span>
-        </div>
-        <p class="experience-company">BMO Financial Group</p>
-        <ul class="experience-description">
-          <li>Led analytics initiatives driving strategic decision-making</li>
-          <li>Developed ML models for risk assessment and forecasting</li>
-          <li>Collaborated with cross-functional teams on data-driven projects</li>
-        </ul>
-      </div>
-      
-      <div class="experience-item" data-reveal>
-        <div class="flex justify-between experience-item-header">
-          <h3>Consultant</h3>
-          <span class="experience-date">2018 - 2020</span>
-        </div>
-        <p class="experience-company">Deloitte & PwC</p>
-        <ul class="experience-description">
-          <li>Provided strategic advisory services to Fortune 500 clients</li>
-          <li>Conducted financial analysis and business intelligence</li>
-          <li>Delivered data-driven insights for operational improvements</li>
-        </ul>
-      </div>
-      
-      <div class="experience-item" data-reveal>
-        <div class="flex justify-between experience-item-header">
-          <h3>Analyst</h3>
-          <span class="experience-date">2016 - 2018</span>
-        </div>
-        <p class="experience-company">Tiki Corporation</p>
-        <ul class="experience-description">
-          <li>Performed market research and competitive analysis</li>
-          <li>Built dashboards and reporting systems</li>
-          <li>Supported business strategy development</li>
-        </ul>
-      </div>
+    <h2 class="section-title">Where I've Worked</h2>
+    <div class="trajectory-strip">
+      <span class="trajectory-companies">BMO · Tiki · Deloitte · PwC</span>
+      <span class="trajectory-span">— 7+ years from audit &amp; consulting to cloud data engineering.</span>
     </div>
+    <p class="lede" style="margin-top: var(--space-4)"><a href="{{ '/about/' | relative_url }}">Read the full story →</a></p>
   </div>
 </section>
 
- <!-- Education Section -->
-<section class="education-section section-sm section-tinted" data-reveal>
+ <!-- Selected Work -->
+<section class="section-sm section-tinted" data-reveal>
   <div class="container">
-    <span class="eyebrow">Credentials</span>
-    <h2 class="section-title">Education & Certifications</h2>
-
-    <div class="grid grid-cols-1 prose">
-      <div class="card">
-        <span class="cert-badge">AWS Certified Solutions Architect</span>
-      </div>
-      <div class="card">
-        <span class="cert-badge">GCP Professional Data Engineer</span>
-        <p class="meta-text">
-          <a href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer">View profile →</a>
-        </p>
-      </div>
-      <div class="card">
-        <h3 class="card-title">MBA</h3>
-        <p class="meta-text">Business Administration</p>
-      </div>
-      <div class="card">
-        <h3 class="card-title">CFA Charterholder</h3>
-        <p class="meta-text">Chartered Financial Analyst</p>
-      </div>
+    <span class="eyebrow">Projects</span>
+    <h2 class="section-title">Selected Work</h2>
+    {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
+    {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
+    {% assign teaser = featured | concat: rest %}
+    <div class="grid grid-cols-1 gap-8">
+      {% for project in teaser limit: 2 %}
+        {% include project-card.html project=project %}
+      {% endfor %}
     </div>
+    <p class="lede" style="margin-top: var(--space-4)"><a href="{{ '/projects/' | relative_url }}">View all projects →</a></p>
   </div>
 </section>
 
