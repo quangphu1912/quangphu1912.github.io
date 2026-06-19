@@ -854,3 +854,5 @@ pre code {
   .nav-menu .nav-link { display: block; padding: var(--space-3) 0; }
 }
 /* progressive enhancement: if JS is disabled the links remain reachable via the open state */
+
+.nav-link.active { color: var(--color-primary); font-weight: 600; }
