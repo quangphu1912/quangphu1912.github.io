@@ -654,6 +654,24 @@ pre code {
   color: var(--color-primary);
 }
 
+/* Social-link icon chips (footer) — overrides the shared block display */
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.social-links a:hover {
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+.social-links svg {
+  width: 18px;
+  height: 18px;
+}
+
 .footer-bottom {
   margin-top: var(--space-4);
   padding-top: var(--space-4);
