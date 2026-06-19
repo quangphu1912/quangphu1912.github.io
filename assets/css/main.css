@@ -244,12 +244,10 @@ pre code {
    HELPERS (token-based utilities)
    ============================================ */
 .text-center { text-align: center; }
-.text-primary { color: var(--color-primary); }
 .prose { max-width: var(--max-width-prose, 760px); margin-inline: auto; line-height: 1.7; text-wrap: pretty; }
-.case-study-content p, .project-content p, .notebook-content p { line-height: 1.7; max-width: 70ch; }
+.project-content p, .notebook-content p { line-height: 1.7; max-width: 70ch; }
 .lede { font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 60ch; }
 .meta-text { color: var(--color-text-secondary); font-size: var(--text-sm); }
-.cert-badge + p { margin-top: var(--space-2); }
 .section-tinted { background: linear-gradient(180deg, var(--color-surface), var(--color-background)); }
 .page-description { color: var(--color-text-secondary); font-size: var(--text-lg); max-width: 60ch; }
 .project-back-link, .back-link { display: inline-block; color: var(--color-primary);
@@ -504,27 +502,15 @@ pre code {
   .container {
     padding: 0 var(--space-4);
   }
-  
-  .projects-grid .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (min-width: 1024px) {
   html {
     font-size: 18px;
   }
-  
+
   .section {
     padding: var(--space-12) 0;
-  }
-  
-  .projects-grid .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .featured-projects .grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -741,23 +727,6 @@ pre code {
 }
 
 /* Experience Timeline */
-.experience-timeline {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-  padding-left: var(--space-4);
-}
-
-.experience-timeline::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 8px;
-  bottom: 8px;
-  width: 2px;
-  background: var(--color-border);
-}
-
 .experience-item {
   margin-bottom: var(--space-6);
   position: relative;
@@ -793,11 +762,6 @@ pre code {
   color: var(--color-text-secondary);
 }
 
-.experience-company {
-  color: var(--color-primary);
-  margin-bottom: var(--space-2);
-}
-
 .experience-description {
   color: var(--color-text-secondary);
   margin-left: var(--space-3);
@@ -808,10 +772,6 @@ pre code {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-.project-card.featured {
-  grid-column: 1 / -1;
 }
 
 .project-image {
@@ -831,16 +791,6 @@ pre code {
 
 .project-link {
   margin-top: var(--space-3);
-}
-
-/* Project Section Title */
-.project-section-title {
-  margin-bottom: var(--space-4);
-}
-
-/* Featured Projects Section */
-.featured-projects {
-  margin-bottom: var(--space-8);
 }
 
 /* ============================================
@@ -885,71 +835,15 @@ pre code {
   stroke-width: 1px;
 }
 
-/* Case Study Specific Styles */
-.case-study-content h2 {
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-2);
-  border: none;
-  background: linear-gradient(90deg, var(--color-border) 0%, transparent 100%) no-repeat;
-  background-size: 100% 1px;
-  background-position: 0 100%;
-}
-
-.case-study-content h3 {
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-2);
-}
-
-.case-study-content ul,
-.case-study-content ol {
-  margin-left: var(--space-4);
-  margin-bottom: var(--space-3);
-}
-
-.case-study-content li {
-  margin-bottom: var(--space-1);
-}
-
-.case-study-content strong {
-  color: var(--color-text);
-  font-weight: 600;
-}
-
 /* Accent "data signal" metrics + exec-summary callout (Task 3.4) */
 /* accent #FF3B30 / dark #FF453A — AA contrast only for bold text >=14px; keep weight 700 and never use on small/regular text */
 .metric { color: var(--color-accent); font-variant-numeric: tabular-nums; font-weight: 700;
   font-size: max(1em, 0.875rem); }
-.cert-badge { display: inline-block; background: var(--color-primary); color: #FFFFFF;
-  font-size: var(--text-sm); font-weight: 600; padding: 0.25em 0.6em;
-  border-radius: var(--border-radius-sm); }
-
-.executive-summary {
-  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
-  border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-primary);
-  border-radius: var(--border-radius);
-  padding: var(--space-4);
-  margin-bottom: var(--space-6);
-  box-shadow: var(--shadow-card);
-}
-.executive-summary::before { content: "Executive Summary"; display: block;
-  font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--color-primary); margin-bottom: var(--space-2); }
-.executive-summary .metric { color: var(--color-accent); font-weight: 700; }
-
-.executive-summary p {
-  margin-bottom: 0;
-}
 
 @media (max-width: 768px) {
   .mermaid {
     font-size: 0.875rem;
     padding: var(--space-2);
-  }
-
-  .case-study-content h2 {
-    margin-top: var(--space-4);
   }
 }
 
@@ -1137,8 +1031,7 @@ pre code {
   text-transform: uppercase; color: var(--color-text-secondary); }
 
 /* ===== About: Editorial elements ===== */
-/* Token mapping: --color-text-muted → --color-text-secondary (undefined in :root, reused nearest muted token);
-   --color-surface-alt → --color-surface (undefined, reused nearest surface token; brief's #F5F5F7 fallback matched); */
+/* Token note: --color-surface-alt → --color-surface (undefined in :root, reused nearest surface token; brief's #F5F5F7 fallback matched). */
 .identity-block { margin-block: var(--space-6) var(--space-8); }
 .identity-block .identity-name { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem); font-weight: 700; line-height: 1.15; }
 .identity-block .identity-title { color: var(--color-accent); font-weight: 600; margin-top: var(--space-2); }
@@ -1151,4 +1044,4 @@ pre code {
 /* ===== Home: trajectory strip ===== */
 .trajectory-strip { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-4); font-size: 1.05rem; }
 .trajectory-strip .trajectory-companies { font-weight: 600; }
-.trajectory-strip .trajectory-span { color: var(--color-text-muted); }
+.trajectory-strip .trajectory-span { color: var(--color-text-secondary); }
