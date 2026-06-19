@@ -16,9 +16,6 @@ image_url: "https://unsplash.com/@scottgraham"
   </p>
 </div>
 
-<div class="case-studies-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); margin: var(--space-6) 0;">
-</div>
-
 ## Featured Case Studies
 
 ### [AWS ML Pipeline: Real-Time Data Processing](/case-studies/aws-ml-pipeline/)
