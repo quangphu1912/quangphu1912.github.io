@@ -1,7 +1,7 @@
 - category: "Data Engineering & Pipelines"
   items: ["Python", "SQL", "PostgreSQL", "ETL/ELT Pipelines", "Data Modeling"]
 - category: "Cloud & Infrastructure"
-  items: ["AWS", "GCP", "Docker", "Git", "CI/CD"]
+  items: ["AWS (Lambda, Kinesis, S3, Redshift, SageMaker)", "GCP", "Docker", "Git", "CI/CD"]
 - category: "Machine Learning & AI"
   items: ["TensorFlow", "PyTorch", "Scikit-learn", "NLP", "MLOps"]
 - category: "Analytics & Business"

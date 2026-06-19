@@ -34,13 +34,13 @@ This project applies natural language processing (NLP) to analyze sentiment in f
 - Batch size: 16
 - Learning rate: 2e-5
 - Epochs: 3
-- Validation accuracy: 87%
+- Validation accuracy: 89%
 
 ## Results
 
-- **Sentiment Accuracy**: 87% on test set
-- **Stock Correlation**: 0.42 correlation between sentiment and next-day returns
-- **Trading Strategy**: Sentiment-based strategy outperformed buy-and-hold by 8% annually
+- **Sentiment Accuracy**: 89% on test set
+- **Market Correlation**: 0.62 correlation with market returns
+- **Trading Strategy**: +2.1% alpha over a 6-month backtest
 
 ## Key Insights
 

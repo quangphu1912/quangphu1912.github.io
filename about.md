@@ -10,7 +10,7 @@ image_alt: "Phu Le — AI & Data Engineer"
 
 ## About Me
 
-I'm a data engineer and ML specialist who builds production data pipelines and AI systems. My path started in finance and analytics — 7+ years across BMO, Deloitte/PwC and Tiki — and I now focus on cloud-native data platforms and MLOps, backed by my Google Cloud Professional Data Engineer and AWS Solutions Architect certifications.
+I'm a data engineer and ML specialist who builds production data pipelines and AI systems. My path started in finance and analytics — 7+ years across BMO, Deloitte/PwC and Tiki — and I now focus on cloud-native data platforms and MLOps, backed by my AWS Solutions Architect and Google Cloud Professional Data Engineer certifications.
 
 ### Background
 
@@ -18,9 +18,10 @@ Currently serving as a Senior Analyst at BMO Financial Group, I lead analytics i
 
 ### Education
 
+- **AWS Certified Solutions Architect**
+- **Google Cloud Certified** - Professional Data Engineer
 - **MBA** - Business Administration
 - **CFA Charterholder** - Chartered Financial Analyst
-- **Google Cloud Certified** - Professional Data Engineer
 
 ### Professional Experience
 
@@ -55,15 +56,15 @@ Currently serving as a Senior Analyst at BMO Financial Group, I lead analytics i
 - Big data processing (Spark, Hadoop)
 
 **Cloud Platforms**
-- AWS (Lambda, S3, Redshift, SageMaker)
-- GCP (BigQuery, Cloud Functions, Vertex AI)
+- AWS (Lambda, Kinesis, S3, Redshift, SageMaker)
+- GCP (BigQuery)
 - Infrastructure as Code (Terraform)
 
 ### Certifications
 
-- CFA (Chartered Financial Analyst)
-- Google Cloud Professional Data Engineer
 - AWS Certified Solutions Architect
+- Google Cloud Professional Data Engineer
+- CFA (Chartered Financial Analyst)
 
 ### What I'm Working On
 

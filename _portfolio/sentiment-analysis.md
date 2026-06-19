@@ -198,7 +198,7 @@ General tokenizers failed on financial text:
 
 ### Phase 2: Model Development (Weeks 3-4)
 
-**Challenge 3: Class Imalance**
+**Challenge 3: Class Imbalance**
 Training data had 45% neutral, 35% positive, 20% negative. Model biased toward neutral predictions, missing negative sentiment (critical for trading risk).
 
 **Solution**: Two-pronged approach:
