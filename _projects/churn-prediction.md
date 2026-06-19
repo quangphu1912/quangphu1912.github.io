@@ -1,6 +1,6 @@
 ---
 title: "Customer Churn Prediction with ML"
-description: "Built a machine learning model to predict customer churn using Random Forest and XGBoost, achieving 89% accuracy on test data."
+description: "Built a machine learning model to predict customer churn using Random Forest and XGBoost, achieving 0.89 AUC on test data."
 date: 2024-01-15
 tags: [Machine Learning, Python, Scikit-learn, XGBoost, Classification]
 featured: true
@@ -17,7 +17,7 @@ This project focuses on predicting customer churn for a telecommunications compa
 Customer churn is a critical metric for subscription-based businesses. The goal was to build a predictive model that could:
 - Identify customers likely to churn in the next 30 days
 - Provide actionable insights into churn drivers
-- Achieve at least 85% accuracy on unseen data
+- Achieve at least 0.85 AUC on unseen data
 
 ## Approach
 
@@ -33,16 +33,16 @@ Customer churn is a critical metric for subscription-based businesses. The goal 
 
 ### Model Development
 Tested multiple algorithms:
-- Logistic Regression (baseline): 76% accuracy
-- Random Forest: 87% accuracy
-- XGBoost: **89% accuracy** (selected model)
-- Neural Network: 88% accuracy
+- Logistic Regression (baseline): 0.76 AUC
+- Random Forest: 0.87 AUC
+- XGBoost: **0.89 AUC** (selected model)
+- Neural Network: 0.88 AUC
 
 ### Model Evaluation
-- Precision: 0.91
-- Recall: 0.85
-- F1-Score: 0.88
-- ROC-AUC: 0.93
+- Precision: 0.85
+- Recall: 0.68
+- F1-Score: 0.76
+- ROC-AUC: 0.89
 
 ## Key Findings
 
@@ -58,7 +58,7 @@ Tested multiple algorithms:
 
 ## Impact
 
-The model was deployed in production and helped reduce churn by 12% in the first quarter, saving an estimated $2.3M in revenue.
+The model was deployed in production and helped increase retention by 8% in a controlled experiment, saving an estimated $200K/year in revenue.
 
 ## Code
 

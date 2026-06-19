@@ -2,12 +2,12 @@
 title: "Phu Le — AI & Data Engineering Portfolio"
 name: "Phu Le"
 email: quangphu1912@gmail.com
-description: "Data Engineer & ML Specialist building production data pipelines and AI systems. GCP Professional Data Engineer, AWS Solutions Architect. Python, SQL, cloud-native ETL, MLOps."
+description: "AI & Data Engineer building production data pipelines and AI systems. AWS Solutions Architect, GCP Professional Data Engineer. Python, SQL, cloud-native ETL, MLOps."
 baseurl: "" # subpath of site, e.g. /blog
 url: "https://quangphu1912.github.io" # base hostname & protocol
 author: "Phu Le"
-job_title: "Data Engineer & ML Specialist"
-footer_tagline: "AI & Data Engineer building production pipelines, ML systems, and cloud-native ETL. GCP & AWS certified."
+job_title: "AI & Data Engineer"
+footer_tagline: "AI & Data Engineer building production pipelines, ML systems, and cloud-native ETL. AWS & GCP certified."
 
 # Social Links
 linkedin_username: quangphu1912

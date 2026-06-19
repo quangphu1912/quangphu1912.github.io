@@ -24,7 +24,7 @@ Developed a customer churn prediction system for a SaaS subscription product, id
 
 ### Stakeholder Pain Points
 
-The Customer Success team at a B2B SaaS company (200K ARR) was reacting to churn after it happened, missing opportunities to save at-risk customers:
+The Customer Success team at a B2B SaaS company ($2.4M ARR) was reacting to churn after it happened, missing opportunities to save at-risk customers:
 
 1. **15% Monthly Churn Rate**: Subscription product had 15% of customers churning monthly, translating to $240K ARR attrition ($240K × 12 months = $2.88M lost revenue/year). This was 50% higher than industry benchmark (10% for similar SaaS products).
 
@@ -236,7 +236,7 @@ Initial model achieved 0.94 AUC on training data (Jan-Dec 2022) but only 0.76 on
 
 **Result**: Test AUC improved from 0.76 to 0.89. Model maintained 0.87 AUC on Q2 2023 (out-of-sample).
 
-**Challenge 4: Class Imalance**
+**Challenge 4: Class Imbalance**
 Training data had 17.5% churners (imbalanced but not severe). However, business priority was identifying high-risk customers (precision) rather than catching all churners (recall). Initial model had high recall (0.82) but low precision on high-risk segment (0.71).
 
 **Solution**: 

@@ -3,14 +3,23 @@
   var menu = document.getElementById('nav-menu');
   if (!toggle || !menu) return;
 
-  function close() { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  function open() {
+    menu.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    var firstLink = menu.querySelector('.nav-link');
+    if (firstLink) firstLink.focus();
+  }
+  function close(returnFocus) {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    if (returnFocus) toggle.focus();
+  }
 
   toggle.addEventListener('click', function () {
-    var open = menu.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (menu.classList.contains('open')) close(false); else open();
   });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-  menu.addEventListener('click', function (e) { if (e.target.classList.contains('nav-link')) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) close(true); });
+  menu.addEventListener('click', function (e) { if (e.target.classList.contains('nav-link')) close(false); });
 })();
 
 // Email obfuscation: reassemble address on click so it never appears in static HTML.

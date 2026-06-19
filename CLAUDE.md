@@ -50,20 +50,17 @@ Layout defaults are set in `_config.yml` — **do not add `layout:` front matter
 ```
 default.html          ← base: <head>, header, footer, JSON-LD Person schema, JS
   page.html           ← static pages (about, privacy, 404)
-  project.html        ← _projects/ detail pages + Article JSON-LD
-  portfolio-item.html ← _portfolio/ detail pages + Article JSON-LD
+  project.html        ← _projects/ detail pages
+  portfolio-item.html ← _portfolio/ detail pages
   notebook.html       ← _notebooks/
 ```
 
-`jekyll-seo-tag` (via `{% seo %}` in `default.html`) auto-emits WebSite + BlogPosting schemas. The hand-rolled Person schema in `default.html` and Article schemas in `project.html`/`portfolio-item.html` complement rather than duplicate these.
+`jekyll-seo-tag` (via `{% seo %}` in `default.html`) auto-emits WebSite + BlogPosting schemas (BlogPosting includes `image`, `author`, `datePublished`). The only hand-rolled schema is the Person block in `default.html` — do **not** re-add per-page Article JSON-LD; it would duplicate seo-tag's BlogPosting.
 
 ### Data-Driven Sections
 
 Home page sections pull from:
 - `_data/skills.yml` — skill categories → rendered as tag clouds
-- `_data/testimonials.yml` — 3 testimonials with `source` links to `/portfolio/` items
-
-⚠️ The 3 testimonials are **placeholder quotes** — replace with real ones before job applications.
 
 ### JavaScript
 

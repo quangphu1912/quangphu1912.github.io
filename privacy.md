@@ -6,7 +6,7 @@ description: Privacy policy for analytics and data collection
 
 ## Privacy Policy
 
-Last updated: {{ 'now' | date: "%B %d, %Y" }}
+Last updated: June 19, 2026
 
 ### Overview
 

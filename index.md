@@ -9,7 +9,7 @@ image_alt: "Hero background"
 {% include image-hero.html image=page.image alt=page.image_alt
    title="Phu Le" subtitle="AI & Data Engineer"
    lead="Production data pipelines & AI systems."
-   creds="GCP Professional Data Engineer · AWS Solutions Architect"
+   creds="AWS Solutions Architect · GCP Professional Data Engineer"
    show_cta=true %}
 
  <!-- Metrics Strip -->
@@ -22,19 +22,6 @@ image_alt: "Hero background"
       <div class="metric-cell"><span class="metric metric-figure">10M+</span><span class="metric-label">EVENTS / DAY</span></div>
       <div class="metric-cell"><span class="metric metric-figure">98%</span><span class="metric-label">LATENCY REDUCTION</span></div>
       <div class="metric-cell"><span class="metric metric-figure">$240K+</span><span class="metric-label">ANNUAL IMPACT</span></div>
-    </div>
-  </div>
-</section>
-
- <!-- Testimonials Section -->
-<section class="testimonials-section section-sm" data-reveal>
-  <div class="container">
-    <span class="eyebrow">Proof</span>
-    <h2 class="section-title">What collaborators say</h2>
-    <div class="testimonials-grid">
-      {% for t in site.data.testimonials %}
-      {% include testimonial-card.html quote=t.quote author=t.author context=t.context source=t.source %}
-      {% endfor %}
     </div>
   </div>
 </section>
@@ -117,13 +104,13 @@ image_alt: "Hero background"
 
     <div class="grid grid-cols-1 prose">
       <div class="card">
+        <span class="cert-badge">AWS Certified Solutions Architect</span>
+      </div>
+      <div class="card">
         <span class="cert-badge">GCP Professional Data Engineer</span>
         <p class="meta-text">
           <a href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer">View profile →</a>
         </p>
-      </div>
-      <div class="card">
-        <span class="cert-badge">AWS Certified Solutions Architect</span>
       </div>
       <div class="card">
         <h3 class="card-title">MBA</h3>
@@ -138,7 +125,7 @@ image_alt: "Hero background"
 </section>
 
  <!-- Contact Section -->
-<section class="contact-section section-lg" data-reveal>
+<section id="contact" class="contact-section section-lg" data-reveal>
   <div class="container text-center">
     <span class="eyebrow">Contact</span>
     <h2 class="contact-heading">Let's Connect</h2>
