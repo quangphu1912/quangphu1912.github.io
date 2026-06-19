@@ -82,26 +82,26 @@ image_alt: "Hero background"
  <!-- Education Section -->
 <section class="education-section section-sm section-tinted">
   <div class="container">
-    <h2 class="section-heading-centered">Education & Certifications</h2>
+    <span class="eyebrow">Credentials</span>
+    <h2 class="section-title">Education & Certifications</h2>
 
     <div class="grid grid-cols-1 prose">
       <div class="card">
-        <h3 class="card-title">MBA</h3>
-        <p class="text-secondary">Business Administration</p>
+        <span class="cert-badge">GCP Professional Data Engineer</span>
+        <p class="meta-text">
+          <a href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer">View profile →</a>
+        </p>
       </div>
-
+      <div class="card">
+        <span class="cert-badge">AWS Certified Solutions Architect</span>
+      </div>
+      <div class="card">
+        <h3 class="card-title">MBA</h3>
+        <p class="meta-text">Business Administration</p>
+      </div>
       <div class="card">
         <h3 class="card-title">CFA Charterholder</h3>
-        <p class="text-secondary">Chartered Financial Analyst</p>
-      </div>
-
-      <div class="card">
-        <h3 class="card-title">Google Cloud Certified</h3>
-        <p class="text-secondary">
-          <a href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer">
-            View Profile →
-          </a>
-        </p>
+        <p class="meta-text">Chartered Financial Analyst</p>
       </div>
     </div>
   </div>
