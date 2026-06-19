@@ -45,8 +45,8 @@ layout: default
                 {
                   "@context": "https://schema.org",
                   "@type": "Article",
-                  "headline": "{{ page.title | escape }}",
-                  "description": "{{ page.description | escape }}",
+                  "headline": {{ page.title | jsonify }},
+                  "description": {{ page.description | jsonify }},
                   "datePublished": "{{ page.date | date_to_xmlschema }}",
                   "author": {"@type": "Person", "name": "{{ site.author }}"},
                   "url": "{{ site.url }}{{ page.url }}"

@@ -6,6 +6,7 @@ description: "Data Engineer & ML Specialist building production data pipelines a
 baseurl: "" # subpath of site, e.g. /blog
 url: "https://quangphu1912.github.io" # base hostname & protocol
 author: "Phu Le"
+job_title: "Data Engineer & ML Specialist"
 
 # Social Links
 linkedin_username: quangphu1912
