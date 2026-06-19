@@ -17,7 +17,7 @@ image_url: "https://unsplash.com/@scottgraham"
 
 <div class="executive-summary">
 <p>
-Developed a customer churn prediction system for a SaaS subscription product, identifying at-risk customers with <strong>85% precision</strong> and <strong>0.89 AUC</strong> (vs 0.76 baseline). The system analyzes 12 behavioral features (usage frequency, engagement metrics, support interactions) to predict churn risk 30 days in advance, enabling customer success team to prioritize retention efforts. Proactive campaigns increased customer retention by <strong>8%</strong> and prevented an estimated <strong>$200K/year</strong> in revenue attrition. Deployed as batch predictions integrated with Salesforce CRM, scoring 50K customers nightly with <1 hour processing time.
+Developed a customer churn prediction system for a SaaS subscription product, identifying at-risk customers with <strong class="metric">85% precision</strong> and <strong class="metric">0.89 AUC</strong> (vs 0.76 baseline). The system analyzes 12 behavioral features (usage frequency, engagement metrics, support interactions) to predict churn risk 30 days in advance, enabling customer success team to prioritize retention efforts. Proactive campaigns increased customer retention by <strong class="metric">8%</strong> and prevented an estimated <strong class="metric">$200K/year</strong> in revenue attrition. Deployed as batch predictions integrated with Salesforce CRM, scoring 50K customers nightly with <1 hour processing time.
 </p>
 </div>
 

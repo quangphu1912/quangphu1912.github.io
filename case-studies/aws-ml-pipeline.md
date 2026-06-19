@@ -17,7 +17,7 @@ image_url: "https://unsplash.com/@markusspiske"
 
 <div class="executive-summary">
 <p>
-Built a serverless real-time data pipeline on AWS that reduced data latency from 6 hours to 45 seconds (98% reduction) for a SaaS platform's business metrics. The solution processes 10M+ events daily using AWS Lambda, Kinesis Data Streams, and Redshift, enabling marketing teams to respond to trends in real-time instead of waiting for next-day reports. Reduced annual infrastructure costs by $40K compared to manual ETL processes while achieving 99.9% uptime over 6 months. The pipeline auto-scales based on traffic patterns and now powers 3 additional real-time dashboards beyond the original scope.
+Built a serverless real-time data pipeline on AWS that reduced data latency from 6 hours to 45 seconds (<strong class="metric">98% reduction</strong>) for a SaaS platform's business metrics. The solution processes <strong class="metric">10M+ events daily</strong> using AWS Lambda, Kinesis Data Streams, and Redshift, enabling marketing teams to respond to trends in real-time instead of waiting for next-day reports. Reduced annual infrastructure costs by <strong class="metric">$40K</strong> compared to manual ETL processes while achieving <strong class="metric">99.9% uptime</strong> over 6 months. The pipeline auto-scales based on traffic patterns and now powers 3 additional real-time dashboards beyond the original scope.
 </p>
 </div>
 
