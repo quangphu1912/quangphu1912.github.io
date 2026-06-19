@@ -335,12 +335,14 @@ git commit -m "refactor: collapse projects to a single collection; retire _portf
 
 **Interfaces:** Consumes `site.projects` (the single collection). Produces `/projects/`.
 
-- [ ] **Step 1: Rewrite `projects.md`** — single grid, drop the Featured/All split
+- [ ] **Step 1: Rewrite `projects.md`** — single curated grid, drop the Featured/All split
 
-Replace the `<div class="projects-grid ...">` block (lines 13-38) with:
+Replace the `<div class="projects-grid ...">` block (lines 13-38) with a single grid that floats any `featured: true` project to the top, then the rest by date-desc:
 ```liquid
 <div class="container section">
-  {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
+  {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
+  {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
+  {% assign sorted_projects = featured | concat: rest %}
   <div class="grid grid-cols-1 gap-8">
     {% for project in sorted_projects %}
       {% include project-card.html project=project %}
@@ -348,7 +350,11 @@ Replace the `<div class="projects-grid ...">` block (lines 13-38) with:
   </div>
 </div>
 ```
-Keep the front matter and the top `{% include image-hero.html ... %}` line as-is.
+> **Why `where_exp` (not `where: 'featured', false`):** projects with no `featured` key have a `nil` value; `where: 'featured', false` would DROP them (nil ≠ false), hiding un-flagged projects. `where_exp: 'p', 'p.featured != true'` matches both `featured: false` AND no-key, so nothing vanishes. When nothing is flagged, `featured` is empty and `sorted_projects` equals all projects by date-desc — identical to the old behavior.
+
+Keep the front matter and the top `{% include image-hero.html ... %}` line as-is. The existing 3 projects have no `featured` key, so they render by date-desc unchanged; set `featured: true` on any future project to pin it to the top.
+
+Add a one-line note to `CLAUDE.md`'s `projects` collection row that projects support an optional `featured: true` flag (floats to top of the listing and home teaser) — this is the curation lever for future scaling.
 
 - [ ] **Step 2: Verify build** (shared command) → `/projects/` lists all 3 cards once each.
 
@@ -565,7 +571,9 @@ with:
   <div class="container">
     <span class="eyebrow">Projects</span>
     <h2 class="section-title">Selected Work</h2>
-    {% assign teaser = site.projects | sort: 'date' | reverse | limit: 2 %}
+    {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
+    {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
+    {% assign teaser = featured | concat: rest | limit: 2 %}
     <div class="grid grid-cols-1 gap-8">
       {% for project in teaser %}
         {% include project-card.html project=project %}
