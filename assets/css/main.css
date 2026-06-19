@@ -1115,3 +1115,12 @@ pre code {
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent);
   box-shadow: 0 0 0 3px rgba(255,59,48,0.18); }
 @media (max-width: 767px) { .status-indicator { display: none; } }
+
+/* ===== Metrics strip (mono telemetry readout) ===== */
+.metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+@media (min-width: 768px) { .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
+.metric-cell { display: flex; flex-direction: column; gap: var(--space-1); text-align: center; }
+.metric-figure { font-family: var(--font-mono); font-size: var(--text-4xl); font-weight: 700;
+  color: var(--color-accent); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.metric-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--color-text-secondary); }

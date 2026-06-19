@@ -11,6 +11,20 @@ image_alt: "Hero background"
    lead="Production data pipelines & AI systems."
    creds="GCP Professional Data Engineer · AWS Solutions Architect" %}
 
+ <!-- Metrics Strip -->
+<section class="metrics-strip section-sm" data-reveal>
+  <div class="container">
+    <span class="eyebrow">Impact</span>
+    <h2 class="section-title">At a Glance</h2>
+    <div class="metrics-grid">
+      <div class="metric-cell"><span class="metric metric-figure">7+</span><span class="metric-label">EXPERIENCE</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">10M+</span><span class="metric-label">EVENTS / DAY</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">98%</span><span class="metric-label">LATENCY REDUCTION</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">$240K+</span><span class="metric-label">ANNUAL IMPACT</span></div>
+    </div>
+  </div>
+</section>
+
  <!-- Testimonials Section -->
 <section class="testimonials-section section-sm" data-reveal>
   <div class="container">
