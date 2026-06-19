@@ -8,26 +8,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Install dependencies
 bundle install
 
-# Local dev server (use rbenv exec — lazy rbenv init is broken in this shell)
-rbenv exec bundle exec jekyll serve --livereload
+# Local dev server
+# rbenv lazy init is broken in Claude Code's shell — use absolute paths
+~/.rbenv/versions/3.3.6/bin/bundle exec ~/.rbenv/versions/3.3.6/bin/jekyll serve --livereload
 
 # Production build
-rbenv exec bundle exec jekyll build JEKYLL_ENV=production
+JEKYLL_ENV=production ~/.rbenv/versions/3.3.6/bin/bundle exec ~/.rbenv/versions/3.3.6/bin/jekyll build
 ```
 
 ## Deployment
 
-GitHub Pages is configured to deploy from **`master`**, not `main` (legacy build type — cannot be changed via API; only accepts `gh-pages`, `master`, or `master /docs`).
-
-All development targets `main`. To deploy:
+GitHub Pages deploys via **GitHub Actions** (`.github/workflows/jekyll.yml`) triggered on every push to `main`. No manual step needed.
 
 ```bash
-git push origin main:master
+git push origin main   # triggers build + deploy automatically
 ```
 
 ## Branch Workflow
 
-- Feature work → feature branch → merge to `develop` → merge to `main` → push `main:master`
+- Feature work → feature branch → merge to `develop` → merge to `main` → push
 - Pre-commit hook **blocks direct commits to `develop` and `main`** — always use a feature branch
 
 ## Architecture
