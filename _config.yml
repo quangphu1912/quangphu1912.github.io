@@ -72,6 +72,7 @@ exclude:
   - .agent/
   - openspec/
   - README.md
+  - CLAUDE.md
   - pyproject.toml
   - poetry.lock
   - scripts/
