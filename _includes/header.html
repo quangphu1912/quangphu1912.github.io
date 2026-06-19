@@ -16,7 +16,7 @@
                 {% assign url = page.url %}
                 <li><a href="{{ '/' | relative_url }}" class="nav-link{% if url == '/' %} active{% endif %}">Home</a></li>
                 <li><a href="{{ '/projects/' | relative_url }}" class="nav-link{% if url contains '/projects' %} active{% endif %}">Projects</a></li>
-                <li><a href="{{ '/case-studies/' | relative_url }}" class="nav-link{% if url contains '/case-studies' %} active{% endif %}">Case Studies</a></li>
+                <li><a href="{{ '/portfolio/' | relative_url }}" class="nav-link{% if url contains '/portfolio' %} active{% endif %}">Portfolio</a></li>
                 <li><a href="{{ '/about/' | relative_url }}" class="nav-link{% if url contains '/about' %} active{% endif %}">About</a></li>
             </ul>
         </nav>
