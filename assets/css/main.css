@@ -1135,3 +1135,15 @@ pre code {
   color: var(--color-accent); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .metric-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--color-text-secondary); }
+
+/* ===== About: Editorial elements ===== */
+/* Token mapping: --color-text-muted → --color-text-secondary (undefined in :root, reused nearest muted token);
+   --color-surface-alt → --color-surface (undefined, reused nearest surface token; brief's #F5F5F7 fallback matched); */
+.identity-block { margin-block: var(--space-6) var(--space-8); }
+.identity-block .identity-name { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem); font-weight: 700; line-height: 1.15; }
+.identity-block .identity-title { color: var(--color-accent); font-weight: 600; margin-top: var(--space-2); }
+.identity-block .identity-loc { color: var(--color-text-secondary); margin-top: var(--space-1); }
+.cert-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+.cert-chips .chip { font-size: 0.85rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--color-surface); border: 1px solid var(--color-border); }
+.pullquote { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height: 1.4; font-weight: 600; color: var(--color-text); border-left: 3px solid var(--color-accent); padding-left: var(--space-4); margin: var(--space-8) 0; max-width: 32ch; }
+.gcp-profile-link { font-size: 0.85rem; }
