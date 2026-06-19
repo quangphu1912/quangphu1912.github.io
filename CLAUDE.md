@@ -33,15 +33,14 @@ git push origin main   # triggers build + deploy automatically
 
 ### Content Model
 
-Two parallel content systems serve different purposes:
+Content collections:
 
 | Collection | Directory | URL | Layout | Purpose |
 |---|---|---|---|---|
-| `projects` | `_projects/` | `/projects/:name/` | `project.html` | Project overview cards (home page) |
-| `portfolio` | `_portfolio/` | `/portfolio/:name/` | `portfolio-item.html` | Deep-dive breakdowns |
+| `projects` | `_projects/` | `/projects/:name/` | `project.html` | Full project pages (single source of truth — home cards + detail) |
 | `notebooks` | `_notebooks/` | `/notebooks/:name/` | `notebook.html` | Jupyter notebooks (reserved, empty) |
 
-Each `_projects/` file links to its corresponding `_portfolio/` deep-dive via a `## Deep Dive` section at the bottom. They are separate documents, not generated from each other.
+Each `_projects/` file is the single document for a project (home page renders cards from the same collection). There is no separate deep-dive collection.
 
 Layout defaults are set in `_config.yml` — **do not add `layout:` front matter** to collection files.
 
@@ -51,7 +50,6 @@ Layout defaults are set in `_config.yml` — **do not add `layout:` front matter
 default.html          ← base: <head>, header, footer, JSON-LD Person schema, JS
   page.html           ← static pages (about, privacy, 404)
   project.html        ← _projects/ detail pages
-  portfolio-item.html ← _portfolio/ detail pages
   notebook.html       ← _notebooks/
 ```
 
@@ -87,4 +85,4 @@ Images are auto-switched from `.jpg` to `.webp` via a `replace` filter in the in
 
 ### Nav
 
-Three items: **Home · Projects · About**. "Projects" links to `/portfolio/` (the deep-dive collection), not `/projects/`. Active state is set via Liquid `url contains` checks in `_includes/header.html`.
+Three items: **Home · Projects · About**. "Projects" links to `/projects/`. Active state is set via Liquid `url contains` checks in `_includes/header.html`.

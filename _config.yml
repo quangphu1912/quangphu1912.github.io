@@ -27,9 +27,6 @@ collections:
   notebooks:
     output: true
     permalink: /notebooks/:name/
-  portfolio:
-    output: true
-    permalink: /portfolio/:name/
 
 # Defaults
 defaults:
@@ -48,11 +45,6 @@ defaults:
       type: "pages"
     values:
       layout: "page"
-  - scope:
-      path: ""
-      type: "portfolio"
-    values:
-      layout: "portfolio-item"
 
 # Plugins
 plugins:
