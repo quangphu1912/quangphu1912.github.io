@@ -184,6 +184,10 @@ pre code {
   padding: var(--space-6) 0;
 }
 
+.section-lg {
+  padding: var(--space-12) 0;
+}
+
 /* Flexbox Utilities */
 .flex {
   display: flex;

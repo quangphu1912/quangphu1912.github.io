@@ -110,7 +110,7 @@ image_alt: "Hero background"
 </section>
 
  <!-- Contact Section -->
-<section class="contact-section section">
+<section class="contact-section section-lg">
   <div class="container text-center">
     <span class="eyebrow">Contact</span>
     <h2 class="contact-heading">Let's Connect</h2>
