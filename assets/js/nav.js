@@ -18,7 +18,7 @@
   toggle.addEventListener('click', function () {
     if (menu.classList.contains('open')) close(false); else open();
   });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(true); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) close(true); });
   menu.addEventListener('click', function (e) { if (e.target.classList.contains('nav-link')) close(false); });
 })();
 
