@@ -665,10 +665,40 @@ pre code {
 .experience-timeline {
   max-width: 900px;
   margin: 0 auto;
+  position: relative;
+  padding-left: var(--space-4);
+}
+
+.experience-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--color-border);
 }
 
 .experience-item {
   margin-bottom: var(--space-6);
+  position: relative;
+}
+
+.experience-item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-4) + 2px);
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-background);
+  border: 2px solid var(--color-primary);
+  transition: background var(--transition-base);
+}
+
+.experience-item:hover::before {
+  background: var(--color-primary);
 }
 
 .experience-item-header {
