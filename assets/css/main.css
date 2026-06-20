@@ -304,25 +304,17 @@ pre code {
   min-height: 44px; /* Touch target size */
 }
 
-.btn-primary {
-  background-color: var(--color-primary);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.btn-secondary {
+/* Primary + secondary unified: outlined pill that fills brand-blue on hover (matches tags/chips) */
+.btn-primary, .btn-secondary {
   background-color: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border);
 }
 
-.btn-secondary:hover {
-  background-color: var(--color-border);
+.btn-primary:hover, .btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
 }
 
 /* Button press feedback (token-based → reduced-motion-guarded) */
@@ -1012,7 +1004,7 @@ pre code {
 /* ===== Metrics strip (mono telemetry readout) ===== */
 .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
 @media (min-width: 768px) { .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
-.metric-cell { display: flex; flex-direction: column; gap: var(--space-1); text-align: center; }
+.metric-cell { display: flex; flex-direction: column; gap: var(--space-2); text-align: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-5) var(--space-2); box-shadow: var(--shadow-card); }
 .metric-figure { font-family: var(--font-mono); font-size: var(--text-4xl); font-weight: 700;
   color: var(--color-accent); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .metric-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em;
