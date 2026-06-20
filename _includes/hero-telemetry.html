@@ -1,0 +1,29 @@
+{% comment %} Real values render in static HTML (truthful with JS off); JS only animates. {% endcomment %}
+<div class="hero-telemetry" role="group" aria-label="Pipeline throughput: about 3 million records per day in about 7 minutes">
+  <dl class="hero-telemetry__figures">
+    <div class="tl-item">
+      <dt class="tl-label">RECORDS / DAY</dt>
+      <dd class="tl-value"><span aria-hidden="true">~</span><span class="tl-figure" data-countup="3000000" data-decimals="0">3,000,000</span></dd>
+    </div>
+    <div class="tl-item">
+      <dt class="tl-label">PIPELINE RUNTIME</dt>
+      <dd class="tl-value"><span aria-hidden="true">~</span><span class="tl-figure" data-countup="7" data-decimals="0">7</span> <span class="tl-unit">min</span></dd>
+    </div>
+  </dl>
+  <div class="hero-telemetry__flow" aria-hidden="true">
+    <svg class="tl-pipe" viewBox="0 0 600 24" preserveAspectRatio="none" role="presentation" focusable="false">
+      <path id="tl-path" d="M12 12 H588" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+      <g class="tl-nodes">
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="156" cy="12" r="5"/>
+        <circle cx="300" cy="12" r="5"/>
+        <circle cx="444" cy="12" r="6" class="tl-node--proc"/>
+        <circle cx="588" cy="12" r="5"/>
+      </g>
+      <circle class="tl-pulse" r="4" fill="var(--color-accent)"/>
+    </svg>
+    <ul class="tl-legend">
+      <li>S3</li><li>RDS</li><li>Redshift</li><li class="tl-legend--proc">MWAA</li><li>Datamart</li>
+    </ul>
+  </div>
+</div>

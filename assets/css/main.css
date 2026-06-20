@@ -450,8 +450,8 @@ pre code {
 /* Scroll-reveal (paired with assets/js/reveal.js) */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transform: translateY(12px);
+  transition: opacity var(--transition-slow) var(--ease-out-expo), transform var(--transition-slow) var(--ease-out-expo);
 }
 [data-reveal].is-visible {
   opacity: 1;
@@ -704,9 +704,10 @@ pre code {
   flex-wrap: wrap;
 }
 
-/* Section Title */
+/* Section Title — left-aligned editorial */
 .section-title {
-  text-align: center;
+  text-align: left;
+  max-width: 60rem;
   margin-bottom: var(--space-6);
 }
 
@@ -1083,3 +1084,83 @@ pre code {
 .currently-list li { padding: var(--space-1) 0; }
 .currently-list li::marker { color: var(--color-primary); }
 .about-contact { text-align: center; }
+
+/* ============================================
+   HOME HERO (typographic) + TELEMETRY SIGNATURE
+   ============================================ */
+.hero-home { padding-block: var(--space-section); }
+.hero-home__inner { max-width: 62rem; }
+.hero-home__eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.12em; color: var(--color-accent-text); margin-bottom: var(--space-2); }
+.hero-home__title { font-size: clamp(3rem, 1.2rem + 7vw, 6rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 var(--space-3); }
+.hero-home__lead { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); color: var(--color-text-secondary); max-width: 42ch; margin-bottom: var(--space-4); text-wrap: pretty; }
+.hero-home__cta { justify-content: flex-start; margin-top: var(--space-5); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-home__inner > * { animation: heroIn 0.7s var(--ease-out-expo) backwards; }
+  .hero-home__eyebrow { animation-delay: 0.05s; }
+  .hero-home__title   { animation-delay: 0.12s; }
+  .hero-home__lead    { animation-delay: 0.22s; }
+  .hero-home .hero-telemetry { animation-delay: 0.32s; }
+  .hero-home__cta     { animation-delay: 0.46s; }
+}
+
+/* Telemetry instrument panel */
+.hero-telemetry { margin-top: var(--space-5); max-width: 44rem; padding: var(--space-3) var(--space-4); background: var(--color-accent-subtle); border: 1px solid var(--color-border); border-radius: var(--border-radius); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.05); }
+.hero-telemetry__figures { display: flex; gap: var(--space-6); margin: 0 0 var(--space-3); }
+.tl-item { display: flex; flex-direction: column; gap: 4px; }
+.tl-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; color: var(--color-text-secondary); }
+.tl-value { font-family: var(--font-mono); font-weight: 700; color: var(--color-accent); font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem); line-height: 1; }
+.tl-unit { font-size: 0.6em; color: var(--color-text-secondary); }
+.hero-telemetry__flow .tl-pipe { width: 100%; height: 24px; display: block; }
+.tl-nodes circle { fill: var(--color-surface-raised); stroke: var(--color-border); stroke-width: 1.5; }
+.tl-nodes .tl-node--proc { stroke: var(--color-accent); }
+.tl-legend { list-style: none; display: flex; justify-content: space-between; margin: 6px 0 0; padding: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); }
+.tl-legend--proc { color: var(--color-accent-text); }
+.tl-pulse { opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .tl-pulse { offset-path: path("M12 12 H588"); animation: tl-flow 1.8s var(--ease-out-expo) 0.6s 1 both; }
+  @keyframes tl-flow { 0% { offset-distance: 0%; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+}
+@media (max-width: 640px) { .hero-telemetry__figures { gap: var(--space-4); } }
+
+/* ============================================
+   PROJECT META (detail pages)
+   ============================================ */
+.project-meta-block { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-3) 0 var(--space-5); padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border); }
+.project-meta-block .pm-item dt { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; color: var(--color-text-secondary); text-transform: uppercase; }
+.project-meta-block .pm-item dd { margin: 2px 0 0; font-weight: 500; }
+
+/* ============================================
+   CRAFT LAYER (selection, scrollbar, prose underlines)
+   ============================================ */
+::selection { background: var(--color-accent-subtle); color: var(--color-text); }
+* { scrollbar-color: var(--color-border) transparent; }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border: 3px solid var(--color-bg); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-secondary); }
+.prose a, .about-body a, .project-content a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-accent-text) 45%, transparent);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1.5px;
+  transition: text-decoration-color var(--transition-fast) var(--ease-out-expo);
+}
+.prose a:hover, .about-body a:hover, .project-content a:hover { text-decoration-color: var(--color-accent-text); }
+
+/* ============================================
+   VIEW TRANSITIONS (card → detail morph)
+   ============================================ */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+::view-transition-group(*) { animation-timing-function: var(--ease-out-expo); }
+
+/* ============================================
+   PRINT (the live site is the résumé)
+   ============================================ */
+@media print {
+  .site-header, .nav-menu, .nav-toggle, .cta-buttons, .hero-telemetry__flow, .skip-to-content, .site-footer { display: none !important; }
+  :root { --color-text: #000; --color-bg: #fff; --color-background: #fff; }
+  body { background: #fff; color: #000; }
+  a { color: #000; text-decoration: underline; }
+  .hero-home, .section, .section-sm { padding-block: 1rem; }
+  .project-card, .card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+}

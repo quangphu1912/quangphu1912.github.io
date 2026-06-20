@@ -6,11 +6,10 @@ image: /assets/images/hero/hero.webp
 image_alt: "Hero background"
 ---
 
-{% include image-hero.html image=page.image alt=page.image_alt
-   title="Phu Le" subtitle="AI & Data Engineer"
-   lead="Production data pipelines & AI systems."
-   creds="AWS Certified Data Engineer · Solutions Architect · CFA"
-   show_cta=true %}
+{% include hero-home.html
+   eyebrow="DATA & AI ENGINEER · TORONTO · AWS CERTIFIED"
+   title="Phu Le"
+   lead="I build the cloud data platforms that power AI — production pipelines and the data-quality infrastructure that makes downstream ML trustworthy." %}
 
  <!-- Metrics Strip -->
 <section class="metrics-strip section-sm" data-reveal>
@@ -26,7 +25,7 @@ image_alt: "Hero background"
 </section>
 
  <!-- Skills Section -->
-<section class="skills-section section-sm section-tinted" data-reveal>
+<section class="skills-section section-sm section-tinted">
   <div class="container">
     <h2 class="section-title">Skills</h2>
     
@@ -46,9 +45,9 @@ image_alt: "Hero background"
 </section>
 
  <!-- Selected Work -->
-<section class="section-sm section-tinted" data-reveal>
+<section class="section-sm section-tinted">
   <div class="container">
-    <h2 class="section-title">Projects</h2>
+    <h2 class="section-title">Selected work</h2>
     {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
     {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
     {% assign teaser = featured | concat: rest %}
