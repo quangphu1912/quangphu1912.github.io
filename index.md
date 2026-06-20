@@ -15,7 +15,6 @@ image_alt: "Hero background"
  <!-- Metrics Strip -->
 <section class="metrics-strip section-sm" data-reveal>
   <div class="container">
-    <span class="eyebrow">Impact</span>
     <h2 class="section-title">At a Glance</h2>
     <div class="metrics-grid">
       <div class="metric-cell"><span class="metric metric-figure">7+</span><span class="metric-label">YEARS EXPERIENCE</span></div>
@@ -29,8 +28,7 @@ image_alt: "Hero background"
  <!-- Skills Section -->
 <section class="skills-section section-sm section-tinted" data-reveal>
   <div class="container">
-    <span class="eyebrow">Skills</span>
-    <h2 class="section-title">Skills & Expertise</h2>
+    <h2 class="section-title">Skills</h2>
     
     <div class="skills-grid grid grid-cols-1">
       {% for skill in site.data.skills %}
@@ -47,24 +45,10 @@ image_alt: "Hero background"
   </div>
 </section>
 
- <!-- Trajectory -->
-<section class="section-sm" data-reveal>
-  <div class="container">
-    <span class="eyebrow">Experience</span>
-    <h2 class="section-title">Where I've Worked</h2>
-    <div class="trajectory-strip">
-      <span class="trajectory-companies">BMO · Tiki · Deloitte · PwC</span>
-      <span class="trajectory-span">— 7+ years from audit &amp; consulting to cloud data engineering.</span>
-    </div>
-    <p class="lede" style="margin-top: var(--space-4)"><a href="{{ '/about/' | relative_url }}">Read the full story →</a></p>
-  </div>
-</section>
-
  <!-- Selected Work -->
 <section class="section-sm section-tinted" data-reveal>
   <div class="container">
-    <span class="eyebrow">Projects</span>
-    <h2 class="section-title">Selected Work</h2>
+    <h2 class="section-title">Projects</h2>
     {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
     {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
     {% assign teaser = featured | concat: rest %}
@@ -74,29 +58,5 @@ image_alt: "Hero background"
       {% endfor %}
     </div>
     <p class="lede" style="margin-top: var(--space-4)"><a href="{{ '/projects/' | relative_url }}">View all projects →</a></p>
-  </div>
-</section>
-
- <!-- Contact Section -->
-<section id="contact" class="contact-section section-lg" data-reveal>
-  <div class="container text-center">
-    <span class="eyebrow">Contact</span>
-    <h2 class="contact-heading">Let's Connect</h2>
-    <p class="lede contact-lede">
-      Interested in collaborating on AI & Data Engineering projects? Reach out on LinkedIn or explore my work on GitHub.
-    </p>
-
-    <div class="contact-links flex gap-4 flex-center">
-      <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        LinkedIn
-      </a>
-      <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-        GitHub
-      </a>
-      <a href="#contact" data-user="{{ site.email | split: '@' | first }}"
-         data-domain="{{ site.email | split: '@' | last }}" class="btn btn-secondary">
-        Email
-      </a>
-    </div>
   </div>
 </section>
