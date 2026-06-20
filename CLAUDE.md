@@ -73,7 +73,7 @@ Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS cus
 
 `_includes/image-hero.html` accepts these parameters:
 - `image`, `alt`, `title`, `subtitle`, `lead`, `creds` — content slots
-- `show_cta=true` — renders "View Projects" + "Download Resume" buttons
+- `show_cta=true` — renders "View Projects" + "About Me" buttons
 
 Images are auto-switched from `.jpg` to `.webp` via a `replace` filter in the include.
 

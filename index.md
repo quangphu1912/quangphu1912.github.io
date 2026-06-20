@@ -47,19 +47,6 @@ image_alt: "Hero background"
   </div>
 </section>
 
- <!-- Trajectory -->
-<section class="section-sm" data-reveal>
-  <div class="container">
-    <span class="eyebrow">Experience</span>
-    <h2 class="section-title">Where I've Worked</h2>
-    <div class="trajectory-strip">
-      <span class="trajectory-companies">BMO · Tiki · Deloitte · PwC</span>
-      <span class="trajectory-span">— 7+ years from audit &amp; consulting to cloud data engineering.</span>
-    </div>
-    <p class="lede" style="margin-top: var(--space-4)"><a href="{{ '/about/' | relative_url }}">Read the full story →</a></p>
-  </div>
-</section>
-
  <!-- Selected Work -->
 <section class="section-sm section-tinted" data-reveal>
   <div class="container">

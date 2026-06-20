@@ -72,17 +72,6 @@ That finance foundation means I don't just ship pipelines — I tie them to P&L,
 - **MBA, Finance & Consulting — University of Missouri** (2016–2017) — Monte Carlo simulation for agricultural production optimization; 3rd place, Monsanto-Olin MBA Case Competition.
 - **ERPM AI Champion** (BMO) — recognition for AI/ML platform impact. [Verify on Credly →](https://www.credly.com/badges/c9913967-d62f-4e6c-96a6-fac5f32b0393/public_url)
 
-## Skills
-
-{% for skill in site.data.skills %}
-### {{ skill.category }}
-<div class="flex gap-2 skills-tags">
-  {% for item in skill.items %}<span class="tag">{{ item }}</span>{% endfor %}
-</div>
-{% endfor %}
-
-<a class="gcp-profile-link" href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer">GCP skills profile →</a>
-
 ## Currently
 
 - Real-time ML inference & serving at scale (Amazon Bedrock)
