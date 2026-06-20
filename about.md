@@ -70,6 +70,7 @@ That finance foundation means I don't just ship pipelines — I tie them to P&L,
 - **AWS Certified Solutions Architect – Associate** (Feb 2024) — VPC, EC2, Lambda, S3, RDS. [Verify on Credly →](https://www.credly.com/badges/3689c0cb-2b65-4186-8524-d37a5b229029)
 - **CFA Charterholder** (May 2021) — top performer in Quantitative Methods, Derivatives, Economics, Asset Allocation.
 - **MBA, Finance & Consulting — University of Missouri** (2016–2017) — Monte Carlo simulation for agricultural production optimization; 3rd place, Monsanto-Olin MBA Case Competition.
+- **ERPM AI Champion** (BMO) — recognition for AI/ML platform impact. [Verify on Credly →](https://www.credly.com/badges/c9913967-d62f-4e6c-96a6-fac5f32b0393/public_url)
 
 ## Skills
 
@@ -91,3 +92,16 @@ That finance foundation means I don't just ship pipelines — I tie them to P&L,
 ## Let's Connect
 
 I'm always interested in data engineering, MLOps, and AI-platform opportunities. Reach me on [LinkedIn](https://linkedin.com/in/{{ site.linkedin_username }}) or [GitHub](https://github.com/{{ site.github_username }}).
+
+<div class="contact-links flex gap-4 flex-center">
+  <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+    LinkedIn
+  </a>
+  <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+    GitHub
+  </a>
+  <a href="{{ '/' | relative_url }}#contact" data-user="{{ site.email | split: '@' | first }}"
+     data-domain="{{ site.email | split: '@' | last }}" class="btn btn-secondary">
+    Email
+  </a>
+</div>

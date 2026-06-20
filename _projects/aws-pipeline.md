@@ -3,7 +3,7 @@ title: "AWS ML Pipeline: Real-Time Data Processing Infrastructure"
 description: "Reduced data latency from 6 hours to 45 seconds, saving $40K/year in manual costs while enabling real-time business intelligence."
 date: 2023-09-10
 tags: [AWS, Data Engineering, Real-Time Analytics, Lambda, Kinesis, Redshift]
-image: /assets/images/projects/aws-ml-pipeline.webp
+image: /assets/images/projects/aws-pipeline.webp
 image_alt: "Blue data infrastructure server network abstract"
 image_credit: "Photo by Markus Spiske on Unsplash"
 image_url: "https://unsplash.com/@markusspiske"

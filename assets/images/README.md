@@ -33,7 +33,7 @@ Professional Unsplash imagery for portfolio pages, organized by content type.
 - **Size Budget**: < 150KB (WebP), < 450KB (JPEG)
 
 **Files**:
-- `aws-ml-pipeline.webp` + `aws-ml-pipeline.jpg`
+- `aws-pipeline.webp` + `aws-pipeline.jpg`
 - `sentiment-analysis.webp` + `sentiment-analysis.jpg`
 - `churn-prediction.webp` + `churn-prediction.jpg`
 
@@ -61,7 +61,7 @@ Professional Unsplash imagery for portfolio pages, organized by content type.
 ## Naming Conventions
 
 - **Kebab-case**: Use hyphens, not underscores or spaces
-- **Descriptive**: Name should describe content (e.g., `aws-ml-pipeline.webp`)
+- **Descriptive**: Name should describe content (e.g., `aws-pipeline.webp`)
 - **Match URL**: Project images match project slug in URL
 - **Lowercase**: All filenames lowercase (case-sensitive servers)
 

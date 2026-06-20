@@ -726,7 +726,7 @@ pre code {
   flex-wrap: wrap;
 }
 
-/* Experience Timeline */
+/* Experience Items */
 .experience-item {
   margin-bottom: var(--space-6);
   position: relative;
