@@ -345,9 +345,11 @@ pre code {
   font-weight: 600;
   margin-bottom: var(--space-2);
 }
+.project-card .card-title { font-size: var(--text-2xl); font-weight: 700; }
 
 .card-description {
   color: var(--color-text-secondary);
+  max-width: 60ch;
   margin-bottom: var(--space-2);
 }
 
@@ -752,6 +754,8 @@ pre code {
 .project-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   height: 100%;
 }
 
@@ -767,6 +771,7 @@ pre code {
 
 .project-tags {
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: var(--space-2);
 }
 
@@ -948,6 +953,7 @@ pre code {
   object-fit: cover;
   display: block;
 }
+.project-card .image-thumbnail img { height: clamp(180px, 20vw, 240px); }
 
 /* Attribution Footer */
 .attribution {
