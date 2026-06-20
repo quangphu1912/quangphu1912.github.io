@@ -8,77 +8,100 @@ image_alt: "Phu Le — AI & Data Engineer"
 
 {% include profile-avatar.html image=page.image alt=page.image_alt loading="eager" %}
 
-## About Me
+<div class="identity-block">
+  <div class="identity-name">Phu Le</div>
+  <div class="identity-title">AI &amp; Data Engineer</div>
+  <div class="identity-loc">Toronto, CA</div>
+  <div class="cert-chips">
+    <span class="chip">AWS Data Engineer</span>
+    <span class="chip">AWS Solutions Architect</span>
+    <span class="chip">CFA</span>
+  </div>
+</div>
 
-I'm a data engineer and ML specialist who builds production data pipelines and AI systems. My path started in finance and analytics — 7+ years across BMO, Deloitte/PwC and Tiki — and I now focus on cloud-native data platforms and MLOps, backed by my AWS Solutions Architect and Google Cloud Professional Data Engineer certifications.
+## The Story
 
-### Background
+I build the cloud data platforms that power AI/ML — production ETL pipelines, data warehousing, and the data-quality infrastructure that makes downstream ML trustworthy. My path is unconventional and that's the edge: seven years moving from Big-4 audit and M&A consulting (PwC, Deloitte) into FP&amp;A and analytics, and now into cloud-native data engineering and AI.
 
-Currently serving as a Senior Analyst at BMO Financial Group, I lead analytics initiatives that drive strategic decision-making across organization. My work combines technical expertise in machine learning with deep domain knowledge in finance and business strategy.
+That finance foundation means I don't just ship pipelines — I tie them to P&L, risk, and reporting outcomes the business actually measures.
 
-### Education
+<p class="pullquote">I build the cloud data platforms that power AI/ML.</p>
 
-- **AWS Certified Solutions Architect**
-- **Google Cloud Certified** - Professional Data Engineer
-- **MBA** - Business Administration
-- **CFA Charterholder** - Chartered Financial Analyst
+## Experience
 
-### Professional Experience
+<div class="experience-item">
+  <div class="flex justify-between experience-item-header">
+    <h3>Data Scientist — Bank of Montreal</h3>
+    <span class="experience-date">Sep 2024 – Present</span>
+  </div>
+  <ul class="experience-description">
+    <li>Designed and deployed AWS-native ETL pipelines orchestrated via MWAA, ingesting from RDS, Redshift, and S3 into production datamarts — ~3M records daily in ~7 min, stable production uptime.</li>
+    <li>Replaced manual weekly data loading with automated scheduled pipelines; stood up data-quality monitoring for downstream AI/ML initiatives.</li>
+  </ul>
+</div>
 
-**BMO Financial Group** (2020 - Present)  
-*Senior Analyst*
-- Lead cross-functional analytics projects
-- Develop ML models for risk assessment and forecasting
-- Drive data-driven strategic initiatives
+<div class="experience-item">
+  <div class="flex justify-between experience-item-header">
+    <h3>Senior Financial Analyst — Bank of Montreal</h3>
+    <span class="experience-date">May 2022 – Sep 2024</span>
+  </div>
+  <ul class="experience-description">
+    <li>Automated capital reporting and variance analysis with SAS + Power BI (loan-level drill-down), cutting analysis time ~80%; supported RWA forecasting for Canadian P&amp;C Banking.</li>
+    <li>Top 10% performer FY23; two Spotlight Awards for reporting modernization and Basel III implementation.</li>
+  </ul>
+</div>
 
-**Deloitte & PwC** (2018 - 2020)  
-*Consultant*
-- Provided strategic advisory to Fortune 500 clients
-- Conducted financial analysis and business intelligence
-- Delivered data-driven insights for operational improvements
+<div class="experience-item">
+  <div class="flex justify-between experience-item-header">
+    <h3>Senior FP&A Specialist — Tiki Corp.</h3>
+    <span class="experience-date">Apr 2020 – Apr 2022</span>
+  </div>
+  <ul class="experience-description">
+    <li>Built profitability data pipelines with Airflow + BigQuery consolidating multi-source data into centralized reporting.</li>
+    <li>Designed Google Data Studio dashboards for e-commerce categories generating ~$150M revenue at 20–30% growth.</li>
+  </ul>
+</div>
 
-**Tiki Corporation** (2016 - 2018)  
-*Analyst*
-- Performed market research and competitive analysis
-- Built dashboards and reporting systems
-- Supported business strategy development
+*Started in Big-4 audit and M&A consulting at PwC and Deloitte before moving into data and analytics.*
 
-### Technical Expertise
+## Credentials
 
-**Machine Learning & AI**
-- Deep learning (TensorFlow, PyTorch)
-- NLP and computer vision
-- Model deployment and MLOps
+- **AWS Certified Data Engineer – Associate** (Nov 2025) — Glue, Step Functions, Kinesis, Lake Formation. [Verify on Credly →](https://www.credly.com/earner/earned/badge/2cbce644-127c-4ec5-8a1c-ca269f7a8ef7)
+- **AWS Certified Solutions Architect – Associate** (Feb 2024) — VPC, EC2, Lambda, S3, RDS. [Verify on Credly →](https://www.credly.com/badges/3689c0cb-2b65-4186-8524-d37a5b229029)
+- **CFA Charterholder** (May 2021) — top performer in Quantitative Methods, Derivatives, Economics, Asset Allocation.
+- **MBA, Finance & Consulting — University of Missouri** (2016–2017) — Monte Carlo simulation for agricultural production optimization; 3rd place, Monsanto-Olin MBA Case Competition.
+- **ERPM AI Champion** (BMO) — recognition for AI/ML platform impact. [Verify on Credly →](https://www.credly.com/badges/c9913967-d62f-4e6c-96a6-fac5f32b0393/public_url)
 
-**Data Engineering**
-- ETL pipelines and data warehousing
-- SQL and NoSQL databases
-- Big data processing (Spark, Hadoop)
+## Skills
 
-**Cloud Platforms**
-- AWS (Lambda, Kinesis, S3, Redshift, SageMaker)
-- GCP (BigQuery)
-- Infrastructure as Code (Terraform)
+{% for skill in site.data.skills %}
+### {{ skill.category }}
+<div class="flex gap-2 skills-tags">
+  {% for item in skill.items %}<span class="tag">{{ item }}</span>{% endfor %}
+</div>
+{% endfor %}
 
-### Certifications
+<a class="gcp-profile-link" href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer">GCP skills profile →</a>
 
-- AWS Certified Solutions Architect
-- Google Cloud Professional Data Engineer
-- CFA (Chartered Financial Analyst)
+## Currently
 
-### What I'm Working On
-
-Currently exploring:
-- Large language models (LLMs) and prompt engineering
-- Real-time ML inference at scale
+- Real-time ML inference & serving at scale (Amazon Bedrock)
 - Automated ML pipelines and feature stores
+- LLM tooling and CLI-assisted development
 
-### Let's Connect
+## Let's Connect
 
-I'm always interested in discussing:
-- Data science and ML opportunities
-- Collaborative projects
-- Technical challenges and solutions
-- Industry trends and best practices
+I'm always interested in data engineering, MLOps, and AI-platform opportunities. Reach me on [LinkedIn](https://linkedin.com/in/{{ site.linkedin_username }}) or [GitHub](https://github.com/{{ site.github_username }}).
 
-Feel free to reach out via [LinkedIn](https://linkedin.com/in/{{ site.linkedin_username }}) or [GitHub](https://github.com/{{ site.github_username }}).
+<div class="contact-links flex gap-4 flex-center">
+  <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+    LinkedIn
+  </a>
+  <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+    GitHub
+  </a>
+  <a href="{{ '/' | relative_url }}#contact" data-user="{{ site.email | split: '@' | first }}"
+     data-domain="{{ site.email | split: '@' | last }}" class="btn btn-secondary">
+    Email
+  </a>
+</div>

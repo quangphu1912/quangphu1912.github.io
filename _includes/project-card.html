@@ -1,7 +1,6 @@
 {% assign project = include.project %}
-{% assign is_featured = include.featured | default: false %}
 
-<article class="project-card card {% if is_featured %}featured{% endif %}">
+<article class="project-card card">
   {% if project.image %}
     {% include image-project-card.html image=project.image alt=project.title %}
   {% endif %}
@@ -21,7 +20,7 @@
   {% endif %}
   
   <div class="project-link">
-    <a href="{{ project.url | relative_url }}" class="btn {% if is_featured %}btn-primary{% else %}btn-secondary{% endif %}">
+    <a href="{{ project.url | relative_url }}" class="btn btn-secondary">
       View Project →
     </a>
   </div>
