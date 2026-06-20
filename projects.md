@@ -1,20 +1,20 @@
 ---
-layout: page
+layout: default
 title: Projects
-description: Explore my data science and machine learning projects
 image: /assets/images/hero/projects_index.webp
 image_alt: "Data visualization abstract blue analytics dashboard"
 image_credit: "Photo by Clément Hélardot on Unsplash"
 image_url: "https://unsplash.com/@clemhlrdt"
 ---
 
-{% include image-hero.html image=page.image alt=page.image_alt title=page.title %}
+{% include image-hero.html image=page.image alt=page.image_alt %}
+<h1 class="visually-hidden">Projects</h1>
 
 <div class="container section">
   {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
   {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
   {% assign sorted_projects = featured | concat: rest %}
-  <div class="grid grid-cols-1 gap-8">
+  <div class="grid grid-cols-1 gap-8" data-reveal>
     {% for project in sorted_projects %}
       {% include project-card.html project=project %}
     {% endfor %}
