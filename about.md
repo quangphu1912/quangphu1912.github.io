@@ -21,7 +21,7 @@ image_alt: "Phu Le - AI & Data Engineer"
   </div>
 </section>
 
-<div class="container section">
+<div class="container about-body">
   <div class="about-cards">
 
     <section class="card about-section" data-reveal>

@@ -359,35 +359,23 @@ pre code {
   margin-bottom: var(--space-2);
 }
 
-/* Tags/Badges */
+/* Tags / chips - uniform outlined pill; fills brand-blue on hover */
 .tag {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.7rem;
   font-size: var(--text-sm);
   background-color: var(--color-surface);
   color: var(--color-text-secondary);
   font-weight: 600;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  transition: all var(--transition-fast);
-}
-
-.tag--primary {
-  background: rgba(0,122,255,0.10);
-  color: var(--color-primary);
-  border: 1px solid rgba(0,122,255,0.20);
-  font-weight: 600;
-}
-
-@media (prefers-color-scheme: dark) {
-  .tag--primary {
-    background: rgba(10,132,255,0.15);
-    border-color: rgba(10,132,255,0.30);
-  }
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .tag:hover {
   background-color: var(--color-primary);
-  color: white;
+  color: #fff;
+  border-color: var(--color-primary);
 }
 
 /* Notebook */
@@ -1032,12 +1020,13 @@ pre code {
 
 /* ===== About: Editorial elements ===== */
 /* Token note: --color-surface-alt → --color-surface (undefined in :root, reused nearest surface token; brief's #F5F5F7 fallback matched). */
-.identity-block { margin-block: var(--space-6) var(--space-8); }
-.identity-block .identity-name { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem); font-weight: 700; line-height: 1.15; margin: 0; }
-.identity-block .identity-title { color: var(--color-accent); font-weight: 600; margin-top: var(--space-2); }
-.identity-block .identity-loc { color: var(--color-text-secondary); margin-top: var(--space-1); }
+.identity-block { margin-block: var(--space-6) 0; }
+.identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+.identity-block .identity-title { color: var(--color-accent); font-weight: 600; font-size: clamp(1.3rem, 1rem + 1vw, 1.625rem); margin-top: var(--space-2); }
+.identity-block .identity-loc { color: var(--color-text-secondary); font-size: var(--text-lg); margin-top: var(--space-1); }
 .cert-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
-.cert-chips .chip { font-size: 0.85rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--color-surface); border: 1px solid var(--color-border); }
+.cert-chips .chip { font-size: var(--text-sm); font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border); transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
+.cert-chips .chip:hover { background-color: var(--color-primary); color: #fff; border-color: var(--color-primary); }
 .pullquote { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height: 1.4; font-weight: 600; color: var(--color-text); border-left: 3px solid var(--color-accent); padding-left: var(--space-4); margin: var(--space-8) 0; max-width: 32ch; }
 
 /* ===== Hero: bigger supporting text + staggered entrance ===== */
@@ -1055,8 +1044,9 @@ pre code {
 }
 
 /* ===== About page: section cards (matches project cards) ===== */
-.about-intro { text-align: center; padding: var(--space-12) 0 var(--space-8); }
+.about-intro { text-align: center; padding: var(--space-12) 0 var(--space-3); }
 .about-intro .cert-chips { justify-content: center; }
+.about-body { padding: var(--space-2) 0 var(--space-12); }
 .about-cards { max-width: 760px; margin: 0 auto; display: grid; gap: var(--space-6); }
 .about-section { padding: var(--space-6); }
 .about-section p { line-height: 1.7; }
@@ -1083,7 +1073,8 @@ pre code {
 .cred-link svg { width: 16px; height: 16px; }
 
 /* Currently */
-.currently-list { list-style: none; padding: 0; margin: 0; }
+.currently-list { list-style: disc; padding-left: var(--space-5); margin: 0; }
 .currently-list li { padding: var(--space-1) 0; }
+.currently-list li::marker { color: var(--color-primary); }
 .about-contact { text-align: center; }
 .about-contact .contact-links { justify-content: center; }
