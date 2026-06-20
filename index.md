@@ -64,3 +64,16 @@ image_alt: "Hero background"
     <p class="lede" style="margin-top: var(--space-3)"><a href="{{ '/projects/' | relative_url }}">View all projects →</a></p>
   </div>
 </section>
+
+ <!-- Closing invitation -->
+<section class="closing" data-reveal>
+  <div class="container closing__inner">
+    <p class="eyebrow">GET IN TOUCH</p>
+    <h2 class="closing__title">Let's build something that ships.</h2>
+    <p class="closing__lead">Open to data engineering, MLOps, and AI-platform work — and always happy to talk shop.</p>
+    <div class="cta-buttons flex gap-4">
+      <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get in touch</a>
+      <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">Read my story</a>
+    </div>
+  </div>
+</section>
