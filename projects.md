@@ -1,14 +1,15 @@
 ---
 layout: page
 title: Projects
-description: Explore my data science and machine learning projects
+hide_header: true
 image: /assets/images/hero/projects_index.webp
 image_alt: "Data visualization abstract blue analytics dashboard"
 image_credit: "Photo by Clément Hélardot on Unsplash"
 image_url: "https://unsplash.com/@clemhlrdt"
 ---
 
-{% include image-hero.html image=page.image alt=page.image_alt title=page.title %}
+{% include image-hero.html image=page.image alt=page.image_alt %}
+<h1 class="visually-hidden">Projects</h1>
 
 <div class="container section">
   {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
