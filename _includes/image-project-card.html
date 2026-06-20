@@ -1,5 +1,5 @@
 {% if include.image %}
-<figure class="image-thumbnail">
+<figure class="image-thumbnail"{% if include.project.slug %} style="view-transition-name: vt-{{ include.project.slug }};"{% endif %}>
   <picture>
     <source srcset="{{ include.image | relative_url }}" type="image/webp"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">

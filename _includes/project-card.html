@@ -2,26 +2,20 @@
 
 <article class="project-card card">
   {% if project.image %}
-    {% include image-project-card.html image=project.image alt=project.title %}
+    {% include image-project-card.html image=project.image alt=project.title project=project %}
+  {% else %}
+    <div class="project-card__noimg" aria-hidden="true">no preview</div>
   {% endif %}
-  
+
   <h3 class="card-title">
-    <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+    <a class="card-title__link" href="{{ project.url | relative_url }}"><span class="card-title__text">{{ project.title }}</span></a>
   </h3>
-  
+
   <p class="card-description">{{ project.description }}</p>
-  
+
   {% if project.tags %}
   <div class="project-tags flex gap-2">
-    {% for tag in project.tags %}
-    <span class="tag {% if forloop.first %}tag--primary{% endif %}">{{ tag }}</span>
-    {% endfor %}
+    {% for tag in project.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
   </div>
   {% endif %}
-  
-  <div class="project-link">
-    <a href="{{ project.url | relative_url }}" class="btn btn-secondary">
-      View Project →
-    </a>
-  </div>
 </article>

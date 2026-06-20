@@ -16,8 +16,10 @@ layout: default
                 <p class="project-description detail-description">{{ page.description }}</p>
                 {% endif %}
 
+                {% include project-meta.html project=page %}
+
                 {% if page.image %}
-                <figure class="project-hero">
+                <figure class="project-hero" style="view-transition-name: vt-{{ page.slug }};">
                     <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" loading="eager">
                 </figure>
                 {% endif %}
