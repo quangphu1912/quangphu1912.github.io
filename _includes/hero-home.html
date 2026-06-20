@@ -2,7 +2,7 @@
 <section class="hero-home" data-reveal>
   <div class="container hero-home__inner">
     {% if include.eyebrow %}<p class="eyebrow hero-home__eyebrow">{{ include.eyebrow }}</p>{% endif %}
-    <h1 class="hero-home__title">{{ include.title }}</h1>
+    <h1 class="hero-home__title"><span>{{ include.title }}</span></h1>
     {% if include.lead %}<p class="hero-home__lead">{{ include.lead }}</p>{% endif %}
 
     {% include hero-telemetry.html %}

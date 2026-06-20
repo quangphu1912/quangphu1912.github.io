@@ -14,6 +14,7 @@ image_alt: "Hero background"
  <!-- Metrics Strip -->
 <section class="metrics-strip section-sm" data-reveal>
   <div class="container">
+    <p class="eyebrow">BY THE NUMBERS</p>
     <h2 class="section-title">At a Glance</h2>
     <div class="metrics-grid">
       <div class="metric-cell"><span class="metric metric-figure">7+</span><span class="metric-label">YEARS EXPERIENCE</span></div>
@@ -27,6 +28,7 @@ image_alt: "Hero background"
  <!-- Skills Section -->
 <section class="skills-section section-sm section-tinted">
   <div class="container">
+    <p class="eyebrow">TOOLKIT</p>
     <h2 class="section-title">Skills</h2>
     
     <div class="skills-grid grid grid-cols-1">
@@ -47,6 +49,7 @@ image_alt: "Hero background"
  <!-- Selected Work -->
 <section class="section-sm section-tinted">
   <div class="container">
+    <p class="eyebrow">FEATURED</p>
     <h2 class="section-title">Selected work</h2>
     {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
     {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}

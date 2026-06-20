@@ -52,6 +52,7 @@
   --font-system:  var(--font-body); /* back-compat alias for existing usages */
   --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", monospace;
   --font-feature-figures: "tnum" 1, "zero" 1;
+  --tracking-label: 0.12em;   /* one tracking value for uppercase mono eyebrows / labels */
   
   /* Type Scale */
   --text-xs: 0.75rem;    /* 12px */
@@ -786,7 +787,7 @@ pre code {
 }
 
 /* Work listing (Projects page) — eyebrow header + 2-up grid on desktop */
-.page-eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.12em; color: var(--color-accent-text); margin-bottom: var(--space-2); }
+.eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-2); }
 .work-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
 @media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -955,10 +956,10 @@ pre code {
 /* ===== Metrics strip (mono telemetry readout) ===== */
 .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
 @media (min-width: 768px) { .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
-.metric-cell { display: flex; flex-direction: column; gap: var(--space-2); text-align: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-5) var(--space-2); box-shadow: var(--shadow-card); }
+.metric-cell { display: flex; flex-direction: column; gap: var(--space-2); text-align: left; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-5) var(--space-2); box-shadow: var(--shadow-card); }
 .metric-figure { font-family: var(--font-mono); font-size: var(--text-4xl); font-weight: 700;
   color: var(--color-accent); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
-.metric-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em;
+.metric-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label);
   text-transform: uppercase; color: var(--color-text-secondary); }
 
 /* ===== About: Editorial elements ===== */
@@ -979,10 +980,10 @@ pre code {
 .about-intro .profile-avatar { margin-bottom: 0; justify-content: flex-start; flex-shrink: 0; }
 .about-intro .cert-chips { justify-content: flex-start; }
 .about-body { padding: var(--space-2) 0 var(--space-12); }
-.about-cards { max-width: 760px; margin: 0 auto; display: grid; gap: var(--space-6); }
+.about-cards { max-width: var(--max-width-prose); margin: 0 auto; display: grid; gap: var(--space-6); }
 .about-section { padding: var(--space-6); }
 .about-section p { line-height: 1.7; }
-.about-heading { font-size: var(--text-2xl); font-weight: 600; letter-spacing: -0.01em; margin-bottom: var(--space-5); }
+/* About headings use .section-title for one heading family across pages (see markup). */
 
 /* Experience - refined timeline */
 .experience-item { padding-left: var(--space-5); margin-bottom: var(--space-6); position: relative; }
@@ -1015,7 +1016,7 @@ pre code {
    ============================================ */
 .hero-home { padding-block: var(--space-section); }
 .hero-home__inner { max-width: 62rem; }
-.hero-home__eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.12em; color: var(--color-accent-text); margin-bottom: var(--space-2); }
+/* hero eyebrow typography comes from .eyebrow; .hero-home__eyebrow only carries the stagger delay below. */
 .hero-home__title { font-size: clamp(3rem, 1.2rem + 7vw, 6rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 var(--space-3); }
 .hero-home__lead { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); color: var(--color-text-secondary); max-width: 42ch; margin-bottom: var(--space-4); text-wrap: pretty; }
 .hero-home__cta { justify-content: flex-start; margin-top: var(--space-5); }
@@ -1033,7 +1034,7 @@ pre code {
 .hero-telemetry { margin-top: var(--space-5); max-width: 44rem; padding: var(--space-3) var(--space-4); background: var(--color-accent-subtle); border: 1px solid var(--color-border); border-radius: var(--border-radius); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.05); }
 .hero-telemetry__figures { display: flex; gap: var(--space-6); margin: 0 0 var(--space-3); }
 .tl-item { display: flex; flex-direction: column; gap: 4px; }
-.tl-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; color: var(--color-text-secondary); }
+.tl-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-text-secondary); }
 .tl-value { font-family: var(--font-mono); font-weight: 700; color: var(--color-accent); font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem); line-height: 1; }
 .tl-unit { font-size: 0.6em; color: var(--color-text-secondary); }
 .hero-telemetry__flow .tl-pipe { width: 100%; height: 24px; display: block; }
@@ -1052,7 +1053,7 @@ pre code {
    PROJECT META (detail pages)
    ============================================ */
 .project-meta-block { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-3) 0 var(--space-5); padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border); }
-.project-meta-block .pm-item dt { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; color: var(--color-text-secondary); text-transform: uppercase; }
+.project-meta-block .pm-item dt { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-text-secondary); text-transform: uppercase; }
 .project-meta-block .pm-item dd { margin: 2px 0 0; font-weight: 500; }
 .project-content { line-height: 1.75; }
 .project-content > h2 { margin-top: var(--space-7); }
@@ -1084,6 +1085,35 @@ pre code {
 @view-transition { navigation: auto; }
 @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
 ::view-transition-group(*) { animation-timing-function: var(--ease-out-expo); }
+
+/* Shared element morph — the name "Phu Le" carries across Home ↔ About */
+.hero-home__title, .identity-name { view-transition-name: vt-phu; }
+
+/* ============================================
+   MOTION CRAFT — heading reveals (native, reduced-motion + no-support safe)
+   ============================================ */
+/* Hero title: masked line rise on entrance (single-line name → clip-safe) */
+.hero-home__title { overflow: hidden; }
+.hero-home__title > span { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-home__title > span { animation: hero-title-rise 0.9s var(--ease-out-expo) 0.14s backwards; }
+  @keyframes hero-title-rise { from { transform: translateY(105%); } to { transform: translateY(0); } }
+}
+
+/* Section titles: scroll-driven rise + fade. No clip → descenders safe; degrades to fully visible. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .section-title {
+      animation: section-title-rise both linear;
+      animation-timeline: view();
+      animation-range: entry 0% cover 14%;
+    }
+    @keyframes section-title-rise {
+      from { opacity: 0; transform: translateY(0.6em); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  }
+}
 
 /* ============================================
    PRINT (the live site is the résumé)

@@ -25,14 +25,16 @@ image_alt: "Phu Le - AI & Data Engineer"
   <div class="about-cards">
 
     <section class="card about-section" data-reveal>
-      <h2 class="about-heading">The Story</h2>
+      <p class="eyebrow">BACKGROUND</p>
+      <h2 class="section-title">The Story</h2>
       <p>I build the cloud data platforms that power AI/ML - production ETL pipelines, data warehousing, and the data-quality infrastructure that makes downstream ML trustworthy. My path is unconventional and that's the edge: seven years moving from Big-4 audit and M&amp;A consulting (PwC, Deloitte) into FP&amp;A and analytics, and now into cloud-native data engineering and AI.</p>
       <p>That finance foundation means I don't just ship pipelines - I tie them to P&amp;L, risk, and reporting outcomes the business actually measures.</p>
       <p class="pullquote">I build the cloud data platforms that power AI/ML.</p>
     </section>
 
     <section class="card about-section" data-reveal>
-      <h2 class="about-heading">Experience</h2>
+      <p class="eyebrow">CAREER</p>
+      <h2 class="section-title">Experience</h2>
 
       <div class="experience-item">
         <div class="flex justify-between experience-item-header">
@@ -71,7 +73,8 @@ image_alt: "Phu Le - AI & Data Engineer"
     </section>
 
     <section class="card about-section" data-reveal>
-      <h2 class="about-heading">Credentials</h2>
+      <p class="eyebrow">CERTIFICATIONS</p>
+      <h2 class="section-title">Credentials</h2>
       <ul class="credentials-list">
         <li>
           <span class="cred-name">AWS Certified Data Engineer - Associate</span>
@@ -101,7 +104,8 @@ image_alt: "Phu Le - AI & Data Engineer"
     </section>
 
     <section class="card about-section" data-reveal>
-      <h2 class="about-heading">Currently</h2>
+      <p class="eyebrow">EXPLORING</p>
+      <h2 class="section-title">Currently</h2>
       <ul class="currently-list">
         <li>Real-time ML inference &amp; serving at scale (Amazon Bedrock)</li>
         <li>Automated ML pipelines and feature stores</li>
@@ -110,7 +114,8 @@ image_alt: "Phu Le - AI & Data Engineer"
     </section>
 
     <section class="card about-section about-contact" data-reveal>
-      <h2 class="about-heading">Let's Connect</h2>
+      <p class="eyebrow">CONTACT</p>
+      <h2 class="section-title">Let's Connect</h2>
       <p>I'm always interested in data engineering, MLOps, and AI-platform opportunities. Reach me on <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer">LinkedIn</a> or <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
     </section>
 
