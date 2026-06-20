@@ -301,6 +301,10 @@ pre code {
 .detail-back-row { margin-bottom: var(--space-2); }
 .detail-description { font-size: var(--text-xl); color: var(--color-text-secondary); margin: var(--space-2) 0; }
 .detail-meta-row { margin-top: var(--space-3); flex-wrap: wrap; }
+/* Detail hero — rounded, full-width, cohesive overlay (matches cards) */
+.project-hero { margin: var(--space-5) 0 var(--space-4); border-radius: var(--border-radius-lg); overflow: hidden; position: relative; box-shadow: var(--shadow-sm); }
+.project-hero img { display: block; width: 100%; height: auto; }
+.project-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 62%, color-mix(in srgb, var(--color-background) 22%, transparent)); }
 .detail-nav { margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
 .detail-nav-row { flex-wrap: wrap; gap: var(--space-2); }
 .flex-center { justify-content: center; flex-wrap: wrap; }
