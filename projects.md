@@ -17,7 +17,7 @@ image_alt: "Data visualization abstract blue analytics dashboard"
     {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
     {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
     {% assign sorted_projects = featured | concat: rest %}
-    <div class="work-grid" data-reveal>
+    <div class="work-rows" data-reveal>
       {% for project in sorted_projects %}
         {% include project-card.html project=project %}
       {% endfor %}

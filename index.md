@@ -51,14 +51,16 @@ image_alt: "Hero background"
   <div class="container">
     <p class="eyebrow">FEATURED</p>
     <h2 class="section-title">Selected work</h2>
-    {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
-    {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
-    {% assign teaser = featured | concat: rest %}
-    <div class="grid grid-cols-1 gap-8">
-      {% for project in teaser limit: 2 %}
-        {% include project-card.html project=project %}
-      {% endfor %}
-    </div>
-    <p class="lede" style="margin-top: var(--space-4)"><a href="{{ '/projects/' | relative_url }}">View all projects →</a></p>
+  </div>
+  {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
+  {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
+  {% assign teaser = featured | concat: rest %}
+  <div class="work-scroller" data-reveal>
+    {% for project in teaser %}
+      {% include project-card.html project=project %}
+    {% endfor %}
+  </div>
+  <div class="container">
+    <p class="lede" style="margin-top: var(--space-3)"><a href="{{ '/projects/' | relative_url }}">View all projects →</a></p>
   </div>
 </section>

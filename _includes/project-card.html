@@ -7,15 +7,17 @@
     <div class="project-card__noimg" aria-hidden="true">no preview</div>
   {% endif %}
 
-  <h3 class="card-title">
-    <a class="card-title__link" href="{{ project.url | relative_url }}"><span class="card-title__text">{{ project.title }}</span></a>
-  </h3>
+  <div class="project-card__body">
+    <h3 class="card-title">
+      <a class="card-title__link" href="{{ project.url | relative_url }}"><span class="card-title__text">{{ project.title }}</span></a>
+    </h3>
 
-  <p class="card-description">{{ project.description }}</p>
+    <p class="card-description">{{ project.description }}</p>
 
-  {% if project.tags %}
-  <div class="project-tags flex gap-2">
-    {% for tag in project.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+    {% if project.tags %}
+    <div class="project-tags flex gap-2">
+      {% for tag in project.tags limit: 3 %}<span class="tag">{{ tag }}</span>{% endfor %}
+    </div>
+    {% endif %}
   </div>
-  {% endif %}
 </article>

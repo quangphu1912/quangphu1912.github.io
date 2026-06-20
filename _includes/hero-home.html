@@ -1,15 +1,19 @@
-{% comment %} Typographic hero. Copy is intentionally minimal; refined in the content phase. {% endcomment %}
+{% comment %} Typographic hero — two-column: text left, telemetry instrument right. {% endcomment %}
 <section class="hero-home" data-reveal>
   <div class="container hero-home__inner">
-    {% if include.eyebrow %}<p class="eyebrow hero-home__eyebrow">{{ include.eyebrow }}</p>{% endif %}
-    <h1 class="hero-home__title"><span>{{ include.title }}</span></h1>
-    {% if include.lead %}<p class="hero-home__lead">{{ include.lead }}</p>{% endif %}
+    <div class="hero-home__text">
+      {% if include.eyebrow %}<p class="eyebrow hero-home__eyebrow">{{ include.eyebrow }}</p>{% endif %}
+      <h1 class="hero-home__title"><span>{{ include.title }}</span></h1>
+      {% if include.lead %}<p class="hero-home__lead">{{ include.lead }}</p>{% endif %}
 
-    {% include hero-telemetry.html %}
+      <div class="hero-home__cta cta-buttons flex gap-4">
+        <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">View work</a>
+        <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">About</a>
+      </div>
+    </div>
 
-    <div class="hero-home__cta cta-buttons flex gap-4">
-      <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">View work</a>
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">About</a>
+    <div class="hero-home__aside">
+      {% include hero-telemetry.html %}
     </div>
   </div>
 </section>
