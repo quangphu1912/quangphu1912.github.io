@@ -1054,13 +1054,12 @@ pre code {
   @keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 }
 
-/* ===== About page: alternating section bands ===== */
-.about-band { padding: var(--space-8) 0; }
-.about-band--tint { background: var(--color-surface); }
-.about-band__inner { max-width: 720px; margin: 0 auto; padding: 0 var(--space-2); }
-.about-band p { line-height: 1.7; }
-.about-intro { padding-top: var(--space-12); text-align: center; }
+/* ===== About page: section cards (matches project cards) ===== */
+.about-intro { text-align: center; padding: var(--space-12) 0 var(--space-8); }
 .about-intro .cert-chips { justify-content: center; }
+.about-cards { max-width: 760px; margin: 0 auto; display: grid; gap: var(--space-6); }
+.about-section { padding: var(--space-6); }
+.about-section p { line-height: 1.7; }
 .about-heading { font-size: var(--text-2xl); font-weight: 600; letter-spacing: -0.01em; margin-bottom: var(--space-5); }
 
 /* Experience - refined timeline */

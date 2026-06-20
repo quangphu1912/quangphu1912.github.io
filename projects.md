@@ -1,7 +1,6 @@
 ---
-layout: page
+layout: default
 title: Projects
-hide_header: true
 image: /assets/images/hero/projects_index.webp
 image_alt: "Data visualization abstract blue analytics dashboard"
 image_credit: "Photo by Clément Hélardot on Unsplash"
@@ -15,7 +14,7 @@ image_url: "https://unsplash.com/@clemhlrdt"
   {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
   {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
   {% assign sorted_projects = featured | concat: rest %}
-  <div class="grid grid-cols-1 gap-8">
+  <div class="grid grid-cols-1 gap-8" data-reveal>
     {% for project in sorted_projects %}
       {% include project-card.html project=project %}
     {% endfor %}
