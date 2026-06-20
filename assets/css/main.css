@@ -965,28 +965,6 @@ pre code {
 .project-card .image-thumbnail::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(180deg, transparent 58%, color-mix(in srgb, var(--color-bg) 26%, transparent)); }
 
-/* Attribution Footer */
-.attribution {
-  margin-top: var(--space-8);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
-  text-align: center;
-}
-
-.attribution-text {
-  font-size: var(--text-xs);
-  color: var(--color-text-secondary);
-  margin: 0;
-}
-
-.attribution-text a {
-  color: var(--color-accent-text);
-}
-
-.attribution-text a:hover {
-  color: var(--color-primary-hover);
-}
-
 /* ==========================================================================
    Mobile nav
    ========================================================================== */

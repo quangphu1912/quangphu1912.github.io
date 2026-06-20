@@ -7,8 +7,6 @@ image: /assets/images/projects/churn-prediction.svg
 image_alt: "Abstract churn classification scatter illustration"
 ---
 
-{% include attribution.html credit=page.image_credit url=page.image_url %}
-
 ## Overview
 
 Developed a customer churn prediction system for a SaaS subscription product, identifying at-risk customers with **85% precision** and **0.89 AUC** (vs 0.76 baseline). The system analyzes 12 behavioral features (usage frequency, engagement metrics, support interactions) to predict churn risk 30 days in advance, enabling the customer success team to prioritize retention efforts. Proactive campaigns increased customer retention by **8%** and prevented an estimated **$200K/year** in revenue attrition. Deployed as batch predictions integrated with Salesforce CRM, scoring 50K customers nightly with <1 hour processing time.

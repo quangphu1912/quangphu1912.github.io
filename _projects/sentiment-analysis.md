@@ -7,8 +7,6 @@ image: /assets/images/projects/sentiment-analysis.svg
 image_alt: "Abstract financial sentiment analysis illustration"
 ---
 
-{% include attribution.html credit=page.image_credit url=page.image_url %}
-
 ## Overview
 
 Developed a BERT-based financial sentiment analysis system that processes news articles, tweets, and earnings transcripts to generate real-time sentiment signals for trading decisions. The model achieved **89% accuracy** (vs 72% baseline) and **0.62 correlation** with market movements, enabling 5 traders to incorporate sentiment signals into their workflow. Reduced manual news analysis time by **70%** (2+ hours/day to 30 minutes/day) while covering 10x more sources than manual review could handle. Deployed as Flask API with GCP Cloud Run, processing 500+ articles daily with sub-second inference latency.
