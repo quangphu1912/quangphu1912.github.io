@@ -71,6 +71,7 @@ That finance foundation means I don't just ship pipelines — I tie them to P&L,
 - **CFA Charterholder** (May 2021) — top performer in Quantitative Methods, Derivatives, Economics, Asset Allocation.
 - **MBA, Finance & Consulting — University of Missouri** (2016–2017) — Monte Carlo simulation for agricultural production optimization; 3rd place, Monsanto-Olin MBA Case Competition.
 - **ERPM AI Champion** (BMO) — recognition for AI/ML platform impact. [Verify on Credly →](https://www.credly.com/badges/c9913967-d62f-4e6c-96a6-fac5f32b0393/public_url)
+- **GCP skills profile** — Google Cloud Skills Boost public profile (skill badges & quests). [View profile →]({{ site.google_cloud_profile }})
 
 ## Currently
 

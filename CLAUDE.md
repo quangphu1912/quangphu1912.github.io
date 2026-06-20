@@ -77,6 +77,10 @@ Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS cus
 
 Images are auto-switched from `.jpg` to `.webp` via a `replace` filter in the include.
 
+### Résumé
+
+No standalone PDF — the live site serves as the résumé. Canonical experience & credentials live in `about.md`; skills live in `_data/skills.yml` (rendered on Home). When updating résumé content, edit those two files. The legacy `assets/Phu-Le-Resume.pdf` was removed. LinkedIn/GitHub handles come from `_config.yml` (`linkedin_username`, `github_username`).
+
 ### Key `_config.yml` fields
 
 - `job_title` — used in Person JSON-LD schema
