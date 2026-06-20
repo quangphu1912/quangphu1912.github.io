@@ -20,7 +20,7 @@ layout: default
 
                 {% if page.image %}
                 <figure class="project-hero" style="view-transition-name: vt-{{ page.slug }};">
-                    <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" loading="eager">
+                    <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
                 </figure>
                 {% endif %}
 

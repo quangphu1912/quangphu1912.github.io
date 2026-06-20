@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Home
+title: Phu Le — AI & Data Engineer
 description: AI & Data Engineer | Production data pipelines, cloud-native ETL, MLOps
 image: /assets/images/hero/hero.webp
 image_alt: "Hero background"
