@@ -655,6 +655,8 @@ pre code {
   list-style: none;
   margin: 0;
 }
+/* wrap social chips so the last one (Email) never overflows on narrow phones */
+.social-links { flex-wrap: wrap; gap: var(--space-2); }
 
 .social-links a,
 .footer-links a {
