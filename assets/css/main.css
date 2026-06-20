@@ -687,18 +687,7 @@ pre code {
   }
 }
 
-/* Hero Section */
-.hero-title {
-  font-size: var(--text-5xl);
-  margin-bottom: var(--space-3);
-}
-
-.hero-subtitle {
-  font-size: var(--text-2xl);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-2);
-}
-
+/* CTA button row (shared by hero + 404) */
 .cta-buttons {
   justify-content: center;
   flex-wrap: wrap;
@@ -796,6 +785,11 @@ pre code {
   margin-top: var(--space-2);
 }
 
+/* Work listing (Projects page) — eyebrow header + 2-up grid on desktop */
+.page-eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.12em; color: var(--color-accent-text); margin-bottom: var(--space-2); }
+.work-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+@media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+
 /* ============================================
    MERMAID DIAGRAMS
    ============================================ */
@@ -852,73 +846,6 @@ pre code {
 /* ============================================
    IMAGE COMPONENTS
    ============================================ */
-
-/* Hero Image Background with Overlay */
-.hero-image-wrapper {
-  width: 100%;
-  min-height: 400px;
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--border-radius);
-  margin-bottom: var(--space-6);
-}
-
-.hero-image {
-  width: 100%;
-  min-height: 400px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.55) 100%);
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: white;
-  padding: var(--space-6);
-  max-width: 900px;
-}
-
-.hero-content .hero-title,
-.hero-content .hero-subtitle {
-  color: white;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Hero name - solid strong type (no gradient clip, per design refinement) */
-.hero-content .hero-title {
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #FFFFFF;
-  line-height: 1.05;
-}
-
-.hero-lead { color: rgba(255,255,255,0.92); font-size: var(--text-lg); margin-top: var(--space-2); }
-.hero-creds {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.82);
-  margin-top: var(--space-3);
-}
-.hero-content .cta-buttons { margin-top: var(--space-6); }
 
 /* Profile Avatar */
 .profile-avatar {
@@ -1045,23 +972,12 @@ pre code {
 .cert-chips .chip:hover { background-color: var(--color-accent-text); color: #fff; border-color: var(--color-accent-text); }
 .pullquote { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height: 1.4; font-weight: 600; color: var(--color-text); border-left: 3px solid var(--color-accent); padding-left: var(--space-4); margin: var(--space-8) 0; max-width: 32ch; }
 
-/* ===== Hero: bigger supporting text + staggered entrance ===== */
-.hero-content .hero-subtitle { font-size: clamp(1.4rem, 1rem + 1.6vw, 2.1rem); font-weight: 500; letter-spacing: -0.01em; }
-.hero-lead { font-size: var(--text-xl); }
-.hero-creds { font-size: var(--text-base); letter-spacing: 0.08em; }
-@media (prefers-reduced-motion: no-preference) {
-  .hero-content > * { opacity: 0; animation: heroIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
-  .hero-content > *:nth-child(1) { animation-delay: 0.08s; }
-  .hero-content > *:nth-child(2) { animation-delay: 0.18s; }
-  .hero-content > *:nth-child(3) { animation-delay: 0.28s; }
-  .hero-content > *:nth-child(4) { animation-delay: 0.38s; }
-  .hero-content > *:nth-child(5) { animation-delay: 0.48s; }
-  @keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-}
-
 /* ===== About page: section cards (matches project cards) ===== */
-.about-intro { text-align: center; padding: var(--space-12) 0 var(--space-3); }
-.about-intro .cert-chips { justify-content: center; }
+.about-intro { text-align: left; padding: var(--space-section) 0 var(--space-3); }
+.about-intro .container { max-width: var(--max-width-prose); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+@media (min-width: 768px) { .about-intro .container { flex-direction: row; align-items: center; gap: var(--space-6); } }
+.about-intro .profile-avatar { margin-bottom: 0; justify-content: flex-start; flex-shrink: 0; }
+.about-intro .cert-chips { justify-content: flex-start; }
 .about-body { padding: var(--space-2) 0 var(--space-12); }
 .about-cards { max-width: 760px; margin: 0 auto; display: grid; gap: var(--space-6); }
 .about-section { padding: var(--space-6); }
