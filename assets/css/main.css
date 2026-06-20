@@ -953,7 +953,8 @@ pre code {
   object-fit: cover;
   display: block;
 }
-.project-card .image-thumbnail img { height: clamp(180px, 20vw, 240px); }
+.project-card .image-thumbnail { margin-bottom: var(--space-4); }
+.project-card .image-thumbnail img { height: clamp(200px, 22vw, 280px); }
 
 /* Attribution Footer */
 .attribution {

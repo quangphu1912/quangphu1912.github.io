@@ -111,19 +111,7 @@ image_alt: "Phu Le - AI & Data Engineer"
 
     <section class="card about-section about-contact" data-reveal>
       <h2 class="about-heading">Let's Connect</h2>
-      <p>I'm always interested in data engineering, MLOps, and AI-platform opportunities. Reach me on LinkedIn or GitHub.</p>
-      <div class="contact-links flex gap-4 flex-center">
-        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          LinkedIn
-        </a>
-        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          GitHub
-        </a>
-        <a href="{{ '/' | relative_url }}#contact" data-user="{{ site.email | split: '@' | first }}"
-           data-domain="{{ site.email | split: '@' | last }}" class="btn btn-secondary">
-          Email
-        </a>
-      </div>
+      <p>I'm always interested in data engineering, MLOps, and AI-platform opportunities. Reach me on <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer">LinkedIn</a> or <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
     </section>
 
   </div>
