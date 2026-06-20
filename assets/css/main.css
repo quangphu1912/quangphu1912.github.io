@@ -191,12 +191,6 @@ a:hover {
   color: var(--color-primary-hover);
 }
 
-a:focus-visible {
-  outline: none;
-  border-radius: var(--border-radius-sm);
-  box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-primary);
-}
-
 code {
   font-family: var(--font-mono);
   font-size: 0.9em;
@@ -284,6 +278,7 @@ pre code {
 
 /* Closing invitation — centered, soft accent-gradient band */
 .closing { padding-block: var(--space-section); text-align: center;
+  background: var(--color-accent-subtle); /* fallback for browsers without color-mix() */
   background: radial-gradient(120% 130% at 50% 0%, var(--color-accent-subtle), var(--color-background) 62%); }
 .closing__inner { max-width: 46rem; }
 .closing__title { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.06; margin-bottom: var(--space-3); }
@@ -341,6 +336,7 @@ pre code {
   background-color: var(--color-accent);
   color: #fff;
   border: 1px solid transparent;
+  box-shadow: 0 1px 2px rgba(0,0,0,.12); /* fallback for browsers without color-mix() */
   box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 8px 20px color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
 .btn-primary:hover { background-color: var(--color-accent-deep); transform: translateY(-1px); }
@@ -1035,7 +1031,7 @@ pre code {
 /* ===== About: Editorial elements ===== */
 /* Token note: --color-surface-alt → --color-surface (undefined in :root, reused nearest surface token; brief's #F5F5F7 fallback matched). */
 .identity-block { margin-block: var(--space-6) 0; }
-.identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+.identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.04em; } /* matches .hero-home__title — they share view-transition-name vt-phu and morph into each other */
 .identity-block .identity-title { color: var(--color-accent); font-weight: 600; font-size: clamp(1.3rem, 1rem + 1vw, 1.625rem); margin-top: var(--space-2); }
 .identity-block .identity-loc { color: var(--color-text-secondary); font-size: var(--text-lg); margin-top: var(--space-1); }
 .cert-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
@@ -1114,7 +1110,7 @@ pre code {
 }
 
 /* Telemetry instrument panel */
-.hero-telemetry { margin-top: var(--space-5); max-width: 44rem; padding: var(--space-4); background: linear-gradient(155deg, var(--color-accent-subtle), color-mix(in srgb, var(--color-accent-subtle) 55%, var(--color-bg))); border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border)); border-radius: var(--border-radius); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.06); }
+.hero-telemetry { margin-top: var(--space-5); max-width: 44rem; padding: var(--space-4); background: var(--color-accent-subtle); background: linear-gradient(155deg, var(--color-accent-subtle), color-mix(in srgb, var(--color-accent-subtle) 55%, var(--color-bg))); border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border)); border-radius: var(--border-radius); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.06); }
 .hero-telemetry__figures { display: flex; gap: var(--space-6); margin: 0 0 var(--space-3); }
 .tl-item { display: flex; flex-direction: column; gap: 4px; }
 .tl-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-text-secondary); }
@@ -1124,6 +1120,16 @@ pre code {
 .tl-nodes circle { fill: var(--color-surface-raised); stroke: var(--color-border); stroke-width: 1.5; }
 .tl-nodes .tl-node--proc { stroke: var(--color-accent); }
 .tl-legend { list-style: none; display: flex; justify-content: space-between; margin: 6px 0 0; padding: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); }
+/* Telemetry captions sit on the accent-tinted panel — darken in light mode to clear WCAG AA
+   (#6E6E73 on #E8F1FE ≈ 4.38:1 fails; #55555C ≈ 6.3:1 passes). Dark mode already passes. */
+.hero-telemetry .tl-label,
+.hero-telemetry .tl-unit,
+.hero-telemetry .tl-legend { color: #55555C; }
+@media (prefers-color-scheme: dark) {
+  .hero-telemetry .tl-label,
+  .hero-telemetry .tl-unit,
+  .hero-telemetry .tl-legend { color: var(--color-text-secondary); }
+}
 .tl-legend--proc { color: var(--color-accent-text); }
 .tl-pulse { opacity: 0; }
 @media (prefers-reduced-motion: no-preference) {
