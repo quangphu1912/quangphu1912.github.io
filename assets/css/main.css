@@ -310,30 +310,35 @@ pre code {
 
 /* Buttons */
 .btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.6rem;
   font-size: var(--text-base);
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   border-radius: var(--border-radius-sm);
-  transition: all var(--transition-base);
+  transition: all var(--transition-base) var(--ease-out-expo);
   cursor: pointer;
   border: none;
-  min-height: 44px; /* Touch target size */
+  min-height: 46px; /* Touch target size */
 }
 
-/* Primary + secondary unified: outlined pill that fills brand-blue on hover (matches tags/chips) */
-.btn-primary, .btn-secondary {
-  background-color: var(--color-surface);
+/* Primary = solid accent with a soft glow; secondary = ghost outline */
+.btn-primary {
+  background-color: var(--color-accent);
+  color: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 8px 20px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+.btn-primary:hover { background-color: var(--color-accent-deep); transform: translateY(-1px); }
+
+.btn-secondary {
+  background-color: transparent;
   color: var(--color-text);
   border: 1px solid var(--color-border);
 }
-
-.btn-primary:hover, .btn-secondary:hover {
-  background-color: var(--color-accent-text);
-  color: #fff;
-  border-color: var(--color-accent-text);
-}
+.btn-secondary:hover { border-color: var(--color-accent-text); color: var(--color-accent-text); }
 
 /* Button press feedback (token-based → reduced-motion-guarded) */
 .btn-primary:active { transform: translateY(0) scale(0.98); }
@@ -1023,8 +1028,10 @@ pre code {
 .about-intro .profile-avatar { margin-bottom: 0; justify-content: flex-start; flex-shrink: 0; }
 .about-intro .cert-chips { justify-content: flex-start; }
 .about-body { padding: var(--space-2) 0 var(--space-12); }
-.about-cards { max-width: var(--max-width-prose); margin: 0 auto; display: grid; gap: var(--space-6); }
+.about-cards { max-width: var(--max-width-prose); margin: 0 auto; display: grid; gap: var(--space-8); }
 .about-section { padding: var(--space-6); }
+/* De-box About sections into hairline-separated editorial blocks (matches Home) */
+.about-section.card { background: none; box-shadow: none; border: none; border-radius: 0; border-top: 1px solid var(--color-border); padding: var(--space-6) 0 0; }
 .about-section p { line-height: 1.7; }
 /* About headings use .section-title for one heading family across pages (see markup). */
 
@@ -1085,7 +1092,7 @@ pre code {
 }
 
 /* Telemetry instrument panel */
-.hero-telemetry { margin-top: var(--space-5); max-width: 44rem; padding: var(--space-3) var(--space-4); background: var(--color-accent-subtle); border: 1px solid var(--color-border); border-radius: var(--border-radius); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.05); }
+.hero-telemetry { margin-top: var(--space-5); max-width: 44rem; padding: var(--space-4); background: linear-gradient(155deg, var(--color-accent-subtle), color-mix(in srgb, var(--color-accent-subtle) 55%, var(--color-bg))); border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border)); border-radius: var(--border-radius); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.06); }
 .hero-telemetry__figures { display: flex; gap: var(--space-6); margin: 0 0 var(--space-3); }
 .tl-item { display: flex; flex-direction: column; gap: 4px; }
 .tl-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-text-secondary); }
@@ -1120,6 +1127,13 @@ pre code {
    CRAFT LAYER (selection, scrollbar, prose underlines)
    ============================================ */
 ::selection { background: var(--color-accent-subtle); color: var(--color-text); }
+
+/* Subtle film grain — tactile depth on flat surfaces (very low opacity, non-interactive) */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='g'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.8'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23g)'/%3E%3C/svg%3E");
+}
+@media print { body::after { display: none; } }
 * { scrollbar-color: var(--color-border) transparent; }
 ::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-thumb { background: var(--color-border); border: 3px solid var(--color-bg); border-radius: 8px; }
