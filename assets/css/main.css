@@ -1018,7 +1018,9 @@ pre code {
 /* ===== Metrics strip (mono telemetry readout) ===== */
 .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-6); }
 @media (min-width: 768px) { .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
-.metric-cell { display: flex; flex-direction: column; gap: var(--space-1); text-align: left; padding: var(--space-3) 0 0; border-top: 1px solid var(--color-border); }
+.metric-cell { display: flex; flex-direction: column; gap: var(--space-1); text-align: left; padding: var(--space-3) 0 0; border-top: 1px solid var(--color-border); transition: border-color var(--transition-fast); }
+/* Subtle hairline accent on hover — gives the telemetry readout life on pointer devices only */
+@media (hover: hover) { .metric-cell:hover { border-top-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border)); } }
 .metric-figure { font-family: var(--font-mono); font-size: clamp(2.75rem, 1.9rem + 2.8vw, 4rem); font-weight: 700;
   color: var(--color-accent); line-height: 0.95; font-variant-numeric: tabular-nums; letter-spacing: -0.035em; }
 .metric-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label);
@@ -1122,7 +1124,10 @@ pre code {
   .tl-pulse { offset-path: path("M12 12 H588"); animation: tl-flow 1.8s var(--ease-out-expo) 0.6s 1 both; }
   @keyframes tl-flow { 0% { offset-distance: 0%; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
 }
-@media (max-width: 640px) { .hero-telemetry__figures { gap: var(--space-4); } }
+/* Telemetry figures wrap before they can overflow a narrow phone (same class of fix as footer chips) */
+@media (max-width: 640px) {
+  .hero-telemetry__figures { flex-wrap: wrap; gap: var(--space-4) var(--space-5); }
+}
 
 /* ============================================
    PROJECT META (detail pages)
