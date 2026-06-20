@@ -1,4 +1,16 @@
 {
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:wilian.webflow.io)",
+      "WebFetch(domain:www.helenastening.com)",
+      "WebFetch(domain:maielamin.com)",
+      "WebFetch(domain:www.pratibhajoshi.com)",
+      "WebFetch(domain:michellegore.com)",
+      "WebFetch(domain:azumbrunnen.me)",
+      "WebFetch(domain:digitalsynopsis.com)"
+    ]
+  },
   "enabledPlugins": {
     "frontend-design@claude-code-plugins": true
   }
