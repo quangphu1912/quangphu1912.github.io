@@ -17,10 +17,10 @@ image_alt: "Hero background"
     <p class="eyebrow">BY THE NUMBERS</p>
     <h2 class="section-title">At a Glance</h2>
     <div class="metrics-grid">
-      <div class="metric-cell"><span class="metric metric-figure">7+</span><span class="metric-label">YEARS EXPERIENCE</span></div>
-      <div class="metric-cell"><span class="metric metric-figure">~3M</span><span class="metric-label">RECORDS / DAY</span></div>
-      <div class="metric-cell"><span class="metric metric-figure">~80%</span><span class="metric-label">ANALYSIS TIME CUT</span></div>
-      <div class="metric-cell"><span class="metric metric-figure">$150M</span><span class="metric-label">REVENUE INFLUENCED</span></div>
+      <div class="metric-cell"><span class="metric metric-figure"><span data-countup="7">7</span>+</span><span class="metric-label">YEARS EXPERIENCE</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">~<span data-countup="3">3</span>M</span><span class="metric-label">RECORDS / DAY</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">~<span data-countup="80">80</span>%</span><span class="metric-label">ANALYSIS TIME CUT</span></div>
+      <div class="metric-cell"><span class="metric metric-figure">$<span data-countup="150">150</span>M</span><span class="metric-label">REVENUE INFLUENCED</span></div>
     </div>
   </div>
 </section>
