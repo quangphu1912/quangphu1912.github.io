@@ -551,6 +551,8 @@ pre code {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(0,0,0,0.06);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+  /* Glide between transparent-over-cover and the solid frosted bar (toggled in nav.js). */
+  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -563,6 +565,28 @@ pre code {
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .site-header { background: var(--color-background); }
+}
+
+/* Transparent header over a full-bleed cover (home hero / project cover) - michellegore.com's
+   chrome-less-nav-over-hero look. nav.js adds .is-over-cover while the cover is under the bar
+   and drops it once the cover scrolls past, reverting to the solid frosted header above. */
+.site-header.is-over-cover {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+/* Logo + hamburger live in the now-transparent bar over the dark cover -> force light chrome. */
+.site-header.is-over-cover .site-name { color: #fff; }
+.site-header.is-over-cover .site-tagline { color: rgba(255,255,255,0.72); }
+.site-header.is-over-cover .nav-toggle-bar { background: #fff; }
+/* Desktop nav links are inline in the transparent bar -> light. (On mobile the links sit in the
+   opaque drawer below, so they keep their normal colors - only logo + hamburger float over art.) */
+@media (min-width: 768px) {
+  .site-header.is-over-cover .nav-link { color: rgba(255,255,255,0.82); }
+  .site-header.is-over-cover .nav-link:hover,
+  .site-header.is-over-cover .nav-link.active { color: #fff; background-color: transparent; }
 }
 
 /* Scroll-progress indicator - thin accent bar tracking reading position.
@@ -852,14 +876,16 @@ pre code {
 }
 
 /* Work listing (Projects page) - eyebrow header + 2-up grid on desktop */
-.eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-3); }
+/* Eyebrow - michellegore.com style: uppercase, generous tracking, medium weight (her airy kicker). */
+.eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-3); }
 .work-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
 @media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* Project card body - image sits flush to the top, content padded below */
 .project-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
 
-/* Home - horizontal snap gallery of selected work (edge-bleed to viewport) */
+/* DEAD: no longer referenced - the home "Selected work" now uses .work-rows (chrome-less sections).
+   Kept for reference; safe to remove. Horizontal snap gallery (edge-bleed to viewport). */
 .work-scroller {
   display: grid; grid-auto-flow: column; grid-auto-columns: min(84vw, 23rem);
   gap: var(--space-4); overflow-x: auto; overscroll-behavior-x: contain;
@@ -875,19 +901,57 @@ pre code {
 }
 .work-scroller > .project-card { scroll-snap-align: start; }
 
-/* Projects page - alternating editorial feature rows */
-.work-rows { display: flex; flex-direction: column; gap: var(--space-6); }
-.work-rows .project-card { height: auto; }
-/* Projects page shows the full project name - no line clamp (rows grow to fit the title) */
+/* Chrome-less editorial project sections (home + /work): no card box, large image + text columns,
+   sides alternating per row. michellegore.com homepage-section style. overflow-x:clip contains the
+   horizontal slide-in below so it never spills a page scrollbar. */
+.work-rows { display: flex; flex-direction: column; gap: clamp(3rem, 7vw, 6rem); overflow-x: clip; }
+.work-rows .project-card { height: auto; background: transparent; overflow: visible; }
+.work-rows .project-card:hover { transform: none; }   /* no lift - the slide + image zoom carry it */
+.work-rows .project-card .image-thumbnail { border-radius: var(--border-radius); }
+/* Show the full project name - no line clamp (rows grow to fit the title) */
 .work-rows .card-title__text { display: block; -webkit-line-clamp: none; overflow: visible; }
-/* Large editorial rows don't lift on hover - let the image zoom + arrow carry it (one motion, no jitter) */
-.work-rows .project-card:hover { transform: none; }
+.work-rows .project-card__kicker { color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+/* Restore a visible focus ring on the link now that the card box (+ its focus-within ring) is gone */
+.work-rows .card-title__link:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
 @media (min-width: 760px) {
-  .work-rows .project-card { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: stretch; }
-  .work-rows .project-card .image-thumbnail { aspect-ratio: auto; height: 100%; min-height: 340px; margin: 0; }
+  .work-rows .project-card { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: var(--space-8); }
+  .work-rows .project-card .image-thumbnail { aspect-ratio: 16 / 9; height: auto; margin: 0; }
   .work-rows .project-card:nth-child(even) .image-thumbnail { order: 2; }
-  .work-rows .project-card__body { padding: var(--space-6); justify-content: center; }
+  .work-rows .project-card__body { padding: 0; justify-content: center; }
   .work-rows .project-card .card-title { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); }
+}
+
+/* "View project ->" CTA: muted, accents + nudges the arrow on hover (her VIEW PROJECT signature). */
+.project-card__cta {
+  display: inline-flex; align-items: center; gap: 0.4em; margin-top: var(--space-3);
+  font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--color-text-secondary);
+  transition: color var(--transition-base);
+}
+.project-card__cta .cta-arrow { transition: transform var(--transition-base); }
+.work-rows .project-card:hover .project-card__cta,
+.work-rows .project-card:focus-within .project-card__cta { color: var(--color-accent-text); }
+@media (prefers-reduced-motion: no-preference) {
+  .work-rows .project-card:hover .project-card__cta .cta-arrow,
+  .work-rows .project-card:focus-within .project-card__cta .cta-arrow { transform: translateX(4px); }
+}
+
+/* Horizontal slide-in (michellegore signature): image + text swoop in from opposite sides,
+   alternating per row, 0.8s linear. Driven by the row's .is-visible (reveal.js, unchanged).
+   Gated on .js + reduced-motion + the 2-col breakpoint, so no-JS / mobile / reduced-motion just
+   fade (no x-translate). */
+@media (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .js .work-rows .project-card[data-reveal] { opacity: 1; transform: none; transition: none; }
+  .js .work-rows .project-card[data-reveal] .image-thumbnail,
+  .js .work-rows .project-card[data-reveal] .project-card__body {
+    opacity: 0; transition: opacity 0.8s linear, transform 0.8s linear;
+  }
+  .js .work-rows .project-card[data-reveal] .image-thumbnail { transform: translateX(-64px); }
+  .js .work-rows .project-card[data-reveal] .project-card__body { transform: translateX(40px); }
+  .js .work-rows .project-card[data-reveal]:nth-child(even) .image-thumbnail { transform: translateX(64px); }
+  .js .work-rows .project-card[data-reveal]:nth-child(even) .project-card__body { transform: translateX(-40px); }
+  .js .work-rows .project-card[data-reveal].is-visible .image-thumbnail,
+  .js .work-rows .project-card[data-reveal].is-visible .project-card__body { opacity: 1; transform: none; }
 }
 
 /* ============================================
@@ -1099,7 +1163,19 @@ pre code {
 /* ============================================
    HOME HERO (typographic) + TELEMETRY SIGNATURE
    ============================================ */
-.hero-home { padding-block: var(--space-section) clamp(2rem, 4vw, 3rem); position: relative; isolation: isolate; }
+/* Full-page hero cover: static dark navy -> indigo gradient, white centered copy, arrow at the
+   bottom. -6rem keeps it within one screen under the sticky header (matches the project cover). */
+.hero-home {
+  position: relative; isolation: isolate;
+  display: flex; align-items: center;
+  min-height: calc(100vh - 6rem);
+  min-height: calc(100svh - 6rem);
+  padding-block: var(--space-8);
+  color: #fff;
+  background:
+    radial-gradient(120% 90% at 82% 8%, rgba(10,132,255,0.20), transparent 58%),
+    linear-gradient(162deg, #0C2747 0%, #081627 52%, #16103a 100%);
+}
 .hero-home::before {
   content: ""; position: absolute; z-index: -1; pointer-events: none;
   inset: -8% auto auto -15%; width: 72%; height: 82%;
@@ -1110,21 +1186,22 @@ pre code {
    data engineer). Masked so it's a texture, not a pattern; behind all hero content. */
 .hero-home::after {
   content: ""; position: absolute; z-index: -1; pointer-events: none; inset: 0;
-  background-image: radial-gradient(circle, color-mix(in srgb, var(--color-text) 9%, transparent) 1px, transparent 1.5px);
-  background-size: 22px 22px; opacity: 0.55;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1.5px);
+  background-size: 22px 22px; opacity: 0.7;
   -webkit-mask-image: radial-gradient(ellipse 78% 70% at 50% 28%, #000 18%, transparent 80%);
   mask-image: radial-gradient(ellipse 78% 70% at 50% 28%, #000 18%, transparent 80%);
 }
-.hero-home__inner { display: grid; gap: var(--space-6); }
-@media (min-width: 880px) {
-  .hero-home__inner { grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: clamp(var(--space-6), 5vw, var(--space-12)); }
-}
-.hero-home__aside { min-width: 0; }
-.hero-home__aside .hero-telemetry { margin-top: 0; max-width: 100%; width: 100%; }
+/* Centered hero composition (michellegore.com style): eyebrow -> name -> lead -> CTA -> telemetry,
+   stacked and centered in the middle of the cover. */
+.hero-home__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-6); max-width: 52rem; }
+.hero-home__text { width: 100%; }
+.hero-home__aside { min-width: 0; width: 100%; }
+.hero-home__aside .hero-telemetry { margin: 0 auto; max-width: 40rem; width: 100%; }
+.hero-home .hero-telemetry__figures { justify-content: center; }
 /* hero eyebrow typography comes from .eyebrow; .hero-home__eyebrow only carries the stagger delay below. */
 .hero-home__title { font-size: clamp(3rem, 1.2rem + 7vw, 6rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 var(--space-3); }
-.hero-home__lead { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); color: var(--color-text-secondary); max-width: 42ch; margin-bottom: var(--space-4); text-wrap: pretty; }
-.hero-home__cta { justify-content: flex-start; margin-top: var(--space-5); }
+.hero-home__lead { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); color: var(--color-text-secondary); max-width: 42ch; margin: 0 auto var(--space-4); text-wrap: pretty; }
+.hero-home__cta { justify-content: center; margin-top: var(--space-5); }
 @media (prefers-reduced-motion: no-preference) {
   .hero-home__text > *, .hero-home .hero-telemetry { animation: heroIn 0.7s var(--ease-out-expo) backwards; }
   .hero-home__eyebrow { animation-delay: 0.05s; }
@@ -1134,6 +1211,36 @@ pre code {
   .hero-home__cta     { animation-delay: 0.46s; }
   @keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 }
+
+/* Cover is always dark (regardless of OS theme), so force copy + instrument to read white.
+   Eyebrow is intentionally subtle/blended white; lead is high-but-soft white. */
+.hero-home__eyebrow { color: rgba(255,255,255,0.62); }
+.hero-home__lead { color: rgba(255,255,255,0.82); }
+.hero-home .hero-telemetry {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: none;
+}
+.hero-home .tl-label,
+.hero-home .tl-unit,
+.hero-home .tl-legend { color: rgba(255,255,255,0.7); }
+.hero-home .tl-value { color: #fff; }
+.hero-home .tl-nodes circle { fill: rgba(255,255,255,0.85); stroke: rgba(255,255,255,0.25); }
+.hero-home .tl-legend--proc { color: var(--color-accent-text); }
+/* Ghost button as a white outline on the dark cover (the light default would fight the gradient). */
+.hero-home .btn-secondary {
+  background: transparent; color: #fff;
+  border-color: rgba(255,255,255,0.4); box-shadow: none;
+}
+.hero-home .btn-secondary:hover {
+  background: rgba(255,255,255,0.08); color: #fff; border-color: #fff;
+}
+/* Pin the arrow to the cover's bottom edge (out of the flex flow) so the content stays centered. */
+.hero-home .scroll-cue {
+  position: absolute; left: 50%; bottom: var(--space-3);
+  transform: translateX(-50%); margin: 0; color: rgba(255,255,255,0.8);
+}
+.hero-home .scroll-cue:hover, .hero-home .scroll-cue:focus-visible { color: #fff; }
 
 /* Telemetry instrument panel */
 .hero-telemetry { margin-top: var(--space-5); max-width: 44rem; padding: var(--space-4); background: var(--color-accent-subtle); background: linear-gradient(155deg, var(--color-accent-subtle), color-mix(in srgb, var(--color-accent-subtle) 55%, var(--color-bg))); border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border)); border-radius: var(--border-radius); box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,.06); }
@@ -1218,41 +1325,58 @@ body::after {
    PROJECT COVER + SCROLL CUE  (michellegore.com-inspired)
    ============================================ */
 
-/* Tall cover: eyebrow + title on top, natural 16:9 media, scroll cue pinned bottom.
-   min-height (not height) so content never clips on short/wide viewports.
-   svh avoids the mobile URL-bar jump; the vh line is the fallback for older engines. */
+/* Full-bleed cover: the project art fills the viewport with the eyebrow + title overlaid
+   in white and a scroll cue pinned to the bottom edge - the michellegore.com cover treatment
+   (image-first, white overlay text, chevron) adapted to our dark navy SVG art.
+   svh dodges the mobile URL-bar height jump; the vh line is the older-engine fallback.
+   The -6rem allowance keeps the cover within one screen under the sticky header. */
 .project-cover {
-  display: flex;
-  flex-direction: column;
-  min-height: 62vh;
-  min-height: 62svh;
-  margin-bottom: var(--space-6);
-}
-.project-cover__head { margin-bottom: var(--space-4); }
-.project-cover__eyebrow { margin-bottom: var(--space-2); }
-.project-cover__title {
-  margin: 0;
-  font-size: clamp(2.25rem, 1.4rem + 3.4vw, 4rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-}
-
-/* Media keeps its natural 16:9 so the card -> cover view-transition scales cleanly
-   (old and new snapshots share an aspect ratio). Reuses the .project-hero scrim. */
-.project-cover__media {
   position: relative;
-  margin: 0;
-  border-radius: var(--border-radius-lg);
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 6rem);
+  min-height: calc(100svh - 6rem);
+  margin-bottom: var(--space-6);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
 }
-.project-cover__media img { display: block; width: 100%; height: auto; }
-.project-cover__media::after {
+.project-cover__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* scale 16:9 art to fill the tall cover, cropping gracefully */
+  object-position: 50% 50%;
+}
+/* Bottom-up scrim guarantees white-text contrast over any region of the art. */
+.project-cover::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, transparent 62%, color-mix(in srgb, var(--color-background) 22%, transparent));
+  background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 38%, rgba(0,0,0,0) 70%);
+}
+.project-cover__inner {
+  position: relative;          /* lift above the image + scrim */
+  z-index: 1;
+  align-self: flex-end;        /* anchor copy to the bottom of the cover */
+  width: 100%;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+.project-cover__back { color: rgba(255,255,255,0.85); margin-bottom: 0; }
+.project-cover__back:hover, .project-cover__back:focus-visible { color: #fff; }
+.project-cover__text { margin-top: var(--space-6); }
+.project-cover__eyebrow { color: rgba(255,255,255,0.62); margin-bottom: var(--space-2); }
+.project-cover__title {
+  margin: 0;
+  max-width: 18ch;
+  color: #fff;
+  /* Gentle slope: ~28px on a 390px phone (no clip) up to ~66px on desktop. */
+  font-size: clamp(1.75rem, 0.9rem + 3.6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  overflow-wrap: break-word;                  /* never let a long token overflow the cover */
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);   /* Michelle's text-shadow legibility trick */
 }
 
 /* Scroll cue: centered chevron link, reused by the project cover AND the home hero. */
@@ -1266,8 +1390,18 @@ body::after {
   color: var(--color-text-secondary);
   transition: color var(--transition-base);
 }
-.project-cover .scroll-cue { margin-top: auto; }   /* pin to the bottom of the flex cover */
 .scroll-cue:hover, .scroll-cue:focus-visible { color: var(--color-accent-text); }
+/* On the cover: pin the chevron to the bottom edge, centered over the art, in white. */
+.project-cover .scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-3);
+  transform: translateX(-50%);
+  z-index: 2;
+  margin: 0;
+  color: rgba(255,255,255,0.85);
+}
+.project-cover .scroll-cue:hover, .project-cover .scroll-cue:focus-visible { color: #fff; }
 .scroll-cue__icon { display: block; fill: currentColor; }
 
 /* Restrained "scroll down" bob - off under reduced motion (cue stays static, still usable). */
@@ -1306,7 +1440,7 @@ body::after {
 
 /* Sticky-header offset so scroll-cue anchor jumps don't tuck the target under the header.
    #project-body = project cover target; #glance = home hero cue target (added in Task 2). */
-#project-body, #glance { scroll-margin-top: var(--space-8); }
+#project-body, #glance { scroll-margin-top: 6rem; }   /* clear the sticky header on cue jumps */
 
 /* Card -> cover morph: keep both snapshots filling their box so a differing aspect ratio
    scales instead of stretching (also smooths the Home <-> About title morph). */

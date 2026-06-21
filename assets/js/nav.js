@@ -45,6 +45,27 @@
   desktop.addEventListener('change', function (e) { if (e.matches && isOpen()) close(false); });
 })();
 
+// Transparent header over a full-bleed cover (home hero / project cover): the bar floats
+// chrome-less over the dark cover, then swaps to the solid frosted bar once the cover scrolls
+// past. michellegore.com's transparent-nav-over-hero pattern, via IntersectionObserver.
+(function () {
+  var header = document.querySelector('.site-header');
+  var cover = document.querySelector('.hero-home, .project-cover');
+  if (!header || !cover || !('IntersectionObserver' in window)) return;
+
+  function apply(over) { header.classList.toggle('is-over-cover', over); }
+
+  // Set the initial state before first paint to avoid a solid-bar flash over the cover.
+  apply(cover.getBoundingClientRect().bottom > header.offsetHeight);
+
+  // Shrinking the IO root by the header height flips the class exactly when the cover's bottom
+  // edge passes beneath the bar (cover under header -> transparent; scrolled past -> solid).
+  var io = new IntersectionObserver(function (entries) {
+    apply(entries[0].isIntersecting);
+  }, { rootMargin: '-' + header.offsetHeight + 'px 0px 0px 0px', threshold: 0 });
+  io.observe(cover);
+})();
+
 // Email obfuscation: reassemble address on click so it never appears in static HTML.
 // Markup: <a data-user="local" data-domain="example.com">.
 document.querySelectorAll('a[data-user][data-domain]').forEach(function (a) {

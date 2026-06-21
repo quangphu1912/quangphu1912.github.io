@@ -3,29 +3,31 @@ layout: default
 ---
 
 <article class="project-detail">
-    <div class="container">
-        <div class="detail-back-row">
-            <a href="{{ '/projects/' | relative_url }}" class="back-link">← Back to Projects</a>
-        </div>
-
-        {% if page.image %}
-        <header class="project-cover">
-            <div class="project-cover__head">
+    {% if page.image %}
+    <header class="project-cover">
+        <img class="project-cover__img" src="{{ page.hero_image | default: page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager" style="view-transition-name: vt-{{ page.slug }};">
+        <div class="container project-cover__inner">
+            <a href="{{ '/projects/' | relative_url }}" class="back-link project-cover__back">← Back to Projects</a>
+            <div class="project-cover__text">
                 <p class="eyebrow project-cover__eyebrow">
                     {% if page.date %}{{ page.date | date: "%b %Y" | upcase }}{% endif %}{% if page.tags %} · {{ page.tags | first }}{% endif %}
                 </p>
                 <h1 class="project-cover__title">{{ page.title }}</h1>
             </div>
-            <figure class="project-cover__media" style="view-transition-name: vt-{{ page.slug }};">
-                <img src="{{ page.hero_image | default: page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
-            </figure>
-            {% include scroll-cue.html target="project-body" label="Scroll to project details" %}
-        </header>
-        {% else %}
+        </div>
+        {% include scroll-cue.html target="project-body" label="Scroll to project details" %}
+    </header>
+    {% endif %}
+
+    <div class="container">
+        {% unless page.image %}
+        <div class="detail-back-row">
+            <a href="{{ '/projects/' | relative_url }}" class="back-link">← Back to Projects</a>
+        </div>
         <header class="project-header detail-header--spaced">
             <h1>{{ page.title }}</h1>
         </header>
-        {% endif %}
+        {% endunless %}
 
         <div class="section-sm" id="project-body">
             <div class="project-intro detail-header--spaced">

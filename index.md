@@ -56,10 +56,12 @@ image_alt: "Hero background"
   {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
   {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
   {% assign teaser = featured | concat: rest %}
-  <div class="work-scroller">
-    {% for project in teaser %}
-      {% include project-card.html project=project %}
-    {% endfor %}
+  <div class="container">
+    <div class="work-rows">
+      {% for project in teaser %}
+        {% include project-card.html project=project %}
+      {% endfor %}
+    </div>
   </div>
   <div class="container">
     <p class="lede" style="margin-top: var(--space-3)"><a href="{{ '/projects/' | relative_url }}">View all projects →</a></p>

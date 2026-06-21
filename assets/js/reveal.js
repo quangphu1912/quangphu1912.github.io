@@ -13,11 +13,16 @@
     return;
   }
 
+  // Project rows (.work-rows) re-trigger their slide-in on every entry, so the effect plays
+  // whether you scroll down OR back up (michellegore-style). Everything else reveals once.
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
+      var repeat = entry.target.closest && entry.target.closest(".work-rows");
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
-        io.unobserve(entry.target);
+        if (!repeat) io.unobserve(entry.target);
+      } else if (repeat) {
+        entry.target.classList.remove("is-visible");
       }
     });
   }, { rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
