@@ -16,4 +16,5 @@
       {% include hero-telemetry.html %}
     </div>
   </div>
+  {% if include.cue_target %}{% include scroll-cue.html target=include.cue_target label="Scroll to highlights" %}{% endif %}
 </section>

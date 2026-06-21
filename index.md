@@ -9,10 +9,11 @@ image_alt: "Hero background"
 {% include hero-home.html
    eyebrow="DATA & AI ENGINEER · TORONTO · AWS CERTIFIED"
    title="Phu Le"
-   lead="I build the cloud data platforms that power AI, production pipelines and the data-quality infrastructure that makes downstream ML trustworthy." %}
+   lead="I build the cloud data platforms that power AI, production pipelines and the data-quality infrastructure that makes downstream ML trustworthy."
+   cue_target="glance" %}
 
  <!-- Metrics Strip -->
-<section class="metrics-strip section-sm" data-reveal>
+<section id="glance" class="metrics-strip section-sm" data-reveal>
   <div class="container">
     <p class="eyebrow">BY THE NUMBERS</p>
     <h2 class="section-title">At a Glance</h2>
