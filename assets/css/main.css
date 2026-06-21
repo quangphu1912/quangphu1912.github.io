@@ -289,7 +289,7 @@ pre code {
   font-size: var(--text-sm); margin-bottom: var(--space-4); }
 .project-meta { color: var(--color-text-secondary); font-size: var(--text-sm); margin-bottom: var(--space-4); }
 
-/* Detail-page layout helpers (project / case-study / notebook / page) */
+/* Detail-page layout helpers (project / notebook / page) */
 .page-header--spaced { margin-bottom: var(--space-6); }
 .page-description--headed { font-size: var(--text-lg); color: var(--color-text-secondary); margin-top: var(--space-2); }
 .detail-header--spaced { margin-bottom: var(--space-6); }
@@ -342,11 +342,18 @@ pre code {
 .btn-primary:hover { background-color: var(--color-accent-deep); transform: translateY(-1px); }
 
 .btn-secondary {
-  background-color: transparent;
+  background-color: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgba(0,0,0,.06); /* fallback for browsers without color-mix() */
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 2px 6px color-mix(in srgb, var(--color-text) 7%, transparent);
 }
-.btn-secondary:hover { border-color: var(--color-accent-text); color: var(--color-accent-text); }
+.btn-secondary:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
+  color: var(--color-accent-text);
+  transform: translateY(-1px); /* match the primary's lift for consistent motion */
+  box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 6px 16px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
 
 /* Button press feedback (token-based → reduced-motion-guarded) */
 .btn-primary:active { transform: translateY(0) scale(0.98); }
@@ -652,7 +659,7 @@ pre code {
   margin: 0;
 }
 /* wrap social chips so the last one (Email) never overflows on narrow phones */
-.social-links { flex-wrap: wrap; gap: var(--space-2); }
+.social-links { flex-wrap: nowrap; gap: var(--space-2); }
 
 .social-links a,
 .footer-links a {
@@ -667,18 +674,23 @@ pre code {
   color: var(--color-accent-text);
 }
 
-/* Social-link icon chips (footer) - overrides the shared block display */
+/* Social-link icon chips (footer) — icon-only square chips, always one row */
 .social-links a {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-2);
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius-sm);
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 }
 .social-links a:hover {
-  background: var(--color-surface);
   color: var(--color-accent-text);
+  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+  transform: translateY(-1px);
 }
 .social-links svg {
   width: 18px;
