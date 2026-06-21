@@ -1215,6 +1215,109 @@ body::after {
 .hero-home__title, .identity-name { view-transition-name: vt-phu; }
 
 /* ============================================
+   PROJECT COVER + SCROLL CUE  (michellegore.com-inspired)
+   ============================================ */
+
+/* Tall cover: eyebrow + title on top, natural 16:9 media, scroll cue pinned bottom.
+   min-height (not height) so content never clips on short/wide viewports.
+   svh avoids the mobile URL-bar jump; the vh line is the fallback for older engines. */
+.project-cover {
+  display: flex;
+  flex-direction: column;
+  min-height: 62vh;
+  min-height: 62svh;
+  margin-bottom: var(--space-6);
+}
+.project-cover__head { margin-bottom: var(--space-4); }
+.project-cover__eyebrow { margin-bottom: var(--space-2); }
+.project-cover__title {
+  margin: 0;
+  font-size: clamp(2.25rem, 1.4rem + 3.4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+/* Media keeps its natural 16:9 so the card -> cover view-transition scales cleanly
+   (old and new snapshots share an aspect ratio). Reuses the .project-hero scrim. */
+.project-cover__media {
+  position: relative;
+  margin: 0;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.project-cover__media img { display: block; width: 100%; height: auto; }
+.project-cover__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 62%, color-mix(in srgb, var(--color-background) 22%, transparent));
+}
+
+/* Scroll cue: centered chevron link, reused by the project cover AND the home hero. */
+.scroll-cue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: var(--space-4) auto 0;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-base);
+}
+.project-cover .scroll-cue { margin-top: auto; }   /* pin to the bottom of the flex cover */
+.scroll-cue:hover, .scroll-cue:focus-visible { color: var(--color-accent-text); }
+.scroll-cue__icon { display: block; fill: currentColor; }
+
+/* Restrained "scroll down" bob - off under reduced motion (cue stays static, still usable). */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue__icon { animation: scroll-cue-bob 2.4s var(--ease-out-expo) infinite; }
+}
+@keyframes scroll-cue-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(4px); }
+}
+
+/* Prev/next band: layout only. The .detail-nav class on the same element supplies
+   the top border + spacing. Empty <span> placeholders keep one-sided nav aligned. */
+.project-nav { display: flex; justify-content: space-between; gap: var(--space-4); }
+.project-nav__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-width: 22rem;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.project-nav__link--prev { margin-right: auto; }
+.project-nav__link--next { margin-left: auto; text-align: right; }
+.project-nav__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+.project-nav__title { font-size: var(--text-lg); font-weight: 600; letter-spacing: -0.01em; }
+.project-nav__link:hover .project-nav__title,
+.project-nav__link:focus-visible .project-nav__title { color: var(--color-accent-text); }
+
+/* Sticky-header offset so scroll-cue anchor jumps don't tuck the target under the header.
+   #project-body = project cover target; #glance = home hero cue target (added in Task 2). */
+#project-body, #glance { scroll-margin-top: var(--space-8); }
+
+/* Card -> cover morph: keep both snapshots filling their box so a differing aspect ratio
+   scales instead of stretching (also smooths the Home <-> About title morph). */
+::view-transition-old(*), ::view-transition-new(*) { object-fit: cover; }
+
+/* Smooth in-page scrolling for the cue anchors - disabled under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ============================================
    MOTION CRAFT - heading reveals (native, reduced-motion + no-support safe)
    ============================================ */
 /* Hero title: masked line rise on entrance (single-line name → clip-safe) */
