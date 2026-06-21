@@ -858,6 +858,8 @@ pre code {
 
 /* Project card body — image sits flush to the top, content padded below */
 .project-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+/* Editorial index marker (01/02/…) — reuses the eyebrow's mono/tracked label language */
+.card-index { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-text-secondary); }
 
 /* Home — horizontal snap gallery of selected work (edge-bleed to viewport) */
 .work-scroller {
@@ -1021,6 +1023,8 @@ pre code {
   .nav-menu.open { display: flex; }
   .nav-menu li { width: 100%; }
   .nav-menu .nav-link { display: block; padding: var(--space-3) 0; }
+  /* Lock background scroll while the mobile drawer is open. */
+  body[data-nav-open] { overflow: hidden; }
 }
 /* progressive enhancement: if JS is disabled the links remain reachable via the open state */
 

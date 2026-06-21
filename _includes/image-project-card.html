@@ -1,18 +1,6 @@
 {% if include.image %}
 <figure class="image-thumbnail"{% if include.project.slug %} style="view-transition-name: vt-{{ include.project.slug }};"{% endif %}>
-  {% if include.image contains '.svg' %}
   <img src="{{ include.image | relative_url }}" width="800" height="450"
        alt="{{ include.alt | default: 'Project thumbnail' }}" loading="lazy">
-  {% else %}
-  <picture>
-    <source srcset="{{ include.image | relative_url }}" type="image/webp"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
-    <img src="{{ include.image | relative_url }}"
-         width="800"
-         height="600"
-         alt="{{ include.alt | default: 'Project thumbnail' }}"
-         loading="lazy">
-  </picture>
-  {% endif %}
 </figure>
 {% endif %}

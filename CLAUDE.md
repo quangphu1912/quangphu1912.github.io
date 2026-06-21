@@ -62,9 +62,11 @@ The reliable loop for any change (CSS, markup, JS, content):
    gh api repos/quangphu1912/quangphu1912.github.io/actions/runs \
      --jq '.workflow_runs[0] | "\(.status)/\(.conclusion)  \(.head_sha[0:7])"'
    ```
-9. **Verify live** — fetch the deployed site and confirm the change landed (GitHub Pages updates within ~1 min of a green run):
+9. **Verify live** — fetch the deployed site and confirm the change landed (GitHub Pages updates within ~1 min of a green run). **CDN cache gotcha:** right after a green run the Pages CDN can still serve the *old* asset for ~1 min, so a plain `curl` may false-read stale content. Cache-bust with `?cb=$RANDOM` to force the edge to re-fetch:
    ```bash
-   curl -s https://quangphu1912.github.io/ | grep -c "<your-marker>"
+   curl -s "https://quangphu1912.github.io/?cb=$RANDOM" | grep -c "<your-marker>"
+   # for assets (CSS/JS/images), append the cache-bust to the asset path:
+   curl -s "https://quangphu1912.github.io/assets/css/main.css?cb=$RANDOM" | grep -c "<your-rule>"
    ```
 
 ## Architecture
@@ -108,13 +110,14 @@ Home page sections pull from:
 
 Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS custom properties (variables) handle theming and dark mode.
 
-### Hero Images
+### Project Images (visible hero vs. social og:image)
 
-`_includes/image-hero.html` accepts these parameters:
-- `image`, `alt`, `title`, `subtitle`, `lead`, `creds` — content slots
-- `show_cta=true` — renders "View Projects" + "About Me" buttons
+There is **no** `_includes/image-hero.html` and **no** `.jpg`→`.webp` `replace` filter — both were aspirational doc that never matched the code. The home hero is typographic (`_includes/hero-home.html`, no `<img>`). The real image chain:
 
-Images are auto-switched from `.jpg` to `.webp` via a `replace` filter in the include.
+- `page.image` feeds **both** `jekyll-seo-tag`'s `og:image` / BlogPosting JSON-LD (`_layouts/default.html` `{% seo %}`) **and** the visible hero via fallback.
+- For projects, `page.image` is the **raster** (`.png`, 1200×675) so social cards render — Twitter/LinkedIn/Slack silently drop SVG. `hero_image` is the **SVG** (crisp visible hero + card thumbnail).
+- Visible image is read as `hero_image | default: image`: `_layouts/project.html` (detail hero), `_includes/project-card.html` → `_includes/image-project-card.html` (card thumbnail — a single `<img>`).
+- `image_alt` covers whichever is shown (they depict the same illustration).
 
 ### Résumé
 
