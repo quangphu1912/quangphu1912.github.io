@@ -56,7 +56,7 @@ image_alt: "Hero background"
   {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
   {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
   {% assign teaser = featured | concat: rest %}
-  <div class="work-scroller" data-reveal>
+  <div class="work-scroller">
     {% for project in teaser %}
       {% include project-card.html project=project %}
     {% endfor %}
