@@ -39,13 +39,13 @@ The reliable loop for any change (CSS, markup, JS, content). Keep edits surgical
 4. **Commit** - conventional (`feat:` / `fix:` / `refactor:` / `docs:`) on the feature branch.
 5. **Ship** - `git checkout main && git merge --ff-only <branch> && git push origin main` (triggers the Actions deploy).
 
-**Six gotchas that have bitten this repo:**
+**Gotchas that have bitten this repo:**
 - **rbenv** - lazy-init is broken in this shell; always use the absolute paths above.
 - **Deploy status** - `gh run list` is cached; poll the API to `completed/success`: `gh api repos/quangphu1912/quangphu1912.github.io/actions/runs --jq '.workflow_runs[0] | "\(.status)/\(.conclusion)  \(.head_sha[0:7])"'`.
 - **CDN cache** - right after a green run the Pages CDN can still serve the *old* asset for ~1 min; cache-bust with `?cb=$RANDOM`: `curl -s "https://quangphu1912.github.io/assets/css/main.css?cb=$RANDOM" | grep -c "<your-rule>"`.
 - **Visual check (optional)** - serve `_site` (`python3 -m http.server`) and screenshot with headless Chrome.
 - **Boolean attributes** - Jekyll renders a bare `data-reveal` as `data-reveal=""` in `_site`. CSS `[data-reveal]` and `querySelectorAll("[data-reveal]")` match either form, so verify with value-agnostic matching (`grep 'data-reveal'`), not a literal `data-reveal>`.
-- **Headless dark mode** - `--headless --force-dark-mode` yields a byte-identical light screenshot; use `--headless=new --force-dark-mode` to actually apply `prefers-color-scheme: dark`.
+- **Headless screenshots are dark by default** - the site is dark-theme only and declares `color-scheme: dark`, so plain `--headless=new` already renders dark. Do **NOT** pass `--force-dark-mode`: its auto-dark algorithm repaints `transparent` elements (it injected a phantom background onto the floating header). To preview a light-OS visitor (who still gets the dark site), use `--blink-settings=preferredColorScheme=1` as its own arg.
 
 ## Architecture
 
@@ -86,7 +86,11 @@ Home page sections pull from:
 
 ### CSS
 
-Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS custom properties (variables) handle theming and dark mode.
+Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS custom properties (variables) handle theming.
+
+**Dark theme only (one theme for every visitor).** `:root` holds the dark palette and declares `color-scheme: dark`; `_layouts/default.html` also sets `<meta name="color-scheme" content="dark">`. There is **no light mode** - do **not** add `@media (prefers-color-scheme: dark)` branches (the one exception is the `@media print` block, which intentionally overrides tokens to ink-on-white). Mermaid (`_includes/mermaid.html`) is hard-set to the dark theme.
+
+**Header (top-of-page, scrolls away, fully transparent).** `.site-header` is `position: absolute` (NOT fixed/sticky) so it sits at the top of the page and **scrolls away with the content** - michellegore.com's nav that only appears at the top. It is **transparent on every page** (home, project, about) - no background, border, blur, or shadow (no "stripe"), just the wordmark + nav in white over whatever is behind it. One consistent bar, no solid/frosted state, no `is-over-cover` toggle (removed, no JS). Smaller minimalist font; the tagline is hidden so it reads as wordmark + nav. `main` reserves the header height via `padding-top: var(--header-h)` so non-cover content isn't hidden under it at the top; cover pages (`.hero-home` / `.project-cover`) cancel that with `margin-top: calc(-1 * var(--header-h))` so the cover bleeds up behind the transparent header. There is no reading-progress bar (removed). The skip-to-content link is hidden off-screen via `transform: translateY(-200%)`. Do not make the header `fixed`/`sticky` or add a background without asking - it is meant to scroll away.
 
 ### Project Images (visible hero vs. social og:image)
 

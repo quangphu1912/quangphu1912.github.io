@@ -28,23 +28,24 @@
    CSS CUSTOM PROPERTIES (Design Tokens)
    ============================================ */
 :root {
-  /* Colors - Light Mode */
+  color-scheme: dark;               /* single dark theme, declared so browsers / Chrome auto-dark don't guess */
+  /* Colors - dark is the only theme (see CLAUDE.md: do not add prefers-color-scheme branches) */
   /* Accent ramp (a system, not one blue) */
   --color-accent: #0A84FF;          /* large figures / chrome */
-  --color-accent-text: #0063CC;     /* small text/links on white - ≥4.5:1 */
-  --color-accent-subtle: #E8F1FE;   /* ~10% tint: panel fill, active nav, focus halo */
-  --color-accent-deep: #0050B3;     /* pressed */
+  --color-accent-text: #4DA3FF;     /* small text/links on black - ≥4.5:1 */
+  --color-accent-subtle: #0E2438;   /* deep tint: panel fill, active nav, focus halo */
+  --color-accent-deep: #0063CC;     /* pressed */
   --color-primary: var(--color-accent);
-  --color-primary-hover: var(--color-accent-deep);
-  --color-text: #1D1D1F;
-  --color-text-secondary: #6E6E73;
+  --color-primary-hover: #409CFF;
+  --color-text: #F5F5F7;
+  --color-text-secondary: #A1A1A6;
   /* Cool-neutral elevation ladder */
-  --color-bg: #FFFFFF;
-  --color-surface: #F4F5F7;         /* faint cool cast */
-  --color-surface-alt: #ECEDF1;
-  --color-surface-raised: #FFFFFF;  /* cards sit above tinted surfaces via shadow */
+  --color-bg: #0A0A0C;
+  --color-surface: #161617;
+  --color-surface-alt: #1C1C1E;
+  --color-surface-raised: #242426;  /* surfaces genuinely lighten */
   --color-background: var(--color-bg);
-  --color-border: #D6D7DD;          /* cool */
+  --color-border: #2E2E30;
 
   /* Typography - display (headings) / body share Inter; mono is the 2nd voice */
   --font-display: "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -79,16 +80,17 @@
   /* Layout */
   --max-width: 1200px;
   --max-width-prose: 760px;
+  --header-h: 6rem;      /* fixed-header height; covers cancel main's top padding with this */
   --border-radius: 12px;
   --border-radius-sm: 8px;
   --border-radius-xs: 4px;
   --border-radius-lg: 16px;
   
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.04), 0 2px 6px rgba(0,0,0,.06);
-  --shadow-md: 0 2px 4px rgba(0,0,0,.05), 0 8px 24px rgba(0,0,0,.09);
-  --shadow-lg: 0 4px 8px rgba(0,0,0,.06), 0 18px 40px rgba(0,0,0,.12);
-  --shadow-card: 0 1px 2px rgba(0,0,0,.04), 0 1px 1px rgba(0,0,0,.03);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.5);
+  --shadow-md: 0 2px 4px rgba(0,0,0,.45), 0 8px 24px rgba(0,0,0,.55);
+  --shadow-lg: 0 4px 8px rgba(0,0,0,.5), 0 18px 40px rgba(0,0,0,.6);
+  --shadow-card: 0 1px 2px rgba(0,0,0,.4), 0 1px 1px rgba(0,0,0,.3);
   
   /* Transitions */
   --transition-fast: 150ms ease-out;
@@ -98,31 +100,6 @@
 
   /* Vertical rhythm between major sections */
   --space-section: clamp(5.5rem, 10vw, 10rem);
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-accent: #0A84FF;
-    --color-accent-text: #4DA3FF;     /* small text on black - ≥4.5:1 */
-    --color-accent-subtle: #0E2438;   /* deep tint panel fill */
-    --color-accent-deep: #0063CC;
-    --color-primary: var(--color-accent);
-    --color-primary-hover: #409CFF;
-    --color-text: #F5F5F7;
-    --color-text-secondary: #A1A1A6;
-    --color-bg: #0A0A0C;
-    --color-surface: #161617;
-    --color-surface-alt: #1C1C1E;
-    --color-surface-raised: #242426;  /* surfaces genuinely lighten */
-    --color-background: var(--color-bg);
-    --color-border: #2E2E30;
-
-    --shadow-sm: 0 1px 2px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.5);
-    --shadow-md: 0 2px 4px rgba(0,0,0,.45), 0 8px 24px rgba(0,0,0,.55);
-    --shadow-lg: 0 4px 8px rgba(0,0,0,.5), 0 18px 40px rgba(0,0,0,.6);
-    --shadow-card: 0 1px 2px rgba(0,0,0,.4), 0 1px 1px rgba(0,0,0,.3);
-  }
 }
 
 /* ============================================
@@ -497,17 +474,18 @@ pre code {
 /* Skip to Content */
 .skip-to-content {
   position: absolute;
-  top: -40px;
+  top: 0;
   left: 0;
+  transform: translateY(-200%);   /* fully off-screen until focused (no blue sliver above the logo) */
   background: var(--color-primary);
   color: white;
   padding: var(--space-1) var(--space-2);
   z-index: 1000;
-  transition: top var(--transition-fast);
+  transition: transform var(--transition-fast);
 }
 
 .skip-to-content:focus {
-  top: 0;
+  transform: translateY(0);
 }
 
 /* ============================================
@@ -541,68 +519,27 @@ pre code {
    PAGE-SPECIFIC COMPONENTS
    ============================================ */
 
-/* Site Header */
+/* Site Header - sits at the top of the page and scrolls away with the content (NOT pinned/fixed):
+   michellegore.com's nav that only appears at the top. Fully transparent on every page (home, project,
+   about) - no background, border, blur, or shadow (no "stripe"), just the wordmark + nav in white over
+   whatever is behind it. position: absolute (not fixed) so it overlaps the cover and scrolls off-screen;
+   covers bleed up behind it (negative margin on .hero-home/.project-cover cancels main's padding). */
 .site-header {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: rgba(255,255,255,0.72);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
-  /* Glide between transparent-over-cover and the solid frosted bar (toggled in nav.js). */
-  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-@media (prefers-color-scheme: dark) {
-  .site-header {
-    background: rgba(0,0,0,0.55);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-  }
-}
+/* Fixed header floats over content, so push non-cover page content clear of it. Cover pages cancel this
+   with a negative margin on .hero-home/.project-cover so the cover bleeds up behind the header. */
+main { padding-top: var(--header-h); }
 
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .site-header { background: var(--color-background); }
-}
-
-/* Transparent header over a full-bleed cover (home hero / project cover) - michellegore.com's
-   chrome-less-nav-over-hero look. nav.js adds .is-over-cover while the cover is under the bar
-   and drops it once the cover scrolls past, reverting to the solid frosted header above. */
-.site-header.is-over-cover {
-  background: transparent;
-  border-bottom-color: transparent;
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-/* Logo + hamburger live in the now-transparent bar over the dark cover -> force light chrome. */
-.site-header.is-over-cover .site-name { color: #fff; }
-.site-header.is-over-cover .site-tagline { color: rgba(255,255,255,0.72); }
-.site-header.is-over-cover .nav-toggle-bar { background: #fff; }
-/* Desktop nav links are inline in the transparent bar -> light. (On mobile the links sit in the
-   opaque drawer below, so they keep their normal colors - only logo + hamburger float over art.) */
-@media (min-width: 768px) {
-  .site-header.is-over-cover .nav-link { color: rgba(255,255,255,0.82); }
-  .site-header.is-over-cover .nav-link:hover,
-  .site-header.is-over-cover .nav-link.active { color: #fff; background-color: transparent; }
-}
-
-/* Scroll-progress indicator - thin accent bar tracking reading position.
-   Progressive enhancement: animates only where scroll-driven animations exist;
-   otherwise the bar stays hidden (no false signal). */
-.scroll-progress {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
-  transform: scaleX(0); transform-origin: 0 50%;
-  background: var(--color-accent); opacity: 0.9;
-}
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .scroll-progress { animation: scroll-progress-fill linear both; animation-timeline: scroll(root); }
-    @keyframes scroll-progress-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  }
-}
+/* Transparent over dark covers/content -> light chrome. Tagline hidden for a minimal wordmark + nav. */
+.site-header .site-tagline { display: none; }
+.site-header .nav-link { color: rgba(255,255,255,0.85); }
+.site-header .nav-link:hover { color: #fff; background-color: transparent; }
 
 .site-nav {
   padding: var(--space-3) 0;
@@ -610,8 +547,9 @@ pre code {
 
 .site-logo .site-name {
   display: block;
-  font-size: var(--text-2xl);
+  font-size: var(--text-lg);   /* smaller, minimalist wordmark */
   font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.2;
   color: var(--color-text);
   margin: 0;
@@ -624,6 +562,7 @@ pre code {
 
 .nav-link {
   position: relative;
+  font-size: var(--text-sm);   /* smaller, minimalist nav */
   font-weight: 500;
   color: var(--color-text-secondary);
   transition: color var(--transition-fast);
@@ -1163,13 +1102,15 @@ pre code {
 /* ============================================
    HOME HERO (typographic) + TELEMETRY SIGNATURE
    ============================================ */
-/* Full-page hero cover: static dark navy -> indigo gradient, white centered copy, arrow at the
-   bottom. -6rem keeps it within one screen under the sticky header (matches the project cover). */
+/* Full-page hero cover: static dark navy -> indigo gradient, white centered copy, arrow at the bottom.
+   The negative top margin cancels main's --header-h padding so the cover bleeds up behind the fixed
+   header (transparent header reveals the cover, not the page bg); min-height fills one screen. */
 .hero-home {
   position: relative; isolation: isolate;
   display: flex; align-items: center;
-  min-height: calc(100vh - 6rem);
-  min-height: calc(100svh - 6rem);
+  margin-top: calc(-1 * var(--header-h));
+  min-height: 100vh;
+  min-height: 100svh;
   padding-block: var(--space-8);
   color: #fff;
   background:
@@ -1253,16 +1194,11 @@ pre code {
 .tl-nodes circle { fill: var(--color-surface-raised); stroke: var(--color-border); stroke-width: 1.5; }
 .tl-nodes .tl-node--proc { stroke: var(--color-accent); }
 .tl-legend { list-style: none; display: flex; justify-content: space-between; margin: 6px 0 0; padding: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); }
-/* Telemetry captions sit on the accent-tinted panel - darken in light mode to clear WCAG AA
-   (#6E6E73 on #E8F1FE ≈ 4.38:1 fails; #55555C ≈ 6.3:1 passes). Dark mode already passes. */
+/* Telemetry captions on the accent-tinted panel (dark theme passes WCAG AA at the secondary color).
+   On the cover the white .hero-home .tl-* overrides win. */
 .hero-telemetry .tl-label,
 .hero-telemetry .tl-unit,
-.hero-telemetry .tl-legend { color: #55555C; }
-@media (prefers-color-scheme: dark) {
-  .hero-telemetry .tl-label,
-  .hero-telemetry .tl-unit,
-  .hero-telemetry .tl-legend { color: var(--color-text-secondary); }
-}
+.hero-telemetry .tl-legend { color: var(--color-text-secondary); }
 .tl-legend--proc { color: var(--color-accent-text); }
 .tl-pulse { opacity: 0; }
 @media (prefers-reduced-motion: no-preference) {
@@ -1283,9 +1219,7 @@ pre code {
 .project-content { line-height: 1.75; }
 .project-content > h2 { margin-top: var(--space-7); }
 .project-content figure figcaption { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: 8px; }
-@media (prefers-color-scheme: dark) {
-  .project-content img:not([src$=".svg"]) { border: 1px solid var(--color-border); border-radius: var(--border-radius-sm); }
-}
+.project-content img:not([src$=".svg"]) { border: 1px solid var(--color-border); border-radius: var(--border-radius-sm); }
 
 /* ============================================
    CRAFT LAYER (selection, scrollbar, prose underlines)
@@ -1329,13 +1263,15 @@ body::after {
    in white and a scroll cue pinned to the bottom edge - the michellegore.com cover treatment
    (image-first, white overlay text, chevron) adapted to our dark navy SVG art.
    svh dodges the mobile URL-bar height jump; the vh line is the older-engine fallback.
-   The -6rem allowance keeps the cover within one screen under the sticky header. */
+   The negative top margin cancels main's --header-h padding so the art bleeds up behind the fixed
+   header (so the floating header reveals the art, not the page bg). */
 .project-cover {
   position: relative;
   display: flex;
   width: 100%;
-  min-height: calc(100vh - 6rem);
-  min-height: calc(100svh - 6rem);
+  margin-top: calc(-1 * var(--header-h));
+  min-height: 100vh;
+  min-height: 100svh;
   margin-bottom: var(--space-6);
   overflow: hidden;
 }
@@ -1347,13 +1283,16 @@ body::after {
   object-fit: cover;          /* scale 16:9 art to fill the tall cover, cropping gracefully */
   object-position: 50% 50%;
 }
-/* Bottom-up scrim guarantees white-text contrast over any region of the art. */
+/* Scrims guarantee white-text contrast: a gentle top scrim for the floating nav, plus the bottom-up
+   scrim for the eyebrow + title. */
 .project-cover::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 38%, rgba(0,0,0,0) 70%);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0) 22%),
+    linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 38%, rgba(0,0,0,0) 70%);
 }
 .project-cover__inner {
   position: relative;          /* lift above the image + scrim */
@@ -1482,7 +1421,9 @@ body::after {
    ============================================ */
 @media print {
   .site-header, .nav-menu, .nav-toggle, .cta-buttons, .hero-telemetry__flow, .skip-to-content, .site-footer { display: none !important; }
-  :root { --color-text: #000; --color-bg: #fff; --color-background: #fff; }
+  /* Reset the dark palette to ink-on-white for print (surfaces/borders too, so they don't bleed dark). */
+  :root { --color-text: #000; --color-text-secondary: #333; --color-bg: #fff; --color-background: #fff;
+    --color-surface: #fff; --color-surface-alt: #fff; --color-surface-raised: #fff; --color-border: #ccc; }
   body { background: #fff; color: #000; }
   a { color: #000; text-decoration: underline; }
   .hero-home, .section, .section-sm { padding-block: 1rem; }

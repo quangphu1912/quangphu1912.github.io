@@ -1,11 +1,9 @@
 <script type="module">
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // Single dark theme site-wide - Mermaid always renders dark (see CLAUDE.md).
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
   mermaid.initialize({
     startOnLoad: true,
-    theme: prefersDark ? 'dark' : 'default',
-    themeVariables: prefersDark
-      ? { primaryColor: '#1C1C1E', primaryTextColor: '#F5F5F7', primaryBorderColor: '#0A84FF', lineColor: '#6E6E73' }
-      : { primaryColor: '#F5F5F7', primaryTextColor: '#1D1D1F', primaryBorderColor: '#007AFF', lineColor: '#6E6E73' }
+    theme: 'dark',
+    themeVariables: { primaryColor: '#1C1C1E', primaryTextColor: '#F5F5F7', primaryBorderColor: '#0A84FF', lineColor: '#6E6E73' }
   });
 </script>
