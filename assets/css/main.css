@@ -1,6 +1,6 @@
 /* ============================================
    MODERN DATA SCIENCE PORTFOLIO
-   Apple-Inspired Minimalist Design System — Elevated
+   Apple-Inspired Minimalist Design System - Elevated
    ============================================ */
 
 /* ============================================
@@ -31,7 +31,7 @@
   /* Colors - Light Mode */
   /* Accent ramp (a system, not one blue) */
   --color-accent: #0A84FF;          /* large figures / chrome */
-  --color-accent-text: #0063CC;     /* small text/links on white — ≥4.5:1 */
+  --color-accent-text: #0063CC;     /* small text/links on white - ≥4.5:1 */
   --color-accent-subtle: #E8F1FE;   /* ~10% tint: panel fill, active nav, focus halo */
   --color-accent-deep: #0050B3;     /* pressed */
   --color-primary: var(--color-accent);
@@ -46,7 +46,7 @@
   --color-background: var(--color-bg);
   --color-border: #D6D7DD;          /* cool */
 
-  /* Typography — display (headings) / body share Inter; mono is the 2nd voice */
+  /* Typography - display (headings) / body share Inter; mono is the 2nd voice */
   --font-display: "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body:    "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-system:  var(--font-body); /* back-compat alias for existing usages */
@@ -104,7 +104,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-accent: #0A84FF;
-    --color-accent-text: #4DA3FF;     /* small text on black — ≥4.5:1 */
+    --color-accent-text: #4DA3FF;     /* small text on black - ≥4.5:1 */
     --color-accent-subtle: #0E2438;   /* deep tint panel fill */
     --color-accent-deep: #0063CC;
     --color-primary: var(--color-accent);
@@ -276,7 +276,7 @@ pre code {
 .meta-text { color: var(--color-text-secondary); font-size: var(--text-sm); }
 .section-tinted { background: linear-gradient(180deg, var(--color-surface), var(--color-background)); }
 
-/* Closing invitation — centered, soft accent-gradient band */
+/* Closing invitation - centered, soft accent-gradient band */
 .closing { padding-block: var(--space-section); text-align: center;
   background: var(--color-accent-subtle); /* fallback for browsers without color-mix() */
   background: radial-gradient(120% 130% at 50% 0%, var(--color-accent-subtle), var(--color-background) 62%); }
@@ -296,7 +296,7 @@ pre code {
 .detail-back-row { margin-bottom: var(--space-2); }
 .detail-description { font-size: var(--text-xl); color: var(--color-text-secondary); margin: var(--space-2) 0; }
 .detail-meta-row { margin-top: var(--space-3); flex-wrap: wrap; }
-/* Detail hero — rounded, full-width, cohesive overlay (matches cards) */
+/* Detail hero - rounded, full-width, cohesive overlay (matches cards) */
 .project-hero { margin: var(--space-5) 0 var(--space-4); border-radius: var(--border-radius-lg); overflow: hidden; position: relative; box-shadow: var(--shadow-sm); }
 .project-hero img { display: block; width: 100%; height: auto; }
 .project-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 62%, color-mix(in srgb, var(--color-background) 22%, transparent)); }
@@ -470,7 +470,7 @@ pre code {
 
 /* Scroll-reveal (paired with assets/js/reveal.js).
    Gated on the .js class (set by an inline head script) so content is fully
-   visible when JS is off/blocked — no invisible hero, no LCP penalty. */
+   visible when JS is off/blocked - no invisible hero, no LCP penalty. */
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(12px);
@@ -565,7 +565,7 @@ pre code {
   .site-header { background: var(--color-background); }
 }
 
-/* Scroll-progress indicator — thin accent bar tracking reading position.
+/* Scroll-progress indicator - thin accent bar tracking reading position.
    Progressive enhancement: animates only where scroll-driven animations exist;
    otherwise the bar stays hidden (no false signal). */
 .scroll-progress {
@@ -691,7 +691,7 @@ pre code {
   color: var(--color-accent-text);
 }
 
-/* Social-link icon chips (footer) — icon-only square chips, always one row */
+/* Social-link icon chips (footer) - icon-only square chips, always one row */
 .social-links a {
   display: inline-flex;
   align-items: center;
@@ -738,7 +738,7 @@ pre code {
   flex-wrap: wrap;
 }
 
-/* Section Title — left-aligned editorial */
+/* Section Title - left-aligned editorial */
 .section-title {
   text-align: left;
   max-width: 60rem;
@@ -763,7 +763,7 @@ pre code {
 @media (min-width: 960px) {
   .skills-grid { grid-template-columns: repeat(3, 1fr); }
 }
-/* Skills as editorial hairline columns (matches the metrics readout) — no gray boxes */
+/* Skills as editorial hairline columns (matches the metrics readout) - no gray boxes */
 .skill-category.card {
   background: none; box-shadow: none; border: none;
   border-top: 1px solid var(--color-border); border-radius: 0;
@@ -816,7 +816,7 @@ pre code {
   margin-left: var(--space-3);
 }
 
-/* Project Cards — editorial, single focusable unit */
+/* Project Cards - editorial, single focusable unit */
 .project-card {
   display: flex;
   flex-direction: column;
@@ -834,7 +834,7 @@ pre code {
 .card-title__text { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } /* clamp the TEXT, not the link box (3 lines fits the longest project title) */
 .project-card:focus-within { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent); }
 .card-title__link:focus-visible { outline: none; box-shadow: none; }
-/* Hover arrow — slides in beside the title to signal the card opens (michellegore-style affordance) */
+/* Hover arrow - slides in beside the title to signal the card opens (michellegore-style affordance) */
 .card-arrow { display: inline-block; margin-left: 0.35em; color: var(--color-accent-text); opacity: 0; transform: translateX(-4px); transition: opacity var(--transition-base), transform var(--transition-base); }
 .project-card:hover .card-arrow,
 .project-card:focus-within .card-arrow { opacity: 1; transform: translateX(0); }
@@ -851,15 +851,15 @@ pre code {
   margin-top: var(--space-2);
 }
 
-/* Work listing (Projects page) — eyebrow header + 2-up grid on desktop */
+/* Work listing (Projects page) - eyebrow header + 2-up grid on desktop */
 .eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-3); }
 .work-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
 @media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* Project card body — image sits flush to the top, content padded below */
+/* Project card body - image sits flush to the top, content padded below */
 .project-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
 
-/* Home — horizontal snap gallery of selected work (edge-bleed to viewport) */
+/* Home - horizontal snap gallery of selected work (edge-bleed to viewport) */
 .work-scroller {
   display: grid; grid-auto-flow: column; grid-auto-columns: min(84vw, 23rem);
   gap: var(--space-4); overflow-x: auto; overscroll-behavior-x: contain;
@@ -875,12 +875,12 @@ pre code {
 }
 .work-scroller > .project-card { scroll-snap-align: start; }
 
-/* Projects page — alternating editorial feature rows */
+/* Projects page - alternating editorial feature rows */
 .work-rows { display: flex; flex-direction: column; gap: var(--space-6); }
 .work-rows .project-card { height: auto; }
-/* Projects page shows the full project name — no line clamp (rows grow to fit the title) */
+/* Projects page shows the full project name - no line clamp (rows grow to fit the title) */
 .work-rows .card-title__text { display: block; -webkit-line-clamp: none; overflow: visible; }
-/* Large editorial rows don't lift on hover — let the image zoom + arrow carry it (one motion, no jitter) */
+/* Large editorial rows don't lift on hover - let the image zoom + arrow carry it (one motion, no jitter) */
 .work-rows .project-card:hover { transform: none; }
 @media (min-width: 760px) {
   .work-rows .project-card { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: stretch; }
@@ -1021,6 +1021,8 @@ pre code {
   .nav-menu.open { display: flex; }
   .nav-menu li { width: 100%; }
   .nav-menu .nav-link { display: block; padding: var(--space-3) 0; }
+  /* Lock background scroll while the mobile drawer is open. */
+  body[data-nav-open] { overflow: hidden; }
 }
 /* progressive enhancement: if JS is disabled the links remain reachable via the open state */
 
@@ -1036,7 +1038,7 @@ pre code {
 .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5) var(--space-6); }
 @media (min-width: 768px) { .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
 .metric-cell { display: flex; flex-direction: column; gap: var(--space-1); text-align: left; padding: var(--space-3) 0 0; border-top: 1px solid var(--color-border); transition: border-color var(--transition-fast); }
-/* Subtle hairline accent on hover — gives the telemetry readout life on pointer devices only */
+/* Subtle hairline accent on hover - gives the telemetry readout life on pointer devices only */
 @media (hover: hover) { .metric-cell:hover { border-top-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border)); } }
 .metric-figure { font-family: var(--font-mono); font-size: clamp(2.75rem, 1.9rem + 2.8vw, 4rem); font-weight: 700;
   color: var(--color-accent); line-height: 0.95; font-variant-numeric: tabular-nums; letter-spacing: -0.035em; }
@@ -1046,7 +1048,7 @@ pre code {
 /* ===== About: Editorial elements ===== */
 /* Token note: --color-surface-alt → --color-surface (undefined in :root, reused nearest surface token; brief's #F5F5F7 fallback matched). */
 .identity-block { margin-block: var(--space-6) 0; }
-.identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.04em; } /* matches .hero-home__title — they share view-transition-name vt-phu and morph into each other */
+.identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.04em; } /* matches .hero-home__title - they share view-transition-name vt-phu and morph into each other */
 .identity-block .identity-title { color: var(--color-accent); font-weight: 600; font-size: clamp(1.3rem, 1rem + 1vw, 1.625rem); margin-top: var(--space-2); }
 .identity-block .identity-loc { color: var(--color-text-secondary); font-size: var(--text-lg); margin-top: var(--space-1); }
 .cert-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
@@ -1104,7 +1106,7 @@ pre code {
   background: radial-gradient(50% 50% at 35% 25%, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 72%);
   filter: blur(48px); opacity: 0.55;
 }
-/* Subtle dot-grid texture — fades from the top, reads as a "data grid" (on-brand for a
+/* Subtle dot-grid texture - fades from the top, reads as a "data grid" (on-brand for a
    data engineer). Masked so it's a texture, not a pattern; behind all hero content. */
 .hero-home::after {
   content: ""; position: absolute; z-index: -1; pointer-events: none; inset: 0;
@@ -1144,7 +1146,7 @@ pre code {
 .tl-nodes circle { fill: var(--color-surface-raised); stroke: var(--color-border); stroke-width: 1.5; }
 .tl-nodes .tl-node--proc { stroke: var(--color-accent); }
 .tl-legend { list-style: none; display: flex; justify-content: space-between; margin: 6px 0 0; padding: 0; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); }
-/* Telemetry captions sit on the accent-tinted panel — darken in light mode to clear WCAG AA
+/* Telemetry captions sit on the accent-tinted panel - darken in light mode to clear WCAG AA
    (#6E6E73 on #E8F1FE ≈ 4.38:1 fails; #55555C ≈ 6.3:1 passes). Dark mode already passes. */
 .hero-telemetry .tl-label,
 .hero-telemetry .tl-unit,
@@ -1183,7 +1185,7 @@ pre code {
    ============================================ */
 ::selection { background: var(--color-accent-subtle); color: var(--color-text); }
 
-/* Subtle film grain — tactile depth on flat surfaces (very low opacity, non-interactive) */
+/* Subtle film grain - tactile depth on flat surfaces (very low opacity, non-interactive) */
 body::after {
   content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='g'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.8'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23g)'/%3E%3C/svg%3E");
@@ -1209,11 +1211,11 @@ body::after {
 @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
 ::view-transition-group(*) { animation-timing-function: var(--ease-out-expo); }
 
-/* Shared element morph — the name "Phu Le" carries across Home ↔ About */
+/* Shared element morph - the name "Phu Le" carries across Home ↔ About */
 .hero-home__title, .identity-name { view-transition-name: vt-phu; }
 
 /* ============================================
-   MOTION CRAFT — heading reveals (native, reduced-motion + no-support safe)
+   MOTION CRAFT - heading reveals (native, reduced-motion + no-support safe)
    ============================================ */
 /* Hero title: masked line rise on entrance (single-line name → clip-safe) */
 .hero-home__title { overflow: hidden; }

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Phu Le — AI & Data Engineer
+title: Phu Le - AI & Data Engineer
 description: AI & Data Engineer | Production data pipelines, cloud-native ETL, MLOps
 image: /assets/images/hero/hero.webp
 image_alt: "Hero background"
@@ -9,7 +9,7 @@ image_alt: "Hero background"
 {% include hero-home.html
    eyebrow="DATA & AI ENGINEER · TORONTO · AWS CERTIFIED"
    title="Phu Le"
-   lead="I build the cloud data platforms that power AI — production pipelines and the data-quality infrastructure that makes downstream ML trustworthy." %}
+   lead="I build the cloud data platforms that power AI, production pipelines and the data-quality infrastructure that makes downstream ML trustworthy." %}
 
  <!-- Metrics Strip -->
 <section class="metrics-strip section-sm" data-reveal>
@@ -70,7 +70,7 @@ image_alt: "Hero background"
   <div class="container closing__inner">
     <p class="eyebrow">GET IN TOUCH</p>
     <h2 class="closing__title">Let's build something that ships.</h2>
-    <p class="closing__lead">Open to data engineering, MLOps, and AI-platform work — and always happy to talk shop.</p>
+    <p class="closing__lead">Open to data engineering, MLOps, and AI-platform work, and always happy to talk shop.</p>
     <div class="cta-buttons flex gap-4">
       <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get in touch</a>
       <a href="{{ '/about/' | relative_url }}" class="btn btn-secondary">Read my story</a>

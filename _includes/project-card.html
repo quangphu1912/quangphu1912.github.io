@@ -1,8 +1,9 @@
 {% assign project = include.project %}
 
 <article class="project-card card">
-  {% if project.image %}
-    {% include image-project-card.html image=project.image alt=project.title project=project %}
+  {% assign card_image = project.hero_image | default: project.image %}
+  {% if card_image %}
+    {% include image-project-card.html image=card_image alt=project.title project=project %}
   {% else %}
     <div class="project-card__noimg" aria-hidden="true">no preview</div>
   {% endif %}

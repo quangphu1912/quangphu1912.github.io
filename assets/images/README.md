@@ -1,39 +1,77 @@
 # Portfolio Images
 
-Imagery for the site. The project thumbnails are **self-authored SVG abstracts**; the page heroes and avatar are **WebP/JPEG photos**.
+Imagery for the site. Two kinds:
+- **Home / Projects-index heroes + About avatar** - WebP/JPEG photos in `hero/`.
+- **Project covers** - hand-authored SVG abstracts in `projects/`, each paired with a PNG twin for social sharing.
 
 ## Directory Structure
 
 ```
 /assets/images/
-├── hero/         # Page hero images (home, projects index) + about avatar
-├── projects/     # Project card + detail hero SVGs
+├── hero/         # Page hero photos (home, projects index) + about avatar
+├── projects/     # Project covers: <slug>.svg (visible) + <slug>.png (og:image)
 └── favicon.svg   # Site icon
 ```
 
-## Live Files
+## How project covers actually work
 
-### `hero/` — page heroes & avatar
+Each `_projects/<slug>.md` sets two front-matter keys:
+- `image:` -> the **raster** (`projects/<slug>.png`, 1200x675). Feeds `jekyll-seo-tag`'s `og:image` + BlogPosting JSON-LD. **Must be raster** - Twitter / LinkedIn / Slack silently drop SVG, so a missing/wrong PNG here means a blank share card.
+- `hero_image:` -> the **SVG** (`projects/<slug>.svg`). The crisp visible image.
+- `image_alt:` -> alt text (covers whichever is shown; they depict the same thing).
+
+Templates read the visible image as `hero_image | default: image`, so `image` is the fallback when `hero_image` is absent:
+- Detail hero: `_layouts/project.html` - `<img width="1200" height="675">`.
+- Card thumbnail: `_includes/project-card.html` -> `image-project-card.html` - a single `<img width="800" height="450">`.
+
+## Current files
+
+### `hero/` - page heroes & avatar
 | File | Used by | Notes |
 |---|---|---|
 | `hero.webp` | Home (`index.md` `image`) | WebP |
 | `projects_index.webp` | Projects index (`projects.md` `image`) | WebP |
-| `profile.jpg` | About avatar (`about.md` → `profile-avatar.html`) | JPEG, `loading="eager"` |
+| `profile.jpg` | About avatar (`about.md` -> `profile-avatar.html`) | JPEG, `loading="eager"` |
 
-### `projects/` — abstract data motifs (SVG)
-Hand-authored, cohesive navy→accent-gradient illustrations. Used as both the card thumbnail and the detail-page hero (16:9 viewBox `800×450`).
-- `aws-pipeline.svg` — pipeline flow nodes
-- `churn-prediction.svg` — classification scatter
-- `sentiment-analysis.svg` — sentiment wave + text bars
+### `projects/` - placeholder abstracts (one pair per project)
+Hand-authored navy->accent-gradient SVGs (16:9, viewBox `800x450`), each with a rasterized PNG twin for og:image.
+| Slug | Motif |
+|---|---|
+| `aws-pipeline` | pipeline flow nodes |
+| `churn-prediction` | classification scatter |
+| `sentiment-analysis` | sentiment wave + text bars |
 
-## Rendering
+## Replacing a placeholder cover (going forward)
 
-- **Project images** are served as-is (SVG branch in `_includes/image-project-card.html`; `<img>` in `_layouts/project.html` with `width="1200" height="675"`).
-- **Hero images** render via `_includes/image-hero.html` (single WebP source; no `<picture>`/srcset).
-- No JPEG fallbacks or `-800w` responsive variants are generated — the includes don't build srcsets, so they were removed to avoid dead assets.
+These abstracts are placeholders - swap each for a real visual when you have one. Two paths.
 
-## Adding a Project Image
+### A) Real screenshot / designed cover - simplest, one file
+1. Export a **1200x675 (16:9) raster** - PNG or WebP - to `projects/<slug>.png`.
+2. In `_projects/<slug>.md`, set `image:` to it and **delete the `hero_image:` line**. The `| default: image` fallback shows the same raster for the visible hero, so one file covers both og:image and the visible image.
+3. Update `image_alt:`.
+4. Build & verify the og:image resolved to the raster:
+   ```bash
+   JEKYLL_ENV=production ~/.rbenv/versions/3.3.6/bin/bundle exec ~/.rbenv/versions/3.3.6/bin/jekyll build
+   grep -o 'og:image[^>]*' _site/projects/<slug>/index.html
+   ```
 
-1. Author an SVG (16:9, `viewBox="0 0 800 450"`, navy→accent palette) → save to `projects/<slug>.svg`.
-2. Set `image: /assets/images/projects/<slug>.svg` + a descriptive `image_alt:` in the project's front matter.
-3. Build & verify: `JEKYLL_ENV=production ~/.rbenv/versions/3.3.6/bin/bundle exec ~/.rbenv/versions/3.3.6/bin/jekyll build`.
+### B) Keep a crisp SVG hero + social-friendly og - two files
+Use this only if you want a vector cover (scales perfectly on retina). You still need a PNG twin for og:image.
+1. Author the SVG (16:9, `viewBox="0 0 800 450"`) -> `projects/<slug>.svg`.
+2. Rasterize it to `projects/<slug>.png` (1200x675). **Chrome headless is the only installed rasterizer** here (no `rsvg-convert` / `magick` / `inkscape`):
+   ```bash
+   # build a tiny wrapper.html that centers the SVG on a 1200x675 page with the site bg, then:
+   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
+     --hide-scrollbars --window-size=1200,675 --screenshot=projects/<slug>.png wrapper.html
+   ```
+3. In `_projects/<slug>.md`: `image:` -> the `.png`, `hero_image:` -> the `.svg`, `image_alt:` -> describe it.
+4. Build & verify as in path A.
+
+## Adding a brand-new project
+
+Once `_projects/<slug>.md` exists, follow path A (one raster) or B (SVG + PNG) above.
+
+## Notes
+
+- No responsive `srcset` / `-800w` variants are generated - the includes render a single `<img>` at a fixed size, so there are no multi-source assets to maintain.
+- `og:image` is absolute-ized by `jekyll-seo-tag` against `site.url`, so keep `image:` root-relative (e.g. `/assets/images/projects/<slug>.png`).

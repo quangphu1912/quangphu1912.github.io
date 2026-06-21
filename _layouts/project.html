@@ -47,8 +47,8 @@ layout: default
 
             <div class="project-content prose">{{ content }}</div>
 
-            {% comment %} Prev/next follow the listing order (featured-first, then date-desc) — same sort
-            as index.md / projects.md — not Jekyll's document order, so navigation matches what the user saw. {% endcomment %}
+            {% comment %} Prev/next follow the listing order (featured-first, then date-desc), the same sort
+            as index.md / projects.md, not Jekyll's document order, so navigation matches what the user saw. {% endcomment %}
             {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
             {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
             {% assign ordered = featured | concat: rest %}

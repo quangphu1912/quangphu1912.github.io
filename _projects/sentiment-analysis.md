@@ -3,8 +3,9 @@ title: "Financial Sentiment Analysis with BERT"
 description: "Fine-tuned BERT model for financial text sentiment analysis, achieving 89% accuracy and reducing manual news analysis time by 70% for trading team."
 date: 2023-07-15
 tags: [NLP, BERT, Fine-Tuning, Financial Machine Learning, TensorFlow]
-image: /assets/images/projects/sentiment-analysis.svg
+image: /assets/images/projects/sentiment-analysis.png
 image_alt: "Abstract financial sentiment analysis illustration"
+hero_image: /assets/images/projects/sentiment-analysis.svg
 ---
 
 ## Overview
