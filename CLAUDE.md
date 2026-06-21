@@ -29,6 +29,44 @@ git push origin main   # triggers build + deploy automatically
 - Feature work → feature branch → merge to `develop` → merge to `main` → push
 - Pre-commit hook **blocks direct commits to `develop` and `main`** — always use a feature branch
 
+## Edit → Verify → Ship Workflow
+
+The reliable loop for any change (CSS, markup, JS, content):
+
+1. **Branch** — work on a feature branch off `main` (the pre-commit hook blocks direct commits to `main`/`develop`).
+2. **Edit** — surgical changes that match surrounding code. All styles live in the single flat `assets/css/main.css`; JS in `assets/js/`; templates in `_includes/` + `_layouts/`.
+3. **Build** — always verify with a production build:
+   ```bash
+   JEKYLL_ENV=production ~/.rbenv/versions/3.3.6/bin/bundle exec ~/.rbenv/versions/3.3.6/bin/jekyll build
+   ```
+   rbenv lazy-init is broken in this shell — use the absolute paths. Watch the output for `error` / `Liquid Warning`.
+4. **Verify in the built output** — check `_site/`, **not** just the source. Some things only manifest at build (rendered Liquid, front-matter → `<meta>`, filtered CSS):
+   ```bash
+   grep -o "<your-rule>[^}]*" _site/assets/css/main.css   # did the CSS ship?
+   grep -o "<title>[^<]*</title>" _site/index.html        # rendered HTML?
+   ```
+   grep is **line-based** — for multi-line CSS rules, search a unique fragment, not the whole block.
+5. **Visual check (optional)** — serve `_site` and screenshot with headless Chrome:
+   ```bash
+   (cd _site && python3 -m http.server 8765 &)
+   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
+     --hide-scrollbars --window-size=1280,1100 --screenshot=/tmp/shot.png http://localhost:8765/index.html
+   ```
+6. **Commit** — conventional commits (`feat:` / `fix:` / `refactor:` …) on the feature branch.
+7. **Ship** — fast-forward the feature branch into `main` and push (triggers the Actions deploy):
+   ```bash
+   git checkout main && git merge --ff-only feat/<branch> && git push origin main
+   ```
+8. **Verify deploy** — the `gh run list` CLI has a caching quirk; query the API instead and poll to `completed/success`:
+   ```bash
+   gh api repos/quangphu1912/quangphu1912.github.io/actions/runs \
+     --jq '.workflow_runs[0] | "\(.status)/\(.conclusion)  \(.head_sha[0:7])"'
+   ```
+9. **Verify live** — fetch the deployed site and confirm the change landed (GitHub Pages updates within ~1 min of a green run):
+   ```bash
+   curl -s https://quangphu1912.github.io/ | grep -c "<your-marker>"
+   ```
+
 ## Architecture
 
 ### Content Model
@@ -64,6 +102,7 @@ Home page sections pull from:
 
 - `nav.js` — mobile hamburger toggle + email obfuscation (email never appears in static HTML; reassembled from `data-user` / `data-domain` attributes on click)
 - `reveal.js` — `IntersectionObserver` scroll-reveal for `[data-reveal]` elements; gracefully degrades under `prefers-reduced-motion`
+- `count-up.js` — animates any `[data-countup]` element from 0 → target once on scroll-into-view (expo curve). Progressive enhancement: no-JS / `prefers-reduced-motion` leaves the static value. Prefix/suffix text lives *outside* the `[data-countup]` span.
 
 ### CSS
 
