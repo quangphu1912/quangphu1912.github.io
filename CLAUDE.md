@@ -39,11 +39,13 @@ The reliable loop for any change (CSS, markup, JS, content). Keep edits surgical
 4. **Commit** - conventional (`feat:` / `fix:` / `refactor:` / `docs:`) on the feature branch.
 5. **Ship** - `git checkout main && git merge --ff-only <branch> && git push origin main` (triggers the Actions deploy).
 
-**Four gotchas that have bitten this repo:**
+**Six gotchas that have bitten this repo:**
 - **rbenv** - lazy-init is broken in this shell; always use the absolute paths above.
 - **Deploy status** - `gh run list` is cached; poll the API to `completed/success`: `gh api repos/quangphu1912/quangphu1912.github.io/actions/runs --jq '.workflow_runs[0] | "\(.status)/\(.conclusion)  \(.head_sha[0:7])"'`.
 - **CDN cache** - right after a green run the Pages CDN can still serve the *old* asset for ~1 min; cache-bust with `?cb=$RANDOM`: `curl -s "https://quangphu1912.github.io/assets/css/main.css?cb=$RANDOM" | grep -c "<your-rule>"`.
 - **Visual check (optional)** - serve `_site` (`python3 -m http.server`) and screenshot with headless Chrome.
+- **Boolean attributes** - Jekyll renders a bare `data-reveal` as `data-reveal=""` in `_site`. CSS `[data-reveal]` and `querySelectorAll("[data-reveal]")` match either form, so verify with value-agnostic matching (`grep 'data-reveal'`), not a literal `data-reveal>`.
+- **Headless dark mode** - `--headless --force-dark-mode` yields a byte-identical light screenshot; use `--headless=new --force-dark-mode` to actually apply `prefers-color-scheme: dark`.
 
 ## Architecture
 
