@@ -4,25 +4,36 @@ layout: default
 
 <article class="project-detail">
     <div class="container">
-        <div class="section-sm">
-            <header class="project-header detail-header--spaced">
-                <div class="detail-back-row">
-                    <a href="{{ '/projects/' | relative_url }}" class="back-link">← Back to Projects</a>
-                </div>
+        <div class="detail-back-row">
+            <a href="{{ '/projects/' | relative_url }}" class="back-link">← Back to Projects</a>
+        </div>
 
-                <h1>{{ page.title }}</h1>
+        {% if page.image %}
+        <header class="project-cover">
+            <div class="project-cover__head">
+                <p class="eyebrow project-cover__eyebrow">
+                    {% if page.date %}{{ page.date | date: "%b %Y" | upcase }}{% endif %}{% if page.tags %} · {{ page.tags | first }}{% endif %}
+                </p>
+                <h1 class="project-cover__title">{{ page.title }}</h1>
+            </div>
+            <figure class="project-cover__media" style="view-transition-name: vt-{{ page.slug }};">
+                <img src="{{ page.hero_image | default: page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
+            </figure>
+            {% include scroll-cue.html target="project-body" label="Scroll to project details" %}
+        </header>
+        {% else %}
+        <header class="project-header detail-header--spaced">
+            <h1>{{ page.title }}</h1>
+        </header>
+        {% endif %}
 
+        <div class="section-sm" id="project-body">
+            <div class="project-intro detail-header--spaced">
                 {% if page.description %}
                 <p class="project-description detail-description">{{ page.description }}</p>
                 {% endif %}
 
                 {% include project-meta.html project=page %}
-
-                {% if page.image %}
-                <figure class="project-hero" style="view-transition-name: vt-{{ page.slug }};">
-                    <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
-                </figure>
-                {% endif %}
 
                 <div class="project-meta detail-meta-row flex gap-4">
                     {% if page.date %}<span class="meta-text">{{ page.date | date: "%B %Y" }}</span>{% endif %}
@@ -32,15 +43,34 @@ layout: default
                     </div>
                     {% endif %}
                 </div>
-            </header>
+            </div>
 
             <div class="project-content prose">{{ content }}</div>
 
-            <nav class="project-nav detail-nav">
-                <div class="flex justify-between detail-nav-row">
-                    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}" class="btn btn-secondary">← {{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
-                    {% if page.next %}<a href="{{ page.next.url | relative_url }}" class="btn btn-secondary">{{ page.next.title }} →</a>{% endif %}
-                </div>
+            {% comment %} Prev/next follow the listing order (featured-first, then date-desc) — same sort
+            as index.md / projects.md — not Jekyll's document order, so navigation matches what the user saw. {% endcomment %}
+            {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
+            {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
+            {% assign ordered = featured | concat: rest %}
+            {% assign cur = 0 %}
+            {% for item in ordered %}{% if item.url == page.url %}{% assign cur = forloop.index0 %}{% endif %}{% endfor %}
+            {% assign prev_i = cur | minus: 1 %}
+            {% assign next_i = cur | plus: 1 %}
+            <nav class="project-nav detail-nav" aria-label="Project navigation">
+                {% if prev_i >= 0 %}
+                {% assign prev = ordered[prev_i] %}
+                <a href="{{ prev.url | relative_url }}" class="project-nav__link project-nav__link--prev">
+                    <span class="project-nav__kicker">← Previous project</span>
+                    <span class="project-nav__title">{{ prev.title }}</span>
+                </a>
+                {% else %}<span></span>{% endif %}
+                {% if next_i < ordered.size %}
+                {% assign next = ordered[next_i] %}
+                <a href="{{ next.url | relative_url }}" class="project-nav__link project-nav__link--next">
+                    <span class="project-nav__kicker">Next project →</span>
+                    <span class="project-nav__title">{{ next.title }}</span>
+                </a>
+                {% else %}<span></span>{% endif %}
             </nav>
         </div>
     </div>

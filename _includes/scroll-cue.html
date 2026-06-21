@@ -1,0 +1,10 @@
+{% comment %}
+  Scroll-down cue — anchor + downward chevron. Progressive enhancement: it's a real
+  in-page link (keyboard-operable, works without JS). The bob animation lives in CSS and
+  is gated on prefers-reduced-motion. Params: target (anchor id, no #), label (a11y text).
+{% endcomment %}
+<a class="scroll-cue" href="#{{ include.target }}" aria-label="{{ include.label | default: 'Scroll to content' }}">
+  <svg class="scroll-cue__icon" width="40" height="15" viewBox="0 0 53 20" aria-hidden="true" focusable="false">
+    <polygon points="26.5,17.688 9.114,3.779 10.303,2.312 26.5,15.269 42.697,2.313 43.886,3.779" />
+  </svg>
+</a>
