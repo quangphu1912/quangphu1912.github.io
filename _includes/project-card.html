@@ -9,7 +9,6 @@
   {% endif %}
 
   <div class="project-card__body">
-    {% if include.index %}<span class="card-index" aria-hidden="true">{{ include.index | prepend: '0' }}</span>{% endif %}
     <h3 class="card-title">
       <a class="card-title__link" href="{{ project.url | relative_url }}"><span class="card-title__text">{{ project.title }}</span><span class="card-arrow" aria-hidden="true">→</span></a>
     </h3>

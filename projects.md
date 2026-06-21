@@ -19,7 +19,7 @@ image_alt: "Data visualization abstract blue analytics dashboard"
     {% assign sorted_projects = featured | concat: rest %}
     <div class="work-rows" data-reveal>
       {% for project in sorted_projects %}
-        {% include project-card.html project=project index=forloop.index %}
+        {% include project-card.html project=project %}
       {% endfor %}
     </div>
   </div>

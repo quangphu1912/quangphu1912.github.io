@@ -858,8 +858,6 @@ pre code {
 
 /* Project card body — image sits flush to the top, content padded below */
 .project-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
-/* Editorial index marker (01/02/…) — reuses the eyebrow's mono/tracked label language */
-.card-index { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-text-secondary); }
 
 /* Home — horizontal snap gallery of selected work (edge-bleed to viewport) */
 .work-scroller {

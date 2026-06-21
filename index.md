@@ -57,7 +57,7 @@ image_alt: "Hero background"
   {% assign teaser = featured | concat: rest %}
   <div class="work-scroller" data-reveal>
     {% for project in teaser %}
-      {% include project-card.html project=project index=forloop.index %}
+      {% include project-card.html project=project %}
     {% endfor %}
   </div>
   <div class="container">
