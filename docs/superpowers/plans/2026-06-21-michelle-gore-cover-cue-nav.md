@@ -181,12 +181,12 @@ Expected: ends with `done in N seconds.`, NO `error`, NO `Liquid Warning`.
 
 Run:
 ```bash
-grep -o "project-cover__media[^}]*svh" _site/assets/css/main.css | head -1
+grep -c "62svh" _site/assets/css/main.css
 grep -c "scroll-cue-bob" _site/assets/css/main.css
 grep -o "view-transition-old(\*)[^}]*object-fit: cover" _site/assets/css/main.css
 grep -o "scroll-behavior: smooth" _site/assets/css/main.css
 ```
-Expected: the first prints a fragment ending in `svh`; the second prints `2` (keyframe def + the animation reference both contain the token — `2` confirms the block shipped; `1` is also acceptable if only the `@keyframes` name matched, anything `>=1` passes); the third prints the `object-fit: cover` rule; the fourth prints `scroll-behavior: smooth`.
+Expected: the first prints `1` (the `62svh` min-height rule shipped - `svh` lives in `.project-cover`, not `.project-cover__media`, so we grep the value directly); the second prints `2` (keyframe def + the animation reference both contain the token — `2` confirms the block shipped; `1` is also acceptable if only the `@keyframes` name matched, anything `>=1` passes); the third prints the `object-fit: cover` rule; the fourth prints `scroll-behavior: smooth`.
 
 - [ ] **Step 5: Screenshot the project cover (served `_site`)**
 
