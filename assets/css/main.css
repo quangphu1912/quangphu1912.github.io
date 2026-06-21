@@ -97,7 +97,7 @@
   --ease-out-expo: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   /* Vertical rhythm between major sections */
-  --space-section: clamp(5rem, 9vw, 9rem);
+  --space-section: clamp(5.5rem, 10vw, 10rem);
 }
 
 /* Dark Mode */
@@ -281,7 +281,7 @@ pre code {
   background: var(--color-accent-subtle); /* fallback for browsers without color-mix() */
   background: radial-gradient(120% 130% at 50% 0%, var(--color-accent-subtle), var(--color-background) 62%); }
 .closing__inner { max-width: 46rem; }
-.closing__title { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.06; margin-bottom: var(--space-3); }
+.closing__title { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.06; margin-bottom: var(--space-3); text-wrap: balance; }
 .closing__lead { color: var(--color-text-secondary); font-size: var(--text-lg); max-width: 42ch; margin: 0 auto var(--space-5); text-wrap: pretty; }
 .closing .cta-buttons { justify-content: center; }
 .page-description { color: var(--color-text-secondary); font-size: var(--text-lg); max-width: 60ch; }
@@ -563,6 +563,21 @@ pre code {
   .site-header { background: var(--color-background); }
 }
 
+/* Scroll-progress indicator — thin accent bar tracking reading position.
+   Progressive enhancement: animates only where scroll-driven animations exist;
+   otherwise the bar stays hidden (no false signal). */
+.scroll-progress {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: var(--color-accent); opacity: 0.9;
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress { animation: scroll-progress-fill linear both; animation-timeline: scroll(root); }
+    @keyframes scroll-progress-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  }
+}
+
 .site-nav {
   padding: var(--space-3) 0;
 }
@@ -729,6 +744,7 @@ pre code {
   font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.85rem);
   letter-spacing: -0.03em;
   line-height: 1.05;
+  text-wrap: balance;
 }
 
 /* Skills Grid */
@@ -816,6 +832,11 @@ pre code {
 .card-title__text { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } /* clamp the TEXT, not the link box (3 lines fits the longest project title) */
 .project-card:focus-within { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent); }
 .card-title__link:focus-visible { outline: none; box-shadow: none; }
+/* Hover arrow — slides in beside the title to signal the card opens (michellegore-style affordance) */
+.card-arrow { display: inline-block; margin-left: 0.35em; color: var(--color-accent-text); opacity: 0; transform: translateX(-4px); transition: opacity var(--transition-base), transform var(--transition-base); }
+.project-card:hover .card-arrow,
+.project-card:focus-within .card-arrow { opacity: 1; transform: translateX(0); }
+@media (prefers-reduced-motion: reduce) { .card-arrow { opacity: 1; transform: none; } }
 
 .project-card__noimg {
   aspect-ratio: 16 / 9; display: grid; place-items: center; margin-bottom: var(--space-4);
@@ -829,7 +850,7 @@ pre code {
 }
 
 /* Work listing (Projects page) — eyebrow header + 2-up grid on desktop */
-.eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-2); }
+.eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-3); }
 .work-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
 @media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -857,6 +878,8 @@ pre code {
 .work-rows .project-card { height: auto; }
 /* Projects page shows the full project name — no line clamp (rows grow to fit the title) */
 .work-rows .card-title__text { display: block; -webkit-line-clamp: none; overflow: visible; }
+/* Large editorial rows don't lift on hover — let the image zoom + arrow carry it (one motion, no jitter) */
+.work-rows .project-card:hover { transform: none; }
 @media (min-width: 760px) {
   .work-rows .project-card { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: stretch; }
   .work-rows .project-card .image-thumbnail { aspect-ratio: auto; height: 100%; min-height: 340px; margin: 0; }
@@ -1027,7 +1050,7 @@ pre code {
 .cert-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
 .cert-chips .chip { font-size: var(--text-sm); font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--color-surface); color: var(--color-text-secondary); border: 1px solid var(--color-border); transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
 .cert-chips .chip:hover { background-color: var(--color-accent-text); color: #fff; border-color: var(--color-accent-text); }
-.pullquote { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height: 1.4; font-weight: 600; color: var(--color-text); border-left: 3px solid var(--color-accent); padding-left: var(--space-4); margin: var(--space-8) 0; max-width: 32ch; }
+.pullquote { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height: 1.4; font-weight: 600; color: var(--color-text); border-left: 3px solid var(--color-accent); padding-left: var(--space-4); margin: var(--space-8) 0; max-width: 32ch; text-wrap: balance; }
 
 /* ===== About page: section cards (matches project cards) ===== */
 .about-intro { text-align: left; padding: var(--space-section) 0 var(--space-3); }
@@ -1078,6 +1101,15 @@ pre code {
   inset: -8% auto auto -15%; width: 72%; height: 82%;
   background: radial-gradient(50% 50% at 35% 25%, color-mix(in srgb, var(--color-accent) 22%, transparent), transparent 72%);
   filter: blur(48px); opacity: 0.55;
+}
+/* Subtle dot-grid texture — fades from the top, reads as a "data grid" (on-brand for a
+   data engineer). Masked so it's a texture, not a pattern; behind all hero content. */
+.hero-home::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none; inset: 0;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--color-text) 9%, transparent) 1px, transparent 1.5px);
+  background-size: 22px 22px; opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 78% 70% at 50% 28%, #000 18%, transparent 80%);
+  mask-image: radial-gradient(ellipse 78% 70% at 50% 28%, #000 18%, transparent 80%);
 }
 .hero-home__inner { display: grid; gap: var(--space-6); }
 @media (min-width: 880px) {
