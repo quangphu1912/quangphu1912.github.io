@@ -468,18 +468,20 @@ pre code {
   }
 }
 
-/* Scroll-reveal (paired with assets/js/reveal.js) */
-[data-reveal] {
+/* Scroll-reveal (paired with assets/js/reveal.js).
+   Gated on the .js class (set by an inline head script) so content is fully
+   visible when JS is off/blocked — no invisible hero, no LCP penalty. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(12px);
   transition: opacity var(--transition-slow) var(--ease-out-expo), transform var(--transition-slow) var(--ease-out-expo);
 }
-[data-reveal].is-visible {
+.js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
 
 /* Focus Visible - ring-with-gap (forced-colors keeps an outline fallback) */
