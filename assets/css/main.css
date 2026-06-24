@@ -612,12 +612,16 @@ main { padding-top: var(--header-h); }
 .footer-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0 0.75rem;
+  gap: var(--space-3);
   padding: var(--space-4) 0;
   border-top: 1px solid var(--color-border);
 }
+.footer-icons { display: flex; align-items: center; gap: var(--space-3); }
+.footer-icon-link { display: inline-flex; align-items: center; justify-content: center; color: var(--color-text-secondary); transition: color var(--transition-fast); }
+.footer-icon-link:hover { color: var(--color-text); }
+.footer-icon-link svg { width: 16px; height: 16px; }
 
 .footer-grid {
   gap: var(--space-4);
@@ -694,11 +698,8 @@ main { padding-top: var(--header-h); }
   font-size: var(--text-sm);
 }
 
-/* Single-line footer bar */
-.footer-copy,
-.footer-sep { font-size: var(--text-xs); color: var(--color-text-secondary); letter-spacing: 0.04em; }
-.footer-link { font-size: var(--text-xs); color: var(--color-text-secondary); letter-spacing: 0.04em; text-decoration: none; transition: color var(--transition-fast); }
-.footer-link:hover { color: var(--color-text); }
+/* Footer text */
+.footer-copy { font-size: var(--text-xs); color: var(--color-text-secondary); letter-spacing: var(--tracking-label); }
 
 /* CTA button row (shared by hero + 404) */
 .cta-buttons {
@@ -1071,12 +1072,14 @@ main { padding-top: var(--header-h); }
 .about-intro .profile-avatar { margin-bottom: 0; justify-content: flex-start; flex-shrink: 0; }
 .about-intro .cert-chips { justify-content: flex-start; }
 .about-body { padding: var(--space-2) 0 var(--space-12); }
-.about-grid { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
-@media (min-width: 768px) { .about-grid { grid-template-columns: 3fr 2fr; gap: var(--space-6) var(--space-10); align-items: start; } }
-.about-col-main, .about-col-side { display: flex; flex-direction: column; gap: var(--space-8); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--space-4); }
+.about-contact-full { grid-column: 1 / -1; padding-top: var(--space-8); margin-top: var(--space-4); }
+@media (max-width: 767px) { .about-grid { grid-template-columns: 1fr; } .about-contact-full { grid-column: 1; } }
 .about-section { padding: var(--space-6); }
-/* De-box About sections into hairline-separated editorial blocks (matches Home) */
-.about-section.card { background: none; box-shadow: none; border: none; border-radius: 0; border-top: 1px solid var(--color-border); padding: var(--space-6) 0 0; }
+/* De-box About sections — spacing only, no rules */
+.about-section.card { background: none; box-shadow: none; border: none; border-radius: 0; padding: var(--space-6) 0 0; }
+.about-section.card.about-col-right { padding-left: var(--space-8); }
+@media (max-width: 767px) { .about-section.card.about-col-right { padding-left: 0; } }
 .about-section p { line-height: 1.7; }
 /* About headings use .section-title for one heading family across pages (see markup). */
 
@@ -1120,8 +1123,8 @@ main { padding-top: var(--header-h); }
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 .xp-period { display: block; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-text-secondary); margin-bottom: var(--space-1); }
-.xp-company { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 var(--space-1); color: var(--color-text); }
-.xp-company--dim { color: var(--color-text-secondary); font-size: clamp(1rem, 1.5vw, 1.25rem); }
+.xp-company { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 var(--space-1); color: var(--color-text); }
+.xp-company--dim { color: var(--color-text-secondary); font-size: clamp(1.1rem, 2vw, 1.75rem); }
 .xp-role { font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0 0 var(--space-1); }
 .xp-signal { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-accent-text); display: block; }
 
@@ -1139,7 +1142,8 @@ main { padding-top: var(--header-h); }
 .currently-list { list-style: disc; padding-left: var(--space-5); margin: 0; }
 .currently-list li { padding: var(--space-1) 0; }
 .currently-list li::marker { color: var(--color-accent-text); }
-.about-contact { text-align: center; }
+/* Let's Connect — accent-wash CTA card */
+.about-connect { background: color-mix(in srgb, var(--color-accent) 4%, transparent); border-radius: var(--border-radius); padding: var(--space-6) !important; border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border)) !important; }
 
 /* ============================================
    HOME HERO (typographic) + TELEMETRY SIGNATURE
