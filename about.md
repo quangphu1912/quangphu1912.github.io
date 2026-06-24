@@ -108,9 +108,13 @@ image_alt: "Phu Le - AI & Data Engineer"
     <!-- Row 3: Let's Connect — full width, no box -->
 
     <section class="about-section about-contact-full about-connect" data-reveal>
-      <p class="eyebrow">CONTACT</p>
-      <h2 class="section-title">Let's Connect</h2>
-      <p>I'm always interested in data engineering, MLOps, and AI-platform opportunities. Reach me on <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener noreferrer">LinkedIn</a> or <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      <p class="eyebrow">GET IN TOUCH</p>
+      <h2 class="closing__title">Let's build something that ships.</h2>
+      <p class="closing__lead">Open to data engineering, MLOps, and AI-platform work, and always happy to talk shop.</p>
+      <div class="cta-buttons flex gap-4">
+        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get in touch</a>
+        <a href="{{ '/projects/' | relative_url }}" class="btn btn-secondary">View projects</a>
+      </div>
     </section>
 
   </div>
