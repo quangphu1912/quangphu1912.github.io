@@ -1142,8 +1142,10 @@ main { padding-top: var(--header-h); }
 .currently-list { list-style: disc; padding-left: var(--space-5); margin: 0; }
 .currently-list li { padding: var(--space-1) 0; }
 .currently-list li::marker { color: var(--color-accent-text); }
-/* Let's Connect — accent-wash CTA card */
-.about-connect { background: color-mix(in srgb, var(--color-accent) 4%, transparent); border-radius: var(--border-radius); padding: var(--space-6) !important; border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border)) !important; }
+/* Let's Connect — accent-wash CTA card, centered */
+.about-connect { background: color-mix(in srgb, var(--color-accent) 4%, transparent); border-radius: var(--border-radius); padding: var(--space-8) !important; border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border)) !important; text-align: center; }
+.about-connect .closing__lead { margin-left: auto; margin-right: auto; }
+.about-connect .cta-buttons { justify-content: center; }
 
 /* ============================================
    HOME HERO (typographic) + TELEMETRY SIGNATURE
@@ -1282,14 +1284,14 @@ body::after {
 ::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-thumb { background: var(--color-border); border: 3px solid var(--color-bg); border-radius: 8px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-secondary); }
-.prose a, .about-body a, .project-content a {
+.prose a, .about-body a:not(.btn), .project-content a {
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--color-accent-text) 45%, transparent);
   text-underline-offset: 0.18em;
   text-decoration-thickness: 1.5px;
   transition: text-decoration-color var(--transition-fast) var(--ease-out-expo);
 }
-.prose a:hover, .about-body a:hover, .project-content a:hover { text-decoration-color: var(--color-accent-text); }
+.prose a:hover, .about-body a:not(.btn):hover, .project-content a:hover { text-decoration-color: var(--color-accent-text); }
 
 /* ============================================
    VIEW TRANSITIONS (card → detail morph)
