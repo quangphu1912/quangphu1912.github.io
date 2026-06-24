@@ -35,41 +35,26 @@ image_alt: "Phu Le - AI & Data Engineer"
     <section class="card about-section" data-reveal>
       <p class="eyebrow">CAREER</p>
       <h2 class="section-title">Experience</h2>
-      <div class="xp-list">
+      <div class="xp-timeline">
 
         <div class="xp-entry">
-          <div class="xp-head">
-            <span class="eyebrow xp-period">Sep 2024 – Present</span>
-            <span class="xp-signal">↑ 3M records / day · 7 min → 45 s latency</span>
-          </div>
+          <span class="xp-period">2022 – Present</span>
           <h3 class="xp-company">Bank of Montreal</h3>
-          <p class="xp-role">Data Scientist</p>
         </div>
 
         <div class="xp-entry">
-          <div class="xp-head">
-            <span class="eyebrow xp-period">May 2022 – Sep 2024</span>
-            <span class="xp-signal">↑ 80% analysis time cut · Top 10% FY23</span>
-          </div>
-          <h3 class="xp-company">Bank of Montreal</h3>
-          <p class="xp-role">Senior Financial Analyst</p>
-        </div>
-
-        <div class="xp-entry">
-          <div class="xp-head">
-            <span class="eyebrow xp-period">Apr 2020 – Apr 2022</span>
-            <span class="xp-signal">↑ $150M revenue dashboards</span>
-          </div>
+          <span class="xp-period">2020 – 2022</span>
           <h3 class="xp-company">Tiki Corp.</h3>
-          <p class="xp-role">Senior FP&amp;A Specialist</p>
         </div>
 
         <div class="xp-entry">
-          <div class="xp-head">
-            <span class="eyebrow xp-period">Before 2020</span>
-          </div>
-          <h3 class="xp-company" style="font-size: clamp(1.5rem, 3vw, 2.8rem); color: var(--color-text-secondary);">PwC · Deloitte</h3>
-          <p class="xp-role">Big-4 Audit &amp; M&amp;A Consulting</p>
+          <span class="xp-period">2018</span>
+          <h3 class="xp-company xp-company--dim">Deloitte</h3>
+        </div>
+
+        <div class="xp-entry">
+          <span class="xp-period">2013</span>
+          <h3 class="xp-company xp-company--dim">PwC</h3>
         </div>
 
       </div>
