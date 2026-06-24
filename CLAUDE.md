@@ -73,10 +73,19 @@ default.html          ← base: <head>, header, footer, JSON-LD Person schema, J
 
 `jekyll-seo-tag` (via `{% seo %}` in `default.html`) auto-emits WebSite + BlogPosting schemas (BlogPosting includes `image`, `author`, `datePublished`). The only hand-rolled schema is the Person block in `default.html` - do **not** re-add per-page Article JSON-LD; it would duplicate seo-tag's BlogPosting.
 
-### Data-Driven Sections
+### Includes
 
-Home page sections pull from:
-- `_data/skills.yml` - skill categories → rendered as tag clouds
+Reusable partials in `_includes/`:
+- `header.html` / `footer.html` - transparent scroll-away header; footer is a single line of icon-only socials (LinkedIn, GitHub) + an obfuscated email link
+- `hero-home.html` + `hero-telemetry.html` - home hero (a text column plus a right-column "telemetry" instrument, no `<img>`)
+- `scroll-cue.html` - scroll-to-content cue used in the home hero and project covers
+- `project-card.html` → `image-project-card.html` - card + its single `<img>` thumbnail
+- `project-meta.html` - renders the project's `role` / `domain` / `stack` front matter as a `<dl>`
+- `profile-avatar.html` - the About avatar `<img>`
+- `mermaid.html` - Mermaid diagrams, hard-set to the dark theme
+- `analytics.html` - GA4 loader, production-gated on `site.google_analytics`, with a `localStorage 'analytics-opt-out'` opt-out
+
+`project.html` and `image-project-card.html` set matching `view-transition-name: vt-{{ slug }}` for a SPA-like card→detail image morph.
 
 ### JavaScript
 
@@ -87,6 +96,8 @@ Home page sections pull from:
 ### CSS
 
 Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS custom properties (variables) handle theming.
+
+**Self-hosted Inter** (`assets/fonts/InterVariable.woff2`, preloaded in `default.html`) drives all type - it's load-bearing; don't fall back to a system-font stack.
 
 **Dark theme only (one theme for every visitor).** `:root` holds the dark palette and declares `color-scheme: dark`; `_layouts/default.html` also sets `<meta name="color-scheme" content="dark">`. There is **no light mode** - do **not** add `@media (prefers-color-scheme: dark)` branches (the one exception is the `@media print` block, which intentionally overrides tokens to ink-on-white). Mermaid (`_includes/mermaid.html`) is hard-set to the dark theme.
 
@@ -103,12 +114,14 @@ There is **no** `_includes/image-hero.html` and **no** `.jpg`→`.webp` `replace
 
 ### Résumé
 
-No standalone PDF - the live site serves as the résumé. Canonical experience & credentials live in `about.md`; skills live in `_data/skills.yml` (rendered on Home). When updating résumé content, edit those two files. LinkedIn/GitHub handles come from `_config.yml` (`linkedin_username`, `github_username`).
+No standalone PDF - the live site serves as the résumé. All résumé content (experience timeline, credentials with Credly/CFA/GCP verification links, the "GET IN TOUCH" CTA) is **hardcoded in `about.md`**, laid out as a 2-column card grid (Story|Experience, Currently|Credentials) with a vertical `.xp-timeline` and a full-width connect CTA - edit there. (Home has no CTA; it was moved to About.) Social handles come from `_config.yml`: `linkedin_username`, `github_username`, `google_cloud_profile`.
 
 ### Key `_config.yml` fields
 
 - `job_title` - used in Person JSON-LD schema
-- `footer_tagline` - footer copy (separate from `description` which goes in `<meta>`)
+- `description` - the `<meta name="description">` content (the default when a page has none of its own)
+- `email` - contact email; the footer icon + `nav.js` obfuscation reassemble it from `data-user` / `data-domain` (it never appears in static HTML)
+- `google_cloud_profile` - GCP skills-profile link rendered on About
 - `google_analytics` - GA4 Measurement ID (currently blank; analytics only load in `JEKYLL_ENV=production`)
 
 ### Nav

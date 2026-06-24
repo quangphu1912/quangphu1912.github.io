@@ -7,7 +7,6 @@ baseurl: "" # subpath of site, e.g. /blog
 url: "https://quangphu1912.github.io" # base hostname & protocol
 author: "Phu Le"
 job_title: "AI & Data Engineer"
-footer_tagline: "AI & Data Engineer building production data pipelines, ML systems, and cloud-native ETL on AWS. AWS certified · CFA."
 
 # Social Links
 linkedin_username: quangphu1912
