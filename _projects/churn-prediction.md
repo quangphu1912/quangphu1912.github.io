@@ -3,6 +3,9 @@ title: "Customer Churn Prediction with XGBoost"
 description: "XGBoost model predicting churn with 0.89 AUC, enabling proactive retention campaigns that increased customer retention by 8% and saved $200K/year in revenue."
 date: 2023-05-20
 tags: [Machine Learning, XGBoost, Churn Prediction, Feature Engineering, CRM Integration]
+role: "Data Scientist"
+domain: "Customer Analytics"
+stack: "Python · XGBoost · SageMaker · Salesforce CRM"
 image: /assets/images/projects/churn-prediction.png
 image_alt: "Abstract churn classification scatter illustration"
 hero_image: /assets/images/projects/churn-prediction.svg

@@ -35,41 +35,44 @@ image_alt: "Phu Le - AI & Data Engineer"
     <section class="card about-section" data-reveal>
       <p class="eyebrow">CAREER</p>
       <h2 class="section-title">Experience</h2>
+      <div class="xp-list">
 
-      <div class="experience-item">
-        <div class="flex justify-between experience-item-header">
-          <h3>Data Scientist - Bank of Montreal</h3>
-          <span class="experience-date">Sep 2024 - Present</span>
+        <div class="xp-entry">
+          <div class="xp-head">
+            <span class="eyebrow xp-period">Sep 2024 – Present</span>
+            <span class="xp-signal">↑ 3M records / day · 7 min → 45 s latency</span>
+          </div>
+          <h3 class="xp-company">Bank of Montreal</h3>
+          <p class="xp-role">Data Scientist</p>
         </div>
-        <ul class="experience-description">
-          <li>Designed and deployed AWS-native ETL pipelines orchestrated via MWAA, ingesting from RDS, Redshift, and S3 into production datamarts - ~3M records daily in ~7 min, stable production uptime.</li>
-          <li>Replaced manual weekly data loading with automated scheduled pipelines; stood up data-quality monitoring for downstream AI/ML initiatives.</li>
-        </ul>
-      </div>
 
-      <div class="experience-item">
-        <div class="flex justify-between experience-item-header">
-          <h3>Senior Financial Analyst - Bank of Montreal</h3>
-          <span class="experience-date">May 2022 - Sep 2024</span>
+        <div class="xp-entry">
+          <div class="xp-head">
+            <span class="eyebrow xp-period">May 2022 – Sep 2024</span>
+            <span class="xp-signal">↑ 80% analysis time cut · Top 10% FY23</span>
+          </div>
+          <h3 class="xp-company">Bank of Montreal</h3>
+          <p class="xp-role">Senior Financial Analyst</p>
         </div>
-        <ul class="experience-description">
-          <li>Automated capital reporting and variance analysis with SAS &amp; Power BI (loan-level drill-down), cutting analysis time ~80%; supported RWA forecasting for Canadian P&amp;C Banking.</li>
-          <li>Top 10% performer FY23; two Spotlight Awards for reporting modernization and Basel III implementation.</li>
-        </ul>
-      </div>
 
-      <div class="experience-item">
-        <div class="flex justify-between experience-item-header">
-          <h3>Senior FP&amp;A Specialist - Tiki Corp.</h3>
-          <span class="experience-date">Apr 2020 - Apr 2022</span>
+        <div class="xp-entry">
+          <div class="xp-head">
+            <span class="eyebrow xp-period">Apr 2020 – Apr 2022</span>
+            <span class="xp-signal">↑ $150M revenue dashboards</span>
+          </div>
+          <h3 class="xp-company">Tiki Corp.</h3>
+          <p class="xp-role">Senior FP&amp;A Specialist</p>
         </div>
-        <ul class="experience-description">
-          <li>Built profitability data pipelines with Airflow &amp; BigQuery consolidating multi-source data into centralized reporting.</li>
-          <li>Designed Google Data Studio dashboards for e-commerce categories generating ~$150M revenue at 20-30% growth.</li>
-        </ul>
-      </div>
 
-      <p class="experience-footnote">Started in Big-4 audit and M&amp;A consulting at PwC and Deloitte before moving into data and analytics.</p>
+        <div class="xp-entry">
+          <div class="xp-head">
+            <span class="eyebrow xp-period">Before 2020</span>
+          </div>
+          <h3 class="xp-company" style="font-size: clamp(1.5rem, 3vw, 2.8rem); color: var(--color-text-secondary);">PwC · Deloitte</h3>
+          <p class="xp-role">Big-4 Audit &amp; M&amp;A Consulting</p>
+        </div>
+
+      </div>
     </section>
 
     <section class="card about-section" data-reveal>

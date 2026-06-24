@@ -6,15 +6,29 @@ layout: default
     {% if page.image %}
     <header class="project-cover">
         <img class="project-cover__img" src="{{ page.hero_image | default: page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager" style="view-transition-name: vt-{{ page.slug }};">
-        <div class="container project-cover__inner">
+
+        <div class="project-cover__nav container">
             <a href="{{ '/projects/' | relative_url }}" class="back-link project-cover__back">← Back to Projects</a>
+        </div>
+
+        <div class="container project-cover__inner">
             <div class="project-cover__text">
                 <p class="eyebrow project-cover__eyebrow">
                     {% if page.date %}{{ page.date | date: "%b %Y" | upcase }}{% endif %}{% if page.tags %} · {{ page.tags | first }}{% endif %}
                 </p>
                 <h1 class="project-cover__title">{{ page.title }}</h1>
+                {% if page.description %}
+                <p class="project-cover__desc">{{ page.description }}</p>
+                {% endif %}
+                {% if page.role or page.domain %}
+                <div class="project-cover__meta">
+                    {% if page.role %}<span class="project-cover__meta-item">{{ page.role }}</span>{% endif %}
+                    {% if page.domain %}<span class="project-cover__meta-item">{{ page.domain }}</span>{% endif %}
+                </div>
+                {% endif %}
             </div>
         </div>
+
         {% include scroll-cue.html target="project-body" label="Scroll to project details" %}
     </header>
     {% endif %}

@@ -26,29 +26,8 @@ image_alt: "Hero background"
   </div>
 </section>
 
- <!-- Skills Section -->
-<section class="skills-section section-sm section-tinted">
-  <div class="container">
-    <p class="eyebrow">TOOLKIT</p>
-    <h2 class="section-title">Skills</h2>
-    
-    <div class="skills-grid grid grid-cols-1">
-      {% for skill in site.data.skills %}
-      <div class="skill-category card" data-reveal>
-        <h3 class="card-title">{{ skill.category }}</h3>
-        <div class="flex gap-2 skills-tags">
-          {% for item in skill.items %}
-          <span class="tag">{{ item }}</span>
-          {% endfor %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
  <!-- Selected Work -->
-<section class="section-sm section-tinted">
+<section class="section-sm">
   <div class="container">
     <p class="eyebrow">FEATURED</p>
     <h2 class="section-title">Selected work</h2>
