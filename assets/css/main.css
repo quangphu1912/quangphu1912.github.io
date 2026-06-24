@@ -221,7 +221,7 @@ pre code {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-2);
+  padding: 0 clamp(1.25rem, 5vw, 1.5rem);   /* mobile gutter: 20-24px scaling; >=640px bumps to 32px (space-4) below */
 }
 
 .section {
@@ -488,7 +488,7 @@ pre code {
   transition: transform var(--transition-fast);
 }
 
-.skip-to-content:focus {
+.skip-to-content:focus-visible {
   transform: translateY(0);
 }
 
@@ -911,8 +911,9 @@ main { padding-top: var(--header-h); }
 
 /* ===== About page: section cards (matches project cards) ===== */
 .about-intro { text-align: left; padding: var(--space-section) 0 var(--space-3); }
-.about-intro .container { max-width: var(--max-width-prose); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
-@media (min-width: 768px) { .about-intro .container { flex-direction: row; align-items: center; gap: var(--space-6); } }
+.about-intro .container { max-width: var(--max-width-prose); }
+.about-intro__card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+@media (min-width: 768px) { .about-intro__card { flex-direction: row; align-items: center; gap: var(--space-6); } }
 .about-intro .profile-avatar { margin-bottom: 0; justify-content: flex-start; flex-shrink: 0; }
 .about-intro .cert-chips { justify-content: flex-start; }
 .about-body { padding: var(--space-2) 0 var(--space-12); }
@@ -980,6 +981,20 @@ main { padding-top: var(--header-h); }
 .about-connect { background: color-mix(in srgb, var(--color-accent) 4%, transparent); border-radius: var(--border-radius); padding: var(--space-8) !important; border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-border)) !important; text-align: center; }
 .about-connect .closing__lead { margin-left: auto; margin-right: auto; }
 .about-connect .cta-buttons { justify-content: center; }
+
+/* Mobile only: box the About intro + each section as inset cards so the 1-column
+   stack reads as distinct blocks with breathing room. Desktop (>=768px) keeps the
+   borderless 2-column layout untouched - these rules are scoped to max-width: 767px
+   and placed after the desktop rules so they win on source order. */
+@media (max-width: 767px) {
+  .about-intro__card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-4); }
+  .about-intro__card .avatar-image { width: 140px; height: 140px; }
+  .about-grid { gap: var(--space-3); }
+  .about-contact-full { padding-top: 0; margin-top: 0; }
+  .about-section.card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--space-4); }
+  .about-section.card.about-col-right { padding-left: var(--space-4); }
+  .about-connect { padding: var(--space-5) !important; }
+}
 
 /* ============================================
    HOME HERO (typographic) + TELEMETRY SIGNATURE

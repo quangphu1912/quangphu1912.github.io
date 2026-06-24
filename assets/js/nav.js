@@ -55,11 +55,17 @@ if (toggle && menu) {
   });
 }
 
-// Email obfuscation: reassemble the address on click so it never appears in
-// static HTML. Markup: <a data-user="local" data-domain="example.com">.
+// Email obfuscation: reassemble the address on activation so it never appears in
+// static HTML. Markup: <a data-user="local" data-domain="example.com" tabindex="0">.
+// tabindex="0" puts the href-less link in the keyboard tab order; Enter (and Space,
+// matching a button-style press) then trigger the same mailto as a click.
 document.querySelectorAll('a[data-user][data-domain]').forEach((a) => {
-  a.addEventListener('click', (e) => {
+  const open = (e) => {
     e.preventDefault();
     window.location.href = `mailto:${a.dataset.user}@${a.dataset.domain}`;
+  };
+  a.addEventListener('click', open);
+  a.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') open(e);
   });
 });

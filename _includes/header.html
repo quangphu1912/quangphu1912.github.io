@@ -14,9 +14,9 @@
 
             <ul id="nav-menu" class="nav-menu flex gap-4">
                 {% assign url = page.url %}
-                <li><a href="{{ '/' | relative_url }}" class="nav-link{% if url == '/' %} active{% endif %}">Home</a></li>
-                <li><a href="{{ '/projects/' | relative_url }}" class="nav-link{% if url contains '/projects' %} active{% endif %}">Projects</a></li>
-                <li><a href="{{ '/about/' | relative_url }}" class="nav-link{% if url contains '/about' %} active{% endif %}">About</a></li>
+                <li><a href="{{ '/' | relative_url }}" class="nav-link{% if url == '/' %} active{% endif %}"{% if url == '/' %} aria-current="page"{% endif %}>Home</a></li>
+                <li><a href="{{ '/projects/' | relative_url }}" class="nav-link{% if url contains '/projects' %} active{% endif %}"{% if url contains '/projects' %} aria-current="page"{% endif %}>Projects</a></li>
+                <li><a href="{{ '/about/' | relative_url }}" class="nav-link{% if url contains '/about' %} active{% endif %}"{% if url contains '/about' %} aria-current="page"{% endif %}>About</a></li>
             </ul>
         </nav>
     </div>

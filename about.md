@@ -7,15 +7,17 @@ image_alt: "Phu Le - AI & Data Engineer"
 
 <section class="about-intro">
   <div class="container">
-    {% include profile-avatar.html image=page.image alt=page.image_alt loading="eager" %}
-    <div class="identity-block">
-      <h1 class="identity-name">Phu Le</h1>
-      <div class="identity-title">AI &amp; Data Engineer</div>
-      <div class="identity-loc">Toronto, CA</div>
-      <div class="cert-chips">
-        <span class="chip">AWS Data Engineer</span>
-        <span class="chip">AWS Solutions Architect</span>
-        <span class="chip">CFA</span>
+    <div class="about-intro__card">
+      {% include profile-avatar.html image=page.image alt=page.image_alt loading="eager" %}
+      <div class="identity-block">
+        <h1 class="identity-name">Phu Le</h1>
+        <div class="identity-title">AI &amp; Data Engineer</div>
+        <div class="identity-loc">Toronto, CA</div>
+        <div class="cert-chips">
+          <span class="chip">AWS Data Engineer</span>
+          <span class="chip">AWS Solutions Architect</span>
+          <span class="chip">CFA</span>
+        </div>
       </div>
     </div>
   </div>
