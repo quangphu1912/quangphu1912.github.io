@@ -609,13 +609,14 @@ main { padding-top: var(--header-h); }
   margin-top: var(--space-12);
 }
 
-.footer-content {
-  padding: var(--space-8) 0;
-  border-top: 1px solid var(--color-border);
+.footer-bar {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border);
 }
 
 .footer-grid {
@@ -693,12 +694,11 @@ main { padding-top: var(--header-h); }
   font-size: var(--text-sm);
 }
 
-/* Minimal centered footer */
-.footer-social { list-style: none; display: flex; align-items: center; gap: var(--space-4); margin: 0; padding: 0; }
-.footer-social a { color: var(--color-text-secondary); display: flex; align-items: center; transition: color var(--transition-fast); }
-.footer-social a:hover { color: var(--color-text); }
-.footer-social svg { width: 16px; height: 16px; }
-.footer-copy { font-size: var(--text-xs); color: var(--color-text-secondary); letter-spacing: 0.04em; margin: 0; }
+/* Single-line footer bar */
+.footer-copy,
+.footer-sep { font-size: var(--text-xs); color: var(--color-text-secondary); letter-spacing: 0.04em; }
+.footer-link { font-size: var(--text-xs); color: var(--color-text-secondary); letter-spacing: 0.04em; text-decoration: none; transition: color var(--transition-fast); }
+.footer-link:hover { color: var(--color-text); }
 
 /* CTA button row (shared by hero + 404) */
 .cta-buttons {
@@ -1071,7 +1071,9 @@ main { padding-top: var(--header-h); }
 .about-intro .profile-avatar { margin-bottom: 0; justify-content: flex-start; flex-shrink: 0; }
 .about-intro .cert-chips { justify-content: flex-start; }
 .about-body { padding: var(--space-2) 0 var(--space-12); }
-.about-cards { max-width: var(--max-width-prose); margin: 0 auto; display: grid; gap: var(--space-8); }
+.about-grid { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
+@media (min-width: 768px) { .about-grid { grid-template-columns: 3fr 2fr; gap: var(--space-6) var(--space-10); align-items: start; } }
+.about-col-main, .about-col-side { display: flex; flex-direction: column; gap: var(--space-8); }
 .about-section { padding: var(--space-6); }
 /* De-box About sections into hairline-separated editorial blocks (matches Home) */
 .about-section.card { background: none; box-shadow: none; border: none; border-radius: 0; border-top: 1px solid var(--color-border); padding: var(--space-6) 0 0; }
