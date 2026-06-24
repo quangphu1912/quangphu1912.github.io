@@ -60,8 +60,8 @@
     {% include analytics.html %}
   {% endif %}
 
-  <script src="{{ '/assets/js/nav.js' | relative_url }}" defer></script>
-  <script src="{{ '/assets/js/reveal.js' | relative_url }}" defer></script>
-  <script src="{{ '/assets/js/count-up.js' | relative_url }}" defer></script>
+  <script type="module" src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+  <script type="module" src="{{ '/assets/js/reveal.js' | relative_url }}"></script>
+  <script type="module" src="{{ '/assets/js/count-up.js' | relative_url }}"></script>
 </body>
 </html>

@@ -82,6 +82,7 @@ Reusable partials in `_includes/`:
 - `project-card.html` → `image-project-card.html` - card + its single `<img>` thumbnail
 - `project-meta.html` - renders the project's `role` / `domain` / `stack` front matter as a `<dl>`
 - `profile-avatar.html` - the About avatar `<img>`
+- `icon-external.html` - the icon-only external-link affordance reused on each About credential row (one source of truth for the SVG; takes `href` + `label`)
 - `mermaid.html` - Mermaid diagrams, hard-set to the dark theme
 - `analytics.html` - GA4 loader, production-gated on `site.google_analytics`, with a `localStorage 'analytics-opt-out'` opt-out
 
@@ -89,13 +90,15 @@ Reusable partials in `_includes/`:
 
 ### JavaScript
 
+All three are ES modules, loaded with `<script type="module">` in `_layouts/default.html` (modules defer automatically, so `defer` is omitted). Each file is self-initializing top-level code that runs once, after the DOM is parsed.
+
 - `nav.js` - mobile nav (hamburger toggle, `inert` focus-trap, Esc / outside-click close, scroll-lock, resize guard) + email obfuscation (email never appears in static HTML; reassembled from `data-user` / `data-domain` attributes on click)
 - `reveal.js` - `IntersectionObserver` scroll-reveal for `[data-reveal]` elements; gracefully degrades under `prefers-reduced-motion`
 - `count-up.js` - animates any `[data-countup]` element from 0 → target once on scroll-into-view (expo curve). Progressive enhancement: no-JS / `prefers-reduced-motion` leaves the static value. Prefix/suffix text lives *outside* the `[data-countup]` span.
 
 ### CSS
 
-Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS custom properties (variables) handle theming.
+Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS custom properties (variables) handle theming. The file opens with a grep-by-banner **table of contents** (jump with e.g. `grep 'COMPONENTS' assets/css/main.css`).
 
 **Self-hosted Inter** (`assets/fonts/InterVariable.woff2`, preloaded in `default.html`) drives all type - it's load-bearing; don't fall back to a system-font stack.
 

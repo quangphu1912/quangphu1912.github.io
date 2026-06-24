@@ -80,15 +80,15 @@ image_alt: "Phu Le - AI & Data Engineer"
       <ul class="credentials-list">
         <li>
           <span class="cred-name">AWS Certified Data Engineer</span>
-          <a class="cred-link" href="https://www.credly.com/earner/earned/badge/2cbce644-127c-4ec5-8a1c-ca269f7a8ef7" target="_blank" rel="noopener noreferrer" aria-label="Verify AWS Data Engineer certification on Credly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+          {% include icon-external.html href="https://www.credly.com/earner/earned/badge/2cbce644-127c-4ec5-8a1c-ca269f7a8ef7" label="Verify AWS Data Engineer certification on Credly" %}
         </li>
         <li>
           <span class="cred-name">AWS Solutions Architect</span>
-          <a class="cred-link" href="https://www.credly.com/badges/3689c0cb-2b65-4186-8524-d37a5b229029" target="_blank" rel="noopener noreferrer" aria-label="Verify AWS Solutions Architect certification on Credly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+          {% include icon-external.html href="https://www.credly.com/badges/3689c0cb-2b65-4186-8524-d37a5b229029" label="Verify AWS Solutions Architect certification on Credly" %}
         </li>
         <li>
           <span class="cred-name">CFA Charterholder</span>
-          <a class="cred-link" href="https://credentials.cfainstitute.org/4f3c266f-2cf8-41ea-a3c9-84eafd15ef1c" target="_blank" rel="noopener noreferrer" aria-label="Verify CFA charter on CFA Institute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+          {% include icon-external.html href="https://credentials.cfainstitute.org/4f3c266f-2cf8-41ea-a3c9-84eafd15ef1c" label="Verify CFA charter on CFA Institute" %}
         </li>
         <li>
           <span class="cred-name">MBA</span>
@@ -96,11 +96,11 @@ image_alt: "Phu Le - AI & Data Engineer"
         </li>
         <li>
           <span class="cred-name">ERPM AI Champion</span>
-          <a class="cred-link" href="https://www.credly.com/badges/c9913967-d62f-4e6c-96a6-fac5f32b0393/public_url" target="_blank" rel="noopener noreferrer" aria-label="Verify ERPM AI Champion badge on Credly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+          {% include icon-external.html href="https://www.credly.com/badges/c9913967-d62f-4e6c-96a6-fac5f32b0393/public_url" label="Verify ERPM AI Champion badge on Credly" %}
         </li>
         <li>
           <span class="cred-name">GCP skills profile</span>
-          <a class="cred-link" href="{{ site.google_cloud_profile }}" target="_blank" rel="noopener noreferrer" aria-label="View GCP skills profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+          {% include icon-external.html href=site.google_cloud_profile label="View GCP skills profile" %}
         </li>
       </ul>
     </section>

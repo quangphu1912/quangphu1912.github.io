@@ -1,7 +1,31 @@
-/* ============================================
-   MODERN DATA SCIENCE PORTFOLIO
-   Apple-Inspired Minimalist Design System - Elevated
-   ============================================ */
+/* ============================================================
+   Phu Le - AI & Data Engineering Portfolio
+   Hand-built design system. Dark-only. One flat file, no preprocessor.
+   ------------------------------------------------------------
+   TABLE OF CONTENTS  (grep a banner to jump to its section)
+     Type         @font-face: Inter + metrics-matched fallback
+     Tokens       CSS CUSTOM PROPERTIES (Design Tokens)
+     Reset        RESET & BASE STYLES
+     Typography   TYPOGRAPHY
+     Layout       LAYOUT UTILITIES
+     Helpers      HELPERS (token-based utilities)
+     Components   COMPONENTS  (.btn, .card, .tag, .notebook-content)
+     A11y         ACCESSIBILITY  (reduced-motion, reveal, focus, skip-link)
+     Responsive   RESPONSIVE BREAKPOINTS
+     Pages        PAGE-SPECIFIC COMPONENTS  (header, footer, project, work, metrics, about)
+     Mermaid      MERMAID DIAGRAMS
+     Images       IMAGE COMPONENTS  (avatar, thumbnail)
+     Hero         HOME HERO (typographic) + TELEMETRY SIGNATURE
+     ProjectMeta  PROJECT META (detail pages)
+     Craft        CRAFT LAYER  (selection, grain, scrollbar, underlines)
+     ViewTrans    VIEW TRANSITIONS  (card to detail morph)
+     Cover        PROJECT COVER + SCROLL CUE
+     Motion       MOTION CRAFT  (heading reveals)
+     Print        PRINT  (ink-on-white override)
+   ------------------------------------------------------------
+   Conventions: BEM-ish component classes (.block__element) plus small
+   token-based utilities (.flex, .gap-2) for layout only. See CLAUDE.md.
+   ============================================================ */
 
 /* ============================================
    SELF-HOSTED TYPE: Inter (variable)
@@ -148,7 +172,7 @@ h5 { font-size: var(--text-xl); letter-spacing: -0.005em; }
 h6 { font-size: var(--text-lg); letter-spacing: -0.005em; }
 
 /* Tabular + slashed-zero figures for any numeric UI */
-.tnum, .metric, .metric-figure, .metric-label, .tl-figure, .tl-unit, .experience-date {
+.tnum, .metric, .metric-figure, .metric-label, .tl-figure, .tl-unit {
   font-feature-settings: var(--font-feature-figures);
   font-variant-numeric: tabular-nums slashed-zero;
 }
@@ -229,20 +253,6 @@ pre code {
   gap: var(--space-4);
 }
 
-.gap-8 {
-  gap: var(--space-8);
-}
-
-/* Grid Utilities */
-.grid {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.grid-cols-1 {
-  grid-template-columns: 1fr;
-}
-
 /* ============================================
    HELPERS (token-based utilities)
    ============================================ */
@@ -251,16 +261,10 @@ pre code {
 .project-content p, .notebook-content p { line-height: 1.7; max-width: 70ch; }
 .lede { font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 60ch; }
 .meta-text { color: var(--color-text-secondary); font-size: var(--text-sm); }
-.section-tinted { background: linear-gradient(180deg, var(--color-surface), var(--color-background)); }
 
-/* Closing invitation - centered, accent-bleed band */
-.closing { padding-block: var(--space-section); text-align: center;
-  border-top: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
-  background: radial-gradient(ellipse 90% 60% at 50% 0%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 65%); }
-.closing__inner { max-width: 46rem; }
+/* Connect-CTA heading + lead (used inside .about-connect on the About page). */
 .closing__title { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.06; margin-bottom: var(--space-3); text-wrap: balance; }
 .closing__lead { color: var(--color-text-secondary); font-size: var(--text-lg); max-width: 42ch; margin: 0 auto var(--space-5); text-wrap: pretty; }
-.closing .cta-buttons { justify-content: center; }
 .page-description { color: var(--color-text-secondary); font-size: var(--text-lg); max-width: 60ch; }
 .back-link { display: inline-block; color: var(--color-accent-text);
   font-size: var(--text-sm); margin-bottom: var(--space-4); }
@@ -623,81 +627,6 @@ main { padding-top: var(--header-h); }
 .footer-icon-link:hover { color: var(--color-text); }
 .footer-icon-link svg { width: 16px; height: 16px; }
 
-.footer-grid {
-  gap: var(--space-4);
-}
-
-.footer-section h3 {
-  font-size: var(--text-lg);
-  margin-bottom: var(--space-2);
-}
-
-.footer-section h4 {
-  font-size: var(--text-base);
-  margin-bottom: var(--space-2);
-}
-
-.footer-section p {
-  color: var(--color-text-secondary);
-  max-width: 400px;
-}
-
-.social-links,
-.footer-links {
-  list-style: none;
-  margin: 0;
-}
-/* wrap social chips so the last one (Email) never overflows on narrow phones */
-.social-links { flex-wrap: nowrap; gap: var(--space-2); }
-
-.social-links a,
-.footer-links a {
-  color: var(--color-text-secondary);
-  transition: color var(--transition-fast);
-  display: block;
-  padding: var(--space-1) 0;
-}
-
-.social-links a:hover,
-.footer-links a:hover {
-  color: var(--color-accent-text);
-}
-
-/* Social-link icon chips (footer) - icon-only square chips, always one row */
-.social-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: var(--color-text-secondary);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-sm);
-  transition: color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-}
-.social-links a:hover {
-  color: var(--color-accent-text);
-  border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
-  transform: translateY(-1px);
-}
-.social-links svg {
-  width: 18px;
-  height: 18px;
-}
-
-.footer-bottom {
-  margin-top: var(--space-4);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
-  text-align: center;
-}
-
-.footer-bottom p {
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
-}
-
 /* Footer text */
 .footer-copy { font-size: var(--text-xs); color: var(--color-text-secondary); letter-spacing: var(--tracking-label); }
 
@@ -716,73 +645,6 @@ main { padding-top: var(--header-h); }
   letter-spacing: -0.03em;
   line-height: 1.05;
   text-wrap: balance;
-}
-
-/* Skills Grid */
-.skills-grid {
-  max-width: 100%;
-  margin: 0;
-  display: grid;
-  gap: var(--space-5) var(--space-8);
-}
-
-@media (min-width: 640px) {
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 960px) {
-  .skills-grid { grid-template-columns: repeat(3, 1fr); }
-}
-/* Skills as editorial hairline columns (matches the metrics readout) - no gray boxes */
-.skill-category.card {
-  background: none; box-shadow: none; border: none;
-  border-top: 1px solid var(--color-border); border-radius: 0;
-  padding: var(--space-4) 0 0;
-}
-.skill-category .card-title { font-size: var(--text-lg); }
-
-.skills-tags {
-  flex-wrap: wrap;
-}
-
-/* Experience Items */
-.experience-item {
-  margin-bottom: var(--space-6);
-  position: relative;
-}
-
-.experience-item::before {
-  content: "";
-  position: absolute;
-  left: calc(-1 * var(--space-4) + 2px);
-  top: 10px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-background);
-  border: 2px solid var(--color-primary);
-  transition: background var(--transition-base);
-}
-
-.experience-item:hover::before {
-  background: var(--color-primary);
-}
-
-.experience-item-header {
-  flex-wrap: wrap;
-  margin-bottom: var(--space-2);
-}
-
-.experience-item-header h3 {
-  margin: 0;
-}
-
-.experience-date {
-  color: var(--color-text-secondary);
-}
-
-.experience-description {
-  color: var(--color-text-secondary);
-  margin-left: var(--space-3);
 }
 
 /* Project Cards - editorial, single focusable unit */
@@ -828,23 +690,6 @@ main { padding-top: var(--header-h); }
 
 /* Project card body - image sits flush to the top, content padded below */
 .project-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
-
-/* DEAD: no longer referenced - the home "Selected work" now uses .work-rows (chrome-less sections).
-   Kept for reference; safe to remove. Horizontal snap gallery (edge-bleed to viewport). */
-.work-scroller {
-  display: grid; grid-auto-flow: column; grid-auto-columns: min(84vw, 23rem);
-  gap: var(--space-4); overflow-x: auto; overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
-  --edge: max(var(--space-2), (100vw - var(--max-width)) / 2 + var(--space-2));
-  padding-inline: var(--edge); scroll-padding-inline: var(--edge);
-  padding-block: var(--space-3) var(--space-4);
-  scrollbar-width: thin; scrollbar-color: var(--color-border) transparent;
-  /* Edge-fade veil: cards dissolve softly at the viewport edges so the gallery
-     reads as scrollable even where the OS overlay scrollbar is hidden. */
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
-}
-.work-scroller > .project-card { scroll-snap-align: start; }
 
 /* Chrome-less editorial project sections (home + /work): no card box, large image + text columns,
    sides alternating per row. michellegore.com homepage-section style. overflow-x:clip contains the
@@ -1055,7 +900,6 @@ main { padding-top: var(--header-h); }
   text-transform: uppercase; color: var(--color-text-secondary); }
 
 /* ===== About: Editorial elements ===== */
-/* Token note: --color-surface-alt → --color-surface (undefined in :root, reused nearest surface token; brief's #F5F5F7 fallback matched). */
 .identity-block { margin-block: var(--space-6) 0; }
 .identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.04em; } /* matches .hero-home__title - they share view-transition-name vt-phu and morph into each other */
 .identity-block .identity-title { color: var(--color-accent); font-weight: 600; font-size: clamp(1.3rem, 1rem + 1vw, 1.625rem); margin-top: var(--space-2); }
@@ -1082,16 +926,6 @@ main { padding-top: var(--header-h); }
 @media (max-width: 767px) { .about-section.card.about-col-right { padding-left: 0; } }
 .about-section p { line-height: 1.7; }
 /* About headings use .section-title for one heading family across pages (see markup). */
-
-/* Experience - refined timeline */
-.experience-item { padding-left: var(--space-5); margin-bottom: var(--space-6); position: relative; }
-.experience-item::before { left: 6px; top: 7px; }
-.experience-item-header h3 { font-size: var(--text-lg); font-weight: 600; }
-.experience-date { font-size: var(--text-sm); }
-.experience-description { margin-left: 0; line-height: 1.65; }
-.experience-description li { margin-bottom: var(--space-2); }
-.experience-description li:last-child { margin-bottom: 0; }
-.experience-footnote { color: var(--color-text-secondary); font-style: italic; margin-top: var(--space-3); }
 
 /* Vertical timeline */
 .xp-timeline { position: relative; padding-left: 1.75rem; margin-top: var(--space-5); }
@@ -1460,8 +1294,8 @@ body::after {
 .project-nav__link:focus-visible .project-nav__title { color: var(--color-accent-text); }
 
 /* Sticky-header offset so scroll-cue anchor jumps don't tuck the target under the header.
-   #project-body = project cover target; #glance = home hero cue target (added in Task 2). */
-#project-body, #glance { scroll-margin-top: 6rem; }   /* clear the sticky header on cue jumps */
+   #project-body = project cover target; #glance = home hero cue target. */
+#project-body, #glance { scroll-margin-top: 6rem; }   /* clear the header on cue jumps */
 
 /* Card -> cover morph: keep both snapshots filling their box so a differing aspect ratio
    scales instead of stretching (also smooths the Home <-> About title morph). */

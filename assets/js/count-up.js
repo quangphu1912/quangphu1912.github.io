@@ -1,14 +1,11 @@
-// Count-up: animate any [data-countup] element from 0 to its target exactly once,
-// on scroll-into-view, on the site's --ease-out-expo curve.
-// Progressive enhancement - with JS off or prefers-reduced-motion, the truthful static
-// values remain (prefix/suffix text lives outside the [data-countup] span, untouched).
-(() => {
-  const els = document.querySelectorAll('[data-countup]');
-  if (!els.length) return;
+// Count-up: animate any [data-countup] element from 0 to its target exactly
+// once, on scroll-into-view, on the site's --ease-out-expo curve.
+// Progressive enhancement - with JS off or prefers-reduced-motion, the truthful
+// static values remain (prefix/suffix text lives outside the [data-countup] span).
+const els = document.querySelectorAll('[data-countup]');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !('IntersectionObserver' in window) || !('requestAnimationFrame' in window)) return;
-
+if (els.length && !reduce && 'IntersectionObserver' in window && 'requestAnimationFrame' in window) {
   // cubic-bezier(0.2, 0.7, 0.2, 1) - matches --ease-out-expo
   const bezier = (x1, y1, x2, y2) => {
     const A = (a, b) => 1 - 3 * b + 3 * a;
@@ -51,4 +48,4 @@
   }, { threshold: 0.6 });
 
   els.forEach((el) => { el.textContent = '0'; io.observe(el); });
-})();
+}
