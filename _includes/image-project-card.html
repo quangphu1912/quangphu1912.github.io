@@ -1,5 +1,5 @@
 {% if include.image %}
-<figure class="image-thumbnail"{% if include.project.slug %} style="view-transition-name: vt-{{ include.project.slug }};"{% endif %}>
+<figure class="image-thumbnail">
   <img src="{{ include.image | relative_url }}" width="800" height="450"
        alt="{{ include.alt | default: 'Project thumbnail' }}" loading="lazy">
 </figure>

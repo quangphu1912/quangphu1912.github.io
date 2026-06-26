@@ -86,7 +86,7 @@ Reusable partials in `_includes/`:
 - `mermaid.html` - Mermaid diagrams, hard-set to the dark theme
 - `analytics.html` - GA4 loader, production-gated on `site.google_analytics`, with a `localStorage 'analytics-opt-out'` opt-out
 
-`project.html` and `image-project-card.html` set matching `view-transition-name: vt-{{ slug }}` for a SPA-like card→detail image morph.
+There is no per-element `view-transition-name` morph. Card→detail navigation uses the same root page transition as everywhere else (the opaque rise in the VIEW TRANSITIONS section of `main.css`), so the cover image rises *with* the page instead of morphing out of it - one consistent motion across all navigation. (An earlier `vt-{{ slug }}` card→cover image morph was removed because it made the cover picture appear abruptly rather than rise.)
 
 ### JavaScript
 
