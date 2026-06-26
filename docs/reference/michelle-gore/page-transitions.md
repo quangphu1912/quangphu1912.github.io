@@ -34,40 +34,46 @@ We use the **CSS View Transitions API** (`@view-transition { navigation: auto }`
 
 ### Implemented in `assets/css/main.css` (VIEW TRANSITIONS section, after line ~1150)
 
-The effect is an **opaque pull-down**: both pages stay fully solid and slide as one
-continuous downward motion — the old page exits out the bottom while the new page
-enters from directly above, like scrolling up to a page stacked overhead. **No
-crossfade.** Live frame-by-frame capture of michellegore.com confirmed her pages
-never ghost over each other; each frame is crisp and opaque, which is why the new
-page reads as "everything at once" the instant it lands.
+The effect is an **opaque rise** (forward nav): both pages stay fully solid and slide
+as one continuous **upward** motion — the new page rises from below while the old page
+exits up and out the top, like scrolling down to the next section. **No crossfade.**
+Frame-by-frame capture of michellegore.com (Home→Work, Home→About) confirmed her
+forward transitions bring content *up* from the bottom, fully rendered as it rises —
+that "content rising, then properly displayed" is the feel we match here. Browser-back
+reverses it (new descends from above).
 
 ```css
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(root) {
-    animation: vt-page-exit 560ms cubic-bezier(0, 0.55, 0.45, 1) both;
+    animation: vt-page-exit 600ms cubic-bezier(0, 0.55, 0.45, 1) both;
     z-index: 1;
   }
   ::view-transition-new(root) {
-    animation: vt-page-enter 560ms cubic-bezier(0, 0.55, 0.45, 1) both;
-    z-index: 2;          /* new on top → clean descending seam */
+    animation: vt-page-enter 600ms cubic-bezier(0, 0.55, 0.45, 1) both;
+    z-index: 2;          /* new on top → clean rising seam */
   }
 }
 
-@keyframes vt-page-exit  { to   { transform: translateY(100%); } }  /* old exits bottom */
-@keyframes vt-page-enter { from { transform: translateY(-100%); } } /* new enters from above */
+/* forward: new rises from below, old exits up */
+@keyframes vt-page-exit  { to   { transform: translateY(-100%); } } /* old exits up/top */
+@keyframes vt-page-enter { from { transform: translateY(100%); } }  /* new rises from below */
+/* back (reversed, via :active-view-transition-type(back)) */
+@keyframes vt-page-exit-back  { to   { transform: translateY(100%); } }
+@keyframes vt-page-enter-back { from { transform: translateY(-100%); } }
 ```
 
 ### Why the seam stays glued (the math)
 
-The two sheets must move in perfect lockstep or the join between them tears. At
-animation progress `p` (0→1), with the snapshot box = one viewport tall:
+The two sheets must move in perfect lockstep or the join between them tears. For the
+forward (rising) case, at animation progress `p` (0→1) with the snapshot box = one
+viewport tall:
 
-- new occupies `[(p−1)·100vh, p·100vh]` → its bottom edge sits at `y = p·vh`
-- old occupies `[p·100vh, (p+1)·100vh]` → its top edge sits at `y = p·vh`
+- new occupies `[(1−p)·100vh, (2−p)·100vh]` → its top edge sits at `y = (1−p)·vh`
+- old occupies `[−p·100vh, (1−p)·100vh]` → its bottom edge sits at `y = (1−p)·vh`
 
-They share the boundary `y = p·vh` exactly — new above it, old below it, zero overlap.
-The viewport shows new filling from the top down while old is pushed out the bottom.
-This only holds if **duration, easing, and delay are identical on both** — any
+They share the boundary `y = (1−p)·vh` exactly — old above it, new below it, zero
+overlap. The viewport shows new filling from the bottom up while old is pushed out the
+top. This only holds if **duration, easing, and delay are identical on both** — any
 mismatch opens a gap or an overlap at the seam.
 
 ### Design decisions
@@ -75,9 +81,10 @@ mismatch opens a gap or an overlap at the seam.
 | Decision | Rationale |
 |---|---|
 | **Both pages opaque** | The defining difference from a crossfade. You never see two ghosted layers; the new page is solid the whole way down → "everything appears at once." |
-| **Lockstep (identical 560ms + circ.out, no delay)** | Keeps the seam between the two sheets perfectly aligned. Asymmetric timing tore the join. |
-| **old → +100%, new → −100%** | One continuous downward travel; reads as scrolling to a page stacked above, not a swap. |
-| **new on top (z-index 2)** | The descending edge is the new page's, so the seam is clean and the new page is what you watch arrive. |
+| **Lockstep (identical 600ms + circ.out, no delay)** | Keeps the seam between the two sheets perfectly aligned. Asymmetric timing tore the join. |
+| **forward: old → −100%, new → +100%** | One continuous upward travel; new content rises into place (matches michellegore.com's forward nav), not a swap. Back reverses it. |
+| **new on top (z-index 2)** | The rising edge is the new page's, so the seam is clean and the new page is what you watch arrive. |
+| **Content ready on arrival** (`reveal.js`) | `[data-reveal]` elements already in the incoming viewport are revealed **synchronously at script load** (before first paint), so the page rises with its content fully shown instead of fading in a beat late underneath the slide. A `pagereveal` listener was tried first but registers too late to catch the incoming page's own reveal. Below-fold elements still reveal on scroll. |
 | **`circ.out` (`0,.55,.45,1`)** | Semplice's content-slide easing — fast start, soft landing. |
 | **`vt-phu` name morph removed** | A `view-transition-name` lifts that element out of the root snapshot and tweens it separately, tearing a hole in the cohesive slide. Dropped so the name slides with the page. `vt-{{ slug }}` (card→project image morph) is left in place — verified the full-page slide does not fight it on project nav. |
 
@@ -86,8 +93,8 @@ mismatch opens a gap or an overlap at the seam.
 | Enhancement | How |
 |---|---|
 | **Persistent header** | `.site-header { view-transition-name: vt-header; }` lifts the wordmark + nav into their own group so they stay pinned while content slides underneath — the app-shell feel. Only the active-nav underline differs page-to-page, so it cross-fades cleanly inside the group. |
-| **Leading-edge shadow + accent** | Multi-layer `box-shadow` on `::view-transition-new(root)`: a crisp brand-blue line (`--color-accent #0A84FF`) + soft blue glow + black depth shadow, all at positive y-offset so they show only on the descending bottom edge while sliding (off-screen at rest). The blue is the restrained answer to michellegore.com's transition colour — her pages are full-bleed coloured (e.g. bright-green WhatsApp case study); we keep the dark theme and just accent the moving seam. |
-| **Directional forward/back** | `assets/js/transition-direction.js` tags each transition `forward`/`back` (via `pageswap` + `pagereveal`, reading `navigation.activation` history indices). CSS `:root:active-view-transition-type(back)` swaps to reversed keyframes (old exits up, new rises from below), keeping the shared 600ms/circ.out. No-ops where the Navigation API or cross-doc VT is unsupported. |
+| **Leading-edge shadow + accent** | Multi-layer `box-shadow` on `::view-transition-new(root)`: a crisp brand-blue line (`--color-accent #0A84FF`) + soft blue glow + black depth shadow. For the forward (rising) case they sit at **negative** y-offset so they ride the new page's top (leading) edge; the back override flips them to positive y for the descending edge. Visible only while sliding (off-screen at rest). The blue is the restrained answer to michellegore.com's transition colour — her pages are full-bleed coloured (e.g. bright-green WhatsApp case study); we keep the dark theme and just accent the moving seam. |
+| **Directional forward/back** | `assets/js/transition-direction.js` tags each transition `forward`/`back` (via `pageswap` + `pagereveal`, reading `navigation.activation` history indices). CSS `:root:active-view-transition-type(back)` swaps to reversed keyframes (new descends from above instead of rising), keeping the shared 600ms/circ.out. The `pageswap` tag (set on the outgoing page, registered well in advance) is what reliably drives it. No-ops where the Navigation API or cross-doc VT is unsupported. |
 | **600ms settle** | Bumped from 560ms for a slightly more luxurious finish. |
 
 ### Reduced-motion handling

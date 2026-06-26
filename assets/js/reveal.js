@@ -24,5 +24,13 @@ if (reduce || !('IntersectionObserver' in window)) {
   els.forEach((el, i) => {
     el.style.transitionDelay = `${(i % 4) * 60}ms`;
     io.observe(el);
+    // Already in the viewport at load — whether a cold load or arriving via a page
+    // transition? Reveal it immediately so it's fully present as the page appears,
+    // instead of fading in a beat late underneath the slide. This runs before first
+    // paint (deferred module), so no transition plays. Off-screen elements still reveal
+    // on scroll via the observer above. (Synchronous on purpose: a 'pagereveal' listener
+    // would register too late to catch the incoming page's own reveal.)
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) el.classList.add('is-visible');
   });
 }

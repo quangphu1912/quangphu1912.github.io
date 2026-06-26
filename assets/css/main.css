@@ -1159,9 +1159,10 @@ body::after {
    tweened it separately, which tore a hole in the cohesive pull-down slide below.
    The name now slides with the page as one sheet — the michellegore.com look.) */
 
-/* Page transition — michellegore.com pull-down. Both pages are fully OPAQUE and
-   slide as one continuous downward motion: the old page exits out the bottom while
-   the new page enters from above, like scrolling up to a page stacked overhead.
+/* Page transition — michellegore.com style. Both pages are fully OPAQUE and slide as
+   one continuous UPWARD motion: the new page RISES from below while the old page exits
+   up and out the top, like scrolling down to the next section. (Matches Semplice's
+   forward nav — content rises into place. Browser-back reverses it; see below.)
    No crossfade — you never see the two ghosted over each other, so the new page
    reads as "everything at once" the moment it arrives.
    CRITICAL: old and new MUST share identical duration + easing + (no) delay, or the
@@ -1174,34 +1175,39 @@ body::after {
   }
   ::view-transition-new(root) {
     animation: vt-page-enter 600ms cubic-bezier(0, 0.55, 0.45, 1) both;
-    z-index: 2;          /* new sits on top so the descending seam is clean */
-    /* Leading-edge depth + accent highlight: the opaque new page's bottom edge is the
-       moving seam. A crisp brand-blue line + soft blue glow ride that edge (the
-       "highlight"), backed by a black depth shadow so it still reads as a physical
-       sheet. All three sit just below the bottom edge, so they show only while sliding
-       and vanish once settled (that edge is off-screen at rest). Blue = --color-accent. */
+    z-index: 2;          /* new sits on top so the rising seam is clean */
+    /* Leading-edge depth + accent highlight: the rising page's TOP edge is the moving
+       seam. A crisp brand-blue line + soft blue glow ride that edge (the "highlight"),
+       backed by a black depth shadow so it still reads as a physical sheet. All three
+       sit just above the top edge (negative y), so they show only while sliding and
+       vanish once settled (that edge is off-screen at rest). Blue = --color-accent. */
     box-shadow:
-      0 1px 0 0 rgba(10, 132, 255, 0.85),       /* accent line on the leading edge */
-      0 8px 28px -4px rgba(10, 132, 255, 0.40),  /* blue glow bleeding onto the page below */
-      0 12px 32px rgba(0, 0, 0, 0.50);           /* black depth shadow */
+      0 -1px 0 0 rgba(10, 132, 255, 0.85),       /* accent line on the leading (top) edge */
+      0 -8px 28px -4px rgba(10, 132, 255, 0.40),  /* blue glow bleeding onto the page above */
+      0 -12px 32px rgba(0, 0, 0, 0.50);           /* black depth shadow */
   }
 
   /* Direction-aware (type set by assets/js/transition-direction.js): on browser-back,
-     reverse the motion — old exits upward, new rises from below — so returning feels
-     like going back down the stack rather than another forward push. Overriding only
-     animation-name keeps the shared 600ms / circ.out timing intact. */
+     reverse the motion — new DESCENDS from above, old exits down and out the bottom — so
+     returning feels like going back up the stack rather than another forward rise.
+     Overriding animation-name keeps the shared 600ms / circ.out timing; the shadow flips
+     to the bottom (now-leading) edge so the accent still rides the moving seam. */
   :root:active-view-transition-type(back)::view-transition-old(root) {
     animation-name: vt-page-exit-back;
   }
   :root:active-view-transition-type(back)::view-transition-new(root) {
     animation-name: vt-page-enter-back;
+    box-shadow:
+      0 1px 0 0 rgba(10, 132, 255, 0.85),
+      0 8px 28px -4px rgba(10, 132, 255, 0.40),
+      0 12px 32px rgba(0, 0, 0, 0.50);
   }
 }
 
-@keyframes vt-page-exit       { to   { transform: translateY(100%); } }  /* fwd: old exits bottom */
-@keyframes vt-page-enter      { from { transform: translateY(-100%); } } /* fwd: new from above */
-@keyframes vt-page-exit-back  { to   { transform: translateY(-100%); } } /* back: old exits top */
-@keyframes vt-page-enter-back { from { transform: translateY(100%); } }  /* back: new from below */
+@keyframes vt-page-exit       { to   { transform: translateY(-100%); } } /* fwd: old exits UP/top */
+@keyframes vt-page-enter      { from { transform: translateY(100%); } }  /* fwd: new RISES from below */
+@keyframes vt-page-exit-back  { to   { transform: translateY(100%); } }  /* back: old exits down/bottom */
+@keyframes vt-page-enter-back { from { transform: translateY(-100%); } } /* back: new descends from top */
 
 /* ============================================
    PROJECT COVER + SCROLL CUE  (michellegore.com-inspired)
