@@ -901,7 +901,7 @@ main { padding-top: var(--header-h); }
 
 /* ===== About: Editorial elements ===== */
 .identity-block { margin-block: var(--space-6) 0; }
-.identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.04em; } /* matches .hero-home__title - they share view-transition-name vt-phu and morph into each other */
+.identity-block .identity-name { font-size: clamp(2.5rem, 1.5rem + 3vw, 3.5rem); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -0.04em; } /* visually matches .hero-home__title (the home hero name) */
 .identity-block .identity-title { color: var(--color-accent); font-weight: 600; font-size: clamp(1.3rem, 1rem + 1vw, 1.625rem); margin-top: var(--space-2); }
 .identity-block .identity-loc { color: var(--color-text-secondary); font-size: var(--text-lg); margin-top: var(--space-1); }
 .cert-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
@@ -1149,31 +1149,35 @@ body::after {
 @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
 ::view-transition-group(*) { animation-timing-function: var(--ease-out-expo); }
 
-/* Shared element morph - the name "Phu Le" carries across Home ↔ About */
-.hero-home__title, .identity-name { view-transition-name: vt-phu; }
+/* (Removed the vt-phu name morph: it lifted "Phu Le" out of the page snapshot and
+   tweened it separately, which tore a hole in the cohesive pull-down slide below.
+   The name now slides with the page as one sheet — the michellegore.com look.) */
 
-/* Page transition — Semplice/michellegore.com style: old page recedes down while
-   fading; new page drifts in from just above. Both overlap briefly, creating the
-   natural colour blend. circ.out (0,.55,.45,1) is the Semplice easing — softer
-   landing than expo, which is what makes it feel buttery rather than snappy.
-   Named elements (vt-phu, vt-slug) animate in their own layer — unaffected. */
+/* Page transition — michellegore.com pull-down. Both pages are fully OPAQUE and
+   slide as one continuous downward motion: the old page exits out the bottom while
+   the new page enters from above, like scrolling up to a page stacked overhead.
+   No crossfade — you never see the two ghosted over each other, so the new page
+   reads as "everything at once" the moment it arrives.
+   CRITICAL: old and new MUST share identical duration + easing + (no) delay, or the
+   seam between the two sheets tears (a gap or an overlap opens at the join).
+   circ.out (0,.55,.45,1) is Semplice's content-slide easing. */
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(root) {
-    animation: vt-page-exit 300ms ease-in both;
+    animation: vt-page-exit 560ms cubic-bezier(0, 0.55, 0.45, 1) both;
     z-index: 1;
   }
   ::view-transition-new(root) {
-    animation: vt-page-enter 460ms cubic-bezier(0, 0.55, 0.45, 1) 60ms both;
-    z-index: 2;
+    animation: vt-page-enter 560ms cubic-bezier(0, 0.55, 0.45, 1) both;
+    z-index: 2;          /* new sits on top so the descending seam is clean */
   }
 }
 
 @keyframes vt-page-exit {
-  to { opacity: 0; transform: translateY(14px) scale(0.99); }
+  to { transform: translateY(100%); }     /* old slides down and out the bottom */
 }
 
 @keyframes vt-page-enter {
-  from { opacity: 0; transform: translateY(-22px); }
+  from { transform: translateY(-100%); }  /* new slides in from directly above */
 }
 
 /* ============================================

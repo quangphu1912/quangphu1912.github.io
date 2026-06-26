@@ -32,37 +32,54 @@ never overlaps; it's a sequential replace, not a blend).
 We use the **CSS View Transitions API** (`@view-transition { navigation: auto }`) which gives us
 `::view-transition-old(root)` and `::view-transition-new(root)` as animatable pseudo-elements.
 
-### Implemented in `assets/css/main.css` (MOTION CRAFT section, after line ~1153)
+### Implemented in `assets/css/main.css` (VIEW TRANSITIONS section, after line ~1150)
+
+The effect is an **opaque pull-down**: both pages stay fully solid and slide as one
+continuous downward motion — the old page exits out the bottom while the new page
+enters from directly above, like scrolling up to a page stacked overhead. **No
+crossfade.** Live frame-by-frame capture of michellegore.com confirmed her pages
+never ghost over each other; each frame is crisp and opaque, which is why the new
+page reads as "everything at once" the instant it lands.
 
 ```css
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(root) {
-    animation: vt-page-exit 260ms ease-in both;
+    animation: vt-page-exit 560ms cubic-bezier(0, 0.55, 0.45, 1) both;
+    z-index: 1;
   }
   ::view-transition-new(root) {
-    animation: vt-page-enter 380ms var(--ease-out-expo) 60ms both;
+    animation: vt-page-enter 560ms cubic-bezier(0, 0.55, 0.45, 1) both;
+    z-index: 2;          /* new on top → clean descending seam */
   }
 }
 
-@keyframes vt-page-exit {
-  to { opacity: 0; transform: translateX(-32px) scale(0.99); }
-}
-
-@keyframes vt-page-enter {
-  from { opacity: 0; transform: translateX(48px); }
-}
+@keyframes vt-page-exit  { to   { transform: translateY(100%); } }  /* old exits bottom */
+@keyframes vt-page-enter { from { transform: translateY(-100%); } } /* new enters from above */
 ```
+
+### Why the seam stays glued (the math)
+
+The two sheets must move in perfect lockstep or the join between them tears. At
+animation progress `p` (0→1), with the snapshot box = one viewport tall:
+
+- new occupies `[(p−1)·100vh, p·100vh]` → its bottom edge sits at `y = p·vh`
+- old occupies `[p·100vh, (p+1)·100vh]` → its top edge sits at `y = p·vh`
+
+They share the boundary `y = p·vh` exactly — new above it, old below it, zero overlap.
+The viewport shows new filling from the top down while old is pushed out the bottom.
+This only holds if **duration, easing, and delay are identical on both** — any
+mismatch opens a gap or an overlap at the seam.
 
 ### Design decisions
 
 | Decision | Rationale |
 |---|---|
-| **60ms delay on enter** | Exit starts first; creates the sequential "turn" feel, not a crossfade |
-| **Exit 260ms, enter 380ms** | Exit is faster (sharper, like pushing a page aside); enter is slower (settling) |
-| **translateX -32px / +48px** | Shallow offsets — subtle directional cue, not a full-slide. Avoids fighting the image morph on card → project navigation |
-| **scale(0.99) on exit** | Almost imperceptible shrink adds depth — old page recedes, new page arrives |
-| **`ease-in` exit, `--ease-out-expo` enter** | Exit accelerates away; enter decelerates to rest. Matches physical page-turn kinematics |
-| **Named elements unaffected** | `vt-phu` and `vt-{{ slug }}` image morphs run in their own layer; root slide doesn't touch them |
+| **Both pages opaque** | The defining difference from a crossfade. You never see two ghosted layers; the new page is solid the whole way down → "everything appears at once." |
+| **Lockstep (identical 560ms + circ.out, no delay)** | Keeps the seam between the two sheets perfectly aligned. Asymmetric timing tore the join. |
+| **old → +100%, new → −100%** | One continuous downward travel; reads as scrolling to a page stacked above, not a swap. |
+| **new on top (z-index 2)** | The descending edge is the new page's, so the seam is clean and the new page is what you watch arrive. |
+| **`circ.out` (`0,.55,.45,1`)** | Semplice's content-slide easing — fast start, soft landing. |
+| **`vt-phu` name morph removed** | A `view-transition-name` lifts that element out of the root snapshot and tweens it separately, tearing a hole in the cohesive slide. Dropped so the name slides with the page. `vt-{{ slug }}` (card→project image morph) is left in place — revisit if the full-page slide fights it on project nav. |
 
 ### Reduced-motion handling
 
