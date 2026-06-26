@@ -1175,10 +1175,15 @@ body::after {
   ::view-transition-new(root) {
     animation: vt-page-enter 600ms cubic-bezier(0, 0.55, 0.45, 1) both;
     z-index: 2;          /* new sits on top so the descending seam is clean */
-    /* Leading-edge depth: the opaque new page casts a soft shadow off its bottom edge
-       onto the old page below the seam, so it reads as a physical sheet sliding over.
-       Self-hiding at rest — the shadowed edge sits off-screen once settled. */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+    /* Leading-edge depth + accent highlight: the opaque new page's bottom edge is the
+       moving seam. A crisp brand-blue line + soft blue glow ride that edge (the
+       "highlight"), backed by a black depth shadow so it still reads as a physical
+       sheet. All three sit just below the bottom edge, so they show only while sliding
+       and vanish once settled (that edge is off-screen at rest). Blue = --color-accent. */
+    box-shadow:
+      0 1px 0 0 rgba(10, 132, 255, 0.85),       /* accent line on the leading edge */
+      0 8px 28px -4px rgba(10, 132, 255, 0.40),  /* blue glow bleeding onto the page below */
+      0 12px 32px rgba(0, 0, 0, 0.50);           /* black depth shadow */
   }
 
   /* Direction-aware (type set by assets/js/transition-direction.js): on browser-back,

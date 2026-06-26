@@ -86,7 +86,7 @@ mismatch opens a gap or an overlap at the seam.
 | Enhancement | How |
 |---|---|
 | **Persistent header** | `.site-header { view-transition-name: vt-header; }` lifts the wordmark + nav into their own group so they stay pinned while content slides underneath — the app-shell feel. Only the active-nav underline differs page-to-page, so it cross-fades cleanly inside the group. |
-| **Leading-edge shadow** | `box-shadow: 0 10px 30px rgba(0,0,0,.55)` on `::view-transition-new(root)`. The `+10px` y-offset means only the bottom edge's shadow shows, and only while sliding (at rest that edge is off-screen) — so the descending page reads as a physical sheet, with zero shadow once settled. |
+| **Leading-edge shadow + accent** | Multi-layer `box-shadow` on `::view-transition-new(root)`: a crisp brand-blue line (`--color-accent #0A84FF`) + soft blue glow + black depth shadow, all at positive y-offset so they show only on the descending bottom edge while sliding (off-screen at rest). The blue is the restrained answer to michellegore.com's transition colour — her pages are full-bleed coloured (e.g. bright-green WhatsApp case study); we keep the dark theme and just accent the moving seam. |
 | **Directional forward/back** | `assets/js/transition-direction.js` tags each transition `forward`/`back` (via `pageswap` + `pagereveal`, reading `navigation.activation` history indices). CSS `:root:active-view-transition-type(back)` swaps to reversed keyframes (old exits up, new rises from below), keeping the shared 600ms/circ.out. No-ops where the Navigation API or cross-doc VT is unsupported. |
 | **600ms settle** | Bumped from 560ms for a slightly more luxurious finish. |
 
