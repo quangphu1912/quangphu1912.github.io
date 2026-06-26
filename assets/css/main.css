@@ -61,6 +61,17 @@
   --color-accent-deep: #0063CC;     /* pressed */
   --color-primary: var(--color-accent);
   --color-primary-hover: #409CFF;
+
+  /* Project category color - a curated triad keyed to the KIND of work (not per-project),
+     so a new project just sets `category:` and inherits a hue. Tuned for the navy dark theme;
+     brand blue stays the global UI accent (buttons/focus/transitions). See CLAUDE.md.
+     --proj-accent/--proj-wash default to brand blue and cascade from a [data-category] wrapper. */
+  --proj-data: #3DD6C0;  --proj-data-wash: rgba(61, 214, 192, 0.14);   /* Data Engineering */
+  --proj-ml:   #A78BFA;  --proj-ml-wash:   rgba(167, 139, 250, 0.14);  /* Machine Learning */
+  --proj-bi:   #F5B544;  --proj-bi-wash:   rgba(245, 181, 68, 0.14);   /* Analytics / BI */
+  --proj-accent: var(--color-accent);
+  --proj-wash: transparent;
+
   --color-text: #F5F5F7;
   --color-text-secondary: #A1A1A6;
   /* Cool-neutral elevation ladder */
@@ -125,6 +136,12 @@
   /* Vertical rhythm between major sections */
   --space-section: clamp(5.5rem, 10vw, 10rem);
 }
+
+/* Category -> hue. Set data-category on a project wrapper; --proj-accent/--proj-wash cascade
+   to the inline cover/thumbnail SVG (currentColor) and the chrome. Unknown/missing -> brand blue. */
+[data-category="data"] { --proj-accent: var(--proj-data); --proj-wash: var(--proj-data-wash); }
+[data-category="ml"]   { --proj-accent: var(--proj-ml);   --proj-wash: var(--proj-ml-wash); }
+[data-category="bi"]   { --proj-accent: var(--proj-bi);   --proj-wash: var(--proj-bi-wash); }
 
 /* ============================================
    RESET & BASE STYLES
@@ -720,7 +737,7 @@ main { padding-top: var(--header-h); }
 }
 .project-card__cta .cta-arrow { transition: transform var(--transition-base); }
 .work-rows .project-card:hover .project-card__cta,
-.work-rows .project-card:focus-within .project-card__cta { color: var(--color-accent-text); }
+.work-rows .project-card:focus-within .project-card__cta { color: var(--proj-accent); }
 @media (prefers-reduced-motion: no-preference) {
   .work-rows .project-card:hover .project-card__cta .cta-arrow,
   .work-rows .project-card:focus-within .project-card__cta .cta-arrow { transform: translateX(4px); }
@@ -855,6 +872,18 @@ main { padding-top: var(--header-h); }
 .project-card .image-thumbnail img { height: 100%; }
 .project-card .image-thumbnail::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(180deg, transparent 58%, color-mix(in srgb, var(--color-bg) 26%, transparent)); }
+
+/* Inline category SVG art: the figure carries the project hue (currentColor); mirror the <img>
+   sizing + card-zoom. A thin accent hairline rides in on hover (restrained category cue). */
+.image-thumbnail { color: var(--proj-accent); }
+.image-thumbnail svg { width: 100%; height: 100%; display: block; }
+.project-card .image-thumbnail svg { transition: transform var(--transition-slow); }
+.project-card:hover .image-thumbnail svg { transform: scale(1.04); }
+.work-rows .project-card:hover .image-thumbnail,
+.work-rows .project-card:focus-within .image-thumbnail {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--proj-accent) 55%, transparent), var(--shadow-lg);
+}
+@media (prefers-reduced-motion: reduce) { .project-card:hover .image-thumbnail svg { transform: none; } }
 
 /* ==========================================================================
    Mobile nav
@@ -1236,7 +1265,10 @@ body::after {
   height: 100%;
   object-fit: cover;          /* scale 16:9 art to fill the tall cover, cropping gracefully */
   object-position: 50% 50%;
+  color: var(--proj-accent);  /* inline SVG art reads this via currentColor (raster fallback ignores) */
 }
+/* Inline cover SVG fills the header; preserveAspectRatio="slice" crops like object-fit:cover. */
+.project-cover__img svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 /* Scrim: top gradient for nav legibility + center radial vignette for centered text. */
 .project-cover::after {
   content: "";
@@ -1244,6 +1276,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, var(--proj-wash), transparent 70%),
     linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 20%),
     radial-gradient(ellipse 110% 80% at 50% 50%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 68%);
 }
@@ -1267,7 +1300,7 @@ body::after {
 .project-cover__back { color: rgba(255,255,255,0.85); margin-bottom: 0; }
 .project-cover__back:hover, .project-cover__back:focus-visible { color: #fff; }
 .project-cover__text { margin-top: 0; }
-.project-cover__eyebrow { color: rgba(255,255,255,0.62); margin-bottom: var(--space-2); }
+.project-cover__eyebrow { color: var(--proj-accent); margin-bottom: var(--space-2); }
 .project-cover__title {
   margin: 0 auto;
   max-width: 22ch;

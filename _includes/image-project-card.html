@@ -1,6 +1,12 @@
 {% if include.image %}
 <figure class="image-thumbnail">
-  <img src="{{ include.image | relative_url }}" width="800" height="450"
-       alt="{{ include.alt | default: 'Project thumbnail' }}" loading="lazy">
+  {% comment %} Inline the SVG (authored with currentColor) so it inherits the project's
+  category hue - an external <img src=*.svg> can't be CSS-tinted. Raster fallback otherwise. {% endcomment %}
+  {% if include.project.hero_image %}
+    {% include projects/{{ include.project.slug }}.svg %}
+  {% else %}
+    <img src="{{ include.image | relative_url }}" width="800" height="450"
+         alt="{{ include.alt | default: 'Project thumbnail' }}" loading="lazy">
+  {% endif %}
 </figure>
 {% endif %}

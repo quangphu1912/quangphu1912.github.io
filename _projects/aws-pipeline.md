@@ -5,6 +5,7 @@ date: 2023-09-10
 tags: [AWS, Data Engineering, Real-Time Analytics, Lambda, Kinesis, Redshift]
 role: "Data Engineer"
 domain: "Real-Time Analytics"
+category: data            # category color: data | ml | bi (see CLAUDE.md)
 stack: "AWS Kinesis · Lambda · Redshift · MWAA"
 image: /assets/images/projects/aws-pipeline.png
 image_alt: "Abstract real-time data pipeline illustration"

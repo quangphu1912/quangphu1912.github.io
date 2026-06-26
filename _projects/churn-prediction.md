@@ -5,6 +5,7 @@ date: 2023-05-20
 tags: [Machine Learning, XGBoost, Churn Prediction, Feature Engineering, CRM Integration]
 role: "Data Scientist"
 domain: "Customer Analytics"
+category: ml              # category color: data | ml | bi (see CLAUDE.md)
 stack: "Python · XGBoost · SageMaker · Salesforce CRM"
 image: /assets/images/projects/churn-prediction.png
 image_alt: "Abstract churn classification scatter illustration"

@@ -2,10 +2,15 @@
 layout: default
 ---
 
-<article class="project-detail">
+<article class="project-detail"{% if page.category %} data-category="{{ page.category }}"{% endif %}>
     {% if page.image %}
     <header class="project-cover">
-        <img class="project-cover__img" src="{{ page.hero_image | default: page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
+        {% comment %} Inline the cover SVG (currentColor) so it takes the category hue; raster fallback. {% endcomment %}
+        {% if page.hero_image %}
+        <div class="project-cover__img" role="img" aria-label="{{ page.image_alt | default: page.title }}">{% include projects/{{ page.slug }}.svg %}</div>
+        {% else %}
+        <img class="project-cover__img" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
+        {% endif %}
 
         <div class="project-cover__nav container">
             <a href="{{ '/projects/' | relative_url }}" class="back-link project-cover__back">← Back to Projects</a>

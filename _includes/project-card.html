@@ -1,6 +1,6 @@
 {% assign project = include.project %}
 
-<article class="project-card" data-reveal>
+<article class="project-card" data-reveal{% if project.category %} data-category="{{ project.category }}"{% endif %}>
   {% assign card_image = project.hero_image | default: project.image %}
   {% if card_image %}
     {% include image-project-card.html image=card_image alt=project.title project=project %}

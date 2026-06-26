@@ -110,10 +110,26 @@ Single flat file: `assets/css/main.css`. No preprocessor, no build step. CSS cus
 
 There is **no** `_includes/image-hero.html` and **no** `.jpg`→`.webp` `replace` filter - both were aspirational doc that never matched the code. The home hero is typographic (`_includes/hero-home.html`, no `<img>`). The real image chain:
 
-- `page.image` feeds **both** `jekyll-seo-tag`'s `og:image` / BlogPosting JSON-LD (`_layouts/default.html` `{% seo %}`) **and** the visible hero via fallback.
-- For projects, `page.image` is the **raster** (`.png`, 1200×675) so social cards render - Twitter/LinkedIn/Slack silently drop SVG. `hero_image` is the **SVG** (crisp visible hero + card thumbnail).
-- Visible image is read as `hero_image | default: image`: `_layouts/project.html` (detail hero), `_includes/project-card.html` → `_includes/image-project-card.html` (card thumbnail - a single `<img>`).
-- `image_alt` covers whichever is shown (they depict the same illustration).
+- `page.image` feeds **both** `jekyll-seo-tag`'s `og:image` / BlogPosting JSON-LD (`_layouts/default.html` `{% seo %}`) **and** the raster fallback. For projects it's the **raster** (`.png`, 1200×675) so social cards render - Twitter/LinkedIn/Slack silently drop SVG.
+- The **visible** project art is the SVG in `_includes/projects/<slug>.svg`, **inlined** (not `<img>`) via `{% include projects/{{ slug }}.svg %}` in `_layouts/project.html` (cover) and `_includes/image-project-card.html` (card thumbnail). It's inlined so it can inherit the category hue via `currentColor` - an external `<img src=*.svg>` can't be CSS-tinted (see Project category color below). The SVGs are authored with a navy base + `currentColor`-at-opacity accents.
+- `hero_image` front matter is now just a **presence flag** ("this project has an inline SVG"); its path value is legacy/unused (the art is resolved by `slug`, not by that path). When absent, both surfaces fall back to the raster `<img>`.
+- `image_alt` labels the cover (`role="img"` wrapper); the inline SVGs also carry their own `role="img"`/`aria-label`.
+
+### Project category color (design decision)
+
+Projects are colored **by category, not per-project**, so the listing reads as a curated set and a 10th project needs no new color invented. A curated triad, tuned for the navy dark theme, keys off the *kind* of work:
+
+| `category:` | Token | Hue | Meaning |
+|---|---|---|---|
+| `data` | `--proj-data` | `#3DD6C0` teal | Data Engineering / Pipelines |
+| `ml` | `--proj-ml` | `#A78BFA` violet | Machine Learning / Predictive |
+| `bi` | `--proj-bi` | `#F5B544` amber | Analytics / BI |
+
+**Mechanism.** Each project declares `category:` in front matter. The card (`_includes/project-card.html`) and detail article (`_layouts/project.html`) emit `data-category="…"`; CSS rules `[data-category="…"] { --proj-accent: …; --proj-wash: …; }` (top of `main.css`, just after `:root`) set two custom properties that **cascade** to descendants. The inline cover/thumbnail SVGs pick up `--proj-accent` through `color:` → `currentColor`; the chrome (cover eyebrow, cover wash-glow, listing hover-arrow/CTA, thumbnail hover hairline) reads the same var. Missing/unknown category falls back to **brand blue** (`--proj-accent` defaults to `--color-accent`).
+
+**Reach (deliberate).** Category hue touches **only project surfaces**: cover art + eyebrow + wash, listing thumbnail art + hover affordances. **Brand blue stays the global UI accent** - buttons, focus rings, the page-transition edge, telemetry, hero, and the global `.eyebrow` (home/section kickers). The listing card kicker (date · tag) stays muted on purpose; the colored art carries grid identity. Do **not** recolor the global `.eyebrow` to a category hue - it would bleed into home/section headers.
+
+**Adding a project:** set `category: data|ml|bi` and author `_includes/projects/<slug>.svg` with a navy base + `currentColor`-at-opacity accents (keep `preserveAspectRatio="xMidYMid slice"` so it fills the tall cover). A genuinely new category needs a token pair + one `[data-category]` rule.
 
 ### Résumé
 

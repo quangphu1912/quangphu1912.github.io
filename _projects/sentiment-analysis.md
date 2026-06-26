@@ -5,6 +5,7 @@ date: 2023-07-15
 tags: [NLP, BERT, Fine-Tuning, Financial Machine Learning, TensorFlow]
 role: "ML Engineer"
 domain: "NLP · Financial Markets"
+category: ml              # category color: data | ml | bi (see CLAUDE.md)
 stack: "Python · BERT · HuggingFace · GCP Cloud Run"
 image: /assets/images/projects/sentiment-analysis.png
 image_alt: "Abstract financial sentiment analysis illustration"

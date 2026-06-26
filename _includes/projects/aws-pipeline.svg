@@ -1,0 +1,27 @@
+<svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract real-time data pipeline">
+  <defs>
+    <linearGradient id="p-bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0C2747"/>
+      <stop offset="1" stop-color="#081627"/>
+    </linearGradient>
+    <radialGradient id="p-glow" cx="190" cy="120" r="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#p-bg)"/>
+  <rect width="800" height="450" fill="url(#p-glow)"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <path d="M0 150H800M0 300H800M160 0V450M320 0V450M480 0V450M640 0V450"/>
+  </g>
+  <line x1="120" y1="225" x2="680" y2="225" fill="none" stroke="currentColor" stroke-opacity="0.55" stroke-width="3" stroke-dasharray="2 11" stroke-linecap="round"/>
+  <g>
+    <circle cx="120" cy="225" r="14" fill="#0B2545" stroke="currentColor" stroke-width="3"/>
+    <circle cx="260" cy="225" r="14" fill="#0B2545" stroke="currentColor" stroke-width="3"/>
+    <circle cx="400" cy="225" r="22" fill="currentColor"/>
+    <circle cx="540" cy="225" r="14" fill="#0B2545" stroke="currentColor" stroke-width="3"/>
+    <circle cx="680" cy="225" r="14" fill="#0B2545" stroke="currentColor" stroke-width="3"/>
+  </g>
+  <circle cx="330" cy="225" r="6" fill="#ffffff"/>
+  <circle cx="610" cy="225" r="5" fill="#ffffff" fill-opacity="0.7"/>
+</svg>
