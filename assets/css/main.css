@@ -678,6 +678,10 @@ main { padding-top: var(--header-h); }
   transition: transform var(--transition-base) var(--ease-out-expo), box-shadow var(--transition-base) var(--ease-out-expo);
 }
 .card-title__link { color: var(--color-text); }
+/* On hover the title tracks the project's category hue (not global a:hover blue),
+   so it stays consistent with the art + "View project" CTA. Specificity beats a:hover. */
+.project-card:hover .card-title__link,
+.project-card:focus-within .card-title__link { color: var(--proj-accent); }
 .card-title__link::after { content: ""; position: absolute; inset: 0; } /* whole card is the click target */
 .card-title__text { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } /* clamp the TEXT, not the link box (3 lines fits the longest project title) */
 .project-card:focus-within { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent); }
