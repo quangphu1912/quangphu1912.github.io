@@ -1280,19 +1280,21 @@ body::after {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 90% 55% at 50% 0%, var(--proj-wash), transparent 70%),
-    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 20%),
-    radial-gradient(ellipse 110% 80% at 50% 50%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 68%);
+    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 16%),                          /* top: nav legibility */
+    linear-gradient(90deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.74) 30%, rgba(0,0,0,0.30) 52%, rgba(0,0,0,0) 76%),  /* left: text-column legibility (art reads on the right) */
+    radial-gradient(ellipse 60% 70% at 16% 50%, var(--proj-wash), transparent 72%);           /* hue glow behind the text */
 }
 .project-cover__inner {
   position: relative;
   z-index: 1;
-  align-self: center;
+  align-self: center;          /* vertically centered, michellegore.com cover */
   width: 100%;
   padding-top: calc(var(--header-h) + var(--space-4));
   padding-bottom: var(--space-8);
-  text-align: center;
+  text-align: left;
 }
+/* Meta column sits on the left; the art bleeds through on the right. */
+.project-cover__text { max-width: 34rem; margin-top: 0; }
 /* Back link: absolutely pinned top-left, outside the centered block */
 .project-cover__nav {
   position: absolute;
@@ -1303,28 +1305,43 @@ body::after {
 }
 .project-cover__back { color: rgba(255,255,255,0.85); margin-bottom: 0; }
 .project-cover__back:hover, .project-cover__back:focus-visible { color: #fff; }
-.project-cover__text { margin-top: 0; }
 .project-cover__eyebrow { color: var(--proj-accent); margin-bottom: var(--space-2); }
 .project-cover__title {
-  margin: 0 auto;
-  max-width: 22ch;
+  margin: 0;
   color: #fff;
-  /* Gentle slope: ~28px on a 390px phone (no clip) up to ~66px on desktop. */
-  font-size: clamp(1.75rem, 0.9rem + 3.6vw, 4.25rem);
-  line-height: 1.04;
+  /* Gentle slope: ~28px on a 390px phone (no clip) up to ~60px on desktop. */
+  font-size: clamp(1.75rem, 0.9rem + 3.2vw, 3.75rem);
+  line-height: 1.05;
   letter-spacing: -0.04em;
   overflow-wrap: break-word;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  text-shadow: 0 2px 24px rgba(0,0,0,0.45);
 }
 .project-cover__desc {
-  margin: var(--space-3) auto 0;
-  max-width: 52ch;
-  color: rgba(255,255,255,0.72);
+  margin: var(--space-3) 0 0;
+  max-width: 38ch;
+  color: rgba(255,255,255,0.74);
   font-size: var(--text-lg);
   line-height: 1.5;
-  text-wrap: balance;
-  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  text-wrap: pretty;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.5);
 }
+/* Credits on the cover - michellegore.com's vertical divided list (label over value, hairline rules). */
+.project-cover .project-meta-block {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  margin: var(--space-5) 0 0;
+  max-width: 22rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.project-cover .project-meta-block .pm-item {
+  padding: var(--space-2) 0;
+  border-top: 1px solid rgba(255,255,255,0.16);
+}
+.project-cover .project-meta-block .pm-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.16); }
+.project-cover .project-meta-block .pm-item dt { color: rgba(255,255,255,0.6); }
+.project-cover .project-meta-block .pm-item dd { color: #fff; }
 .project-cover__meta {
   display: flex;
   flex-wrap: wrap;

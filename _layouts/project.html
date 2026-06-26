@@ -25,6 +25,8 @@ layout: default
                 {% if page.description %}
                 <p class="project-cover__desc">{{ page.description }}</p>
                 {% endif %}
+                {% comment %} Credits live in the cover's left column (michellegore.com), beside the art. {% endcomment %}
+                {% include project-meta.html project=page %}
             </div>
         </div>
 
@@ -43,19 +45,16 @@ layout: default
         {% endunless %}
 
         <div class="section-sm" id="project-body">
+            {% comment %} Credits now live on the cover (left column). The body opens with tags + content. {% endcomment %}
+            {% if page.tags %}
             <div class="project-intro detail-header--spaced">
-                {% comment %} Credits-first (michellegore.com): the scannable Role/Domain/Stack panel
-                leads; the description already headlines the cover, so it is not repeated here. {% endcomment %}
-                {% include project-meta.html project=page %}
-
-                {% if page.tags %}
                 <div class="project-meta detail-meta-row flex gap-4" data-reveal>
                     <div class="project-tags flex gap-2">
                         {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
                     </div>
                 </div>
-                {% endif %}
             </div>
+            {% endif %}
 
             <div class="project-content prose" data-reveal>{{ content }}</div>
 

@@ -131,11 +131,12 @@ Projects are colored **by category, not per-project**, so the listing reads as a
 
 **Adding a project:** set `category: data|ml|bi` and author `_includes/projects/<slug>.svg` with a navy base + `currentColor`-at-opacity accents (keep `preserveAspectRatio="xMidYMid slice"` so it fills the tall cover). A genuinely new category needs a token pair + one `[data-category]` rule.
 
-### Project detail header (credits-first, michellegore.com)
+### Project detail header (michellegore.com cover composition)
 
-`_layouts/project.html` is structured so nothing repeats:
-- **Cover (hero):** eyebrow (date · first tag) → title → the **single `description`** → scroll cue. There is **one** description per project - a combined hook-plus-substance line (lead with the value, fold in the headline metric, no em dashes). It headlines the cover **and** feeds `jekyll-seo-tag`'s `description`/`og:description`. There is **no** separate `intent:`/`tagline:` field - two near-identical lines confused readers, so it was collapsed to one.
-- **Body intro:** leads with the scannable **credits panel** (`project-meta.html` → `.project-meta-block`: Role / Domain / Stack, mono-uppercase labels) → tags → `{{ content }}` → prev/next. The description is **not** repeated here (it's on the cover), and the cover no longer carries role/domain chips (they live in the credits panel). No Timeline row: the cover eyebrow already shows the date.
+`_layouts/project.html` mirrors michellegore.com's project cover: a **meta column on the left, art bleeding on the right**, vertically centred, on the dark art (no centered-in-a-void). Nothing repeats:
+- **Cover (hero):** a left column (`.project-cover__text`, `max-width: 34rem`) holds eyebrow (date · first tag) → title → the **single `description`** → the **credits** (`project-meta.html` → `.project-meta-block`, restyled on the cover as a vertical divided list: Role / Domain / Stack, label over value, hairline rules - her treatment). The inline SVG art fills the cover; a `linear-gradient(90deg, …)` **left scrim** keeps the text legible while the art reads on the right. There is **one** `description` per project - a combined hook-plus-substance line (no em dashes, no separate `intent:` field); it headlines the cover **and** feeds `jekyll-seo-tag`. Keep the description column narrow (`~38ch`) so text never sits on the bright center of the art.
+- **Body:** opens straight into tags → `{{ content }}` → prev/next. Credits are **not** repeated here (they live on the cover). No Timeline row: the cover eyebrow already shows the date.
+- Don't re-center the cover or move credits back to the body without asking - the left-column composition is deliberate.
 
 ### Résumé
 
