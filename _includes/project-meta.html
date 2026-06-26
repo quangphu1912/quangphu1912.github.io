@@ -1,6 +1,6 @@
 {% assign p = include.project %}
 {% if p.role or p.domain or p.stack %}
-<dl class="project-meta-block" aria-label="Project context">
+<dl class="project-meta-block" aria-label="Project context" data-reveal>
   {% if p.role %}<div class="pm-item"><dt>Role</dt><dd>{{ p.role }}</dd></div>{% endif %}
   {% if p.domain %}<div class="pm-item"><dt>Domain</dt><dd>{{ p.domain }}</dd></div>{% endif %}
   {% if p.stack %}<div class="pm-item"><dt>Stack</dt><dd>{{ p.stack }}</dd></div>{% endif %}

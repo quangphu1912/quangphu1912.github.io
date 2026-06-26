@@ -46,12 +46,12 @@ layout: default
         <div class="section-sm" id="project-body">
             <div class="project-intro detail-header--spaced">
                 {% if page.description %}
-                <p class="project-description detail-description">{{ page.description }}</p>
+                <p class="project-description detail-description" data-reveal>{{ page.description }}</p>
                 {% endif %}
 
                 {% include project-meta.html project=page %}
 
-                <div class="project-meta detail-meta-row flex gap-4">
+                <div class="project-meta detail-meta-row flex gap-4" data-reveal>
                     {% if page.date %}<span class="meta-text">{{ page.date | date: "%B %Y" }}</span>{% endif %}
                     {% if page.tags %}
                     <div class="project-tags flex gap-2">
@@ -61,7 +61,7 @@ layout: default
                 </div>
             </div>
 
-            <div class="project-content prose">{{ content }}</div>
+            <div class="project-content prose" data-reveal>{{ content }}</div>
 
             {% comment %} Prev/next follow the listing order (featured-first, then date-desc), the same sort
             as index.md / projects.md, not Jekyll's document order, so navigation matches what the user saw. {% endcomment %}
@@ -72,7 +72,7 @@ layout: default
             {% for item in ordered %}{% if item.url == page.url %}{% assign cur = forloop.index0 %}{% endif %}{% endfor %}
             {% assign prev_i = cur | minus: 1 %}
             {% assign next_i = cur | plus: 1 %}
-            <nav class="project-nav detail-nav" aria-label="Project navigation">
+            <nav class="project-nav detail-nav" aria-label="Project navigation" data-reveal>
                 {% if prev_i >= 0 %}
                 {% assign prev = ordered[prev_i] %}
                 <a href="{{ prev.url | relative_url }}" class="project-nav__link project-nav__link--prev">
