@@ -131,6 +131,12 @@ Projects are colored **by category, not per-project**, so the listing reads as a
 
 **Adding a project:** set `category: data|ml|bi` and author `_includes/projects/<slug>.svg` with a navy base + `currentColor`-at-opacity accents (keep `preserveAspectRatio="xMidYMid slice"` so it fills the tall cover). A genuinely new category needs a token pair + one `[data-category]` rule.
 
+### Project detail header (credits-first, michellegore.com)
+
+`_layouts/project.html` is structured so nothing repeats:
+- **Cover (hero):** eyebrow (date · first tag) → title → the **single `description`** → scroll cue. There is **one** description per project - a combined hook-plus-substance line (lead with the value, fold in the headline metric, no em dashes). It headlines the cover **and** feeds `jekyll-seo-tag`'s `description`/`og:description`. There is **no** separate `intent:`/`tagline:` field - two near-identical lines confused readers, so it was collapsed to one.
+- **Body intro:** leads with the scannable **credits panel** (`project-meta.html` → `.project-meta-block`: Role / Domain / Stack, mono-uppercase labels) → tags → `{{ content }}` → prev/next. The description is **not** repeated here (it's on the cover), and the cover no longer carries role/domain chips (they live in the credits panel). No Timeline row: the cover eyebrow already shows the date.
+
 ### Résumé
 
 No standalone PDF - the live site serves as the résumé. All résumé content (experience timeline, credentials with Credly/CFA/GCP verification links, the "GET IN TOUCH" CTA) is **hardcoded in `about.md`**, laid out as a 2-column card grid (Story|Experience, Currently|Credentials) with a vertical `.xp-timeline` and a full-width connect CTA - edit there. (Home has no CTA; it was moved to About.) Social handles come from `_config.yml`: `linkedin_username`, `github_username`, `google_cloud_profile`.

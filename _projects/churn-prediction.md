@@ -1,6 +1,6 @@
 ---
 title: "Customer Churn Prediction with XGBoost"
-description: "XGBoost model predicting churn with 0.89 AUC, enabling proactive retention campaigns that increased customer retention by 8% and saved $200K/year in revenue."
+description: "An XGBoost model (0.89 AUC) that flags customers about to leave while there's still time to keep them, lifting retention 8% and saving $200K/year."
 date: 2023-05-20
 tags: [Machine Learning, XGBoost, Churn Prediction, Feature Engineering, CRM Integration]
 role: "Data Scientist"
