@@ -53,7 +53,3 @@ graph LR
 - **70% reduction in manual analysis time** - 2+ hours/day down to 30 minutes/day per trader (7.5 hours/day saved across 5 traders)
 - **10x coverage** - 50 sources/day reviewed manually → 500+ sources/day processed automatically
 - **Cost: $180/month** (under the $200/month budget)
-
-## Tech Stack
-
-NLP · BERT · Fine-Tuning · Financial Machine Learning · TensorFlow

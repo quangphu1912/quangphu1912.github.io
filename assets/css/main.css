@@ -705,11 +705,6 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
   font-family: var(--font-mono); font-size: var(--text-sm); border-radius: var(--border-radius-sm);
 }
 
-.project-tags {
-  flex-wrap: wrap;
-  margin-top: var(--space-2);
-}
-
 /* Work listing (Projects page) - eyebrow header + 2-up grid on desktop */
 /* Eyebrow - michellegore.com style: uppercase, generous tracking, medium weight (her airy kicker). */
 .eyebrow { font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-3); }
@@ -1338,7 +1333,10 @@ body::after {
 }
 .project-cover .project-meta-block .pm-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.16); }
 .project-cover .project-meta-block .pm-item dt { color: rgba(255,255,255,0.6); }
-.project-cover .project-meta-block .pm-item dd { color: #fff; }
+.project-cover .project-meta-block .pm-item dd { color: #fff; display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+/* Cover credit pills: neutral white, brightened to read on the dark art (no category hue - the art + eyebrow already carry it). */
+.project-cover .tag { background-color: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.22); color: rgba(255,255,255,0.92); }
+.project-cover .tag:hover { background-color: #fff; color: #0a0f1a; border-color: #fff; }
 .project-cover__meta {
   display: flex;
   flex-wrap: wrap;

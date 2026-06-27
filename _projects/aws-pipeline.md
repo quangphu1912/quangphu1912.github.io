@@ -52,7 +52,3 @@ graph TD
 - **99.9% uptime** over 6 months (43 minutes total downtime, mostly scheduled Redshift maintenance)
 - **Sub-second query latency** - QuickSight loads in 0.8s; Redshift P50 0.3s / P99 1.2s
 - **4 real-time dashboards** delivered (3 beyond original scope)
-
-## Tech Stack
-
-AWS · Data Engineering · Real-Time Analytics · Lambda · Kinesis · Redshift
