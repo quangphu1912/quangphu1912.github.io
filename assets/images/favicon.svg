@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="14" fill="#007AFF"/>
-  <text x="32" y="44" font-family="-apple-system, Inter, sans-serif" font-size="34" font-weight="700"
-        text-anchor="middle" fill="#FFFFFF">PL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Phu Le">
+  <rect width="64" height="64" rx="14" fill="#0A84FF"/>
+  <rect x=".5" y=".5" width="63" height="63" rx="13.5" fill="none" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <text x="33" y="45" text-anchor="middle" fill="#FFFFFF"
+        font-family="-apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="40" font-weight="700">P</text>
 </svg>

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="color-scheme" content="dark"><!-- single dark theme; stops browser/auto-dark guessing -->
   
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <title>{% if page.url == '/' %}Home{% else %}{{ page.title }}{% endif %} - {{ site.name }}</title>
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
@@ -35,12 +35,14 @@
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
   
   <!-- Mermaid is conditionally included by content layouts (project, notebook) -->
   <!-- See: _includes/mermaid.html -->
 
-  <!-- Jekyll SEO Tag -->
-  {% seo %}
+  <!-- Jekyll SEO Tag (title=false: the page title tag above is ours; seo-tag still emits OG/Twitter/canonical) -->
+  {% seo title=false %}
   
   <!-- Jekyll Feed -->
   {% feed_meta %}
