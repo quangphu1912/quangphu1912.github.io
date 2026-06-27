@@ -18,7 +18,7 @@
      Hero         HOME HERO (typographic) + TELEMETRY SIGNATURE
      ProjectMeta  PROJECT META (detail pages)
      Craft        CRAFT LAYER  (selection, grain, scrollbar, underlines)
-     ViewTrans    VIEW TRANSITIONS  (card to detail morph)
+     ViewTrans    VIEW TRANSITIONS  (direction-aware page reveal)
      Cover        PROJECT COVER + SCROLL CUE
      Motion       MOTION CRAFT  (heading reveals)
      Print        PRINT  (ink-on-white override)
@@ -289,19 +289,13 @@ pre code {
 
 /* Detail-page layout helpers (project / notebook / page) */
 .page-header--spaced { margin-bottom: var(--space-6); }
-.page-description--headed { font-size: var(--text-lg); color: var(--color-text-secondary); margin-top: var(--space-2); }
+.page-description--headed { margin-top: var(--space-2); }
 .detail-header--spaced { margin-bottom: var(--space-6); }
 .detail-back-row { margin-bottom: var(--space-2); }
 .detail-description { font-size: var(--text-xl); color: var(--color-text-secondary); margin: var(--space-2) 0; }
 .detail-meta-row { margin-top: var(--space-3); flex-wrap: wrap; }
-/* Detail hero - rounded, full-width, cohesive overlay (matches cards) */
-.project-hero { margin: var(--space-5) 0 var(--space-4); border-radius: var(--border-radius-lg); overflow: hidden; position: relative; box-shadow: var(--shadow-sm); }
-.project-hero img { display: block; width: 100%; height: auto; }
-.project-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 62%, color-mix(in srgb, var(--color-background) 22%, transparent)); }
 .detail-nav { margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
-.detail-nav-row { flex-wrap: wrap; gap: var(--space-2); }
 .flex-center { justify-content: center; flex-wrap: wrap; }
-.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .not-found { padding: var(--space-12) 0; }
 .not-found-code { font-size: var(--text-5xl); margin-bottom: var(--space-4); }
 .not-found-title { font-size: var(--text-2xl); color: var(--color-text-secondary); margin-bottom: var(--space-6); }
@@ -686,11 +680,6 @@ main { padding-top: var(--header-h); }
 .card-title__text { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } /* clamp the TEXT, not the link box (3 lines fits the longest project title) */
 .project-card:focus-within { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent); }
 .card-title__link:focus-visible { outline: none; box-shadow: none; }
-/* Hover arrow - slides in beside the title to signal the card opens (michellegore-style affordance) */
-.card-arrow { display: inline-block; margin-left: 0.35em; color: var(--color-accent-text); opacity: 0; transform: translateX(-4px); transition: opacity var(--transition-base), transform var(--transition-base); }
-.project-card:hover .card-arrow,
-.project-card:focus-within .card-arrow { opacity: 1; transform: translateX(0); }
-@media (prefers-reduced-motion: reduce) { .card-arrow { opacity: 1; transform: none; } }
 
 .project-card__noimg {
   aspect-ratio: 16 / 9; display: grid; place-items: center; margin-bottom: var(--space-4);
@@ -1342,23 +1331,6 @@ body::after {
 .project-cover .project-meta-block .pm-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.16); }
 .project-cover .project-meta-block .pm-item dt { color: rgba(255,255,255,0.6); }
 .project-cover .project-meta-block .pm-item dd { color: #fff; }
-.project-cover__meta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-}
-.project-cover__meta-item {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-label);
-  color: rgba(255,255,255,0.65);
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: var(--border-radius-sm);
-  padding: 0.3em 0.8em;
-}
 
 /* Scroll cue: centered chevron link, reused by the project cover AND the home hero. */
 .scroll-cue {
