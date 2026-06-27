@@ -44,7 +44,7 @@
   <!-- Jekyll Feed -->
   {% feed_meta %}
 </head>
-<body>
+<body{% if page.category %} data-category="{{ page.category }}"{% endif %}>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
   
   {% include header.html %}

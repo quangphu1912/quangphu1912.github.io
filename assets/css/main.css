@@ -562,6 +562,13 @@ main { padding-top: var(--header-h); }
 .site-header .nav-link { color: rgba(255,255,255,0.85); }
 .site-header .nav-link:hover { color: #fff; background-color: transparent; }
 
+/* On project detail pages the nav blends with the project's category theme:
+   data-category on <body> cascades --proj-accent, so hover text, the underline,
+   and the active item pick up the project hue. Non-project pages stay white/blue. */
+body[data-category] .site-header .nav-link:hover { color: var(--proj-accent); }
+body[data-category] .nav-link::after { background: var(--proj-accent); }
+body[data-category] .nav-link.active { color: var(--proj-accent); }
+
 .site-nav {
   padding: var(--space-3) 0;
 }
@@ -1295,16 +1302,6 @@ body::after {
 }
 /* Meta column sits on the left; the art bleeds through on the right. */
 .project-cover__text { max-width: 34rem; margin-top: 0; }
-/* Back link: absolutely pinned top-left, outside the centered block */
-.project-cover__nav {
-  position: absolute;
-  top: calc(var(--header-h) + var(--space-4));
-  left: 0;
-  right: 0;
-  z-index: 2;
-}
-.project-cover__back { color: rgba(255,255,255,0.85); margin-bottom: 0; }
-.project-cover__back:hover, .project-cover__back:focus-visible { color: #fff; }
 .project-cover__eyebrow { color: var(--proj-accent); margin-bottom: var(--space-2); }
 .project-cover__title {
   margin: 0;
