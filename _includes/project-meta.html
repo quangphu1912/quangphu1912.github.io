@@ -1,8 +1,12 @@
 {% assign p = include.project %}
 {% if p.role or p.domain or p.stack %}
 <dl class="project-meta-block" aria-label="Project context" data-reveal>
-  {% if p.role %}<div class="pm-item"><dt>Role</dt><dd>{{ p.role }}</dd></div>{% endif %}
-  {% if p.domain %}<div class="pm-item"><dt>Domain</dt><dd>{{ p.domain }}</dd></div>{% endif %}
-  {% if p.stack %}<div class="pm-item"><dt>Stack</dt><dd>{{ p.stack }}</dd></div>{% endif %}
+  {% comment %} Values render as the shared .tag pill (Stack splits on the middot into multiple pills); the Role/Domain/Stack labels + hairline structure stay. {% endcomment %}
+  {% if p.role %}<div class="pm-item"><dt>Role</dt><dd><span class="tag">{{ p.role }}</span></dd></div>{% endif %}
+  {% if p.domain %}<div class="pm-item"><dt>Domain</dt><dd><span class="tag">{{ p.domain }}</span></dd></div>{% endif %}
+  {% if p.stack %}
+    {% assign stack_items = p.stack | split: ' · ' %}
+    <div class="pm-item"><dt>Stack</dt><dd>{% for item in stack_items %}<span class="tag">{{ item }}</span>{% endfor %}</dd></div>
+  {% endif %}
 </dl>
 {% endif %}

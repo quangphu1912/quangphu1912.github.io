@@ -52,7 +52,3 @@ graph LR
 - **$200K/year revenue saved** (includes direct retention, referrals, and upsells; 13x ROI on system cost)
 - **5 of 5 CSMs** actively using the system; high-risk segment (20%) now receives 80% of CSM time
 - **50K customers** scored nightly within <1 hour
-
-## Tech Stack
-
-Machine Learning · XGBoost · Churn Prediction · Feature Engineering · CRM Integration

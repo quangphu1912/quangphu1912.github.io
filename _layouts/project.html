@@ -12,10 +12,6 @@ layout: default
         <img class="project-cover__img" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
         {% endif %}
 
-        <div class="project-cover__nav container">
-            <a href="{{ '/projects/' | relative_url }}" class="back-link project-cover__back">← Back to Projects</a>
-        </div>
-
         <div class="container project-cover__inner">
             <div class="project-cover__text">
                 <p class="eyebrow project-cover__eyebrow">
@@ -45,16 +41,7 @@ layout: default
         {% endunless %}
 
         <div class="section-sm" id="project-body">
-            {% comment %} Credits now live on the cover (left column). The body opens with tags + content. {% endcomment %}
-            {% if page.tags %}
-            <div class="project-intro detail-header--spaced">
-                <div class="project-meta detail-meta-row flex gap-4" data-reveal>
-                    <div class="project-tags flex gap-2">
-                        {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
+            {% comment %} Credits live on the cover (left column) as chips. The body opens straight into content; the tag row was removed (it duplicated the cover chips). {% endcomment %}
 
             <div class="project-content prose" data-reveal>{{ content }}</div>
 
