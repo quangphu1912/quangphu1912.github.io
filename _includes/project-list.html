@@ -1,0 +1,14 @@
+{% comment %}
+Canonical project listing - featured-first, then date-desc. Shared by the home page (index.md)
+and the Projects page (projects.md). Project detail prev/next (_layouts/project.html) mirrors
+this order. where_exp 'p.featured != true' (not where: 'featured', false) because un-flagged
+projects have nil featured, and nil != false - 'featured: false' would silently drop them.
+{% endcomment %}
+{% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
+{% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
+{% assign projects = featured | concat: rest %}
+<div class="work-rows">
+  {% for project in projects %}
+    {% include project-card.html project=project %}
+  {% endfor %}
+</div>
