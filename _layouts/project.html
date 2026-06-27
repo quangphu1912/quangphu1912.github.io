@@ -45,8 +45,10 @@ layout: default
 
             <div class="project-content prose" data-reveal>{{ content }}</div>
 
-            {% comment %} Prev/next follow the listing order (featured-first, then date-desc), the same sort
-            as index.md / projects.md, not Jekyll's document order, so navigation matches what the user saw. {% endcomment %}
+            {% comment %} Prev/next follow the canonical listing order (featured-first, then date-desc,
+            from _includes/project-list.html), not Jekyll's document order, so navigation matches what the
+            user saw. Uses where_exp 'p.featured != true' (not where: 'featured', false) because un-flagged
+            projects have nil featured and nil != false - 'featured: false' would drop them. {% endcomment %}
             {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
             {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
             {% assign ordered = featured | concat: rest %}

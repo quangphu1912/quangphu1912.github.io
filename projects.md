@@ -14,13 +14,6 @@ image_alt: "Data visualization abstract blue analytics dashboard"
   </header>
 
   <div class="section-sm">
-    {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
-    {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
-    {% assign sorted_projects = featured | concat: rest %}
-    <div class="work-rows">
-      {% for project in sorted_projects %}
-        {% include project-card.html project=project %}
-      {% endfor %}
-    </div>
+    {% include project-list.html %}
   </div>
 </div>

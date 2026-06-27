@@ -77,7 +77,7 @@ default.html          ← base: <head>, header, footer, JSON-LD Person schema, J
 
 Reusable partials in `_includes/`:
 - `header.html` / `footer.html` - transparent scroll-away header; footer is a single line of icon-only socials (LinkedIn, GitHub) + an obfuscated email link
-- `hero-home.html` + `hero-telemetry.html` - home hero (a text column plus a right-column "telemetry" instrument, no `<img>`)
+- `hero-home.html` + `hero-telemetry.html` - home hero (a centered stack: title + lead above the "telemetry" instrument, no `<img>`)
 - `scroll-cue.html` - scroll-to-content cue used in the home hero and project covers
 - `project-card.html` → `image-project-card.html` - card + its single `<img>` thumbnail
 - `project-meta.html` - renders the project's `role` / `domain` / `stack` front matter as a `<dl>`
@@ -90,11 +90,12 @@ There is no per-element `view-transition-name` morph. Card→detail navigation u
 
 ### JavaScript
 
-All three are ES modules, loaded with `<script type="module">` in `_layouts/default.html` (modules defer automatically, so `defer` is omitted). Each file is self-initializing top-level code that runs once, after the DOM is parsed.
+All four are ES modules, loaded with `<script type="module">` in `_layouts/default.html` (modules defer automatically, so `defer` is omitted). Each file is self-initializing top-level code that runs once, after the DOM is parsed.
 
 - `nav.js` - mobile nav (hamburger toggle, `inert` focus-trap, Esc / outside-click close, scroll-lock, resize guard) + email obfuscation (email never appears in static HTML; reassembled from `data-user` / `data-domain` attributes on click)
 - `reveal.js` - `IntersectionObserver` scroll-reveal for `[data-reveal]` elements; gracefully degrades under `prefers-reduced-motion`
 - `count-up.js` - animates any `[data-countup]` element from 0 → target once on scroll-into-view (expo curve). Progressive enhancement: no-JS / `prefers-reduced-motion` leaves the static value. Prefix/suffix text lives *outside* the `[data-countup]` span.
+- `transition-direction.js` - direction-aware cross-document View Transitions; tags each navigation `back` / `forward` so CSS (`:active-view-transition-type`) can reverse the page-reveal pull-down. Progressive enhancement: a no-op without the Navigation API / cross-document VT.
 
 ### CSS
 

@@ -1,16 +1,16 @@
 <svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract financial sentiment analysis">
   <defs>
-    <linearGradient id="s-bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+    <linearGradient id="sentiment-analysis-bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0C2747"/>
       <stop offset="1" stop-color="#081627"/>
     </linearGradient>
-    <radialGradient id="s-glow" cx="400" cy="380" r="360" gradientUnits="userSpaceOnUse">
+    <radialGradient id="sentiment-analysis-glow" cx="400" cy="380" r="360" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="currentColor" stop-opacity="0.45"/>
       <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="800" height="450" fill="url(#s-bg)"/>
-  <rect width="800" height="450" fill="url(#s-glow)"/>
+  <rect width="800" height="450" fill="url(#sentiment-analysis-bg)"/>
+  <rect width="800" height="450" fill="url(#sentiment-analysis-glow)"/>
   <g fill="#ffffff" fill-opacity="0.16">
     <rect x="130" y="104" width="430" height="11" rx="5.5"/>
     <rect x="130" y="140" width="330" height="11" rx="5.5"/>
