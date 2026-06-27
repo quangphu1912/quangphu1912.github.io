@@ -1,16 +1,16 @@
 <svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract churn classification scatter">
   <defs>
-    <linearGradient id="c-bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+    <linearGradient id="churn-prediction-bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0C2747"/>
       <stop offset="1" stop-color="#081627"/>
     </linearGradient>
-    <radialGradient id="c-glow" cx="610" cy="120" r="340" gradientUnits="userSpaceOnUse">
+    <radialGradient id="churn-prediction-glow" cx="610" cy="120" r="340" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="currentColor" stop-opacity="0.5"/>
       <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="800" height="450" fill="url(#c-bg)"/>
-  <rect width="800" height="450" fill="url(#c-glow)"/>
+  <rect width="800" height="450" fill="url(#churn-prediction-bg)"/>
+  <rect width="800" height="450" fill="url(#churn-prediction-glow)"/>
   <g fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
     <path d="M0 150H800M0 300H800M200 0V450M400 0V450M600 0V450"/>
   </g>

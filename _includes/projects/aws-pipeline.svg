@@ -1,16 +1,16 @@
 <svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract real-time data pipeline">
   <defs>
-    <linearGradient id="p-bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+    <linearGradient id="aws-pipeline-bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0C2747"/>
       <stop offset="1" stop-color="#081627"/>
     </linearGradient>
-    <radialGradient id="p-glow" cx="190" cy="120" r="340" gradientUnits="userSpaceOnUse">
+    <radialGradient id="aws-pipeline-glow" cx="190" cy="120" r="340" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="currentColor" stop-opacity="0.5"/>
       <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="800" height="450" fill="url(#p-bg)"/>
-  <rect width="800" height="450" fill="url(#p-glow)"/>
+  <rect width="800" height="450" fill="url(#aws-pipeline-bg)"/>
+  <rect width="800" height="450" fill="url(#aws-pipeline-glow)"/>
   <g fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
     <path d="M0 150H800M0 300H800M160 0V450M320 0V450M480 0V450M640 0V450"/>
   </g>
