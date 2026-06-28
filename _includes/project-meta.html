@@ -5,7 +5,9 @@
   {% if p.role %}<div class="pm-item"><dt>Role</dt><dd><span class="tag">{{ p.role }}</span></dd></div>{% endif %}
   {% if p.domain %}<div class="pm-item"><dt>Domain</dt><dd><span class="tag">{{ p.domain }}</span></dd></div>{% endif %}
   {% if p.stack %}
-    {% assign stack_items = p.stack | split: ' · ' %}
+    {% comment %} Normalize common delimiters to the middot before splitting, so 'Python, dbt, Snowflake'
+    or 'Python / SQL / AWS' also split into pills (the canonical form is 'A · B · C'). {% endcomment %}
+    {% assign stack_items = p.stack | replace: ' / ', ' · ' | replace: ', ', ' · ' | split: ' · ' %}
     <div class="pm-item"><dt>Stack</dt><dd>{% for item in stack_items %}<span class="tag">{{ item }}</span>{% endfor %}</dd></div>
   {% endif %}
 </dl>

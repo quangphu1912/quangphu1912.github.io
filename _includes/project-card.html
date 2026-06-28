@@ -1,15 +1,14 @@
 {% assign project = include.project %}
 
 <article class="project-card" data-reveal{% if project.category %} data-category="{{ project.category }}"{% endif %}>
-  {% assign card_image = project.hero_image | default: project.image %}
-  {% if card_image %}
-    {% include image-project-card.html image=card_image alt=project.title project=project %}
+  {% if project.hero_image or project.image %}
+    {% include image-project-card.html project=project %}
   {% else %}
     <div class="project-card__noimg" aria-hidden="true">no preview</div>
   {% endif %}
 
   <div class="project-card__body">
-    <p class="eyebrow project-card__kicker">{% if project.date %}{{ project.date | date: "%b %Y" }}{% endif %}{% if project.tags %} &middot; {{ project.tags | first }}{% endif %}</p>
+    <p class="eyebrow project-card__kicker">{% if project.date %}{{ project.date | date: "%b %Y" }}{% if project.tags %} &middot; {% endif %}{% endif %}{% if project.tags %}{{ project.tags | first }}{% endif %}</p>
 
     <h3 class="card-title">
       <a class="card-title__link" href="{{ project.url | relative_url }}"><span class="card-title__text">{{ project.title }}</span></a>

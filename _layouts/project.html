@@ -3,11 +3,14 @@ layout: default
 ---
 
 <article class="project-detail"{% if page.category %} data-category="{{ page.category }}"{% endif %}>
-    {% if page.image %}
+    {% if page.hero_image or page.image %}
     <header class="project-cover">
-        {% comment %} Inline the cover SVG (currentColor) so it takes the category hue; raster fallback. {% endcomment %}
+        {% comment %} Inline the cover SVG (currentColor) so it takes the category hue. hero_image: true
+        requires _includes/projects/<slug>.svg - a missing file fails the build loudly (by design; see
+        CLAUDE.md). Raster <img> fallback when hero_image is unset. The SVG carries its own role="img"
+        aria-label (shared with the card surface), so the wrapper stays a plain container - no duplicate. {% endcomment %}
         {% if page.hero_image %}
-        <div class="project-cover__img" role="img" aria-label="{{ page.image_alt | default: page.title }}">{% include projects/{{ page.slug }}.svg %}</div>
+        <div class="project-cover__img">{% include projects/{{ page.slug }}.svg %}</div>
         {% else %}
         <img class="project-cover__img" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" width="1200" height="675" loading="eager">
         {% endif %}
@@ -15,7 +18,7 @@ layout: default
         <div class="container project-cover__inner">
             <div class="project-cover__text">
                 <p class="eyebrow project-cover__eyebrow">
-                    {% if page.date %}{{ page.date | date: "%b %Y" | upcase }}{% endif %}{% if page.tags %} · {{ page.tags | first }}{% endif %}
+                    {% if page.date %}{{ page.date | date: "%b %Y" | upcase }}{% if page.tags %} · {% endif %}{% endif %}{% if page.tags %}{{ page.tags | first }}{% endif %}
                 </p>
                 <h1 class="project-cover__title">{{ page.title }}</h1>
                 {% if page.description %}
@@ -31,7 +34,7 @@ layout: default
     {% endif %}
 
     <div class="container">
-        {% unless page.image %}
+        {% unless page.hero_image or page.image %}
         <div class="detail-back-row">
             <a href="{{ '/projects/' | relative_url }}" class="back-link">← Back to Projects</a>
         </div>
@@ -45,10 +48,11 @@ layout: default
 
             <div class="project-content prose" data-reveal>{{ content }}</div>
 
-            {% comment %} Prev/next follow the canonical listing order (featured-first, then date-desc,
-            from _includes/project-list.html), not Jekyll's document order, so navigation matches what the
-            user saw. Uses where_exp 'p.featured != true' (not where: 'featured', false) because un-flagged
-            projects have nil featured and nil != false - 'featured: false' would drop them. {% endcomment %}
+            {% comment %} Prev/next MUST mirror the canonical listing order in _includes/project-list.html
+            (featured-first, then date-desc). Liquid can't share this array via an include, so the 3-assign
+            block is duplicated here - if you change the sort in one place, change it in BOTH. Uses
+            where_exp 'p.featured != true' (not where: 'featured', false) because un-flagged projects have
+            nil featured and nil != false - 'featured: false' would drop them. {% endcomment %}
             {% assign featured = site.projects | where: 'featured', true | sort: 'date' | reverse %}
             {% assign rest = site.projects | where_exp: 'p', 'p.featured != true' | sort: 'date' | reverse %}
             {% assign ordered = featured | concat: rest %}

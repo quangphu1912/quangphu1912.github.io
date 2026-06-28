@@ -79,10 +79,11 @@ Reusable partials in `_includes/`:
 - `header.html` / `footer.html` - transparent scroll-away header; footer is a single line of icon-only socials (LinkedIn, GitHub) + an obfuscated email link
 - `hero-home.html` + `hero-telemetry.html` - home hero (a centered stack: title + lead above the "telemetry" instrument, no `<img>`)
 - `scroll-cue.html` - scroll-to-content cue used in the home hero and project covers
-- `project-card.html` → `image-project-card.html` - card + its single `<img>` thumbnail
+- `project-card.html` → `image-project-card.html` - the card thumbnail (callee reads the project directly: inline SVG when `hero_image`, else raster `<img>`)
 - `project-meta.html` - renders the project's `role` / `domain` / `stack` front matter as a `<dl>`
 - `profile-avatar.html` - the About avatar `<img>`
 - `icon-external.html` - the icon-only external-link affordance reused on each About credential row (one source of truth for the SVG; takes `href` + `label`)
+- `social-url.html` - single source for the LinkedIn/GitHub profile URLs (footer icons, About CTA, Person JSON-LD `sameAs`); takes `network`
 - `mermaid.html` - Mermaid diagrams, hard-set to the dark theme
 - `analytics.html` - GA4 loader, production-gated on `site.google_analytics`, with a `localStorage 'analytics-opt-out'` opt-out
 
@@ -113,7 +114,7 @@ There is **no** `_includes/image-hero.html` and **no** `.jpg`→`.webp` `replace
 
 - `page.image` feeds **both** `jekyll-seo-tag`'s `og:image` / BlogPosting JSON-LD (`_layouts/default.html` `{% seo %}`) **and** the raster fallback. For projects it's the **raster** (`.png`, 1200×675) so social cards render - Twitter/LinkedIn/Slack silently drop SVG.
 - The **visible** project art is the SVG in `_includes/projects/<slug>.svg`, **inlined** (not `<img>`) via `{% include projects/{{ slug }}.svg %}` in `_layouts/project.html` (cover) and `_includes/image-project-card.html` (card thumbnail). It's inlined so it can inherit the category hue via `currentColor` - an external `<img src=*.svg>` can't be CSS-tinted (see Project category color below). The SVGs are authored with a navy base + `currentColor`-at-opacity accents.
-- `hero_image` front matter is now just a **presence flag** ("this project has an inline SVG"); its path value is legacy/unused (the art is resolved by `slug`, not by that path). When absent, both surfaces fall back to the raster `<img>`.
+- `hero_image: true` is a **boolean presence flag** ("this project has an inline SVG cover"); its value is not a path - the art is resolved by `slug` (`_includes/projects/<slug>.svg`), which is **required** when the flag is set (a missing file fails the build loudly, by design - both the cover and the card include it). When absent, both surfaces fall back to the raster `page.image` `<img>`.
 - `image_alt` labels the cover (`role="img"` wrapper); the inline SVGs also carry their own `role="img"`/`aria-label`.
 
 ### Project category color (design decision)
@@ -130,7 +131,7 @@ Projects are colored **by category, not per-project**, so the listing reads as a
 
 **Reach (deliberate).** Category hue touches **only project surfaces**: cover art + eyebrow + wash, listing thumbnail art + hover affordances, and - on project detail pages only - the **header nav** (hover text + underline + active). **Brand blue stays the global UI accent** everywhere else - buttons, focus rings, the page-transition edge, telemetry, hero, and the global `.eyebrow` (home/section kickers). The nav is the one UI surface that adopts the category hue, scoped to `body[data-category]` (project detail pages); home / about / the projects listing keep white-hover + brand-blue active. The listing card kicker (date · tag) stays muted on purpose; the colored art carries grid identity. Do **not** recolor the global `.eyebrow` to a category hue - it would bleed into home/section headers.
 
-**Adding a project:** set `category: data|ml|bi` and author `_includes/projects/<slug>.svg` with a navy base + `currentColor`-at-opacity accents (keep `preserveAspectRatio="xMidYMid slice"` so it fills the tall cover). A genuinely new category needs a token pair + one `[data-category]` rule.
+**Adding a project:** set `category: data|ml|bi` (only these three have hues - anything else falls back to brand blue) and `hero_image: true`, then author the **required** `_includes/projects/<slug>.svg` with a navy base + `currentColor`-at-opacity accents (keep `preserveAspectRatio="xMidYMid slice"` so it fills the tall cover). A genuinely new category needs a token pair + one `[data-category]` rule. The featured-first/date-desc sort is duplicated in `_includes/project-list.html` (listing) and `_layouts/project.html` (prev/next) - Liquid can't share the array via an include, so if you change the sort, change it in **both**.
 
 ### Project detail header (michellegore.com cover composition)
 

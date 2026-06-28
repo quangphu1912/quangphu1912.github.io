@@ -107,15 +107,15 @@ image_alt: "Phu Le - AI & Data Engineer"
       </ul>
     </section>
 
-    <!-- Row 3: Let's Connect — full width, no box -->
+    <!-- Row 3: Let's Connect - full width, no box -->
 
     <section class="about-section about-contact-full about-connect" data-reveal>
       <p class="eyebrow">GET IN TOUCH</p>
       <h2 class="closing__title">Let's build something that ships.</h2>
       <p class="closing__lead">Open to data engineering, MLOps, and AI-platform work, and always happy to talk shop.</p>
       <div class="cta-buttons flex gap-4">
-        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/{{ site.github_username }}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="{% include social-url.html network='linkedin' %}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="{% include social-url.html network='github' %}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </section>
 

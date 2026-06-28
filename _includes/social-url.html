@@ -1,0 +1,8 @@
+{%- comment -%}
+Single source for the social profile URLs. Consumed by:
+  - _includes/footer.html (icon links)
+  - about.md (connect CTA buttons)
+  - _layouts/default.html (Person JSON-LD sameAs)
+Trim markers (-) keep the output to the bare URL (it's interpolated inside href="...").
+Changing a handle or scheme happens here, once.
+{%- endcomment -%}{%- if include.network == 'linkedin' -%}https://linkedin.com/in/{{ site.linkedin_username }}{%- elsif include.network == 'github' -%}https://github.com/{{ site.github_username }}{%- endif -%}

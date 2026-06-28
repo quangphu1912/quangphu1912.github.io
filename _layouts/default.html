@@ -4,13 +4,11 @@
   <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="color-scheme" content="dark"><!-- single dark theme; stops browser/auto-dark guessing -->
-  
-  <title>{% if page.url == '/' %}Home{% else %}{{ page.title }}{% endif %} - {{ site.name }}</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+  <title>{% if page.url == '/' %}Home - {{ site.name }}{% elsif page.title %}{{ page.title }} - {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+
+  <!-- SEO Meta Tags (description + OG/Twitter/canonical are owned by jekyll-seo-tag below) -->
   <meta name="author" content="{{ site.author }}">
 
   <!-- Structured Data - Person schema (jekyll-seo-tag owns WebSite + Article + OG/Twitter/canonical) -->
@@ -22,8 +20,8 @@
     "jobTitle": "{{ site.job_title }}",
     "url": "{{ site.url }}",
     "sameAs": [
-      "https://www.linkedin.com/in/{{ site.linkedin_username }}",
-      "https://github.com/{{ site.github_username }}"
+      "{% include social-url.html network='linkedin' %}",
+      "{% include social-url.html network='github' %}"
     ]
   }
   </script>
@@ -32,32 +30,32 @@
   <link rel="preload" href="{{ '/assets/fonts/InterVariable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{ '/assets/fonts/HankenGrotesk-Variable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/favicon.svg' | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32.png' | relative_url }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
-  
+
   <!-- Mermaid is conditionally included by content layouts (project, notebook) -->
   <!-- See: _includes/mermaid.html -->
 
-  <!-- Jekyll SEO Tag (title=false: the page title tag above is ours; seo-tag still emits OG/Twitter/canonical) -->
+  <!-- Jekyll SEO Tag (title=false: the page title tag above is ours; seo-tag still emits description + OG/Twitter/canonical) -->
   {% seo title=false %}
-  
+
   <!-- Jekyll Feed -->
   {% feed_meta %}
 </head>
 <body{% if page.category %} data-category="{{ page.category }}"{% endif %}>
   <a href="#main-content" class="skip-to-content">Skip to content</a>
-  
+
   {% include header.html %}
-  
+
   <main id="main-content">
     {{ content }}
   </main>
-  
+
   {% include footer.html %}
-  
+
   <!-- Analytics (production only) -->
   {% if jekyll.environment == 'production' %}
     {% include analytics.html %}

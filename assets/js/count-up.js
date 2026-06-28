@@ -29,7 +29,8 @@ if (els.length && !reduce && 'IntersectionObserver' in window && 'requestAnimati
 
   const run = (el) => {
     const target = parseFloat(el.getAttribute('data-countup'));
-    const d = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const decRaw = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const d = Number.isInteger(decRaw) && decRaw >= 0 && decRaw <= 20 ? decRaw : 0; // bad data-decimals -> 0 (avoid RangeError in toLocaleString)
     const dur = 1400;
     const t0 = performance.now();
     const tick = (now) => {
@@ -47,5 +48,11 @@ if (els.length && !reduce && 'IntersectionObserver' in window && 'requestAnimati
     });
   }, { threshold: 0.6 });
 
-  els.forEach((el) => { el.textContent = '0'; io.observe(el); });
+  els.forEach((el) => {
+    // Skip a malformed data-countup (NaN): leave its truthful static value rather than
+    // pre-zeroing it (matches the no-JS / reduced-motion behavior). Valid values pre-zero as before.
+    if (!Number.isFinite(parseFloat(el.getAttribute('data-countup')))) return;
+    el.textContent = '0';
+    io.observe(el);
+  });
 }
