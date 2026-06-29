@@ -473,20 +473,27 @@ pre code {
   }
 }
 
-/* Scroll-reveal (paired with assets/js/reveal.js).
-   Gated on the .js class (set by an inline head script) so content is fully
-   visible when JS is off/blocked - no invisible hero, no LCP penalty. */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity var(--transition-slow) var(--ease-out-expo), transform var(--transition-slow) var(--ease-out-expo);
-}
-.js [data-reveal].is-visible {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+/* Scroll-reveal - pure CSS scroll-driven (no JS, no IntersectionObserver).
+   Content is VISIBLE BY DEFAULT; the rise is a function of the element's view()
+   timeline, so nothing is ever hidden waiting on JS. That's the whole point: a
+   cross-document View Transition snapshots the incoming page before any module
+   runs, so a JS-revealed element was captured blank on Safari = the flash. With
+   scroll-driven CSS the in-view state is computed from scroll position, so the
+   snapshot is always solid (flash structurally impossible on every engine).
+   Same pattern as .section-title below. Degrades to fully visible (no motion)
+   when animation-timeline is unsupported or under reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal-rise both linear;
+      animation-timeline: view();
+      animation-range: entry 0% cover 18%;
+    }
+    @keyframes reveal-rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
 }
 
 /* Focus Visible - ring-with-gap (forced-colors keeps an outline fallback) */
@@ -754,21 +761,29 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
 }
 
 /* Horizontal slide-in (michellegore signature): image + text swoop in from opposite sides,
-   alternating per row, 0.8s linear. Driven by the row's .is-visible (reveal.js, unchanged).
-   Gated on .js + reduced-motion + the 2-col breakpoint, so no-JS / mobile / reduced-motion just
-   fade (no x-translate). */
+   alternating per row - now scroll-driven (no JS). Visible by default; the swoop is the
+   children's view() timeline progress, so it scrubs in as the row enters and never depends on a
+   JS class landing in the VT snapshot. .work-rows { overflow-x: clip } (above) contains the
+   x-translate. Gated on the 2-col breakpoint + reduced-motion + animation-timeline support, so
+   mobile / reduced-motion / no-support just show the cards (no x-translate). */
 @media (min-width: 760px) and (prefers-reduced-motion: no-preference) {
-  .js .work-rows .project-card[data-reveal] { opacity: 1; transform: none; transition: none; }
-  .js .work-rows .project-card[data-reveal] .image-thumbnail,
-  .js .work-rows .project-card[data-reveal] .project-card__body {
-    opacity: 0; transition: opacity 0.8s linear, transform 0.8s linear;
+  @supports (animation-timeline: view()) {
+    .work-rows .project-card[data-reveal] { animation: none; }   /* the generic reveal-rise must not double up on rows */
+    .work-rows .project-card[data-reveal] .image-thumbnail,
+    .work-rows .project-card[data-reveal] .project-card__body {
+      animation: both linear;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+    .work-rows .project-card[data-reveal] .image-thumbnail   { animation-name: wr-img-left; }
+    .work-rows .project-card[data-reveal] .project-card__body { animation-name: wr-body-right; }
+    .work-rows .project-card[data-reveal]:nth-child(even) .image-thumbnail   { animation-name: wr-img-right; }
+    .work-rows .project-card[data-reveal]:nth-child(even) .project-card__body { animation-name: wr-body-left; }
+    @keyframes wr-img-left   { from { opacity: 0; transform: translateX(-64px); } to { opacity: 1; transform: none; } }
+    @keyframes wr-img-right  { from { opacity: 0; transform: translateX(64px);  } to { opacity: 1; transform: none; } }
+    @keyframes wr-body-right { from { opacity: 0; transform: translateX(40px);  } to { opacity: 1; transform: none; } }
+    @keyframes wr-body-left  { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
   }
-  .js .work-rows .project-card[data-reveal] .image-thumbnail { transform: translateX(-64px); }
-  .js .work-rows .project-card[data-reveal] .project-card__body { transform: translateX(40px); }
-  .js .work-rows .project-card[data-reveal]:nth-child(even) .image-thumbnail { transform: translateX(64px); }
-  .js .work-rows .project-card[data-reveal]:nth-child(even) .project-card__body { transform: translateX(-40px); }
-  .js .work-rows .project-card[data-reveal].is-visible .image-thumbnail,
-  .js .work-rows .project-card[data-reveal].is-visible .project-card__body { opacity: 1; transform: none; }
 }
 
 /* ============================================
