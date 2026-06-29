@@ -760,29 +760,39 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
   .work-rows .project-card:focus-within .project-card__cta .cta-arrow { transform: translateX(4px); }
 }
 
-/* Horizontal slide-in (michellegore signature): image + text swoop in from opposite sides,
-   alternating per row - now scroll-driven (no JS). Visible by default; the swoop is the
-   children's view() timeline progress, so it scrubs in as the row enters and never depends on a
-   JS class landing in the VT snapshot. .work-rows { overflow-x: clip } (above) contains the
-   x-translate. Gated on the 2-col breakpoint + reduced-motion + animation-timeline support, so
-   mobile / reduced-motion / no-support just show the cards (no x-translate). */
+/* Work-rows entrance = michellegore's home-work reveal. Her site drives this with a GSAP
+   ScrollTrigger SCRUB (bidirectional - it reverses on scroll-up), NOT a play-once ScrollReveal.
+   We mirror it with pure scroll-driven CSS (animation-timeline: view()): image + text CONVERGE to
+   the middle from opposite sides as a row enters (scroll down) and part back to the sides when it
+   scrolls back out (scroll up). Image leads (~100px), text trails (~60px); the grid already
+   alternates the image side per row, so each row's image comes from its outer edge and the text
+   from the opposite edge. Pure translateX (no opacity fade) so the slide reads in BOTH scroll
+   directions; circ-out easing (cubic-bezier(0,0.55,0.45,1) - her curve, same as the VT page rise)
+   and a range widened into cover (entry 10% -> cover 45%) for a slower, smoother settle.
+   Visible-by-default + fill:both, so the VT snapshot is always solid (no
+   Safari flash - no JS in the motion path). Plays as a row enters FROM BELOW (home work section
+   under the hero; lower /projects/ rows); a card already on-screen at the top of /projects/ has
+   nothing to scroll into (positional - give the listing headroom so rows arrive from below).
+   overflow-x:clip on .work-rows contains the x-slide. Desktop + no-reduced-motion + support-gated;
+   else cards just show. */
 @media (min-width: 760px) and (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    .work-rows .project-card[data-reveal] { animation: none; }   /* the generic reveal-rise must not double up on rows */
+    .work-rows .project-card[data-reveal] { animation: none; }
     .work-rows .project-card[data-reveal] .image-thumbnail,
     .work-rows .project-card[data-reveal] .project-card__body {
-      animation: both linear;
+      animation: both cubic-bezier(0, 0.55, 0.45, 1);
       animation-timeline: view();
-      animation-range: entry 0% cover 22%;
+      animation-range: entry 10% cover 45%;
     }
-    .work-rows .project-card[data-reveal] .image-thumbnail   { animation-name: wr-img-left; }
-    .work-rows .project-card[data-reveal] .project-card__body { animation-name: wr-body-right; }
-    .work-rows .project-card[data-reveal]:nth-child(even) .image-thumbnail   { animation-name: wr-img-right; }
-    .work-rows .project-card[data-reveal]:nth-child(even) .project-card__body { animation-name: wr-body-left; }
-    @keyframes wr-img-left   { from { opacity: 0; transform: translateX(-64px); } to { opacity: 1; transform: none; } }
-    @keyframes wr-img-right  { from { opacity: 0; transform: translateX(64px);  } to { opacity: 1; transform: none; } }
-    @keyframes wr-body-right { from { opacity: 0; transform: translateX(40px);  } to { opacity: 1; transform: none; } }
-    @keyframes wr-body-left  { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
+    /* converge to the middle: image from one side, text from the OTHER; image leads (~100px), text trails (~60px) */
+    .work-rows .project-card[data-reveal] .image-thumbnail   { animation-name: wr-slide-img-l; }
+    .work-rows .project-card[data-reveal] .project-card__body { animation-name: wr-slide-body-r; }
+    .work-rows .project-card[data-reveal]:nth-child(even) .image-thumbnail   { animation-name: wr-slide-img-r; }
+    .work-rows .project-card[data-reveal]:nth-child(even) .project-card__body { animation-name: wr-slide-body-l; }
+    @keyframes wr-slide-img-l  { from { transform: translateX(-100px); } to { transform: none; } }
+    @keyframes wr-slide-img-r  { from { transform: translateX(100px);  } to { transform: none; } }
+    @keyframes wr-slide-body-l { from { transform: translateX(-60px);  } to { transform: none; } }
+    @keyframes wr-slide-body-r { from { transform: translateX(60px);   } to { transform: none; } }
   }
 }
 
