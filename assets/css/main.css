@@ -488,17 +488,6 @@ pre code {
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
-/* While a cross-document View Transition is arriving, reveal-targets must be SOLID in the
-   captured snapshot. reveal.js adds .is-visible on `pagereveal`, but Safari animates the entrance
-   transition even from that pre-first-render change, so the snapshot caught the work-rows inner
-   image+text still at opacity 0 = empty cards = the flash. Suppressing the transition makes the
-   reveal instant, so the snapshot is solid; reveal.js toggles html.vt-arriving (pagereveal ->
-   transition finished), so scroll re-triggers slide normally once the transition settles. */
-html.vt-arriving [data-reveal],
-html.vt-arriving [data-reveal] .image-thumbnail,
-html.vt-arriving [data-reveal] .project-card__body {
-  transition: none !important;
-}
 
 /* Focus Visible - ring-with-gap (forced-colors keeps an outline fallback) */
 :focus-visible {

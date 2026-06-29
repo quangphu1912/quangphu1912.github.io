@@ -35,33 +35,29 @@ if (reduce || !('IntersectionObserver' in window)) {
     });
   };
 
-  // A cross-document View Transition (clicking a nav link, not a reload) captures a snapshot of
-  // the INCOMING page and animates it rising into place. `pagereveal` fires before that snapshot
-  // is taken, in every browser that runs the transition (Chrome + Safari 18.2+). Reveal in-view
-  // content here so it's captured VISIBLE and rises WITH the page, instead of an empty snapshot
-  // that fills in a beat AFTER the rise lands (the flash).
+  // WHEN in-view content reveals depends on HOW we arrived, because clicking an in-site link runs a
+  // cross-document View Transition that snapshots the incoming page and animates it rising up:
   //
-  // It must reveal INSTANTLY: just adding `.is-visible` lets the entrance transition run, and
-  // Safari animates it even from a pre-first-render class change, so the snapshot caught the
-  // work-rows inner pieces (image + text) still at opacity 0 = empty cards = the Safari flash
-  // (Chrome treated the change as an initial value and painted solid). `html.vt-arriving` forces
-  // those reveal transitions to `none` (see main.css) so the reveal lands solid in the snapshot.
-  // Restore them once the transition settles, so scroll re-triggers slide normally again; resolve
-  // OR reject (a skipped/aborted transition) both clean up, and consuming the rejection here keeps
-  // it from surfacing as an unhandled AbortError.
-  window.addEventListener('pagereveal', (event) => {
-    if (!event.viewTransition) return;
-    const root = document.documentElement;
-    root.classList.add('vt-arriving');
-    revealInView();
-    const restore = () => root.classList.remove('vt-arriving');
-    event.viewTransition.finished.then(restore, restore);
-  });
+  //   - In-site nav / back-forward (a VT is rising the page): reveal SYNCHRONOUSLY now - at module
+  //     eval, before first paint, so before the VT snapshot is captured. The content is solid in the
+  //     snapshot and rises WITH the page. Setting is-visible before first paint plays no transition,
+  //     so the work-rows image+text ride up with the page instead of sliding in separately a beat
+  //     LATER (which left them at opacity 0 in the snapshot = the Safari flash, then a slide, then a
+  //     snapshot->live jump). We deliberately do NOT use the pagereveal/event.viewTransition hook:
+  //     Safari runs the CSS rise but leaves that JS handle null, so the hook is unreliable there. We
+  //     infer the transition from the navigation type + a same-origin referrer, which both browsers
+  //     report consistently.
+  //   - Refresh, or a cold / typed-URL / external arrival (no VT): defer one frame past first paint
+  //     so the work-rows slide-in entrance actually plays. Revealing before paint here is what made
+  //     a refresh "pop in" fully formed - the abrupt landing 13d7006 set out to fix.
+  const nav = performance.getEntriesByType('navigation')[0];
+  const arrivingViaTransition =
+    (nav?.type === 'navigate' && document.referrer.startsWith(`${location.origin}/`)) ||
+    nav?.type === 'back_forward';
 
-  // Cold load / refresh / bfcache restore (no View Transition, so pagereveal either doesn't fire
-  // or carries no viewTransition): reveal one frame AFTER first paint so the entrance transition
-  // plays (the work-rows slide-in). Revealing before paint is what made the cards pop in fully
-  // formed - the "abrupt" landing on a refresh. The double rAF guarantees we're a frame past first
-  // paint before the class flips. On a VT nav this still runs but only re-adds is-visible (no-op).
-  requestAnimationFrame(() => requestAnimationFrame(revealInView));
+  if (arrivingViaTransition) {
+    revealInView();
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(revealInView));
+  }
 }
