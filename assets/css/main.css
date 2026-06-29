@@ -760,14 +760,14 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
   .work-rows .project-card:focus-within .project-card__cta .cta-arrow { transform: translateX(4px); }
 }
 
-/* Work-rows entrance = michellegore's home-work reveal. Her site drives this with a GSAP
-   ScrollTrigger SCRUB (bidirectional - it reverses on scroll-up), NOT a play-once ScrollReveal.
-   We mirror it with pure scroll-driven CSS (animation-timeline: view()): image + text CONVERGE to
+/* Work-rows entrance = a bespoke converging slide (our design - her work reveals are plain opacity
+   fades, no slide; the slide-to-middle is our embellishment, not a michellegore lift). Pure
+   scroll-driven CSS (animation-timeline: view()): image + text CONVERGE to
    the middle from opposite sides as a row enters (scroll down) and part back to the sides when it
    scrolls back out (scroll up). Image leads (~100px), text trails (~60px); the grid already
    alternates the image side per row, so each row's image comes from its outer edge and the text
    from the opposite edge. Pure translateX (no opacity fade) so the slide reads in BOTH scroll
-   directions; circ-out easing (cubic-bezier(0,0.55,0.45,1) - her curve, same as the VT page rise)
+   directions; circ-out easing (cubic-bezier(0,0.55,0.45,1) - the house / VT page-rise curve)
    and a range widened into cover (entry 10% -> cover 45%) for a slower, smoother settle.
    Visible-by-default + fill:both, so the VT snapshot is always solid (no
    Safari flash - no JS in the motion path). Plays as a row enters FROM BELOW (home work section
