@@ -1096,8 +1096,8 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
   mask-image: radial-gradient(ellipse 78% 70% at 50% 28%, #000 18%, transparent 80%);
 }
 /* Home hero only: the blue identity glow slowly wanders so the cover reads as a living surface,
-   not a flat gradient (Projects keeps its static tri-color glow). Decorative -1 z-index pseudo,
-   transform/opacity only -> never blanks the VT snapshot; reduced-motion gets the static glow. */
+   not a flat gradient (Projects shares the same glow but keeps it static). Decorative -1 z-index
+   pseudo, transform/opacity only -> never blanks the VT snapshot; reduced-motion gets the static glow. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-home::before {
     animation: heroAurora 24s ease-in-out infinite alternate;
