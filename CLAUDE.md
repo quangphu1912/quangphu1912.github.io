@@ -91,12 +91,13 @@ There is no per-element `view-transition-name` morph. Card→detail navigation u
 
 ### JavaScript
 
-All four are ES modules, loaded with `<script type="module">` in `_layouts/default.html` (modules defer automatically, so `defer` is omitted). Each file is self-initializing top-level code that runs once, after the DOM is parsed.
+All five are ES modules, loaded with `<script type="module">` in `_layouts/default.html` (modules defer automatically, so `defer` is omitted). Each file is self-initializing top-level code that runs once, after the DOM is parsed.
 
 - `nav.js` - mobile nav (hamburger toggle, `inert` focus-trap, Esc / outside-click close, scroll-lock, resize guard) + email obfuscation (email never appears in static HTML; reassembled from `data-user` / `data-domain` attributes on click)
-- `reveal.js` - `IntersectionObserver` scroll-reveal for `[data-reveal]` elements; gracefully degrades under `prefers-reduced-motion`
+- `reveal.js` - `IntersectionObserver` scroll-reveal for `[data-reveal]` elements; gracefully degrades under `prefers-reduced-motion`. In-view elements at load reveal via two paths so the entrance is smooth either way: arriving through a cross-document View Transition reveals them **synchronously in `pagereveal`** (captured in the incoming snapshot, so they rise *with* the page); a cold load / refresh reveals them on a post-paint `requestAnimationFrame` so the entrance transition actually plays (otherwise the in-view work-rows cards pop in fully formed - the "abrupt" landing).
 - `count-up.js` - animates any `[data-countup]` element from 0 → target once on scroll-into-view (expo curve). Progressive enhancement: no-JS / `prefers-reduced-motion` leaves the static value. Prefix/suffix text lives *outside* the `[data-countup]` span.
 - `transition-direction.js` - direction-aware cross-document View Transitions; tags each navigation `back` / `forward` so CSS (`:active-view-transition-type`) can reverse the page-reveal pull-down. Progressive enhancement: a no-op without the Navigation API / cross-document VT.
+- `page-progress.js` - the top loading bar (`.page-progress`, michellegore.com style): a thin brand-blue bar pinned to the viewport top that sweeps left→right on each page arrival then fades. Sweeps **after** the View Transition overlay clears (`viewTransition.finished`) on in-site nav, and once after first paint on cold load / refresh / bfcache. This is the page-change highlight that **replaced the old blue seam glow** on the rising page. No-op under `prefers-reduced-motion` (the bar is `display:none` there too).
 
 ### CSS
 

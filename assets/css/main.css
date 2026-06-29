@@ -1215,15 +1215,12 @@ body::after {
   ::view-transition-new(root) {
     animation: vt-page-enter 600ms cubic-bezier(0, 0.55, 0.45, 1) both;
     z-index: 2;          /* new sits on top so the rising seam is clean */
-    /* Leading-edge depth + accent highlight: the rising page's TOP edge is the moving
-       seam. A crisp brand-blue line + soft blue glow ride that edge (the "highlight"),
-       backed by a black depth shadow so it still reads as a physical sheet. All three
-       sit just above the top edge (negative y), so they show only while sliding and
-       vanish once settled (that edge is off-screen at rest). Blue = --color-accent. */
-    box-shadow:
-      0 -1px 0 0 rgba(10, 132, 255, 0.85),       /* accent line on the leading (top) edge */
-      0 -8px 28px -4px rgba(10, 132, 255, 0.40),  /* blue glow bleeding onto the page above */
-      0 -12px 32px rgba(0, 0, 0, 0.50);           /* black depth shadow */
+    /* Leading-edge depth: a black shadow on the rising page's TOP edge so it reads as a
+       physical sheet sliding up over the old one. The page-change *highlight* is now the
+       top loading bar (.page-progress), not a blue seam glow — see PROJECT COVER section
+       below / assets/js/page-progress.js. The shadow sits just above the top edge (negative
+       y), so it shows only while sliding and vanishes once settled. */
+    box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.50);
   }
 
   /* Direction-aware (type set by assets/js/transition-direction.js): on browser-back,
@@ -1236,10 +1233,7 @@ body::after {
   }
   :root:active-view-transition-type(back)::view-transition-new(root) {
     animation-name: vt-page-enter-back;
-    box-shadow:
-      0 1px 0 0 rgba(10, 132, 255, 0.85),
-      0 8px 28px -4px rgba(10, 132, 255, 0.40),
-      0 12px 32px rgba(0, 0, 0, 0.50);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.50);   /* shadow flips to the now-leading bottom edge */
   }
 }
 
@@ -1247,6 +1241,38 @@ body::after {
 @keyframes vt-page-enter      { from { transform: translateY(100%); } }  /* fwd: new RISES from below */
 @keyframes vt-page-exit-back  { to   { transform: translateY(100%); } }  /* back: old exits down/bottom */
 @keyframes vt-page-enter-back { from { transform: translateY(-100%); } } /* back: new descends from top */
+
+/* Top loading bar (michellegore.com style): a thin brand-blue bar pinned to the very top of
+   the viewport that sweeps left -> right as a new page settles in, then fades. Driven by
+   assets/js/page-progress.js (it adds .is-active to fill, then .is-done to fade on completion);
+   it sweeps on every page arrival - cold load, refresh, and after a cross-document View
+   Transition. This is the page-change "highlight" that replaced the old blue seam glow.
+   Reduced motion hides it entirely (the JS also bails), so it never animates for those users. */
+.page-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 1100;                       /* above header (100) + skip-link (1000) */
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+  view-transition-name: vt-progress;   /* lift out of the root page-rise snapshot - otherwise the fixed bar rises WITH the page AND sweeps live = two bars */
+}
+/* The bar is invisible (scaleX 0) at rest, so it has nothing to morph during a page transition;
+   skip its snapshot animation so it never flickers or duplicates - the live sweep is the only motion. */
+::view-transition-group(vt-progress) { animation: none; }
+.page-progress.is-active {
+  transform: scaleX(1);
+  transition: transform 1100ms cubic-bezier(0.33, 1, 0.68, 1);   /* slow, smooth easeOutCubic - a deliberate decelerating glide (michellegore feel), not a snap */
+}
+.page-progress.is-done {
+  opacity: 0;
+  transition: opacity 320ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-progress { display: none; }
+}
 
 /* ============================================
    PROJECT COVER + SCROLL CUE  (michellegore.com-inspired)
