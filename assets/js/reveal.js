@@ -35,12 +35,22 @@ if (reduce || !('IntersectionObserver' in window)) {
     });
   };
 
-  // Reveal in-view content on the next frame AFTER first paint, on EVERY arrival - cold load,
-  // refresh, and in-site nav alike. Deferring past the first paint is what lets the entrance
-  // transition play (the work-rows slide-in); revealing before paint is what made the cards pop
-  // in fully formed - the "abrupt" landing on a refresh. This is deliberately deterministic: it
-  // does NOT special-case View Transitions / pagereveal (their firing is inconsistent across
-  // browsers), so the cards always animate in and a refresh is never abrupt. The double rAF
-  // guarantees we're a frame past first paint before the class flips.
+  // A cross-document View Transition (clicking a nav link, not a reload) captures a snapshot of
+  // the INCOMING page and animates it rising into place. `pagereveal` fires before that snapshot
+  // is taken - and before the new document's first render - in every browser that runs the
+  // transition (Chrome + Safari 18.2+). Reveal in-view content synchronously here so it's captured
+  // VISIBLE and rises WITH the page, instead of an empty snapshot that fills in a beat AFTER the
+  // rise lands (the Safari flash - Chrome happened to tolerate the deferred-reveal timing, Safari
+  // didn't). Running before first render means no half-played opacity transition leaks into the
+  // snapshot. transition-direction.js already listens to pagereveal the same way.
+  window.addEventListener('pagereveal', (event) => {
+    if (event.viewTransition) revealInView();
+  });
+
+  // Cold load / refresh / bfcache restore (no View Transition, so pagereveal either doesn't fire
+  // or carries no viewTransition): reveal one frame AFTER first paint so the entrance transition
+  // plays (the work-rows slide-in). Revealing before paint is what made the cards pop in fully
+  // formed - the "abrupt" landing on a refresh. The double rAF guarantees we're a frame past first
+  // paint before the class flips. On a VT nav this still runs but only re-adds is-visible (no-op).
   requestAnimationFrame(() => requestAnimationFrame(revealInView));
 }
