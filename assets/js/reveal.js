@@ -37,14 +37,25 @@ if (reduce || !('IntersectionObserver' in window)) {
 
   // A cross-document View Transition (clicking a nav link, not a reload) captures a snapshot of
   // the INCOMING page and animates it rising into place. `pagereveal` fires before that snapshot
-  // is taken - and before the new document's first render - in every browser that runs the
-  // transition (Chrome + Safari 18.2+). Reveal in-view content synchronously here so it's captured
-  // VISIBLE and rises WITH the page, instead of an empty snapshot that fills in a beat AFTER the
-  // rise lands (the Safari flash - Chrome happened to tolerate the deferred-reveal timing, Safari
-  // didn't). Running before first render means no half-played opacity transition leaks into the
-  // snapshot. transition-direction.js already listens to pagereveal the same way.
+  // is taken, in every browser that runs the transition (Chrome + Safari 18.2+). Reveal in-view
+  // content here so it's captured VISIBLE and rises WITH the page, instead of an empty snapshot
+  // that fills in a beat AFTER the rise lands (the flash).
+  //
+  // It must reveal INSTANTLY: just adding `.is-visible` lets the entrance transition run, and
+  // Safari animates it even from a pre-first-render class change, so the snapshot caught the
+  // work-rows inner pieces (image + text) still at opacity 0 = empty cards = the Safari flash
+  // (Chrome treated the change as an initial value and painted solid). `html.vt-arriving` forces
+  // those reveal transitions to `none` (see main.css) so the reveal lands solid in the snapshot.
+  // Restore them once the transition settles, so scroll re-triggers slide normally again; resolve
+  // OR reject (a skipped/aborted transition) both clean up, and consuming the rejection here keeps
+  // it from surfacing as an unhandled AbortError.
   window.addEventListener('pagereveal', (event) => {
-    if (event.viewTransition) revealInView();
+    if (!event.viewTransition) return;
+    const root = document.documentElement;
+    root.classList.add('vt-arriving');
+    revealInView();
+    const restore = () => root.classList.remove('vt-arriving');
+    event.viewTransition.finished.then(restore, restore);
   });
 
   // Cold load / refresh / bfcache restore (no View Transition, so pagereveal either doesn't fire
