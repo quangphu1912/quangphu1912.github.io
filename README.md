@@ -39,7 +39,7 @@ JEKYLL_ENV=production ~/.rbenv/versions/3.3.6/bin/bundle exec ~/.rbenv/versions/
 ├── _notebooks/            # Jupyter notebooks (reserved, currently empty)
 ├── assets/
 │   ├── css/main.css       # All styles, one flat file
-│   ├── js/                # nav.js · reveal.js · count-up.js
+│   ├── js/                # nav.js · count-up.js · transition-direction.js · page-progress.js
 │   ├── fonts/             # InterVariable.woff2 + OFL.txt
 │   └── images/
 ├── index.md               # Home: typographic hero + metrics strip + selected work
