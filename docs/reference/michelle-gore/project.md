@@ -148,5 +148,8 @@ back-to-top `#8c8c8c`; nprogress `#efeaff`.
 **Hard to match:** scroll-distance-scaled transition duration (`d`); Flickity physics; exact expo curve
 on programmatic scroll (needs a JS tween). Everything else maps cleanly to vanilla CSS + IO + View Transitions.
 
-> Note for our site: we keep abstract SVG art and use a **tall ~62svh cover** (not full 100vh) with an
-> HTML `<h1>` title (not a baked image), so recruiters see the first content line above the fold.
+> Note for our site (2026-06-30 update): an earlier version of this note recommended a
+> shorter **~62svh** cover so body content sits above the fold. That was reconsidered —
+> the shipped site keeps the project cover at **100svh**, matching the Home/Projects
+> covers for visual parity across all three top-of-page moments (see CLAUDE.md). We
+> still keep abstract SVG art and an HTML `<h1>` title (not a baked image, unlike hers).

@@ -56,7 +56,7 @@ cover/transition moments if a sharper curve is wanted.
 |---|---|---|---|
 | **Scroll-down arrow** (home, covers) | `.show-more` chevron, click → 1s `expo.inOut` scroll; **no bounce** | inline SVG/CSS chevron, `<a href="#…">` + `scroll-behavior:smooth` | **Yes** — `.scroll-cue`, with a subtle reduced-motion-gated bob (a deliberate enhancement; original is static) |
 | **Card reveal on scroll** (home) | ScrollTrigger `scrub:0`, horizontal slide+fade, 0.8s linear, alt L/R | IntersectionObserver + CSS transition (already shipped as `[data-reveal]`) | **Yes** — move `data-reveal` to each card for individual stagger |
-| **Full-bleed cover** (work, project) | 100vh `.semplice-cover`, image/video bg | CSS `min-height:100svh` (we use **~62svh** for skimmability) + `object-fit:cover` | **Yes (adapted)** — tall cover on the project **detail** page |
+| **Full-bleed cover** (work, project) | 100vh `.semplice-cover`, image/video bg | CSS `min-height:100svh` | **Yes** — full 100svh on the project **detail** page, matching Home/Projects for cover parity (2026-06-30: superseded the original ~62svh recommendation below) |
 | **Cover parallax** (work) | `transform: translate3d(0, scrollTop/3, 0)`, wrapper `scale(1.2)` | rAF scroll handler or `animation-timeline: scroll()` | **No (for now)** — adds JS; not needed for the detail cover |
 | **Ambient cover zoom** (work) | `@keyframes coverZoom` 50s linear infinite | verbatim CSS keyframe, reduced-motion-gated | **Optional** — nice idle motion if desired |
 | **Prev/next** (project) | 180px edge-justified band, kicker over project name | flex band + Liquid neighbor lookup | **Yes** — and fix ordering to match the listing sort |
@@ -97,8 +97,9 @@ not breakage**. Layer IO + CSS transitions as the baseline; treat View Transitio
 ## Adoption summary for this site
 
 - Keep abstract SVG project art (no case-study content edits); keep Inter; keep free Jekyll/GH-Pages stack.
-- Build, restrained: a **tall (~62svh) project cover** with an HTML title + scroll-cue arrow; **per-card
-  staggered reveal**; **classy, correctly-ordered prev/next**; **tuned page transitions** (cover morph +
-  nav slide). All gated on `.js` + `prefers-reduced-motion`.
-- Defer/skip: cover parallax, transparent-nav toggle, NProgress bar, full 100vh covers, the cover deck
+- Build, restrained: a **full 100svh project cover** (2026-06-30: kept full-height for parity with the
+  Home/Projects covers, superseding an earlier ~62svh-for-skimmability recommendation) with an HTML
+  title + scroll-cue arrow; **per-card staggered reveal**; **classy, correctly-ordered prev/next**;
+  **tuned page transitions** (cover morph + nav slide). All gated on `.js` + `prefers-reduced-motion`.
+- Defer/skip: cover parallax, transparent-nav toggle, NProgress bar, the cover deck
   layout — none are needed for a credibility-focused engineer portfolio.
