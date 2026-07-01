@@ -56,6 +56,15 @@
 
   {% include footer.html %}
 
+  <!-- Back-to-top (michellegore's muted bottom-right chevron). Pure CSS control: href="#top"
+       scrolls home natively (smooth via scroll-behavior); the fade-in past the first viewport
+       is scroll-driven in main.css. Same chevron polygon as scroll-cue.html, flipped in CSS. -->
+  <a class="back-to-top" href="#top" aria-label="Back to top">
+    <svg class="back-to-top__icon" width="40" height="15" viewBox="0 0 53 20" aria-hidden="true" focusable="false">
+      <polygon points="26.5,17.688 9.114,3.779 10.303,2.312 26.5,15.269 42.697,2.313 43.886,3.779" />
+    </svg>
+  </a>
+
   <!-- Analytics (production only) -->
   {% if jekyll.environment == 'production' %}
     {% include analytics.html %}

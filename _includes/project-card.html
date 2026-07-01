@@ -8,11 +8,23 @@
   {% endif %}
 
   <div class="project-card__body">
-    <p class="eyebrow project-card__kicker">{% if project.date %}{{ project.date | date: "%b %Y" }}{% if project.tags %} &middot; {% endif %}{% endif %}{% if project.tags %}{{ project.tags | first }}{% endif %}</p>
+    {% comment %} Kicker is date-only: the discipline moved into the category chip below
+    (michellegore card anatomy - eyebrow = context, chip = discipline). {% endcomment %}
+    <p class="eyebrow project-card__kicker">{% if project.date %}{{ project.date | date: "%b %Y" }}{% endif %}</p>
 
     <h3 class="card-title">
       <a class="card-title__link" href="{{ project.url | relative_url }}"><span class="card-title__text">{{ project.title }}</span></a>
     </h3>
+
+    {% comment %} Tinted category chip in the category hue; labels mirror the projects-hero
+    legend. Unknown/missing category = no chip (only these three have hues). {% endcomment %}
+    {% case project.category %}
+      {% when 'data' %}{% assign cat_label = 'Data Engineering' %}
+      {% when 'ml' %}{% assign cat_label = 'Machine Learning' %}
+      {% when 'bi' %}{% assign cat_label = 'Analytics &amp; BI' %}
+      {% else %}{% assign cat_label = nil %}
+    {% endcase %}
+    {% if cat_label %}<p class="project-card__tag">{{ cat_label }}</p>{% endif %}
 
     <p class="card-description">{{ project.description }}</p>
 
