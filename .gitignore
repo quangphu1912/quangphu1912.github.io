@@ -17,3 +17,8 @@ logs/
 
 # Subagent-driven-development scratch (plans/reports/diffs)
 .superpowers/
+
+# Agent/workflow scaffolding (not site source)
+.agent/
+.opencode/
+openspec/
