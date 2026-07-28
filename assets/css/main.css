@@ -3,7 +3,7 @@
    Hand-built design system. Dark-only. One flat file, no preprocessor.
    ------------------------------------------------------------
    TABLE OF CONTENTS  (grep a banner to jump to its section)
-     Type         @font-face: Inter (body) + Hanken Grotesk (display) + metrics-matched fallback
+     Type         @font-face: Hanken Grotesk (display+body, primary) + Inter (subset fallback) + metrics-matched fallback
      Tokens       CSS CUSTOM PROPERTIES (Design Tokens)
      Reset        RESET & BASE STYLES
      Typography   TYPOGRAPHY
@@ -28,8 +28,8 @@
    ============================================================ */
 
 /* ============================================
-   SELF-HOSTED TYPE: Inter (body, variable) + Hanken Grotesk (display, variable)
-   Hanken Grotesk is the display face (Europa-cousin, even heights); Inter carries body/UI; mono carries labels.
+   SELF-HOSTED TYPE: Hanken Grotesk (display+body, primary, variable) + Inter (subset fallback for arrows/≥)
+   Hanken Grotesk is the single typeface (Europa-cousin, even heights); Inter is a subset fallback for the few glyphs outside Hanken's range (← → ≥); mono carries code.
    ============================================ */
 @font-face {
   font-family: "InterVariable";
@@ -50,7 +50,7 @@
 
 /* Self-hosted Hanken Grotesk (variable, latin subset) - the display face. Chosen over
    Jost for its even, uniform letter heights (Europa's calm evenness, not Jost's quirky
-   Futura forms). Body stays Inter; mono stays the label voice. Fallback chain runs to
+   Futura forms). Inter is fallback-only (subset for ← → ≥); mono carries code. Fallback chain runs to
    the loaded Inter (not a system font) so a missing glyph or a failed load degrades
    gracefully; the latin unicode-range matches the self-hosted subset. */
 @font-face {
@@ -96,7 +96,7 @@
   --color-background: var(--color-bg);
   --color-border: #2E2E30;
 
-  /* Typography - display (headings) / body share Inter; mono is the 2nd voice */
+  /* Typography - Hanken Grotesk is the single display+body face; Inter is a subset fallback; mono is the code voice */
   --font-display: "Hanken Grotesk", "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;   /* Hanken Grotesk = display face (Europa-cousin, even heights); body/UI below stay Inter */
   --font-body:    "Hanken Grotesk", "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;   /* unified: Hanken Grotesk is body too (one font, Europa-style); Inter is fallback only */
   --font-system:  var(--font-body); /* back-compat alias for existing usages */
@@ -720,8 +720,6 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
    Grotesk), not mono (mono read thin/airy at this size). Uses the shared --tracking-label token
    (one label voice); weight 700 is her solid-label treatment (the inversion: light display, bold labels). */
 .eyebrow { font-size: var(--text-sm); font-weight: 700; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-3); }
-.work-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
-@media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
 
 /* Project card body - image sits flush to the top, content padded below */
 .project-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
