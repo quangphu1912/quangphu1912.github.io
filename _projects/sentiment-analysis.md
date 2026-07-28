@@ -39,10 +39,10 @@ graph LR
     E -.->|Training| K[MLflow]
     F -->|Scores| I
 
-    style E fill:#ffe6e6
-    style G fill:#e1f5ff
-    style H fill:#e6f7ff
-    style I fill:#fff4e6
+    style E fill:#2c1717
+    style G fill:#102339
+    style H fill:#102339
+    style I fill:#2c2317
 ```
 
 ## Results & Impact

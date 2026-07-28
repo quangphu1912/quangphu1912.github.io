@@ -36,12 +36,12 @@ graph TD
     D -->|Errors| I[CloudWatch Logs]
     I -->|Alerts| J[SNS Notifications]
 
-    style A fill:#e1f5ff
-    style B fill:#fff4e6
-    style C fill:#fff4e6
-    style D fill:#ffe6e6
-    style G fill:#e6f7ff
-    style H fill:#e6f7ff
+    style A fill:#102339
+    style B fill:#2c2317
+    style C fill:#2c2317
+    style D fill:#2c1717
+    style G fill:#102339
+    style H fill:#102339
 ```
 
 ## Results & Impact

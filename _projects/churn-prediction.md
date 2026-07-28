@@ -39,9 +39,9 @@ graph LR
     J[MLflow] -->|Model Registry| F
     G -->|Monitoring| K[Cloud Monitoring]
 
-    style F fill:#ffe6e6
-    style H fill:#e6f7ff
-    style K fill:#fff4e6
+    style F fill:#2c1717
+    style H fill:#102339
+    style K fill:#2c2317
 ```
 
 ## Results & Impact
