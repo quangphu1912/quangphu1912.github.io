@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+description: "Phu Le — AI & Data Engineer in Toronto. Cloud data engineering, FP&A analytics, and Big-4 audit experience, plus AWS, CFA, and MBA credentials."
 image: /assets/images/hero/profile.jpg
 image_alt: "Phu Le - AI & Data Engineer"
 ---
