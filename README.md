@@ -9,7 +9,7 @@ The live résumé and project portfolio for Phu Le (AI & Data Engineer, Toronto)
 - **Jekyll `~> 4.3`** on Ruby `~> 3.3.6` (Bundler-managed gems)
 - **`theme: null`** - fully custom CSS in one flat file (`assets/css/main.css`); no preprocessor, no framework
 - **Plugins:** `jekyll-feed`, `jekyll-seo-tag`, `jekyll-sitemap`
-- **Self-hosted Inter** variable font (`assets/fonts/InterVariable.woff2`)
+- **Self-hosted Inter** variable font, subsetted to 3 glyphs (`assets/fonts/InterVariable-subset.woff2`)
 - **Dark theme only** - one theme for every visitor, no light mode
 - **Deploy:** GitHub Pages via GitHub Actions (`.github/workflows/jekyll.yml`)
 
@@ -40,7 +40,7 @@ JEKYLL_ENV=production ~/.rbenv/versions/3.3.6/bin/bundle exec ~/.rbenv/versions/
 ├── assets/
 │   ├── css/main.css       # All styles, one flat file
 │   ├── js/                # nav.js · count-up.js · transition-direction.js · page-progress.js
-│   ├── fonts/             # InterVariable.woff2 + OFL.txt
+│   ├── fonts/             # InterVariable-subset.woff2 + HankenGrotesk-Variable.woff2 + OFL.txt
 │   └── images/
 ├── index.md               # Home: typographic hero + metrics strip + selected work
 ├── projects.md            # Projects listing
