@@ -35,8 +35,9 @@
   font-family: "InterVariable";
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;                /* characterful face renders on first visit */
-  src: url("/assets/fonts/InterVariable.woff2") format("woff2");
+  font-display: swap;
+  src: url("/assets/fonts/InterVariable-subset.woff2") format("woff2");
+  unicode-range: U+2190, U+2192, U+2265;   /* the only glyphs Hanken lacks */
 }
 /* Metrics-matched fallback → identical metrics → zero CLS while Inter loads */
 @font-face {
