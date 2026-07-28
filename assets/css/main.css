@@ -98,7 +98,7 @@
   --color-border: #2E2E30;
 
   /* Typography - Hanken Grotesk is the single display+body face; Inter is a subset fallback; mono is the code voice */
-  --font-display: "Hanken Grotesk", "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;   /* Hanken Grotesk = display face (Europa-cousin, even heights); body/UI below stay Inter */
+  --font-display: "Hanken Grotesk", "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;   /* Hanken Grotesk = display face (Europa-cousin, even heights); Inter is fallback only */
   --font-body:    "Hanken Grotesk", "InterVariable", "Inter Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;   /* unified: Hanken Grotesk is body too (one font, Europa-style); Inter is fallback only */
   --font-system:  var(--font-body); /* back-compat alias for existing usages */
   --font-mono: "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", monospace;  /* code only (code/pre/mermaid) - labels + body use Hanken Grotesk now */
@@ -731,7 +731,7 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
 .work-rows { display: flex; flex-direction: column; gap: clamp(3rem, 7vw, 6rem); overflow-x: clip; }
 .work-rows .project-card { height: auto; background: transparent; overflow: visible; }
 .work-rows .project-card:hover { transform: none; }   /* no lift - the slide + image zoom carry it */
-.work-rows .project-card:focus-within { box-shadow: none; }   /* the link outline at :740 is the sole indicator */
+.work-rows .project-card:focus-within { box-shadow: none; }   /* the link outline rule below is the sole indicator */
 .work-rows .project-card .image-thumbnail { border-radius: var(--border-radius); }
 /* Show the full project name - no line clamp (rows grow to fit the title) */
 .work-rows .card-title__text { display: block; -webkit-line-clamp: none; overflow: visible; }
