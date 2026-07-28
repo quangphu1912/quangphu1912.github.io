@@ -732,6 +732,7 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
 .work-rows { display: flex; flex-direction: column; gap: clamp(3rem, 7vw, 6rem); overflow-x: clip; }
 .work-rows .project-card { height: auto; background: transparent; overflow: visible; }
 .work-rows .project-card:hover { transform: none; }   /* no lift - the slide + image zoom carry it */
+.work-rows .project-card:focus-within { box-shadow: none; }   /* the link outline at :740 is the sole indicator */
 .work-rows .project-card .image-thumbnail { border-radius: var(--border-radius); }
 /* Show the full project name - no line clamp (rows grow to fit the title) */
 .work-rows .card-title__text { display: block; -webkit-line-clamp: none; overflow: visible; }
