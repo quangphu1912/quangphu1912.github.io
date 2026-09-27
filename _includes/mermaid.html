@@ -1,9 +1,35 @@
 <script type="module">
   // Single dark theme site-wide - Mermaid always renders dark (see CLAUDE.md).
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: 'dark',
-    themeVariables: { primaryColor: '#1C1C1E', primaryTextColor: '#F5F5F7', primaryBorderColor: '#0A84FF', lineColor: '#6E6E73' }
-  });
+  // Kramdown emits ```mermaid fences as <pre><code class="language-mermaid">, which Mermaid's
+  // startOnLoad never finds (it scans for .mermaid). So: render each block explicitly and swap the
+  // <pre> for a .mermaid figure only once the SVG exists - if the CDN or a diagram fails, the source
+  // stays readable. Mermaid is only fetched on pages that actually contain a diagram. Version pinned.
+  const blocks = document.querySelectorAll('pre > code.language-mermaid');
+  if (blocks.length) {
+    const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.esm.min.mjs');
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      // fontFamily = the site face (Hanken Grotesk), not Mermaid's trebuchet default; edge labels sit on
+      // the .mermaid panel color (#161617 = --color-surface) instead of the dark theme's heavy grey chip.
+      themeVariables: { primaryColor: '#1C1C1E', primaryTextColor: '#F5F5F7', primaryBorderColor: '#0A84FF', lineColor: '#6E6E73',
+        edgeLabelBackground: '#161617', fontFamily: '"Hanken Grotesk", sans-serif' }
+    });
+    for (const [i, code] of blocks.entries()) {
+      try {
+        const { svg } = await mermaid.render(`mermaid-${i}`, code.textContent);
+        const figure = document.createElement('div');
+        figure.className = 'mermaid';
+        figure.innerHTML = svg;
+        code.parentElement.replaceWith(figure);
+        // Wide LR flowcharts (~1900px natural) would shrink to unreadable in the prose column. Floor the
+        // scale at 75% of natural size; anything wider scrolls inside the panel (.mermaid overflow-x:auto).
+        const el = figure.querySelector('svg');
+        const natural = el?.viewBox.baseVal.width;
+        if (natural) el.style.minWidth = `${Math.round(natural * 0.75)}px`;
+      } catch (err) {
+        console.warn('Mermaid render failed; leaving source visible.', err);
+      }
+    }
+  }
 </script>

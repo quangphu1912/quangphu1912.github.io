@@ -825,6 +825,19 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
   overflow-x: auto;
 }
 
+.mermaid { text-align: center; }
+.mermaid svg { height: auto; }
+/* Desktop: the diagram panel breaks out of the 760px prose column to the container width, so wide
+   left-to-right flowcharts render near natural size (mermaid.html floors the scale at 75% and lets
+   anything wider scroll inside the panel). Mobile keeps the column width + horizontal scroll. */
+@media (min-width: 900px) {
+  .project-content .mermaid {
+    --mermaid-w: min(100vw - 4rem, 1100px);
+    width: var(--mermaid-w);
+    margin-inline: calc((100% - var(--mermaid-w)) / 2);
+  }
+}
+
 .mermaid text {
   fill: var(--color-text);
 }
