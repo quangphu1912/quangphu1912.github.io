@@ -1,7 +1,7 @@
 # Enhancement & Cleanup Round — Design Spec
 
 - **Date:** 2026-07-28
-- **Status:** Design (awaiting user review) → then implementation plan
+- **Status:** SHIPPED (2026-09) - Branches 1-3 are on `main` (invisible bundle; Inter subset `8c778f0`/`fad9e26`; Mermaid dark `91e8caf`; see git log). Phase 4 owner-gated items still open. The step-by-step plan is intentionally not kept; git history is the execution log.
 - **Branches:** 3 focused feature branches off `main` (see Sequencing)
 - **Sources:** 4-dimension code audit (content/IA, CSS/JS health, SEO/perf/build, polish) + reconciliation by `bar-raiser` (code-verified) and `design-validator` (`frontend-design` lens)
 

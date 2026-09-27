@@ -1,7 +1,7 @@
 # Portfolio Overhaul — Round 3 (About + Home + Projects)
 
 - **Date:** 2026-06-19
-- **Status:** Design (awaiting user review) → then implementation plan
+- **Status:** SHIPPED (2026-06) - on `main`; see git log. Durable outcomes are folded into CLAUDE.md.
 - **Branch:** `feat/portfolio-overhaul-r3` (off `main`)
 - **Source of truth:** real résumé at `/Users/WangFu/GitHub/projects/resume/inputs/*.tex`
 
