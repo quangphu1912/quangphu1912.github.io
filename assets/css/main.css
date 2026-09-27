@@ -1148,8 +1148,7 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
    pseudo, transform/opacity only -> never blanks the VT snapshot; reduced-motion gets the static glow. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-home::before {
-    animation: heroAurora 24s ease-in-out infinite alternate;
-    will-change: transform, opacity;
+    animation: heroAurora 24s ease-in-out infinite alternate;   /* no will-change: a permanent layer hint on a blurred 72%-wide pseudo only costs memory */
   }
   @keyframes heroAurora {
     0%   { transform: translate(0, 0) scale(1);       opacity: 0.5; }
@@ -1166,20 +1165,20 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
 .hero-home__aside .hero-telemetry { margin: 0 auto; max-width: 40rem; width: 100%; }
 .hero-home .hero-telemetry__figures { justify-content: center; }
 /* hero eyebrow typography comes from .eyebrow; .hero-home__eyebrow only carries the stagger delay below. */
-/* Soft brand-blue glow hugging the letterforms - michellegore's indigo hero
-   text-shadow (0 10px 50px), retuned for the navy surface. The entrance mask that
-   would clip it is released after the line-rise (see MOTION CRAFT below). */
+/* No text-shadow glow on the name (removed in d3bed49). Its entrance is the masked line-rise in
+   MOTION CRAFT below. */
 .hero-home__title { font-size: clamp(3rem, 1.2rem + 7vw, 6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 var(--space-3); }
 .hero-home__lead { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); color: var(--color-text-secondary); max-width: 48ch; margin: 0 auto; text-wrap: pretty; }   /* 48ch = 3 lines on desktop; spacing to the CTA comes from .hero-home__cta alone */
 .hero-home__cta { justify-content: center; margin-top: var(--space-5); }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-home__text > *, .hero-home .hero-telemetry { animation: heroIn 0.7s var(--ease-out-expo) backwards; }
+  /* Transform-only (no opacity), same as the Projects cover: the entrance can never blank a View
+     Transition snapshot. The title is excluded - it has its own masked line-rise (MOTION CRAFT). */
+  .hero-home__text > :not(.hero-home__title), .hero-home .hero-telemetry { animation: heroIn 0.7s var(--ease-out-expo) backwards; }
   .hero-home__eyebrow { animation-delay: 0.05s; }
-  .hero-home__title   { animation-delay: 0.12s; }
   .hero-home__lead    { animation-delay: 0.22s; }
   .hero-home .hero-telemetry { animation-delay: 0.32s; }
   .hero-home__cta     { animation-delay: 0.46s; }
-  @keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes heroIn { from { transform: translateY(14px); } to { transform: none; } }
 }
 
 /* Cover is always dark (regardless of OS theme), so force copy + instrument to read white.
@@ -1649,9 +1648,9 @@ body::after {
 .project-nav__link:hover .project-nav__title,
 .project-nav__link:focus-visible .project-nav__title { color: var(--color-accent-text); }
 
-/* Sticky-header offset so scroll-cue anchor jumps don't tuck the target under the header.
-   #project-body = project cover target; #glance = home hero cue target. */
-#project-body, #glance { scroll-margin-top: 6rem; }   /* clear the header on cue jumps */
+/* Scroll-cue anchor targets (#project-body = project cover, #glance = home hero). The header scrolls
+   away (not sticky), so there is nothing to clear - just a little breathing room above the section. */
+#project-body, #glance { scroll-margin-top: var(--space-2); }
 
 /* Card -> cover morph: keep both snapshots filling their box so a differing aspect ratio
    scales instead of stretching (also smooths the Home <-> About title morph). */
@@ -1668,8 +1667,8 @@ body::after {
 /* Hero title: masked line rise on entrance (single-line name → clip-safe).
    The mask is an ANIMATED clip-path, not overflow:hidden: it holds inset(0) through the
    rise (backwards fill covers the 1.05s delay = 0.14s stagger + 0.9s rise + margin), then
-   expands outward so the title's blue glow (text-shadow above) blooms past the box instead
-   of staying clipped forever. Reduced motion = no rise, no mask → glow just paints. */
+   expands outward so the settled title is never left clipped at its line box (glyph
+   overshoot at line-height 1.0). Reduced motion = no rise, no mask. */
 .hero-home__title > span { display: inline-block; }
 @media (prefers-reduced-motion: no-preference) {
   .hero-home__title { animation: hero-title-unmask 0.6s var(--ease-out-expo) 1.05s both; }
