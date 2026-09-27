@@ -2,8 +2,6 @@
 layout: default
 title: Projects
 description: Selected data engineering and AI work - production pipelines, cloud platforms, and ML systems.
-image: /assets/images/hero/projects_index.webp
-image_alt: "Data visualization abstract blue analytics dashboard"
 ---
 
 <section class="projects-hero">

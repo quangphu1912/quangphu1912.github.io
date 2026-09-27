@@ -1,0 +1,86 @@
+<!doctype html>
+<!--
+  Social share card (og:image / twitter:image) - source for assets/images/og-card.png.
+  _design/ starts with an underscore, so Jekyll never publishes it.
+
+  Re-render (1200x630 PNG) after editing:
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+      --force-device-scale-factor=1 --window-size=1200,630 \
+      --screenshot=assets/images/og-card.png "file://$PWD/_design/og-card.html"
+
+  Mirrors the home cover: navy gradient + blue glow + dot grid, Hanken Grotesk, light display /
+  bold tracked label, and the telemetry pipeline motif. Keep key content inside ~60px margins -
+  some apps crop the edges.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: "Hanken Grotesk";
+    font-weight: 100 900;
+    src: url("../assets/fonts/HankenGrotesk-Variable.woff2") format("woff2");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: #081627; }
+  body { font-family: "Hanken Grotesk", sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+
+  .card {
+    position: relative; isolation: isolate; width: 1200px; height: 630px;
+    padding: 72px 80px 64px;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(120% 90% at 82% 8%, rgba(10,132,255,0.22), transparent 58%),
+      linear-gradient(162deg, #0C2747 0%, #081627 52%, #16103a 100%);
+  }
+  .card::before {                 /* identity glow (home .hero-home::before) */
+    content: ""; position: absolute; z-index: -1; inset: -12% auto auto -10%; width: 70%; height: 90%;
+    background: radial-gradient(50% 50% at 35% 25%, rgba(10,132,255,0.24), transparent 72%);
+    filter: blur(48px);
+  }
+  .card::after {                  /* dot-grid "data" texture */
+    content: ""; position: absolute; z-index: -1; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.09) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 80% 75% at 70% 30%, #000 15%, transparent 80%);
+  }
+
+  .eyebrow { font-size: 20px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
+  .name { margin-top: 22px; font-size: 148px; font-weight: 500; letter-spacing: -0.045em; line-height: 0.95; }
+  .lead { margin-top: 26px; max-width: 30ch; font-size: 34px; line-height: 1.3; color: rgba(255,255,255,0.82); }
+
+  .foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+  .url { font-size: 22px; font-weight: 600; letter-spacing: 0.01em; color: rgba(255,255,255,0.9); white-space: nowrap; }
+
+  /* telemetry pipeline motif (hero-telemetry.html) */
+  .pipe { width: 520px; }
+  .pipe svg { display: block; width: 100%; height: 28px; overflow: visible; }
+  .legend { display: flex; justify-content: space-between; margin-top: 10px; font-size: 15px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .legend .proc { color: #4DA3FF; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <p class="eyebrow">Data &amp; AI Engineer · Toronto · AWS Certified</p>
+    <h1 class="name">Phu Le</h1>
+    <p class="lead">Cloud data platforms, production pipelines, and data quality that makes ML trustworthy.</p>
+
+    <div class="foot">
+      <span class="url">quangphu1912.github.io</span>
+      <div class="pipe" aria-hidden="true">
+        <svg viewBox="0 0 520 28" preserveAspectRatio="none">
+          <line x1="8" y1="14" x2="512" y2="14" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+          <line x1="8" y1="14" x2="386" y2="14" stroke="#0A84FF" stroke-width="2" stroke-opacity="0.9"/>
+          <g fill="rgba(255,255,255,0.88)">
+            <circle cx="8" cy="14" r="6"/><circle cx="134" cy="14" r="6"/><circle cx="260" cy="14" r="6"/><circle cx="512" cy="14" r="6"/>
+          </g>
+          <circle cx="386" cy="14" r="8" fill="#081627" stroke="#0A84FF" stroke-width="3"/>
+          <circle cx="386" cy="14" r="16" fill="none" stroke="#0A84FF" stroke-opacity="0.25" stroke-width="2"/>
+        </svg>
+        <div class="legend"><span>S3</span><span>RDS</span><span>Redshift</span><span class="proc">MWAA</span><span>Datamart</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

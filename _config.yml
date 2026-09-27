@@ -44,6 +44,13 @@ defaults:
       type: "pages"
     values:
       layout: "page"
+      # Social share card (og:image / twitter:image) for every page that doesn't set its own
+      # (about.md keeps its photo - page.image there also drives the avatar). Source: _design/og-card.html
+      image:
+        path: /assets/images/og-card.png
+        width: 1200
+        height: 630
+        alt: "Phu Le, AI & Data Engineer - quangphu1912.github.io"
 
 # Plugins
 plugins:

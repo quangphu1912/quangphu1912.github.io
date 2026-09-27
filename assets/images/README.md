@@ -1,14 +1,15 @@
 # Portfolio Images
 
 Imagery for the site. Two kinds:
-- **Home / Projects-index heroes + About avatar** - WebP/JPEG photos in `hero/`.
+- **Social share card + About avatar** - `og-card.png` (default og:image for every page) and the avatar photo in `hero/`.
 - **Project covers** - hand-authored SVG abstracts in `projects/`, each paired with a PNG twin for social sharing.
 
 ## Directory Structure
 
 ```
 /assets/images/
-├── hero/         # Page hero photos (home, projects index) + about avatar
+├── og-card.png   # Default social share card, 1200x630 (source: _design/og-card.html)
+├── hero/         # About avatar (profile.jpg)
 ├── projects/     # Project covers: <slug>.svg (visible) + <slug>.png (og:image)
 └── favicon.svg   # Site icon
 ```
@@ -26,12 +27,11 @@ Templates read the visible image as `hero_image | default: image`, so `image` is
 
 ## Current files
 
-### `hero/` - page heroes & avatar
+### Social card + avatar
 | File | Used by | Notes |
 |---|---|---|
-| `hero.webp` | Home (`index.md` `image`) | WebP |
-| `projects_index.webp` | Projects index (`projects.md` `image`) | WebP |
-| `profile.jpg` | About avatar (`about.md` -> `profile-avatar.html`) | JPEG, `loading="eager"` |
+| `og-card.png` | og:image / twitter:image for every page without its own `image:` (Home, Projects, Privacy, 404) - set once as a `pages` default in `_config.yml` | 1200x630 PNG. Edit `_design/og-card.html` (unpublished) and re-render with the command in its header comment |
+| `hero/profile.jpg` | About avatar (`about.md` -> `profile-avatar.html`) and About's og:image | JPEG, `loading="eager"` |
 
 ### `projects/` - placeholder abstracts (one pair per project)
 Hand-authored navy->accent-gradient SVGs (16:9, viewBox `800x450`), each with a rasterized PNG twin for og:image.
