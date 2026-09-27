@@ -26,7 +26,7 @@ git push origin main   # triggers build + deploy automatically
 
 ## Branch Workflow
 
-- Feature work → feature branch → fast-forward into `main` → push (`develop` exists but the real flow skips it)
+- Feature work → feature branch → fast-forward into `main` → push. `main` is the only long-lived branch (no `develop`; merged feature branches are deleted)
 - Pre-commit hook **blocks direct commits to `main` and `develop`** - always use a feature branch
 
 ## Edit → Verify → Ship
