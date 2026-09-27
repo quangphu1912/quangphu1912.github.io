@@ -733,6 +733,8 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
 .work-rows .project-card:hover { transform: none; }   /* no lift - the slide + image zoom carry it */
 .work-rows .project-card:focus-within { box-shadow: none; }   /* the link outline rule below is the sole indicator */
 .work-rows .project-card .image-thumbnail { border-radius: var(--border-radius); }
+/* Chrome-less rows: text shares the image's left edge (the boxed-card inset would indent it on mobile). */
+.work-rows .project-card__body { padding: var(--space-4) 0 0; }
 /* Show the full project name - no line clamp (rows grow to fit the title) */
 .work-rows .card-title__text { display: block; -webkit-line-clamp: none; overflow: visible; }
 .work-rows .project-card__kicker { color: var(--color-text-secondary); margin-bottom: var(--space-2); }
@@ -1130,7 +1132,10 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
   margin-top: calc(-1 * var(--header-h));
   min-height: 100vh;
   min-height: 100svh;
-  padding-block: var(--space-8);
+  /* Top clears the transparent header (the bleed cancels main's padding, so the cover must re-add it -
+     otherwise tall content centers up under the nav); bottom leaves room for the pinned scroll cue. */
+  padding-top: calc(var(--header-h) + var(--space-4));
+  padding-bottom: calc(var(--space-8) + var(--space-2));
   color: #fff;
   background:
     radial-gradient(120% 90% at 82% 8%, rgba(10,132,255,0.20), transparent 58%),
@@ -1178,7 +1183,7 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
    text-shadow (0 10px 50px), retuned for the navy surface. The entrance mask that
    would clip it is released after the line-rise (see MOTION CRAFT below). */
 .hero-home__title { font-size: clamp(3rem, 1.2rem + 7vw, 6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1.0; margin: 0 0 var(--space-3); }
-.hero-home__lead { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); color: var(--color-text-secondary); max-width: 42ch; margin: 0 auto var(--space-4); text-wrap: pretty; }
+.hero-home__lead { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); color: var(--color-text-secondary); max-width: 48ch; margin: 0 auto; text-wrap: pretty; }   /* 48ch = 3 lines on desktop; spacing to the CTA comes from .hero-home__cta alone */
 .hero-home__cta { justify-content: center; margin-top: var(--space-5); }
 @media (prefers-reduced-motion: no-preference) {
   .hero-home__text > *, .hero-home .hero-telemetry { animation: heroIn 0.7s var(--ease-out-expo) backwards; }
@@ -1283,6 +1288,25 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
 /* Telemetry figures wrap before they can overflow a narrow phone (same class of fix as footer chips) */
 @media (max-width: 640px) {
   .hero-telemetry__figures { flex-wrap: wrap; gap: var(--space-4) var(--space-5); }
+}
+
+/* Laptop viewports up to ~940px tall (1440x900, 1440x800, 1280x720 after browser chrome): tighten the home
+   cover's type + rhythm so the whole stack - name through telemetry - fits one screen with the
+   scroll cue in view. Height-gated so tall screens and phones keep the full-size composition. */
+@media (min-width: 768px) and (max-height: 940px) {
+  .hero-home { padding-top: calc(var(--header-h) + var(--space-1)); padding-bottom: calc(var(--space-6) + var(--space-2)); }
+  .hero-home__inner { gap: var(--space-4); }
+  .hero-home__title { font-size: clamp(3rem, 11vh, 6rem); margin-bottom: var(--space-2); }
+  .hero-home__lead { font-size: clamp(1.1rem, 2.6vh, 1.6rem); }
+  .hero-home__cta { margin-top: var(--space-3); }
+  .hero-home .hero-telemetry { padding: var(--space-3); }
+  .hero-home .hero-telemetry__figures { margin-bottom: var(--space-2); }
+}
+@media (min-width: 768px) and (max-height: 760px) {
+  .hero-home__eyebrow { margin-bottom: var(--space-2); }
+  .hero-home__inner { gap: var(--space-3); }
+  .hero-home__title { font-size: clamp(3rem, 10vh, 6rem); }
+  .hero-home .hero-telemetry { padding: var(--space-2) var(--space-3); }
 }
 
 /* ============================================
@@ -1479,8 +1503,18 @@ body::after {
   pointer-events: none;
   background:
     linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 16%),                          /* top: nav legibility */
-    linear-gradient(90deg, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.74) 30%, rgba(0,0,0,0.30) 52%, rgba(0,0,0,0) 76%),  /* left: text-column legibility (art reads on the right) */
+    linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.84) 34%, rgba(0,0,0,0.52) 50%, rgba(0,0,0,0) 72%),  /* left: text-column legibility - held dark past the ~38ch description so bright art (e.g. a pipeline line) never crosses the copy; art reads on the right */
     radial-gradient(ellipse 60% 70% at 16% 50%, var(--proj-wash), transparent 72%);           /* hue glow behind the text */
+}
+/* Phones: the text column spans the full width, so a left-to-right scrim leaves the right half of the
+   copy over bright art. Go vertical instead - art breathes through at the top (header + eyebrow zone),
+   the copy below sits on an even dark wash. */
+@media (max-width: 759px) {
+  .project-cover::after {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.72) 30%, rgba(0,0,0,0.84) 100%),
+      radial-gradient(ellipse 90% 60% at 30% 45%, var(--proj-wash), transparent 72%);
+  }
 }
 .project-cover__inner {
   position: relative;
@@ -1534,6 +1568,15 @@ body::after {
 /* Cover credit pills: neutral white, brightened to read on the dark art (no category hue - the art + eyebrow already carry it). */
 .project-cover .tag { background-color: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.22); color: rgba(255,255,255,0.92); }
 .project-cover .tag:hover { background-color: #fff; color: #0a0f1a; border-color: #fff; }
+/* Short desktop viewports: tighten the cover rhythm (same label-over-pills composition, less air)
+   so the title + description + credits sit closer to one screen. */
+@media (min-width: 768px) and (max-height: 900px) {
+  .project-cover__inner { padding-top: calc(var(--header-h) + var(--space-1)); padding-bottom: var(--space-6); }
+  .project-cover__title { font-size: clamp(1.75rem, 0.9rem + 3.2vw, min(3.75rem, 6.6vh)); }
+  .project-cover__desc { margin-top: var(--space-2); }
+  .project-cover .project-meta-block { margin-top: var(--space-4); }
+  .project-cover .project-meta-block .pm-item { padding: 0.55rem 0; }
+}
 
 /* Scroll cue: centered chevron link, reused by the project cover AND the home hero. */
 .scroll-cue {
