@@ -180,7 +180,6 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
-  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 /* ============================================
@@ -204,7 +203,7 @@ h5 { font-size: var(--text-xl); letter-spacing: -0.005em; }
 h6 { font-size: var(--text-lg); letter-spacing: -0.005em; }
 
 /* Tabular + slashed-zero figures for any numeric UI */
-.tnum, .metric, .metric-figure, .metric-label, .tl-figure, .tl-unit {
+.metric, .metric-figure, .metric-label, .tl-figure, .tl-unit {
   font-feature-settings: var(--font-feature-figures);
   font-variant-numeric: tabular-nums slashed-zero;
 }
@@ -332,7 +331,8 @@ pre code {
   font-weight: 600;
   text-align: center;
   border-radius: var(--border-radius-sm);
-  transition: all var(--transition-base) var(--ease-out-expo);
+  transition: transform var(--transition-base) var(--ease-out-expo), background-color var(--transition-base) var(--ease-out-expo),
+    border-color var(--transition-base) var(--ease-out-expo), color var(--transition-base) var(--ease-out-expo), box-shadow var(--transition-base) var(--ease-out-expo);
   cursor: pointer;
   border: none;
   min-height: 46px; /* Touch target size */
@@ -373,12 +373,6 @@ pre code {
   padding: var(--space-4);
   box-shadow: var(--shadow-card);
   border: 1px solid transparent;
-  transition: all var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-border);
 }
 
 .project-card:hover {
@@ -1071,7 +1065,6 @@ body[data-category] .nav-link.active { color: var(--proj-accent); }
 .xp-company { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 var(--space-1); color: var(--color-text); }
 .xp-company--dim { color: var(--color-text-secondary); font-size: clamp(1.1rem, 2vw, 1.75rem); }
 .xp-role { font-size: var(--text-sm); color: var(--color-text-secondary); margin: 0 0 var(--space-1); }
-.xp-signal { font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--color-accent-text); display: block; }
 
 /* Credentials - icon links */
 .credentials-list { list-style: none; padding: 0; margin: 0; }

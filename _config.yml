@@ -47,7 +47,6 @@ defaults:
 
 # Plugins
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
 
@@ -68,6 +67,10 @@ exclude:
   - poetry.lock
   - scripts/
   - docs/
+  - uv.lock
+  - LICENSE
+  - logs/
+  - assets/images/README.md
 
 # Theme (none - custom theme)
 theme: null
