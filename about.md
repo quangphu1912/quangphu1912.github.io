@@ -15,6 +15,7 @@ image_alt: "Phu Le - AI & Data Engineer"
         <div class="identity-title">AI &amp; Data Engineer</div>
         <div class="identity-loc">Toronto, CA</div>
         <div class="cert-chips">
+          <span class="chip">AWS GenAI Developer</span>
           <span class="chip">AWS Data Engineer</span>
           <span class="chip">AWS Solutions Architect</span>
           <span class="chip">CFA</span>
