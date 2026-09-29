@@ -82,11 +82,15 @@ image_alt: "Phu Le - AI & Data Engineer"
       <h2 class="section-title">Credentials</h2>
       <ul class="credentials-list">
         <li>
-          <span class="cred-name">AWS Certified Data Engineer</span>
+          <span class="cred-name">AWS Certified Generative AI Developer - Professional</span>
+          {% include icon-external.html href="https://www.credly.com/earner/earned/badge/91679a4d-f0fb-450d-82c4-d983399e3ef0" label="Verify AWS Generative AI Developer certification on Credly" %}
+        </li>
+        <li>
+          <span class="cred-name">AWS Certified Data Engineer - Associate</span>
           {% include icon-external.html href="https://www.credly.com/earner/earned/badge/2cbce644-127c-4ec5-8a1c-ca269f7a8ef7" label="Verify AWS Data Engineer certification on Credly" %}
         </li>
         <li>
-          <span class="cred-name">AWS Solutions Architect</span>
+          <span class="cred-name">AWS Certified Solutions Architect - Associate</span>
           {% include icon-external.html href="https://www.credly.com/badges/3689c0cb-2b65-4186-8524-d37a5b229029" label="Verify AWS Solutions Architect certification on Credly" %}
         </li>
         <li>
